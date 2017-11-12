@@ -1,5 +1,5 @@
 <template>
-  <navigation></navigation>
+  <navigation :page="'home'"></navigation>
 </template>
 
 <script>

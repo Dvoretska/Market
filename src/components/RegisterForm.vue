@@ -1,45 +1,39 @@
 <template>
-  <div class="register-form">
-    <div class="field">
-      <p class="control has-icons-left has-icons-right">
-        <input class="input" type="email" placeholder="Email">
-        <span class="icon is-small is-left">
-          <i class="fa fa-envelope"></i>
-        </span>
-        <span class="icon is-small is-right">
-          <i class="fa fa-check"></i>
-        </span>
-      </p>
+	<div class="register-form">
+	 	<div class="box">
+		  	<input-style :placeholder="'Email'"></input-style>
+			<input-style :placeholder="'Password'"></input-style>
+			<input-style :placeholder="'Confirm Password'"></input-style>
+		   	<button-bar :label="'Sign up'"></button-bar>
+	  	</div>
     </div>
-    <div class="field">
-      <p class="control has-icons-left">
-        <input class="input" type="password" placeholder="Password">
-        <span class="icon is-small is-left">
-          <i class="fa fa-lock"></i>
-        </span>
-      </p>
-    </div>
-    <div class="field">
-      <p class="control has-icons-left">
-        <input class="input" type="password" placeholder="Repeat password">
-        <span class="icon is-small is-left">
-          <i class="fa fa-lock"></i>
-        </span>
-      </p>
-    </div>
-    <div class="field">
-      <p class="control">
-        <button class="button is-success">
-          Sign up
-        </button>
-      </p>
-    </div>
-  </div>
 </template>
+
+<script>
+
+import buttonBar from '@/components/ButtonBar'
+import inputStyle from '@/components/InputStyle'
+
+export default {
+  components: {
+    buttonBar,
+    inputStyle
+  }
+}
+</script>
 
 <style scoped>
   .register-form {
     width: 500px;
-    margin: 120px auto;
+  }
+  .box {
+	margin-top: -150px;
+	width: 500px;
+	margin: auto;
+	padding: 3em 3em;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
   }
 </style>
