@@ -1,11 +1,11 @@
 <template>
-  <div class="field">
+  <span>
     <p class="control">
       <div class="button-anim">
         <span v-on:click="click()">{{ label }}</span>
       </div>
     </p>
-  </div>
+  </span>
 </template>
 
 <script>
@@ -21,7 +21,7 @@ export default {
 <style scoped>
   .button-anim {
     display: inline-block;
-    margin: 0 auto;
+    margin: 15px auto;
     
     -webkit-border-radius: 10px;
     
@@ -82,8 +82,8 @@ export default {
         color-stop(100%,rgba(255,255,255,0)));
 
     -webkit-box-shadow:
-        0px -1px #fff, /* top highlight */
-        0px 0.5px 5px #FFFFFF; /* bottom edge */
+        0px -1px #fff,
+        0px 0.5px 5px #FFFFFF; 
     
     -webkit-background-size: 100%, 100%, 100%, 4px 4px;
     

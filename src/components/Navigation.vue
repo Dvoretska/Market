@@ -32,80 +32,29 @@
     </div>
   </div>
 </nav> -->
-<nav class="navbar is-transparent">
-  <div class="navbar-brand">
-    <a class="navbar-item" href="https://bulma.io">
-      <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
-    </a>
-    <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
+
+<nav class="top-bar">
+   <router-link :to="{ name: 'home'}">
+      <img src="../assets/Home.png" class="logo-img">
+    </router-link>
+
+  <div class="home">
+    <router-link :to="{ name: 'home'}" class="home navbar-item">
+      <span>Home</span>
+    </router-link>
   </div>
 
-  <div id="navbarExampleTransparentExample" class="navbar-menu">
-    <div class="navbar-start">
-      <a class="navbar-item" href="https://bulma.io/">
-        Home
-      </a>
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link" href="/documentation/overview/start/">
-          Docs
-        </a>
-        <div class="navbar-dropdown is-boxed">
-          <a class="navbar-item" href="/documentation/overview/start/">
-            Overview
-          </a>
-          <a class="navbar-item" href="https://bulma.io/documentation/modifiers/syntax/">
-            Modifiers
-          </a>
-          <a class="navbar-item" href="https://bulma.io/documentation/columns/basics/">
-            Columns
-          </a>
-          <a class="navbar-item" href="https://bulma.io/documentation/layout/container/">
-            Layout
-          </a>
-          <a class="navbar-item" href="https://bulma.io/documentation/form/general/">
-            Form
-          </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item" href="https://bulma.io/documentation/elements/box/">
-            Elements
-          </a>
-          <a class="navbar-item is-active" href="https://bulma.io/documentation/components/breadcrumb/">
-            Components
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="field is-grouped">
-          <p class="control">
-            <a class="bd-tw-button button" data-social-network="Twitter" data-social-action="tweet" data-social-target="http://localhost:4000" target="_blank" href="https://twitter.com/intent/tweet?text=Bulma: a modern CSS framework based on Flexbox&amp;hashtags=bulmaio&amp;url=http://localhost:4000&amp;via=jgthms">
-              <span class="icon">
-                <i class="fa fa-twitter"></i>
-              </span>
-              <span>
-                Tweet
-              </span>
-            </a>
-          </p>
-          <p class="control">
-            <a class="button is-primary" href="https://github.com/jgthms/bulma/archive/0.5.1.zip">
-              <span class="icon">
-                <i class="fa fa-download"></i>
-              </span>
-              <span>Download</span>
-            </a>
-          </p>
-        </div>
-      </div>
-    </div>
+  <div class="log-sign">
+    <router-link :to="{ name: 'login'}" class="button-anim ">
+      <span v-bind:class="{ activelink: page == 'login'}">Login</span>
+    </router-link>
+  
+    <router-link :to="{ name: 'register'}" class="button-anim">
+      <span v-bind:class="{ activelink: page == 'register' }">Sign up</span>
+    </router-link>
   </div>
 </nav>
+
 
 </template>
 
@@ -117,17 +66,36 @@ export default {
 }
 </script>
 <style scoped>
-  .navbar {
-    background-color: transparent;
-    position: absolute;
+  .top-bar {
+    display: flex;
+    height: 60px;
+    align-items: center;
+    padding: 0 10px;
+    background-color: #f4f4f4;
+    -webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
   }
-  :focus {outline:none;}
-  ::-moz-focus-inner {border:0;}
-
+  .home {
+    margin-right: auto;
+    color: #3A474D;
+    text-transform: uppercase;
+    font-family: 'TradeGothicLTStd-BdCn20','PT Sans Narrow';
+    font-weight: 700;
+    font-size: 20px;
+  }
+  .home:hover {
+    background-color: transparent;
+    color: #AEBF3B;
+  }
+  .logo-img {
+    height: 60px;
+    background-color: transparent;
+  }
   .button-anim {
-
+    margin-bottom: 2.5px;
     display: inline-block;
-    margin: 0 auto;
+    margin-right: 10px;
     
     -webkit-border-radius: 10px;
     
@@ -212,7 +180,6 @@ export default {
         text-shadow: 0px -1px #97A63A;
         cursor: pointer;
     }
-
     .button-anim:active {
         -webkit-box-shadow: 
             0px 3px rgba(128,128,128,1),
@@ -225,24 +192,6 @@ export default {
   .activelink {
     color: red;
     -webkit-transform: translate(0, 3px);
-  }
-  .home {
-    color: #3A474D;
-    text-transform: uppercase;
-    font-family: 'TradeGothicLTStd-BdCn20','PT Sans Narrow';
-    font-weight: 700;
-    font-size: 20px;
-  }
-    .home:hover {
-      color: #AEBF3B;
-    }
-  .logo-img {
-    display: inline-block;
-    height: 70px;
-    margin-left: 20px;
-  }
-  .navbar-item {
-    padding: 5px 16px 11px 16px;
   }
 </style>
 

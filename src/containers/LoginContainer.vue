@@ -1,7 +1,7 @@
 <template>
-  <div class="log">
+  <div>
   	<navigation :page="'login'"></navigation>
-  	<login-form class="full-height"></login-form>
+  	<login-form></login-form>
   </div>
 </template>
 
@@ -19,13 +19,3 @@ export default {
 }
 </script>
 
-<style scoped>
-  .full-height {
-  	height: 100vh;
-  }
-/*  .log {
-  	background: url(../assets/2270.jpg);
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-  }*/
-</style>
