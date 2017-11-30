@@ -1,11 +1,7 @@
 <template>
-  <span>
-    <p class="control">
-      <div class="button-anim">
-        <span v-on:click="click()">{{ label }}</span>
-      </div>
-    </p>
-  </span>
+  <div class="button-anim">
+    <span v-on:click="click()">{{ label }}<i class="fa fa-spinner fa-spin fa-lg fa-fw" v-if="loading"></i></span>
+  </div>
 </template>
 
 <script>
@@ -14,6 +10,11 @@ export default {
   props: {
     label: String,
     click: Function
+  },
+  computed: {
+    loading () {
+      return this.$store.getters.getLoading
+    }
   }
 }
 </script>
@@ -21,17 +22,13 @@ export default {
 <style scoped>
   .button-anim {
     display: inline-block;
-    margin: 15px auto;
-    
+
     -webkit-border-radius: 10px;
     
     -webkit-box-shadow: 
         0px 3px rgba(128,128,128,1), 
         0px 4px rgba(118,118,118,1),
         0px 5px 2px rgba(108,108,108,1);
-/*        0px 6px rgba(98,98,98,1),
-        0px 7px rgba(88,88,88,1),
-        0px 10px 4px -1px rgba(128,128,128,1);*/ /* shadow */
     
     -webkit-transition: -webkit-box-shadow .1s ease-in-out;
   } 
@@ -91,13 +88,11 @@ export default {
     -webkit-transition: -webkit-transform .1s ease-in-out;
     
     display: inline-block;
-    padding: 5px 15px 3px 15px;
+    padding: 5px 10px 4px 10px;
     
     color: #3A474D;
     text-transform: uppercase;
-    font-family: 'TradeGothicLTStd-BdCn20','PT Sans Narrow';
-    font-weight: 500;
-    font-size: 14px;
+    font: 500 12px 'TradeGothicLTStd-BdCn20','PT Sans Narrow';
     
     text-shadow: 0px 1px #fff, 0px -1px #262F33;
   }
@@ -111,10 +106,7 @@ export default {
         -webkit-box-shadow: 
             0px 3px rgba(128,128,128,1),
             0px 4px rgba(118,118,118,1),
-            0px 5px rgba(108,108,108,1)/*,
-            0px 6px rgba(98,98,98,1),
-            0px 7px rgba(88,88,88,1),
-            0px 9px 2px 0px rgba(128,128,128,.6)*/; /* shadow */
+            0px 5px rgba(108,108,108,1);
     }
     .button-anim:active span {
     -webkit-transform: translate(0, 3px);

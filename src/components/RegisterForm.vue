@@ -3,13 +3,13 @@
 	 	<h2>Sign up</h2>
 	 	<div class="inside-form">
 	 		<p class="is-danger">{{ nonFieldErrors }}</p>
-			<input-style :placeholder="'Email'" :type="'email'" @inputVal="regEmail" :errors="emailErrors"></input-style>
-			<input-style :placeholder="'Password'" :type="'password'" @inputVal="regPass1" :errors="password1Errors"></input-style>
-			<input-style :placeholder="'Confirm Password'" :type="'password'" @inputVal="regPass2" :errors="password2Errors"></input-style>
-			<button-bar :label="'Sign up'" :click="signUp"></button-bar>
-      <router-link :to="{ name: 'login'}">
-          <span class="back">Already registered? Login</span>
+			<input-style :placeholder="'Email'" :type="'email'" @inputVal="setEmail" :errors="emailErrors"></input-style>
+			<input-style :placeholder="'Password'" :type="'password'" @inputVal="setPass1" :errors="password1Errors"></input-style>
+			<input-style :placeholder="'Confirm Password'" :type="'password'" @inputVal="setPass2" :errors="password2Errors"></input-style>
+      <router-link :to="{ name: 'login'}"  class="back-to-login">
+          <span>Already registered? Login</span>
       </router-link>
+			<button-bar :label="'Sign up'" :click="signUp" class="signup-button"></button-bar>
 		</div>
 	</div>
   </div>
@@ -25,52 +25,28 @@ export default {
     buttonBar,
     inputStyle
   },
-  methods: {
-    signUp () {
-      this.$store.dispatch('SIGNUP', {email: this.email, password1: this.password1, password2: this.password2})
-    },
-    regEmail (val) {
-      this.email = val
-    },
-    regPass1 (val) {
-      this.password1 = val
-    },
-    regPass2 (val) {
-      this.password2 = val
-    }
-  },
-  computed: {
-    nonFieldErrors () {
-      if (this.$store.getters.getSignupErrors && this.$store.getters.getSignupErrors.non_field_errors) {
-        return this.$store.getters.getSignupErrors.non_field_errors.join('\n')
-      }
-    },
-    emailErrors () {
-      if (this.$store.getters.getSignupErrors && this.$store.getters.getSignupErrors.email) {
-        return this.$store.getters.getSignupErrors.email.join('\n')
-      }
-    },
-    password1Errors () {
-      if (this.$store.getters.getSignupErrors && this.$store.getters.getSignupErrors.password1) {
-        return this.$store.getters.getSignupErrors.password1.join('\n')
-      }
-    },
-    password2Errors () {
-      if (this.$store.getters.getSignupErrors && this.$store.getters.getSignupErrors.password2) {
-        return this.$store.getters.getSignupErrors.password2.join('\n')
-      }
-    }
+  props: {
+    signUp: Function,
+    setEmail: Function,
+    setPass1: Function,
+    setPass2: Function,
+    nonFieldErrors: String,
+    emailErrors: String,
+    password1Errors: String,
+    password2Errors: String
   }
 }
 </script>
 
 <style scoped>
-  .back {
-    float: left;
+  .sigup-button {
+    margin: 15px 0 20px;
+  }
+  .back-to-login {
     font-size: 14px;
-    display: inline-block;
-    padding-bottom: 10px;
-    color: #635a63;
+    color: #8c40b8;
+    float: right;
+    margin-top: 20px;
   }
   .is-danger {
     font-size: 13px;
@@ -105,8 +81,6 @@ export default {
                0 2px 0 #c9c9c9,
                0 3px 0 #bbb,
                0 4px 0 #b9b9b9,
-               /*0 5px 0 #aaa,*/
-              /* 0 6px 1px rgba(0,0,0,.1),*/
                0 0 5px rgba(0,0,0,.1),
                0 1px 3px rgba(0,0,0,.3),
                0 3px 5px rgba(0,0,0,.2),

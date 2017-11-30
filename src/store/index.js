@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import router from '../router/index.js'
 
 const ACCOUNTS_URL = 'https://servermarket.herokuapp.com/accounts/'
 
@@ -8,64 +9,76 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    loginResponse: {
-      success: null, errors: null
-    },
-    signupResponse: {
-      success: null, errors: null
+    responseState: {
+      success: null, errors: null, loading: null
     }
   },
   actions: {
     LOGIN: function (commit, data) {
+      store.commit('loading', true)
       axios.post(`${ACCOUNTS_URL}login`, {
         email: data.email,
         password: data.password
       }).then((response) => {
-        store.commit('login', response.data)
+        store.commit('success', response.data)
+        store.commit('loading', false)
+        localStorage.setItem('token', response.data.token)
+        localStorage.setItem('userDetails', JSON.stringify(response.data.user))
+        router.push('/')
       }, (err) => {
-        store.commit('loginErrors', err.response.data)
+        store.commit('error', err.response.data)
+        store.commit('loading', false)
       })
     },
     SIGNUP: function (commit, data) {
+      store.commit('loading', true)
       axios.post(`${ACCOUNTS_URL}signup`, {
         email: data.email,
         password1: data.password1,
         password2: data.password2
       }).then((response) => {
-        store.commit('signup', response.data)
+        store.commit('success', response.data)
+        store.commit('loading', false)
+        localStorage.setItem('token', response.data.token)
+        localStorage.setItem('userDetails', JSON.stringify(response.data.user))
+        router.push('/')
       }, (err) => {
-        store.commit('signupError', err.response.data)
+        store.commit('error', err.response.data)
+        store.commit('loading', false)
       })
+    },
+    CLEAR_ERRORS: function (commit) {
+      store.commit('clear_errors')
+    },
+    LOGOUT: function () {
+      localStorage.removeItem('token')
+      localStorage.removeItem('userDetails')
+      router.push('/login')
     }
   },
   mutations: {
-    login (state, data) {
-      state.loginResponse = data
-      console.log(state.loginResponse)
+    success (state, data) {
+      state.responseState.success = data
     },
-    loginErrors (state, data) {
-      state.loginResponse.errors = data
+    error (state, data) {
+      state.responseState.errors = data
     },
-    signup (state, data) {
-      state.signupResponse.success = data
-      console.log(state.signupResponse)
+    clear_errors (state) {
+      state.responseState.errors = null
     },
-    signupError (state, data) {
-      state.signupResponse.errors = data
+    loading (state, data) {
+      state.responseState.loading = data
     }
   },
   getters: {
-    getLoginResponse: state => {
-      return state.loginResponse
+    getSuccess: state => {
+      return state.responseState.success
     },
-    getLoginErrors: state => {
-      return state.loginResponse.errors
+    getErrors: state => {
+      return state.responseState.errors
     },
-    getSignupResponse: state => {
-      return state.signupResponse
-    },
-    getSignupErrors: state => {
-      return state.signupResponse.errors
+    getLoading: state => {
+      return state.responseState.loading
     }
   }
 })

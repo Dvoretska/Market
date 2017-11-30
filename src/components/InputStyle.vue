@@ -1,7 +1,6 @@
 <template>
   <div>
     <p class="control has-icons-left style-input">
-    <!--   <p class="invis">{{ placeholder }}</p> -->
       <input class="input" :type="type" :placeholder="placeholder" @input="getInputVal" v-model="inputVal" v-bind:class="{focused: inputVal, 'is-danger-input': errors}">
       <div class="is-danger">{{ errors }}</div>
     </p>
@@ -10,12 +9,7 @@
 
 <script>
 
-import inputStyle from '@/components/InputStyle'
-
 export default {
-  components: {
-    inputStyle
-  },
   data () {
     return {inputVal: ''}
   },
@@ -39,7 +33,6 @@ export default {
     padding-left: 7px;
     color: red;
   }
-
   .style-input {
     margin-top: 15px;
     -webkit-border-radius: 10px;
@@ -47,9 +40,6 @@ export default {
     0px 3px rgba(128,128,128,1), 
     0px 4px rgba(118,118,118,1),
     0px 5px rgba(108,108,108,1);
-/*    0px 6px rgba(98,98,98,1),
-    0px 7px rgba(88,88,88,1);*/
- /*   0px 8px 8px -1px rgba(128,128,128,1);*/ /* shadow */
     -webkit-transition: -webkit-box-shadow .1s ease-in-out;
     -webkit-transition: -webkit-transform .1s ease-in-out;
   }

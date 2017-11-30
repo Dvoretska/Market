@@ -1,38 +1,4 @@
 <template>
-<!--  <nav class="navbar is-transparent">
-  <div class="navbar-brand">
-    <router-link :to="{ name: 'home'}">
-      <img src="https://t4.ftcdn.net/jpg/00/96/39/61/240_F_96396185_seZoKQlTY7EndV0eIh0pOnqod1O2mWTU.jpg" class="logo-img">
-    </router-link>
-    <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
-
-  <div id="navbarExampleTransparentExample" class="navbar-menu">
-    <div class="navbar-start">
-      <div class="navbar-item">
-        <router-link :to="{ name: 'home'}" class="home navbar-item" v-bind:class="{ active: page == 'home' }"><span>Home</span></router-link>
-      </div>
-    </div>
-
-    <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="field is-grouped">
-          <p class="control">
-            <router-link :to="{ name: 'login'}" class="button-anim"><span v-bind:class="{ activelink: page == 'login'}">Login</span></router-link>
-          </p>
-          <p class="control">
-            <router-link :to="{ name: 'register'}" class="button-anim"><span v-bind:class="{ activelink: page == 'register' }">Sign up</span></router-link>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</nav> -->
-
 <nav class="top-bar">
    <router-link :to="{ name: 'home'}">
       <img src="../assets/Home.png" class="logo-img">
@@ -43,25 +9,48 @@
       <span>Home</span>
     </router-link>
   </div>
-
-  <div class="log-sign">
-    <router-link :to="{ name: 'login'}" class="button-anim ">
+  
+  <div>
+    <router-link :to="{ name: 'login'}" class="button-anim" v-if="!isLogin">
       <span v-bind:class="{ activelink: page == 'login'}">Login</span>
     </router-link>
   
-    <router-link :to="{ name: 'register'}" class="button-anim">
+    <router-link :to="{ name: 'register'}" class="button-anim" v-if="!isLogin">
       <span v-bind:class="{ activelink: page == 'register' }">Sign up</span>
     </router-link>
+    <router-link :to="{ name: 'profile'}">
+      <svg style="width:24px;height:24px" viewBox="0 0 24 24" class="user-icon" v-if="isLogin">
+        <path fill="#000000" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+      </svg>
+      <span class="username" v-if="isLogin">{{ userDetails.username }}</span>
+    </router-link>
+
+    <a class="button-anim button-logout" @click="logout()" v-if="isLogin">
+      <span>Logout</span>
+    </a>
   </div>
 </nav>
-
-
 </template>
 
 <script>
 export default {
   props: {
     page: String
+  },
+  methods: {
+    logout () {
+      this.$store.dispatch('LOGOUT')
+    }
+  },
+  computed: {
+    isLogin () {
+      return localStorage.getItem('token')
+    },
+    userDetails () {
+      if (localStorage.getItem('userDetails')) {
+        return JSON.parse(localStorage.getItem('userDetails'))
+      }
+    }
   }
 }
 </script>
@@ -100,12 +89,9 @@ export default {
     -webkit-border-radius: 10px;
     
     -webkit-box-shadow: 
-        0px 3px rgba(128,128,128,1), /* gradient effects */
+        0px 3px rgba(128,128,128,1),
         0px 4px rgba(118,118,118,1),
-        0px 5px 2px rgba(108,108,108,1)/*,
-        0px 6px rgba(98,98,98,1),
-        0px 7px rgba(88,88,88,1),
-        0px 10px 4px -1px rgba(128,128,128,1)*/; /* shadow */
+        0px 5px 2px rgba(108,108,108,1);
     
     -webkit-transition: -webkit-box-shadow .1s ease-in-out;
   } 
@@ -156,8 +142,8 @@ export default {
         color-stop(100%,rgba(255,255,255,0)));
     
     -webkit-box-shadow:
-      0px -1px #fff, /* top highlight */
-      0px 1px 5px #FFFFFF; /* bottom edge */
+      0px -1px #fff,
+      0px 1px 5px #FFFFFF;
     
     -webkit-background-size: 100%, 100%, 100%, 4px 4px;
     
@@ -165,33 +151,34 @@ export default {
     -webkit-transition: -webkit-transform .1s ease-in-out;
     
     display: inline-block;
-    padding: 5px 10px 3px 10px;
+    padding: 5px 10px 4px 10px;
     
     color: #3A474D;
     text-transform: uppercase;
-    font-family: 'TradeGothicLTStd-BdCn20','PT Sans Narrow';
-    font-weight: 500;
-    font-size: 14px;
+    font: 500 12px 'TradeGothicLTStd-BdCn20','PT Sans Narrow';
     
     text-shadow: 0px 1px #fff, 0px -1px #262F33;
   }
-    .button-anim span:hover {
-        color: #AEBF3B;
-        text-shadow: 0px -1px #97A63A;
-        cursor: pointer;
-    }
-    .button-anim:active {
-        -webkit-box-shadow: 
-            0px 3px rgba(128,128,128,1),
-            0px 4px rgba(118,118,118,1),
-            0px 5px rgba(108,108,108,1)/*,
-            0px 6px rgba(98,98,98,1),
-            0px 7px rgba(88,88,88,1),
-            0px 9px 2px 0px rgba(128,128,128,.6)*/; /* shadow */
+    .button-anim span:hover, .username:hover {
+      color: #8c40b8;
+ /*     text-shadow: 0px -1px #97A63A;*/
+      cursor: pointer;
     }
   .activelink {
-    color: red;
     -webkit-transform: translate(0, 3px);
   }
+  .button-logout:active span{
+    -webkit-transform: translate(0, 3px);
+    }
+  .username {
+    font-family: 'TradeGothicLTStd-BdCn20','PT Sans Narrow';
+    font-weight: 600;
+    font-size: 18px;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  .user-icon {
+    vertical-align: middle;
+  }  
 </style>
 

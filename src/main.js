@@ -7,9 +7,15 @@ import Buefy from 'buefy'
 import 'buefy/lib/buefy.css'
 import Vuex from 'vuex'
 import store from './store'
+import 'vue-material-design-icons/styles.css'
+import VModal from 'vue-js-modal'
 
-Vue.use(Buefy)
+Vue.use(Buefy, {
+  defaultIconPack: 'fa',
+  defaultContainerElement: '#content'
+})
 Vue.use(Vuex)
+Vue.use(VModal)
 
 Vue.config.productionTip = false
 
