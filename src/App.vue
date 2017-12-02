@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-  <!--   <img src="./assets/logo.png"> -->
     <router-view/>
   </div>
 </template>
@@ -10,4 +9,18 @@ export default {
   name: 'app'
 }
 </script>
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  :focus {
+  	outline:none;
+  }
+  ::-moz-focus-inner {
+  	border:0;
+  }
+</style>
+
+
 
