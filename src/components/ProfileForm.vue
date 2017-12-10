@@ -9,7 +9,13 @@
       <span>Last name:</span>
       <span>{{ lastName }}</span>
     </div>
-    <modal-change></modal-change>
+    <modal-change
+     :firstName="first_name"
+     :lastName="last_name"
+     :inputFirstNameHadler="inputFirstNameHadler"
+     :inputLastNameHadler="inputLastNameHadler"
+     :changeProfileHandler="changeProfileHandler">
+    </modal-change>
   </div>
 </template>
 
@@ -22,26 +28,35 @@ export default {
     buttonBar,
     modalChange
   },
-  watch: {
-    firstName () {
-      this.firstName = localStorage.getItem('lastName')
+  data () {
+    return {
+      first_name: null,
+      last_name: null
     }
   },
   methods: {
     profileChange () {
+      this.first_name = this.firstName
+      this.last_name = this.lastName
+      console.log(this.first_name, this.last_name)
       this.$modal.show('profileChange')
+    },
+    inputFirstNameHadler (e) {
+      this.first_name = e.target.value
+    },
+    inputLastNameHadler (e) {
+      this.last_name = e.target.value
+    },
+    changeProfileHandler () {
+      this.$store.dispatch('CHANGE_USER_DETAILS', {firstName: this.first_name, lastName: this.last_name})
     }
   },
   computed: {
     firstName () {
-      if (localStorage.getItem('firstName')) {
-        return localStorage.getItem('firstName')
-      }
+      return this.$store.getters.getUserDetails.first_name
     },
     lastName () {
-      if (localStorage.getItem('lastName')) {
-        return localStorage.getItem('lastName')
-      }
+      return this.$store.getters.getUserDetails.last_name
     }
   }
 }

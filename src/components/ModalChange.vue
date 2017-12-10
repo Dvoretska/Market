@@ -6,17 +6,17 @@
 		<label>
 		  <span>First name:</span>
 		  <br>
-		  <input type="text" v-model="firstName">
+		  <input type="text" :value="firstName" @input="inputFirstNameHadler($event)">
 		</label>
 	   </div>
 	   <div class="fill-info-fields">
 		<label>
 		  <span>Last name:</span>
 		  <br>
-		  <input type="text" v-model="lastName">
+		  <input type="text" :value="lastName" @input="inputLastNameHadler($event)">
 		</label>
 	   </div>
-	  <button-bar :label="'Save'" class="save-button" :click="getProfileName"></button-bar>
+	  <button-bar :label="'Save'" class="save-button" :click="changeProfileHandler"></button-bar>
 	  </div>
 	</modal>
 </template>
@@ -28,20 +28,28 @@ export default {
   components: {
     buttonBar
   },
-  data () {
-    return {
-      firstName: localStorage.getItem('firstName'),
-      lastName: localStorage.getItem('lastName')
+  props: {
+    firstName: String,
+    lastName: String,
+    inputFirstNameHadler: Function,
+    inputLastNameHadler: Function,
+    changeProfileHandler: Function
+  },
+  watch: {
+    getLoading () {
+      if (!this.getLoading) {
+        this.$modal.hide('profileChange')
+      }
     }
   },
   methods: {
     closeModal () {
       this.$modal.hide('profileChange')
-    },
-    getProfileName () {
-      localStorage.setItem('firstName', this.firstName)
-      localStorage.setItem('lastName', this.lastName)
-      this.closeModal()
+    }
+  },
+  computed: {
+    getLoading () {
+      return this.$store.getters.getLoading
     }
   }
 }
