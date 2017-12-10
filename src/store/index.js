@@ -11,6 +11,9 @@ const store = new Vuex.Store({
   state: {
     responseState: {
       success: null, errors: null, loading: null
+    },
+    userDetailsState: {
+      username: null, email: null, first_name: null, last_name: null
     }
   },
   actions: {
@@ -22,8 +25,9 @@ const store = new Vuex.Store({
       }).then((response) => {
         store.commit('success', response.data)
         store.commit('loading', false)
-        localStorage.setItem('token', response.data.token)
         localStorage.setItem('userDetails', JSON.stringify(response.data.user))
+        localStorage.setItem('token', response.data.token)
+        store.commit('updateUserDetails')
         router.push('/')
       }, (err) => {
         store.commit('error', err.response.data)
@@ -39,8 +43,9 @@ const store = new Vuex.Store({
       }).then((response) => {
         store.commit('success', response.data)
         store.commit('loading', false)
-        localStorage.setItem('token', response.data.token)
         localStorage.setItem('userDetails', JSON.stringify(response.data.user))
+        localStorage.setItem('token', response.data.token)
+        store.commit('updateUserDetails')
         router.push('/')
       }, (err) => {
         store.commit('error', err.response.data)
@@ -54,6 +59,29 @@ const store = new Vuex.Store({
       localStorage.removeItem('token')
       localStorage.removeItem('userDetails')
       router.push('/login')
+    },
+    UPDATE_USER_DETAILS: function () {
+      store.commit('updateUserDetails')
+    },
+    CHANGE_USER_DETAILS: function (commit, data) {
+      const USER_ID = JSON.parse(localStorage.getItem('userDetails')).pk
+      const TOKEN = localStorage.getItem('token')
+      store.commit('loading', true)
+      axios.put(`${ACCOUNTS_URL}profile/${USER_ID}`, {
+        first_name: data.firstName,
+        last_name: data.lastName
+      }, {
+        headers: {
+          authorization: `jwt ${TOKEN}`
+        }
+      }).then((response) => {
+        let userDetails = JSON.parse(localStorage.getItem('userDetails'))
+        userDetails.first_name = response.data.first_name
+        userDetails.last_name = response.data.last_name
+        localStorage.setItem('userDetails', JSON.stringify(userDetails))
+        store.commit('updateUserDetails')
+        store.commit('loading', false)
+      })
     }
   },
   mutations: {
@@ -68,6 +96,15 @@ const store = new Vuex.Store({
     },
     loading (state, data) {
       state.responseState.loading = data
+    },
+    updateUserDetails (state) {
+      const USER = JSON.parse(localStorage.getItem('userDetails'))
+      state.userDetailsState = {
+        username: USER.username,
+        email: USER.email,
+        first_name: USER.first_name,
+        last_name: USER.last_name
+      }
     }
   },
   getters: {
@@ -79,6 +116,9 @@ const store = new Vuex.Store({
     },
     getLoading: state => {
       return state.responseState.loading
+    },
+    getUserDetails: state => {
+      return state.userDetailsState
     }
   }
 })

@@ -39,7 +39,7 @@ export default {
 </script>
 
 <style scoped>
-  .sigup-button {
+  .signup-button {
     margin: 15px 0 20px;
   }
   .back-to-login {
