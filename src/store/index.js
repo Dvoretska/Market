@@ -4,6 +4,7 @@ import axios from 'axios'
 import router from '../router/index.js'
 
 const ACCOUNTS_URL = 'https://servermarket.herokuapp.com/accounts/'
+const MAIN_URL = 'https://servermarket.herokuapp.com/'
 
 Vue.use(Vuex)
 
@@ -81,6 +82,13 @@ const store = new Vuex.Store({
         localStorage.setItem('userDetails', JSON.stringify(userDetails))
         store.commit('updateUserDetails')
         store.commit('loading', false)
+      })
+    },
+    GET_COUNTRIES: function (commit, callback) {
+      axios.get(`${MAIN_URL}countries`).then((response) => {
+        callback(response.data)
+      }).catch((err) => {
+        console.log(err)
       })
     }
   },
