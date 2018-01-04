@@ -9,19 +9,6 @@
       <span>Last name:</span>
       <span>{{ lastName }}</span>
     </div>
-    <section>
-      <div class="autocomplete-profile">
-        <b-field label="Country:">
-          <b-autocomplete 
-              v-model="name"
-              :data="filteredDataArray"
-              placeholder="Start type country name..."
-              icon="search">
-              <template slot="empty">No results found</template>
-          </b-autocomplete>
-        </b-field>
-      </div>
-    </section>
     <modal-change
      :firstName="first_name"
      :lastName="last_name"
@@ -44,14 +31,8 @@ export default {
   data () {
     return {
       first_name: null,
-      last_name: null,
-      name: '',
-      selected: null,
-      countryData: []
+      last_name: null
     }
-  },
-  created () {
-    this.$store.dispatch('GET_COUNTRIES', (data) => { this.countryData = data })
   },
   methods: {
     profileChange () {
@@ -75,43 +56,12 @@ export default {
     },
     lastName () {
       return this.$store.getters.getUserDetails.last_name
-    },
-    filteredDataArray () {
-      return this.countryData.filter((option) => {
-        return option
-          .toString()
-          .toLowerCase()
-          .indexOf(this.name.toLowerCase()) >= 0
-      })
     }
   }
 }
 </script>
 
 <style scoped>
-  .autocomplete-profile /deep/ .label {
-    font-weight: normal;
-    margin-bottom: 0;
-  }
-  .autocomplete-profile {
-    margin: 15px 40px;
-  }
-  .autocomplete-profile /deep/ .input {
-    height: 28px;
-    width: 300px;
-    padding-top: 0;
-    padding-bottom: 0;
-  }
-  .autocomplete-profile /deep/ .field {
-    display: flex;
-    align-items: right;
-  }
-  .autocomplete-profile /deep/ .icon {
-    height: 28px;
-  }
-  .autocomplete-profile /deep/ .control {
-    padding-left: 3px;
-  }
   .profile-info-container {
     height: 200px;
     width: 500px;
