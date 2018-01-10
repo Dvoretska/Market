@@ -82,6 +82,7 @@ export default {
       this.$modal.hide('profileChange')
     },
     getCities () {
+      this.city = ''
       setTimeout(this.fetchCities, 1000)
     },
     fetchCities () {
