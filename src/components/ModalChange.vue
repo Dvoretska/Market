@@ -83,6 +83,7 @@ export default {
     },
     getCities () {
       this.city = ''
+      this.cityData = []
       setTimeout(this.fetchCities, 1000)
     },
     fetchCities () {

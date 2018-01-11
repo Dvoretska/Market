@@ -1,7 +1,7 @@
 <template>
   <div>
     <p class="control has-icons-left style-input">
-      <input class="input" :type="type" :placeholder="placeholder" @input="getInputVal" v-model="inputVal" v-bind:class="{focused: inputVal, 'is-danger-input': errors}">
+      <input class="input" :type="type" :placeholder="placeholder" @input="getInputVal" v-model="inputVal" v-bind:class="{focused: inputVal, 'is-danger-input': errors}" @keyup.enter="keyup()">
       <div class="is-danger">{{ errors }}</div>
     </p>
   </div>
@@ -16,11 +16,15 @@ export default {
   props: {
     placeholder: String,
     type: String,
-    errors: String
+    errors: String,
+    keyup: Function
   },
   methods: {
     getInputVal () {
       this.$emit('inputVal', this.inputVal)
+    },
+    getAlert () {
+      alert('Hello')
     }
   }
 }

@@ -5,7 +5,7 @@
 	 		<p class="is-danger">{{ nonFieldErrors }}</p>
 			<input-style :placeholder="'Email'" :type="'email'" @inputVal="setEmail" :errors="emailErrors"></input-style>
 			<input-style :placeholder="'Password'" :type="'password'" @inputVal="setPass1" :errors="password1Errors"></input-style>
-			<input-style :placeholder="'Confirm Password'" :type="'password'" @inputVal="setPass2" :errors="password2Errors"></input-style>
+			<input-style :placeholder="'Confirm Password'" :type="'password'" @inputVal="setPass2" :errors="password2Errors" :keyup="signUp"></input-style>
       <router-link :to="{ name: 'login'}"  class="back-to-login">
           <span>Already registered? Login</span>
       </router-link>
