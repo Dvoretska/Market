@@ -4,7 +4,7 @@
       <div class="inside-form">
         <p class="is-danger">{{ nonFieldErrors }}</p>
         <input-style :placeholder="'Email'" :type="'email'" @inputVal="setEmail" :errors="emailErrors"></input-style>
-        <input-style :placeholder="'Password'" :type="'password'" @inputVal="setPass" :errors="passwordErrors"></input-style>
+        <input-style :placeholder="'Password'" :type="'password'" @inputVal="setPass" :errors="passwordErrors" :keyup="login"></input-style>
         <router-link :to="{ name: 'register'}" class="back-to-signup">
           <span>Not a member? Sign up</span>
         </router-link>

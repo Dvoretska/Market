@@ -85,14 +85,14 @@ const store = new Vuex.Store({
       })
     },
     GET_COUNTRIES: function (commit, callback) {
-      axios.get(`${MAIN_URL}location/countries`).then((response) => {
+      axios.get(`${MAIN_URL}location/countries/`).then((response) => {
         callback(response.data)
       }).catch((err) => {
         console.log(err)
       })
     },
     GET_CITIES: function (commit, {code, callback}) {
-      axios.get(`${MAIN_URL}location/${code}/cities`).then((response) => {
+      axios.get(`${MAIN_URL}location/${code}/cities/`).then((response) => {
         callback(response.data)
       }).catch((err) => {
         console.log(err)
