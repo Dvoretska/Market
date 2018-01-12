@@ -22,9 +22,6 @@ export default {
   methods: {
     getInputVal () {
       this.$emit('inputVal', this.inputVal)
-    },
-    getAlert () {
-      alert('Hello')
     }
   }
 }
