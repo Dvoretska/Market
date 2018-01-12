@@ -71,7 +71,7 @@ export default {
     padding: 10px 26px;
     border-top-right-radius: 19px;
     border-top-left-radius: 19px;
-    background-color: #ac37f0;
+    background-color: #c672f7;
     border-bottom: 1px solid rgba(128,128,128,.5);
     text-shadow: 0 1px 0 #ccc, 
                0 2px 0 #c9c9c9,

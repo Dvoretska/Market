@@ -70,7 +70,9 @@ const store = new Vuex.Store({
       store.commit('loading', true)
       axios.put(`${ACCOUNTS_URL}profile/${USER_ID}`, {
         first_name: data.firstName,
-        last_name: data.lastName
+        last_name: data.lastName,
+        country: data.country,
+        city: data.city
       }, {
         headers: {
           authorization: `jwt ${TOKEN}`

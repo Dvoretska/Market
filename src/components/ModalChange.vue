@@ -30,6 +30,7 @@
         <b-field label="City:">
           <b-autocomplete 
               v-model="city"
+              v-on:blur="getCity()"
               :data="filteredCityArray"
               placeholder="Start typing city name..."
               icon="search">
@@ -84,13 +85,20 @@ export default {
     getCities () {
       this.city = ''
       this.cityData = []
-      setTimeout(this.fetchCities, 1000)
+      setTimeout(this.fetchCities, 500)
     },
     fetchCities () {
+      this.$emit('countryValue', this.country)
       const code = this.originCountryData[this.country]
       if (code) {
         this.$store.dispatch('GET_CITIES', { 'code': code, 'callback': (data) => { this.cityData = data } })
       }
+    },
+    getCity () {
+      setTimeout(this.getCityValue, 500)
+    },
+    getCityValue () {
+      this.$emit('cityValue', this.city)
     }
   },
   computed: {

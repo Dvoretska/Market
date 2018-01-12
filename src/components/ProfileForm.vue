@@ -9,7 +9,17 @@
       <span>Last name:</span>
       <span>{{ lastName }}</span>
     </div>
+    <div class="data-profile">
+      <span>Country:</span>
+      <span>{{ country }}</span>
+    </div>
+     <div class="data-profile">
+      <span>City:</span>
+      <span>{{ city }}</span>
+    </div>
     <modal-change
+     @countryValue="countryValue"
+     @cityValue="cityValue"
      :firstName="first_name"
      :lastName="last_name"
      :inputFirstNameHadler="inputFirstNameHadler"
@@ -31,10 +41,18 @@ export default {
   data () {
     return {
       first_name: null,
-      last_name: null
+      last_name: null,
+      country: null,
+      city: null
     }
   },
   methods: {
+    countryValue (val) {
+      this.country = val
+    },
+    cityValue (val) {
+      this.city = val
+    },
     profileChange () {
       this.first_name = this.firstName
       this.last_name = this.lastName
@@ -47,7 +65,7 @@ export default {
       this.last_name = e.target.value
     },
     changeProfileHandler () {
-      this.$store.dispatch('CHANGE_USER_DETAILS', {firstName: this.first_name, lastName: this.last_name})
+      this.$store.dispatch('CHANGE_USER_DETAILS', {firstName: this.first_name, lastName: this.last_name, country: this.country, city: this.city})
     }
   },
   computed: {
