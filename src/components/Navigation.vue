@@ -22,7 +22,7 @@
       <svg style="width:24px;height:24px" viewBox="0 0 24 24" class="user-icon" v-if="isLogin">
         <path fill="#000000" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
       </svg>
-      <span class="username">{{ username }}</span>
+      <span class="username" v-if="username">{{ username }}</span>
     </router-link>
 
     <a class="button-anim button-logout" @click="logout()" v-if="isLogin">
@@ -159,7 +159,6 @@ export default {
   }
     .button-anim span:hover, .username:hover {
       color: #8c40b8;
- /*     text-shadow: 0px -1px #97A63A;*/
       cursor: pointer;
     }
   .activelink {
