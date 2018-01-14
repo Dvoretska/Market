@@ -102,6 +102,7 @@ const store = new Vuex.Store({
         next()
       }).catch((err) => {
         console.log(err)
+        localStorage.removeItem('token')
         store.commit('clearUserState')
         router.push({name: 'login'})
       })
