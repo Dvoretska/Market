@@ -43,6 +43,9 @@ export default {
     }
   },
   computed: {
+    isLogin () {
+      return localStorage.getItem('token')
+    },
     username () {
       return this.$store.getters.getUserDetails.username
     }
