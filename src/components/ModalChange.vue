@@ -5,13 +5,13 @@
 	   <div class="fill-info-fields field">
   		<label>
   		  <span>First name:</span>
-  		  <input type="text" class="input" :value="firstName" @input="inputFirstNameHadler($event)">
+  		  <input type="text" class="input" v-model="firstName">
   		</label>
 	   </div>
 	   <div class="fill-info-fields field">
   		<label>
   		  <span>Last name:</span>
-  		  <input type="text" class="input" :value="lastName" @input="inputLastNameHadler($event)">
+  		  <input type="text" class="input" v-model="lastName">
   		</label>
 	   </div>
      <div class="fill-info-fields">
@@ -30,7 +30,6 @@
         <b-field label="City:">
           <b-autocomplete 
               v-model="city"
-              v-on:blur="getCity()"
               :data="filteredCityArray"
               placeholder="Start typing city name..."
               icon="search">
@@ -50,17 +49,12 @@ export default {
   components: {
     buttonBar
   },
-  props: {
-    firstName: String,
-    lastName: String,
-    inputFirstNameHadler: Function,
-    inputLastNameHadler: Function,
-    changeProfileHandler: Function
-  },
   data () {
     return {
-      country: '',
-      city: '',
+      firstName: this.$store.getters.getUserDetails.first_name,
+      lastName: this.$store.getters.getUserDetails.last_name,
+      country: this.$store.getters.getUserDetails.country,
+      city: this.$store.getters.getUserDetails.city,
       countryData: [],
       cityData: []
     }
@@ -88,17 +82,13 @@ export default {
       setTimeout(this.fetchCities, 500)
     },
     fetchCities () {
-      this.$emit('countryValue', this.country)
       const code = this.originCountryData[this.country]
       if (code) {
         this.$store.dispatch('GET_CITIES', { 'code': code, 'callback': (data) => { this.cityData = data } })
       }
     },
-    getCity () {
-      setTimeout(this.getCityValue, 500)
-    },
-    getCityValue () {
-      this.$emit('cityValue', this.city)
+    changeProfileHandler () {
+      this.$store.dispatch('CHANGE_USER_DETAILS', {first_name: this.firstName, last_name: this.lastName, country: this.country, city: this.city})
     }
   },
   computed: {

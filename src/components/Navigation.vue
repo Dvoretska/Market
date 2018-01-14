@@ -22,7 +22,7 @@
       <svg style="width:24px;height:24px" viewBox="0 0 24 24" class="user-icon" v-if="isLogin">
         <path fill="#000000" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
       </svg>
-      <span class="username" v-if="isLogin">{{ userDetails.username }}</span>
+      <span class="username">{{ username }}</span>
     </router-link>
 
     <a class="button-anim button-logout" @click="logout()" v-if="isLogin">
@@ -43,13 +43,8 @@ export default {
     }
   },
   computed: {
-    isLogin () {
-      return localStorage.getItem('token')
-    },
-    userDetails () {
-      if (localStorage.getItem('userDetails')) {
-        return JSON.parse(localStorage.getItem('userDetails'))
-      }
+    username () {
+      return this.$store.getters.getUserDetails.username
     }
   }
 }
