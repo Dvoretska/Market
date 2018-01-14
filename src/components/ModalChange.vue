@@ -5,13 +5,13 @@
 	   <div class="fill-info-fields field">
   		<label>
   		  <span>First name:</span>
-  		  <input type="text" class="input" v-model="firstName">
+  		  <input type="text" class="input" v-model="firstName" @keyup.enter="changeProfileHandler">
   		</label>
 	   </div>
 	   <div class="fill-info-fields field">
   		<label>
   		  <span>Last name:</span>
-  		  <input type="text" class="input" v-model="lastName">
+  		  <input type="text" class="input" v-model="lastName" @keyup.enter="changeProfileHandler">
   		</label>
 	   </div>
      <div class="fill-info-fields">
