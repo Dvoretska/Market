@@ -13,9 +13,7 @@ const store = new Vuex.Store({
     responseState: {
       success: null, errors: null, loading: null
     },
-    userDetailsState: {
-      username: null, email: null, first_name: null, last_name: null
-    }
+    userDetailsState: {}
   },
   actions: {
     LOGIN: function (commit, data) {
@@ -26,10 +24,9 @@ const store = new Vuex.Store({
       }).then((response) => {
         store.commit('success', response.data)
         store.commit('loading', false)
-        localStorage.setItem('userDetails', JSON.stringify(response.data.user))
+        store.commit('createUserState', response.data.user)
         localStorage.setItem('token', response.data.token)
-        store.commit('updateUserDetails')
-        router.push('/')
+        router.push({name: 'home'})
       }, (err) => {
         store.commit('error', err.response.data)
         store.commit('loading', false)
@@ -44,10 +41,9 @@ const store = new Vuex.Store({
       }).then((response) => {
         store.commit('success', response.data)
         store.commit('loading', false)
-        localStorage.setItem('userDetails', JSON.stringify(response.data.user))
+        store.commit('createUserState', response.data.user)
         localStorage.setItem('token', response.data.token)
-        store.commit('updateUserDetails')
-        router.push('/')
+        router.push({name: 'home'})
       }, (err) => {
         store.commit('error', err.response.data)
         store.commit('loading', false)
@@ -58,30 +54,26 @@ const store = new Vuex.Store({
     },
     LOGOUT: function () {
       localStorage.removeItem('token')
-      localStorage.removeItem('userDetails')
-      router.push('/login')
-    },
-    UPDATE_USER_DETAILS: function () {
-      store.commit('updateUserDetails')
+      store.commit('clearUserState')
+      router.push({name: 'login'})
     },
     CHANGE_USER_DETAILS: function (commit, data) {
-      const USER_ID = JSON.parse(localStorage.getItem('userDetails')).pk
       const TOKEN = localStorage.getItem('token')
       store.commit('loading', true)
-      axios.put(`${ACCOUNTS_URL}profile/${USER_ID}`, {
-        first_name: data.firstName,
-        last_name: data.lastName
+      axios.put(`${ACCOUNTS_URL}profile/`, {
+        first_name: data.first_name,
+        last_name: data.last_name,
+        country: data.country,
+        city: data.city
       }, {
         headers: {
           authorization: `jwt ${TOKEN}`
         }
       }).then((response) => {
-        let userDetails = JSON.parse(localStorage.getItem('userDetails'))
-        userDetails.first_name = response.data.first_name
-        userDetails.last_name = response.data.last_name
-        localStorage.setItem('userDetails', JSON.stringify(userDetails))
-        store.commit('updateUserDetails')
+        store.commit('updateUserState', response.data)
         store.commit('loading', false)
+      }).catch((err) => {
+        console.log(err)
       })
     },
     GET_COUNTRIES: function (commit, callback) {
@@ -96,6 +88,22 @@ const store = new Vuex.Store({
         callback(response.data)
       }).catch((err) => {
         console.log(err)
+      })
+    },
+    TOKEN_VERIFY: function (commit, next) {
+      const TOKEN = localStorage.getItem('token')
+      axios.post(`${ACCOUNTS_URL}api-token-verify/`,
+      { token: TOKEN }, {
+        headers: {
+          authorization: `jwt ${TOKEN}`
+        }
+      }).then((response) => {
+        store.commit('createUserState', response.data.user)
+        next()
+      }).catch((err) => {
+        console.log(err)
+        store.commit('clearUserState')
+        router.push({name: 'login'})
       })
     }
   },
@@ -112,14 +120,20 @@ const store = new Vuex.Store({
     loading (state, data) {
       state.responseState.loading = data
     },
-    updateUserDetails (state) {
-      const USER = JSON.parse(localStorage.getItem('userDetails'))
+    createUserState (state, user) {
+      state.userDetailsState = user
+    },
+    updateUserState (state, data) {
       state.userDetailsState = {
-        username: USER.username,
-        email: USER.email,
-        first_name: USER.first_name,
-        last_name: USER.last_name
+        ...state.userDetailsState,
+        first_name: data.first_name,
+        last_name: data.last_name,
+        country: data.country,
+        city: data.city
       }
+    },
+    clearUserState (state) {
+      state.userDetailsState = {}
     }
   },
   getters: {

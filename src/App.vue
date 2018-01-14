@@ -6,10 +6,7 @@
 
 <script>
 export default {
-  name: 'app',
-  created () {
-    this.$store.dispatch('UPDATE_USER_DETAILS')
-  }
+  name: 'app'
 }
 </script>
 

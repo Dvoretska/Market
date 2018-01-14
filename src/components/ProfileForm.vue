@@ -9,12 +9,15 @@
       <span>Last name:</span>
       <span>{{ lastName }}</span>
     </div>
-    <modal-change
-     :firstName="first_name"
-     :lastName="last_name"
-     :inputFirstNameHadler="inputFirstNameHadler"
-     :inputLastNameHadler="inputLastNameHadler"
-     :changeProfileHandler="changeProfileHandler">
+    <div class="data-profile">
+      <span>Country:</span>
+      <span>{{ country }}</span>
+    </div>
+     <div class="data-profile">
+      <span>City:</span>
+      <span>{{ city }}</span>
+    </div>
+    <modal-change>
     </modal-change>
   </div>
 </template>
@@ -28,26 +31,9 @@ export default {
     buttonBar,
     modalChange
   },
-  data () {
-    return {
-      first_name: null,
-      last_name: null
-    }
-  },
   methods: {
     profileChange () {
-      this.first_name = this.firstName
-      this.last_name = this.lastName
       this.$modal.show('profileChange')
-    },
-    inputFirstNameHadler (e) {
-      this.first_name = e.target.value
-    },
-    inputLastNameHadler (e) {
-      this.last_name = e.target.value
-    },
-    changeProfileHandler () {
-      this.$store.dispatch('CHANGE_USER_DETAILS', {firstName: this.first_name, lastName: this.last_name})
     }
   },
   computed: {
@@ -56,6 +42,12 @@ export default {
     },
     lastName () {
       return this.$store.getters.getUserDetails.last_name
+    },
+    country () {
+      return this.$store.getters.getUserDetails.country
+    },
+    city () {
+      return this.$store.getters.getUserDetails.city
     }
   }
 }
