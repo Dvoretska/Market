@@ -55,7 +55,7 @@ const store = new Vuex.Store({
     LOGOUT: function () {
       localStorage.removeItem('token')
       store.commit('clearUserState')
-      router.push('/login')
+      router.push({name: 'login'})
     },
     CHANGE_USER_DETAILS: function (commit, data) {
       const TOKEN = localStorage.getItem('token')
@@ -103,7 +103,7 @@ const store = new Vuex.Store({
       }).catch((err) => {
         console.log(err)
         store.commit('clearUserState')
-        router.push('/login')
+        router.push({name: 'login'})
       })
     }
   },
