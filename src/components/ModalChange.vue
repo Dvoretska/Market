@@ -5,13 +5,13 @@
 	   <div class="fill-info-fields field">
   		<label>
   		  <span>First name:</span>
-  		  <input type="text" class="input" :value="firstName" @input="inputFirstNameHadler($event)">
+  		  <input type="text" class="input" v-model="firstName">
   		</label>
 	   </div>
 	   <div class="fill-info-fields field">
   		<label>
   		  <span>Last name:</span>
-  		  <input type="text" class="input" :value="lastName" @input="inputLastNameHadler($event)">
+  		  <input type="text" class="input" v-model="lastName">
   		</label>
 	   </div>
      <div class="fill-info-fields">
@@ -49,17 +49,12 @@ export default {
   components: {
     buttonBar
   },
-  props: {
-    firstName: String,
-    lastName: String,
-    inputFirstNameHadler: Function,
-    inputLastNameHadler: Function,
-    changeProfileHandler: Function
-  },
   data () {
     return {
-      country: '',
-      city: '',
+      firstName: this.$store.getters.getUserDetails.first_name,
+      lastName: this.$store.getters.getUserDetails.last_name,
+      country: this.$store.getters.getUserDetails.country,
+      city: this.$store.getters.getUserDetails.city,
       countryData: [],
       cityData: []
     }
@@ -84,13 +79,16 @@ export default {
     getCities () {
       this.city = ''
       this.cityData = []
-      setTimeout(this.fetchCities, 1000)
+      setTimeout(this.fetchCities, 500)
     },
     fetchCities () {
       const code = this.originCountryData[this.country]
       if (code) {
         this.$store.dispatch('GET_CITIES', { 'code': code, 'callback': (data) => { this.cityData = data } })
       }
+    },
+    changeProfileHandler () {
+      this.$store.dispatch('CHANGE_USER_DETAILS', {first_name: this.firstName, last_name: this.lastName, country: this.country, city: this.city})
     }
   },
   computed: {
