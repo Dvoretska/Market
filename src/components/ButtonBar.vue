@@ -94,12 +94,9 @@ export default {
     color: #3A474D;
     text-transform: uppercase;
     font: 700 12px Futura, "Trebuchet MS", Arial, sans-serif;
-    
-/*    text-shadow: 0px 1px #fff, 0px -1px #262F33;*/
   }
     .button-anim span:hover {
         color: #0cf278;
-/*        text-shadow: 0px -1px #97A63A;*/
         cursor: pointer;
     }
 

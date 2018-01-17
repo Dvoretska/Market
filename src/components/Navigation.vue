@@ -86,7 +86,6 @@ export default {
   }
   .button-anim {
     -webkit-transform: translate(0, -3px);
-/*    margin-bottom: 2.5px;*/
     display: inline-block;
     margin-right: 10px;
     
@@ -103,7 +102,7 @@ export default {
     background-color: #E8E8E8;
     
     background-image: 
-        /* gloss gradient */
+    /* gloss gradient */
     -webkit-gradient(
         linear, 
         left bottom, 
@@ -159,8 +158,6 @@ export default {
     color: #3A474D;
     text-transform: uppercase;
     font: 700 12px Futura, "Trebuchet MS", Arial, sans-serif;
-    
-/*    text-shadow: 0px 1px #fff, 0px -1px #262F33;*/
   }
     .button-anim span:hover, .username:hover {
       color: #8c40b8;
