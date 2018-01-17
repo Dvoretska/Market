@@ -4,6 +4,7 @@ import homePage from '@/pages/HomePage'
 import loginPage from '@/pages/LoginPage'
 import registerPage from '@/pages/RegisterPage'
 import profilePage from '@/pages/ProfilePage'
+import adsPage from '@/pages/AdsPage'
 import store from '@/store'
 
 Vue.use(Router)
@@ -22,6 +23,9 @@ const routes = [
   },
   {
     path: '/profile', name: 'profile', component: profilePage, meta: {title: 'Market | Profile'}
+  },
+  {
+    path: '/ads', name: 'ads', component: adsPage, meta: {title: 'Market | Ads'}
   }
 ]
 
@@ -33,7 +37,10 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   const nearestWithTitle = to.matched.slice().reverse().find(r => r.meta && r.meta.title)
   if (nearestWithTitle) document.title = nearestWithTitle.meta.title
-  if (TOKEN_REQUIRED_PAGES.includes(to.name)) store.dispatch('TOKEN_VERIFY', next)
-  else next()
+  if (TOKEN_REQUIRED_PAGES.includes(to.name)) {
+    store.dispatch('TOKEN_VERIFY', next)
+  } else {
+    next()
+  }
 })
 export default router

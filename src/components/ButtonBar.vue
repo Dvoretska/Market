@@ -21,6 +21,7 @@ export default {
 
 <style scoped>
   .button-anim {
+    -webkit-transform: translate(0, -2px);
     display: inline-block;
 
     -webkit-border-radius: 10px;
@@ -88,17 +89,17 @@ export default {
     -webkit-transition: -webkit-transform .1s ease-in-out;
     
     display: inline-block;
-    padding: 5px 10px 4px 10px;
+    padding: 5px 10px;
     
     color: #3A474D;
     text-transform: uppercase;
-    font: 500 12px 'TradeGothicLTStd-BdCn20','PT Sans Narrow';
+    font: 700 12px Futura, "Trebuchet MS", Arial, sans-serif;
     
-    text-shadow: 0px 1px #fff, 0px -1px #262F33;
+/*    text-shadow: 0px 1px #fff, 0px -1px #262F33;*/
   }
     .button-anim span:hover {
         color: #0cf278;
-        text-shadow: 0px -1px #97A63A;
+/*        text-shadow: 0px -1px #97A63A;*/
         cursor: pointer;
     }
 

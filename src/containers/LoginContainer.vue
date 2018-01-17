@@ -11,7 +11,6 @@ import navigation from '@/components/Navigation'
 import loginForm from '@/components/LoginForm'
 
 export default {
-  name: 'homeContainer',
   components: {
     navigation,
     loginForm

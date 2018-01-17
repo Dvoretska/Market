@@ -13,7 +13,7 @@
       <span>Country:</span>
       <span>{{ country }}</span>
     </div>
-     <div class="data-profile">
+    <div class="data-profile">
       <span>City:</span>
       <span>{{ city }}</span>
     </div>
@@ -67,6 +67,9 @@ export default {
     font-family: 'TradeGothicLTStd-BdCn20','PT Sans Narrow';
     font-weight: 500;
     font-size: 16px;
+    -webkit-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
   }
   .data-profile {
     margin: 15px 40px;
