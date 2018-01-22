@@ -80,7 +80,7 @@ export default {
         color-stop(100%,rgba(255,255,255,0)));
 
     -webkit-box-shadow:
-        0px -1px #fff,
+        0px -0.7px #fff,
         0px 0.5px 5px #FFFFFF; 
     
     -webkit-background-size: 100%, 100%, 100%, 4px 4px;
@@ -95,19 +95,19 @@ export default {
     text-transform: uppercase;
     font: 700 12px Futura, "Trebuchet MS", Arial, sans-serif;
   }
-    .button-anim span:hover {
-        color: #0cf278;
-        cursor: pointer;
-    }
+  .button-anim span:hover {
+    color: #0cf278;
+    cursor: pointer;
+  }
 
-    .button-anim:active {
-        -webkit-box-shadow: 
-            0px 3px rgba(128,128,128,1),
-            0px 4px rgba(118,118,118,1),
-            0px 5px rgba(108,108,108,1);
-    }
-    .button-anim:active span {
+  .button-anim:active {
+    -webkit-box-shadow: 
+        0px 3px rgba(128,128,128,1),
+        0px 4px rgba(118,118,118,1),
+        0px 5px rgba(108,108,108,1);
+  }
+  .button-anim:active span {
     -webkit-transform: translate(0, 3px);
-    }
+  }
 </style>
 

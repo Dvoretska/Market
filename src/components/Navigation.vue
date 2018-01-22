@@ -1,4 +1,5 @@
 <template>
+<div class="parent">
 <nav class="top-bar">
    <router-link :to="{ name: 'home'}">
       <img src="../assets/Home.png" class="logo-img">
@@ -34,6 +35,7 @@
     </a>
 
 </nav>
+</div>
 </template>
 
 <script>
@@ -60,9 +62,17 @@ export default {
 }
 </script>
 <style scoped>
+  .parent {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: auto;
+    width: 100%;
+    z-index: 9999;
+  }
   .top-bar {
     display: flex;
-    height: 60px;
+    height: 50px;
     align-items: center;
     padding: 0 10px;
     background-color: #f4f4f4;
@@ -78,10 +88,10 @@ export default {
   }
   .home:hover {
     background-color: transparent;
-    color: #AEBF3B;
+    color: #8c40b8;
   }
   .logo-img {
-    height: 60px;
+    height: 50px;
     background-color: transparent;
   }
   .button-anim {

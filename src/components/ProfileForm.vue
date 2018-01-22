@@ -62,11 +62,10 @@ export default {
     border-radius: 10px;
     border: 1px solid rgba(128,128,128,.5);
     margin-top: 10px;
+    margin-bottom: 10px;
     background-color: #f4f4f4;
     color: #3A474D;
-    font-family: 'TradeGothicLTStd-BdCn20','PT Sans Narrow';
-    font-weight: 500;
-    font-size: 16px;
+    font: 500 18px 'TradeGothicLTStd-BdCn20','PT Sans Narrow';
     -webkit-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);

@@ -9,6 +9,9 @@ import Vuex from 'vuex'
 import store from './store'
 import 'vue-material-design-icons/styles.css'
 import VModal from 'vue-js-modal'
+import vuePhoneInput from '@/components/extended/vuePhoneInput'
+
+Vue.component('phone-input', vuePhoneInput)
 
 Vue.use(Buefy, {
   defaultIconPack: 'fa',
