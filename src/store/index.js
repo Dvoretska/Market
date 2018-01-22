@@ -99,7 +99,7 @@ const store = new Vuex.Store({
         }
       }).then((response) => {
         store.commit('createUserState', response.data.user)
-        next()
+        if (next) next()
       }).catch((err) => {
         console.log(err)
         localStorage.removeItem('token')

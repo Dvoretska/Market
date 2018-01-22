@@ -11,7 +11,6 @@ import profileForm from '@/components/ProfileForm'
 import profileImage from '@/components/ProfileImage'
 
 export default {
-  name: 'homeContainer',
   components: {
     profileForm,
     profileImage
@@ -19,6 +18,3 @@ export default {
 }
 </script>
 
-<style scoped>
-
-</style>

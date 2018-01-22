@@ -1,4 +1,5 @@
 <template>
+<div class="parent">
 <nav class="top-bar">
    <router-link :to="{ name: 'home'}">
       <img src="../assets/Home.png" class="logo-img">
@@ -9,8 +10,7 @@
       <span>Home</span>
     </router-link>
   </div>
-  
-  <div>
+
     <router-link :to="{ name: 'login'}" class="button-anim" v-if="!isLogin">
       <span v-bind:class="{ activelink: page == 'login'}">Login</span>
     </router-link>
@@ -22,14 +22,20 @@
       <svg style="width:24px;height:24px" viewBox="0 0 24 24" class="user-icon" v-if="isLogin">
         <path fill="#000000" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
       </svg>
-      <span class="username" v-if="username">{{ username }}</span>
+      <span class="username" v-if="name">{{ name }}</span>
+      <span class="username" v-else>{{ username }}</span>
+    </router-link>
+
+    <router-link :to="{ name: 'ads'}" class="button-anim" v-if="isLogin">
+      <span v-bind:class="{ 'activelink': page == 'ads' }">+ Create ads</span>
     </router-link>
 
     <a class="button-anim button-logout" @click="logout()" v-if="isLogin">
       <span>Logout</span>
     </a>
-  </div>
+
 </nav>
+</div>
 </template>
 
 <script>
@@ -48,14 +54,25 @@ export default {
     },
     username () {
       return this.$store.getters.getUserDetails.username
+    },
+    name () {
+      return this.$store.getters.getUserDetails.first_name
     }
   }
 }
 </script>
 <style scoped>
+  .parent {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: auto;
+    width: 100%;
+    z-index: 9999;
+  }
   .top-bar {
     display: flex;
-    height: 60px;
+    height: 50px;
     align-items: center;
     padding: 0 10px;
     background-color: #f4f4f4;
@@ -67,29 +84,26 @@ export default {
     margin-right: auto;
     color: #3A474D;
     text-transform: uppercase;
-    font-family: 'TradeGothicLTStd-BdCn20','PT Sans Narrow';
-    font-weight: 700;
-    font-size: 20px;
+    font: 800 20px Futura, "Trebuchet MS", Arial, sans-serif;
   }
   .home:hover {
     background-color: transparent;
-    color: #AEBF3B;
+    color: #8c40b8;
   }
   .logo-img {
-    height: 60px;
+    height: 50px;
     background-color: transparent;
   }
   .button-anim {
-    margin-bottom: 2.5px;
+    -webkit-transform: translate(0, -3px);
     display: inline-block;
     margin-right: 10px;
     
-    -webkit-border-radius: 10px;
+    -webkit-border-radius: 11px;
     
     -webkit-box-shadow: 
-        0px 3px rgba(128,128,128,1),
-        0px 4px rgba(118,118,118,1),
-        0px 5px 2px rgba(108,108,108,1);
+        0px 3px rgba(118,118,118,1),
+        0px 4px 2px rgba(108,108,108,1);
     
     -webkit-transition: -webkit-box-shadow .1s ease-in-out;
   } 
@@ -98,7 +112,7 @@ export default {
     background-color: #E8E8E8;
     
     background-image: 
-        /* gloss gradient */
+    /* gloss gradient */
     -webkit-gradient(
         linear, 
         left bottom, 
@@ -140,8 +154,8 @@ export default {
         color-stop(100%,rgba(255,255,255,0)));
     
     -webkit-box-shadow:
-      0px -1px #fff,
-      0px 1px 5px #FFFFFF;
+        0px -0.7px #fff,
+        0px 0.5px 5px #FFFFFF; 
     
     -webkit-background-size: 100%, 100%, 100%, 4px 4px;
     
@@ -149,33 +163,26 @@ export default {
     -webkit-transition: -webkit-transform .1s ease-in-out;
     
     display: inline-block;
-    padding: 5px 10px 4px 10px;
+    padding: 5px 8px;
     
     color: #3A474D;
     text-transform: uppercase;
-    font: 500 12px 'TradeGothicLTStd-BdCn20','PT Sans Narrow';
-    
-    text-shadow: 0px 1px #fff, 0px -1px #262F33;
+    font: 700 12px Futura, "Trebuchet MS", Arial, sans-serif;
   }
     .button-anim span:hover, .username:hover {
       color: #8c40b8;
       cursor: pointer;
     }
-  .activelink {
+  .activelink, .button-logout:active span {
     -webkit-transform: translate(0, 3px);
   }
-  .button-logout:active span{
-    -webkit-transform: translate(0, 3px);
-    }
   .username {
-    font-family: 'TradeGothicLTStd-BdCn20','PT Sans Narrow';
-    font-weight: 600;
-    font-size: 18px;
+    font: 700 18px Futura, "Trebuchet MS", Arial, sans-serif;
     margin-right: 10px;
     vertical-align: middle;
   }
   .user-icon {
     vertical-align: middle;
-  }  
+  }
 </style>
 
