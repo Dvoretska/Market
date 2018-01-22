@@ -1,40 +1,40 @@
 <template>
 <div class="parent">
-<nav class="top-bar">
-   <router-link :to="{ name: 'home'}">
-      <img src="../assets/Home.png" class="logo-img">
-    </router-link>
+  <nav class="top-bar">
+     <router-link :to="{ name: 'home'}">
+        <img src="../assets/Home.png" class="logo-img">
+      </router-link>
 
-  <div class="home">
-    <router-link :to="{ name: 'home'}" class="home navbar-item">
-      <span>Home</span>
-    </router-link>
-  </div>
+    <div class="home">
+      <router-link :to="{ name: 'home'}" class="home navbar-item">
+        <span>Home</span>
+      </router-link>
+    </div>
 
-    <router-link :to="{ name: 'login'}" class="button-anim" v-if="!isLogin">
-      <span v-bind:class="{ activelink: page == 'login'}">Login</span>
-    </router-link>
-  
-    <router-link :to="{ name: 'register'}" class="button-anim" v-if="!isLogin">
-      <span v-bind:class="{ activelink: page == 'register' }">Sign up</span>
-    </router-link>
-    <router-link :to="{ name: 'profile'}">
-      <svg style="width:24px;height:24px" viewBox="0 0 24 24" class="user-icon" v-if="isLogin">
-        <path fill="#000000" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
-      </svg>
-      <span class="username" v-if="name">{{ name }}</span>
-      <span class="username" v-else>{{ username }}</span>
-    </router-link>
+      <router-link :to="{ name: 'login'}" class="button-anim" v-if="!isLogin">
+        <span v-bind:class="{ activelink: page == 'login'}">Login</span>
+      </router-link>
+    
+      <router-link :to="{ name: 'register'}" class="button-anim" v-if="!isLogin">
+        <span v-bind:class="{ activelink: page == 'register' }">Sign up</span>
+      </router-link>
 
-    <router-link :to="{ name: 'ads'}" class="button-anim" v-if="isLogin">
-      <span v-bind:class="{ 'activelink': page == 'ads' }">+ Create ads</span>
-    </router-link>
+      <router-link :to="{ name: 'profile'}">
+        <svg style="width:24px;height:24px" viewBox="0 0 24 24" class="user-icon" v-if="isLogin">
+          <path fill="#000000" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+        </svg>
+        <span class="username" v-if="name">{{ name }}</span>
+        <span class="username" v-else>{{ username }}</span>
+      </router-link>
 
-    <a class="button-anim button-logout" @click="logout()" v-if="isLogin">
-      <span>Logout</span>
-    </a>
+      <router-link :to="{ name: 'ads'}" class="button-anim" v-if="isLogin">
+        <span v-bind:class="{ 'activelink': page == 'ads' }">+ Create an ad</span>
+      </router-link>
 
-</nav>
+      <a class="button-anim button-logout" @click="logout()" v-if="isLogin">
+        <span>Logout</span>
+      </a>
+  </nav>
 </div>
 </template>
 
@@ -72,13 +72,13 @@ export default {
   }
   .top-bar {
     display: flex;
-    height: 50px;
+    height: 55px;
     align-items: center;
     padding: 0 10px;
     background-color: #f4f4f4;
-    -webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);
   }
   .home {
     margin-right: auto;
@@ -177,9 +177,10 @@ export default {
     -webkit-transform: translate(0, 3px);
   }
   .username {
-    font: 700 18px Futura, "Trebuchet MS", Arial, sans-serif;
+    font: 700 17px Futura, "Trebuchet MS", Arial, sans-serif;
     margin-right: 10px;
     vertical-align: middle;
+    color: #7957d5;
   }
   .user-icon {
     vertical-align: middle;

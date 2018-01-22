@@ -1,5 +1,5 @@
 <template>
-	<modal name="profileChange" :height="400" :width="400">
+	<modal name="profileChange" :height="270" :width="400">
 	<i class="fa fa-window-close fa-lg close-button" aria-hidden="true" @click="closeModal()"></i>
 	<div class="fill-info-container">
 	   <div class="fill-info-fields field">
@@ -138,6 +138,7 @@ export default {
   }
   .save-button {
   	letter-spacing: 1.3px;
+    margin-top: 15px;
     margin-left: 147.9px;
   }
   .fill-info-fields label, .fill-info-fields /deep/ .field {
@@ -146,8 +147,8 @@ export default {
     justify-content: space-between;
   }
   .fill-info-container {
-    position: absolute;
-    top: 50%;
+    position: relative;
+    top: 75%;
     left: 50%;
     transform: translate(-50%, -50%);
     height: 350px;

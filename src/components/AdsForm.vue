@@ -79,12 +79,12 @@ export default {
         color: #3A474D;
         padding: 10px 20px;
         font: 500 16px 'TradeGothicLTStd-BdCn20','PT Sans Narrow';
-        -webkit-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
-        -moz-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
-        box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
+        -webkit-box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.75);
+        box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.75);
         position: absolute;
         left: 50%;
-        top: 10%;
+        top: 11%;
         width: 550px;
         transform: translateX(-50%);
     }
@@ -113,9 +113,6 @@ export default {
     }
     .button-anim-ads /deep/ span {
         background-color: #7957d5 !important;
-    }
-    .button-anim-ads /deep/ span:hover {
-        color: #3A474D !important;
     }
     .button-anim-ads {
         margin-bottom: 7px;

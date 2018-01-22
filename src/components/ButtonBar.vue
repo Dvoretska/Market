@@ -96,7 +96,7 @@ export default {
     font: 700 12px Futura, "Trebuchet MS", Arial, sans-serif;
   }
   .button-anim span:hover {
-    color: #0cf278;
+    color: #8c40b8;
     cursor: pointer;
   }
 
