@@ -1,13 +1,10 @@
 <template>
 <div class="parent">
   <nav class="top-bar">
-     <router-link :to="{ name: 'home'}">
-        <img src="../assets/Home.png" class="logo-img">
-      </router-link>
 
     <div class="home">
-      <router-link :to="{ name: 'home'}" class="home navbar-item">
-        <span>Home</span>
+      <router-link :to="{ name: 'home'}">
+        <img src="../assets/Home.png" class="logo-img">
       </router-link>
     </div>
 
@@ -19,8 +16,8 @@
         <span v-bind:class="{ activelink: page == 'register' }">Sign up</span>
       </router-link>
 
-      <router-link :to="{ name: 'profile'}">
-        <svg style="width:24px;height:24px" viewBox="0 0 24 24" class="user-icon" v-if="isLogin">
+      <router-link :to="{ name: 'profile'}" v-if="isLogin && (username || name)">
+        <svg style="width:24px;height:24px" viewBox="0 0 24 24" class="user-icon">
           <path fill="#000000" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
         </svg>
         <span class="username" v-if="name">{{ name }}</span>
@@ -82,13 +79,6 @@ export default {
   }
   .home {
     margin-right: auto;
-    color: #3A474D;
-    text-transform: uppercase;
-    font: 800 20px Futura, "Trebuchet MS", Arial, sans-serif;
-  }
-  .home:hover {
-    background-color: transparent;
-    color: #8c40b8;
   }
   .logo-img {
     height: 50px;
