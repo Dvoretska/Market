@@ -24,6 +24,3 @@ export default {
   	border:0;
   }
 </style>
-
-
-

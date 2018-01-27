@@ -13,7 +13,8 @@ const store = new Vuex.Store({
     responseState: {
       success: null, errors: null, loading: null
     },
-    userDetailsState: {}
+    userDetailsState: {},
+    categories: null
   },
   actions: {
     LOGIN: function (commit, data) {
@@ -90,6 +91,18 @@ const store = new Vuex.Store({
         console.log(err)
       })
     },
+    GET_CATEGORIES: function (commit) {
+      const TOKEN = localStorage.getItem('token')
+      axios.get(`${MAIN_URL}ads/categories/`,
+        { headers: {
+          authorization: `jwt ${TOKEN}`
+        }
+        }).then((response) => {
+          store.commit('getCategories', response.data)
+        }).catch((err) => {
+          console.log(err)
+        })
+    },
     TOKEN_VERIFY: function (commit, next) {
       const TOKEN = localStorage.getItem('token')
       axios.post(`${ACCOUNTS_URL}api-token-verify/`,
@@ -135,6 +148,9 @@ const store = new Vuex.Store({
     },
     clearUserState (state) {
       state.userDetailsState = {}
+    },
+    getCategories (state, data) {
+      state.categories = data
     }
   },
   getters: {
@@ -149,6 +165,9 @@ const store = new Vuex.Store({
     },
     getUserDetails: state => {
       return state.userDetailsState
+    },
+    getCategories: state => {
+      return state.categories
     }
   }
 })
