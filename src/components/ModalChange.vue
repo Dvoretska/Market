@@ -131,13 +131,10 @@ export default {
   }
   .fill-info-fields {
     margin-bottom: 12px;
-/*    z-index: 999999;*/
   }
   .fill-info-fields /deep/ .input {
     height: 30px;
     width: 250px;
-    overflow-y: scroll;
-/*    z-index: 999999;*/
   }
   .fill-info-fields /deep/ .icon {
     height: 28px;

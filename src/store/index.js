@@ -14,7 +14,7 @@ const store = new Vuex.Store({
       success: null, errors: null, loading: null
     },
     userDetailsState: {},
-    categories: []
+    categories: null
   },
   actions: {
     LOGIN: function (commit, data) {
@@ -87,7 +87,6 @@ const store = new Vuex.Store({
     GET_CITIES: function (commit, {code, callback}) {
       axios.get(`${MAIN_URL}location/${code}/cities/`).then((response) => {
         callback(response.data)
-        console.log(response.data)
       }).catch((err) => {
         console.log(err)
       })

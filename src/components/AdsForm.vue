@@ -55,6 +55,11 @@ export default {
       }
     }
   },
+  mounted () {
+    if (!this.$store.getters.getCategories) {
+      this.$store.dispatch('GET_CATEGORIES')
+    }
+  },
   computed: {
     categories () {
       return this.$store.getters.getCategories
@@ -129,17 +134,5 @@ export default {
       border-color: #7957d5;
       -webkit-box-shadow: 0 0 0 0.125em rgba(121, 87, 213, 0.25);
               box-shadow: 0 0 0 0.125em rgba(121, 87, 213, 0.25);
-    }
-    /deep/ select:active, /deep/ select:focus, /deep/ option:active, /deep/ option:focus, /deep/ span .select:active, /deep/ span .select:focus, /deep/ select, /deep/ select option {
-        outline: none;
-        border: none;
-        -moz-outline-style: none;
-    }
-    .categories:active {
-        outline: none;
-        -moz-outline-style: none; 
-    }
-    /deep/ select {
-        border: 1px solid #dbdbdb;   
     }
 </style>
