@@ -109,7 +109,7 @@ export default {
         width: 420px;
     }
     .contact-info-container /deep/ input {
-        border: 1px solid rgba(128,128,128,.5); 
+        border: 1px solid rgba(128,128,128,.5);
     }
     .button-anim-ads /deep/ span {
         background-color: #7957d5 !important;
@@ -119,7 +119,7 @@ export default {
         margin-top: 4px;
     }
     /deep/ .input:hover  {
-        border-color: #b5b5b5;  
+        border-color: #b5b5b5;
     }
     /deep/ .input:focus, .input:active,
     .textarea:focus,
