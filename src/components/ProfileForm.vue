@@ -1,23 +1,20 @@
 <template>
+  <div class="container">
     <div class="profile-info-container">
       <div class="profile-image"></div>
       <div>
-      <div class="data-profile profile-username">
-        <span>{{ firstName }} {{ lastName }}</span>
+        <div class="data-profile profile-username">
+          <span>{{ firstName }} {{ lastName }}</span>
+        </div>
+        <div class="data-profile">
+          <span>From:</span>
+          <span>{{ country }}, {{ city }}</span>
+        </div>
+        <button-bar :label="'Change'" class="change-button" :click="profileChange"></button-bar>
+        <modal-change></modal-change>
       </div>
-      <div class="data-profile">
-        <span>Country:</span>
-        <span>{{ country }}</span>
-      </div>
-      <div class="data-profile">
-        <span>City:</span>
-        <span>{{ city }}</span>
-      </div>
-      <button-bar :label="'Change'" class="change-button" :click="profileChange"></button-bar>
-      <modal-change>
-      </modal-change>
     </div>
-    </div>
+  </div>  
 </template>
 
 <script>
@@ -52,10 +49,13 @@ export default {
 </script>
 
 <style scoped>
+  .container {
+    text-align: center;
+  }
   .profile-username {
     color: #7957d5;
-    margin: 20px;
-    font: 700 22px Futura, "Trebuchet MS", Arial, sans-serif;
+    margin: 20px 20px 20px 0;
+    font: 700 20px Futura, "Trebuchet MS", Arial, sans-serif;
   }
   div.profile-image {
     border-radius: 100%;
@@ -69,15 +69,15 @@ export default {
   }
   .profile-info-container {
     height: 200px;
-    width: 500px;
     margin: 0px auto;
-    display: flex;
+    display: inline-flex;
     align-items: stretch;
-    justify-content: flex-start;
+    justify-content: center;
     border-radius: 10px;
     border: 1px solid rgba(128,128,128,.5);
     margin-top: 10px;
     margin-bottom: 10px;
+    text-align: center;
     background-color: #f4f4f4;
     color: #3A474D;
     font: 500 18px 'TradeGothicLTStd-BdCn20','PT Sans Narrow';
@@ -86,8 +86,7 @@ export default {
     box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
   }
   .data-profile {
-    margin: 20px;
-    font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+    margin: 20px; 
   }
   .change-button {
     margin: 0 20px;

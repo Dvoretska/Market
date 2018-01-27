@@ -1,7 +1,5 @@
 <template>
-  <div class="profile-image-container">
-<!--     <div class="profile-image"></div> -->
-  </div>
+  <div class="profile-image-container"></div>
 </template>
 
 <style scoped>
@@ -12,13 +10,4 @@
     margin-top: 65px;
     height: 150px;
   }
-/*  div.profile-image {
-  	border-radius: 100%;
-  	border: 2px solid grey;
-  	height: 150px;
-  	width: 150px;
-  	margin: auto;
-  	background: url('../assets/w128h1281385326502profle.png') 100% 100% no-repeat;
-  	background-size: cover;
-  }*/
 </style>

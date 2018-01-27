@@ -9,6 +9,7 @@ export default {
   name: 'app',
   created () {
     this.$store.dispatch('TOKEN_VERIFY')
+    this.$store.dispatch('GET_CATEGORIES')
   }
 }
 </script>

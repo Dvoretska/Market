@@ -4,11 +4,9 @@
             <b-input name="subject" expanded></b-input>
         </b-field>
 
-        <b-field horizontal label="Topic" class="topic-in-ads">
-            <b-select placeholder="Select a topic">
-                <option value="1">Bulma</option>
-                <option value="2">Vue.js</option>
-                <option value="3">Buefy</option>
+        <b-field horizontal label="Topic">
+            <b-select placeholder="Select a topic" class="topic-in-ads">
+                <option v-for="category in categories" class="categories">{{ category }}</option>
             </b-select>
         </b-field>
        <b-field horizontal label="Contact information">
@@ -58,6 +56,9 @@ export default {
     }
   },
   computed: {
+    categories () {
+      return this.$store.getters.getCategories
+    },
     firstName () {
       return this.$store.getters.getUserDetails.first_name
     },
@@ -87,6 +88,7 @@ export default {
         top: 11%;
         width: 550px;
         transform: translateX(-50%);
+        outline: none;
     }
     .contact-info-container /deep/ label  {
         display: block;
@@ -127,5 +129,17 @@ export default {
       border-color: #7957d5;
       -webkit-box-shadow: 0 0 0 0.125em rgba(121, 87, 213, 0.25);
               box-shadow: 0 0 0 0.125em rgba(121, 87, 213, 0.25);
+    }
+    /deep/ select:active, /deep/ select:focus, /deep/ option:active, /deep/ option:focus, /deep/ span .select:active, /deep/ span .select:focus, /deep/ select, /deep/ select option {
+        outline: none;
+        border: none;
+        -moz-outline-style: none;
+    }
+    .categories:active {
+        outline: none;
+        -moz-outline-style: none; 
+    }
+    /deep/ select {
+        border: 1px solid #dbdbdb;   
     }
 </style>
