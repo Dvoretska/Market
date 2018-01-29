@@ -81,13 +81,12 @@ export default {
     .ads {
         border-radius: 10px;
         border: 1px solid rgba(128,128,128,.5);
-        background-color: #f4f4f4;
         color: #3A474D;
         padding: 10px 20px;
         font: 500 16px 'TradeGothicLTStd-BdCn20','PT Sans Narrow';
-        -webkit-box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.75);
-        -moz-box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.75);
-        box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.75);
+        -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
         position: absolute;
         left: 50%;
         top: 11%;

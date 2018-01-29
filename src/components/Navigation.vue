@@ -1,5 +1,4 @@
 <template>
-<div class="parent">
   <nav class="top-bar">
 
     <div class="home">
@@ -32,7 +31,6 @@
         <span>Logout</span>
       </a>
   </nav>
-</div>
 </template>
 
 <script>
@@ -59,18 +57,14 @@ export default {
 }
 </script>
 <style scoped>
-  .parent {
-    position: fixed;
-    top: 0;
-    left: 0;
-    margin: auto;
-    width: 100%;
-    z-index: 9999;
-  }
   .top-bar {
     display: flex;
     height: 55px;
     align-items: center;
+    position: sticky;
+    z-index: 10;
+    top: 0;
+    width: 100%;
     padding: 0 10px;
     background-color: #f4f4f4;
     -webkit-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);

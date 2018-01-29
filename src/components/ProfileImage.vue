@@ -7,7 +7,7 @@
     background: url('../assets/2270.jpg') 100% 100% no-repeat;
     background-size: cover;
     padding: 20px 0 5px 0;
-    margin-top: 65px;
+    margin-top: 10px;
     height: 150px;
   }
 </style>
