@@ -1,14 +1,18 @@
 <template>
-   <register-container></register-container>
+	<div>
+		<navigation :page="'register'"></navigation>
+	    <register-form></register-form>
+    </div>
 </template>
 
 <script>
-import registerContainer from '@/containers/RegisterContainer'
+import navigation from '@/components/Navigation'
+import registerForm from '@/components/RegisterForm'
+
 export default {
   components: {
-    registerContainer
+    registerForm,
+    navigation
   }
 }
 </script>
-
-

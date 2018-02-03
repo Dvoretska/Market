@@ -23,13 +23,36 @@ export default {
     buttonBar,
     inputStyle
   },
-  props: {
-    login: Function,
-    setEmail: Function,
-    setPass: Function,
-    nonFieldErrors: String,
-    emailErrors: String,
-    passwordErrors: String
+  created () {
+    this.$store.dispatch('CLEAR_ERRORS')
+  },
+  methods: {
+    login () {
+      this.$store.dispatch('LOGIN', {email: this.email, password: this.password})
+    },
+    setEmail (val) {
+      this.email = val
+    },
+    setPass (val) {
+      this.password = val
+    }
+  },
+  computed: {
+    nonFieldErrors () {
+      if (this.$store.getters.getErrors && this.$store.getters.getErrors.non_field_errors) {
+        return this.$store.getters.getErrors.non_field_errors.join('\n')
+      }
+    },
+    emailErrors () {
+      if (this.$store.getters.getErrors && this.$store.getters.getErrors.email) {
+        return this.$store.getters.getErrors.email.join('\n')
+      }
+    },
+    passwordErrors () {
+      if (this.$store.getters.getErrors && this.$store.getters.getErrors.password) {
+        return this.$store.getters.getErrors.password.join('\n')
+      }
+    }
   }
 }
 </script>

@@ -1,12 +1,18 @@
 <template>
-   <login-container></login-container>
+	<div>
+		<navigation :page="'login'"></navigation>
+	    <login-form></login-form>
+    </div>
 </template>
 
 <script>
-import loginContainer from '@/containers/LoginContainer'
+import navigation from '@/components/Navigation'
+import loginForm from '@/components/LoginForm'
+
 export default {
   components: {
-    loginContainer
+    loginForm,
+    navigation
   }
 }
 </script>
