@@ -96,7 +96,7 @@ export default {
   },
   data () {
     return {
-      rating: 2.5
+      rating: 1
     }
   },
   computed: {
@@ -193,6 +193,7 @@ export default {
 	.product-rating {
 		margin-top: 5px;
 		max-height: 20px;
+		width: 91px;
 	}
 	.product-name {
 		height: 70px;

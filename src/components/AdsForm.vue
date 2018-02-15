@@ -125,7 +125,6 @@ export default {
     .textarea:focus,
     .textarea:active {
       border-color: #7957d5;
-      -webkit-box-shadow: 0 0 0 0.125em rgba(121, 87, 213, 0.25);
-              box-shadow: 0 0 0 0.125em rgba(121, 87, 213, 0.25);
+      box-shadow: 0 0 0 0.125em rgba(121, 87, 213, 0.25);
     }
 </style>

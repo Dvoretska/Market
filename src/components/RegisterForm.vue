@@ -127,7 +127,7 @@ export default {
                0 5px 10px rgba(0,0,0,.25),
                0 10px 10px rgba(0,0,0,.2),
                0 15px 15px rgba(0,0,0,.15);
-               color: #0f0e0f;
+    color: #0f0e0f;
   }
   .inside-form {
      padding: 10px 26px 25px;

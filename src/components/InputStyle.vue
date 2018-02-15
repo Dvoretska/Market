@@ -36,16 +36,16 @@ export default {
   }
   .input-container {
     margin-top: 15px;
-    -webkit-border-radius: 10px;
-    -webkit-box-shadow: 
+    border-radius: 10px;
+    box-shadow: 
     0px 3px rgba(128,128,128,1), 
     0px 4px rgba(118,118,118,1);
     -webkit-transition: -webkit-box-shadow .1s ease-in-out;
     -webkit-transition: -webkit-transform .1s ease-in-out;
   }
   .input-container input {
-    -webkit-border-radius: 8px;
-    -webkit-box-shadow:
+    border-radius: 8px;
+    box-shadow:
         0px -1px #fff,
         0px 0.5px 5px #FFFFFF;  
     border: 1px solid rgba(128,128,128,.5);
@@ -71,17 +71,9 @@ export default {
     color: red;
     margin-bottom: -15px;
   }
-/*  .input-container-danger {
-    -webkit-box-shadow:
-    0px 1px #F00E0E,
-    0px 2px #F00E0E,
-    0px 4px #F00E0E; 
-  }*/
   .input-container-danger input {
     border: 1px solid #F00E0E;
-  -webkit-box-shadow:
-     /*   0px -1px #F00E0E,*/
-        0px 4px 0px #F00E0E;  
+    box-shadow: 0px 4px 0px #F00E0E;  
   }
   .input-container-danger input:focus {
     -webkit-transform: translate(0, 5px);

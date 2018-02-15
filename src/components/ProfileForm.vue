@@ -89,9 +89,7 @@ export default {
     min-height: 350px;
     margin-bottom: 10px;
   }
-
   .container {
-    box-sizing: border-box;
     margin: 0 auto;
     width: 60%;
   }
@@ -113,9 +111,9 @@ export default {
   }
     ul.option-box > li .active {
     border-top: 1px solid #D7D7D7;
-     border-left: 1px solid #D7D7D7;
-     border-right: 1px solid #D7D7D7;
-     border-bottom: none;
+    border-left: 1px solid #D7D7D7;
+    border-right: 1px solid #D7D7D7;
+    border-bottom: none;
     background-color:  #f0f0f0;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;

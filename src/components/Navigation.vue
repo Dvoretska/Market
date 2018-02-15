@@ -83,8 +83,6 @@ export default {
     width: 100%;
     padding: 0 10px;
     background-color: #f4f4f4;
-    -webkit-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);
   }
   .nav-logo-container {
@@ -102,7 +100,7 @@ export default {
     box-shadow:
         0px 3px rgba(118,118,118,1),
         0px 4px 2px rgba(108,108,108,1);
-    transition: -webkit-box-shadow .1s ease-in-out;
+    transition: box-shadow .1s ease-in-out;
   }
   .button-anim span {
     background-color: #E8E8E8;
@@ -149,13 +147,13 @@ export default {
         color-stop(60%,rgba(255,255,255,0)),
         color-stop(100%,rgba(255,255,255,0)));
 
-    -webkit-box-shadow:
+    box-shadow:
         0px -0.7px #fff,
         0px 0.5px 5px #FFFFFF;
 
-    -webkit-background-size: 100%, 100%, 100%, 4px 4px;
+    background-size: 100%, 100%, 100%, 4px 4px;
 
-    -webkit-border-radius: 10px;
+    border-radius: 10px;
     -webkit-transition: -webkit-transform .1s ease-in-out;
 
     display: inline-block;
