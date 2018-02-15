@@ -16,37 +16,44 @@
       </div>
         <ul class="option-box">
           <li>
-            <router-link :to="{ name: ''}" class="options active"> 
+            <router-link to="/profile" active-class="active" class="options" exact> 
               <span>Ads</span>
             </router-link>
           </li>
           <li>
-            <router-link :to="{ name: ''}" class="options"> 
+            <router-link to="/profile/message" active-class="active" class="options" exact> 
               <span>Messages</span>
             </router-link>
           </li>
          <li>
-            <router-link :to="{ name: ''}" class="options"> 
+            <router-link to="/profile" class="options"> 
               <span>Settings</span>
             </router-link>
           </li>
         </ul>
     </div>
     <div class="content-box">
-      <div class="options-content"></div>
+      <profile-ads-form  v-if="$route.path == '/profile'"></profile-ads-form>
+      <router-view></router-view>
     </div>
-    <modal-change></modal-change>
   </div>  
 </template>
 
 <script>
 import buttonBar from '@/components/ButtonBar'
 import modalChange from '@/components/ModalChange'
+import profileAdsForm from '@/components/ProfileAdsForm'
+import profileMessageForm from '@/components/ProfileMessageForm'
 
 export default {
   components: {
     buttonBar,
-    modalChange
+    modalChange,
+    profileAdsForm,
+    profileMessageForm
+  },
+  props: {
+    page: String
   },
   methods: {
     profileChange () {
@@ -54,6 +61,9 @@ export default {
     }
   },
   computed: {
+    currentPath () {
+      return '/profile/'
+    },
     firstName () {
       return this.$store.getters.getUserDetails.first_name
     },
@@ -76,21 +86,12 @@ export default {
 <style scoped>
   .content-box {
     border: solid 1px #D7D7D7;
-    min-height: 400px;
+    min-height: 350px;
+    margin-bottom: 10px;
   }
-  .options-content {
-    height: 50px;
-    border-bottom: solid 1px #D7D7D7;
-  }
-  .active {
-    border-top: solid 1px #D7D7D7;
-    border-right: solid 1px #D7D7D7;
-    border-left: solid 1px #D7D7D7;
-    background-color: #f4f4f4;
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
-  }
+
   .container {
+    box-sizing: border-box;
     margin: 0 auto;
     width: 60%;
   }
@@ -99,20 +100,31 @@ export default {
     text-align: left;
   }
   ul.option-box {
-    position: relative;
-    height: 47px;
-  }
-  ul.option-box > li {
-    float: left;
+    display: flex;
+    height: 43px;
     list-style: none;
   }
   ul.option-box > li .options {
+    border-bottom: none;
     display: inline-block;
-    font-size: 18px;
+    font-size: 16px;
     padding: 10px 20px;
-    vertical-align: middle;
     color: #7957d5;
-    font-weight: 600;
+  }
+    ul.option-box > li .active {
+    border-top: 1px solid #D7D7D7;
+     border-left: 1px solid #D7D7D7;
+     border-right: 1px solid #D7D7D7;
+     border-bottom: none;
+    background-color:  #f0f0f0;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    margin-top: -1px;
+  }
+  .active span {
+    color: #363636;
+    margin-left: -1px;
+    margin-right: -1px;
   }
   .profile-username {
     color: #7957d5;

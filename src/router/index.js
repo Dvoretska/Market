@@ -6,6 +6,8 @@ import registerPage from '@/pages/RegisterPage'
 import profilePage from '@/pages/ProfilePage'
 import adsPage from '@/pages/AdsPage'
 import store from '@/store'
+import profileMessageForm from '@/components/ProfileMessageForm'
+import profileAdsForm from '@/components/ProfileAdsForm'
 
 Vue.use(Router)
 
@@ -22,10 +24,17 @@ const routes = [
     path: '/register', name: 'register', component: registerPage, meta: {title: 'Market | Signup'}
   },
   {
-    path: '/profile', name: 'profile', component: profilePage, meta: {title: 'Market | Profile'}
+    path: '/ads', name: 'ads', component: adsPage, meta: {title: 'Market | Ads'}
   },
   {
-    path: '/ads', name: 'ads', component: adsPage, meta: {title: 'Market | Ads'}
+    path: '/profile',
+    name: 'profile',
+    component: profilePage,
+    meta: {title: 'Market | Profile'},
+    children: [
+    {path: 'message', component: profileMessageForm},
+    {path: 'ads', component: profileAdsForm}
+    ]
   }
 ]
 

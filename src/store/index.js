@@ -28,9 +28,9 @@ const store = new Vuex.Store({
         store.commit('createUserState', response.data.user)
         localStorage.setItem('token', response.data.token)
         router.push({name: 'home'})
-      }, (err) => {
-        store.commit('error', err.response.data)
+      }).catch((err) => {
         store.commit('loading', false)
+        store.commit('error', err.response.data)
       })
     },
     SIGNUP: function (commit, data) {
@@ -132,7 +132,9 @@ const store = new Vuex.Store({
       state.responseState.errors = null
     },
     loading (state, data) {
+      console.log('load', state.responseState.loading)
       state.responseState.loading = data
+      console.log('afterload', state.responseState.loading)
     },
     createUserState (state, user) {
       state.userDetailsState = user

@@ -2,10 +2,10 @@
 	<div class="box">
 	 	<h2>Sign up</h2>
 	 	<div class="inside-form">
-	 		<p class="is-danger">{{ nonFieldErrors }}</p>
-			<input-style :placeholder="'Email'" :type="'email'" @inputVal="setEmail" :errors="emailErrors"></input-style>
-			<input-style :placeholder="'Password'" :type="'password'" @inputVal="setPass1" :errors="password1Errors"></input-style>
-			<input-style :placeholder="'Confirm Password'" :type="'password'" @inputVal="setPass2" :errors="password2Errors" :keyup="signUp"></input-style>
+	 		<p class="is-danger" v-if="nonFieldErrors">{{ nonFieldErrors }}</p>
+			<input-style :iconPath="iconMeilPath" :placeholder="'Email'" :type="'email'" @inputVal="setEmail" :errors="emailErrors" class="input-component"></input-style>
+			<input-style :iconPath="iconLockPath" :placeholder="'Password'" :type="'password'" @inputVal="setPass1" :errors="password1Errors" class="input-component"></input-style>
+			<input-style :iconPath="iconLockPath" :placeholder="'Confirm Password'" :type="'password'" @inputVal="setPass2" :errors="password2Errors" :keyup="signUp" class="input-component"></input-style>
       <router-link :to="{ name: 'login'}"  class="back-to-login">
           <span>Already registered? Login</span>
       </router-link>
@@ -19,6 +19,8 @@
 
 import buttonBar from '@/components/ButtonBar'
 import inputStyle from '@/components/InputStyle'
+import iconLock from '@/assets/lock.svg'
+import iconMeil from '@/assets/meil.svg'
 
 export default {
   components: {
@@ -43,6 +45,12 @@ export default {
     }
   },
   computed: {
+    iconLockPath () {
+      return iconLock
+    },
+    iconMeilPath () {
+      return iconMeil
+    },
     nonFieldErrors () {
       if (this.$store.getters.getErrors && this.$store.getters.getErrors.non_field_errors) {
         return this.$store.getters.getErrors.non_field_errors.join('\n')
@@ -68,14 +76,17 @@ export default {
 </script>
 
 <style scoped>
+  .input-component {
+    margin-bottom: 25px;
+  }
   .signup-button {
-    margin: 15px 0 20px;
+    margin: 0;
   }
   .back-to-login {
     font-size: 14px;
     color: #8c40b8;
     float: right;
-    margin-top: 20px;
+    margin-top: 6px;
   }
   .is-danger {
     font-size: 13px;
@@ -119,6 +130,6 @@ export default {
                color: #0f0e0f;
   }
   .inside-form {
-    padding: 0 26px;
+     padding: 10px 26px 25px;
   }
 </style>

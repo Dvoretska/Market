@@ -1,7 +1,7 @@
 <template>
   <div>
    <navigation :page="'profile'"></navigation>
-   <profile-form></profile-form>
+   <profile-form :page="'profile'"></profile-form>
   </div>
 </template>
 

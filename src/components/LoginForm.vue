@@ -2,9 +2,9 @@
     <div class="box">
       <h2>Login</h2>
       <div class="inside-form">
-        <p class="is-danger">{{ nonFieldErrors }}</p>
-        <input-style :placeholder="'Email'" :type="'email'" @inputVal="setEmail" :errors="emailErrors"></input-style>
-        <input-style :placeholder="'Password'" :type="'password'" @inputVal="setPass" :errors="passwordErrors" :keyup="login"></input-style>
+        <p class="is-danger" v-if="nonFieldErrors">{{ nonFieldErrors }}</p>
+        <input-style :iconPath="iconMeilPath" :placeholder="'Email'" :type="'email'" @inputVal="setEmail" :errors="emailErrors" class="input-component"></input-style>
+        <input-style :iconPath="iconLockPath" :placeholder="'Password'" :type="'password'" @inputVal="setPass" :errors="passwordErrors" :keyup="login" class="input-component"></input-style>
         <router-link :to="{ name: 'register'}" class="back-to-signup">
           <span>Not a member? Sign up</span>
         </router-link>
@@ -17,6 +17,8 @@
 
 import buttonBar from '@/components/ButtonBar'
 import inputStyle from '@/components/InputStyle'
+import iconLock from '@/assets/lock.svg'
+import iconMeil from '@/assets/meil.svg'
 
 export default {
   components: {
@@ -38,6 +40,12 @@ export default {
     }
   },
   computed: {
+    iconLockPath () {
+      return iconLock
+    },
+    iconMeilPath () {
+      return iconMeil
+    },
     nonFieldErrors () {
       if (this.$store.getters.getErrors && this.$store.getters.getErrors.non_field_errors) {
         return this.$store.getters.getErrors.non_field_errors.join('\n')
@@ -58,14 +66,14 @@ export default {
 </script>
 
 <style scoped>
-  .login-button {
-    margin: 15px 0 20px;
+  .input-component {
+    margin-bottom: 25px;
   }
   .back-to-signup {
     font-size: 14px;
     color: #8c40b8;
     float: right;
-    margin-top: 20px;
+    margin-top: 6px;
   }
   .is-danger {
     font-size: 13px;
@@ -109,7 +117,7 @@ export default {
                color: #0f0e0f;
   }
   .inside-form {
-    padding: 0 26px;
+    padding: 10px 26px 25px;
   }
 </style>
 

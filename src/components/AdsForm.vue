@@ -84,9 +84,6 @@ export default {
         color: #3A474D;
         padding: 10px 20px;
         font: 500 16px 'TradeGothicLTStd-BdCn20','PT Sans Narrow';
-        -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-        -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
         position: absolute;
         left: 50%;
         top: 11%;
@@ -116,9 +113,6 @@ export default {
     }
     .contact-info-container /deep/ input {
         border: 1px solid rgba(128,128,128,.5);
-    }
-    .button-anim-ads /deep/ span {
-        background-color: #7957d5 !important;
     }
     .button-anim-ads {
         margin-bottom: 7px;

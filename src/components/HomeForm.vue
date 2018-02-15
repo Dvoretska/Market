@@ -117,7 +117,6 @@ export default {
 		width: calc(100% - 270px);
 		display: flex;
 		justify-content: space-between;
-		flex-direction: row;
 		flex-wrap: wrap;
 		align-content: baseline;
 	}

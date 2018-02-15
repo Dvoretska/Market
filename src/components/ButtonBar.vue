@@ -1,6 +1,8 @@
 <template>
   <div class="button-anim">
-    <span v-on:click="click()">{{ label }}<i class="fa fa-spinner fa-spin fa-lg fa-fw" v-if="loading"></i></span>
+    <span v-on:click="click()">{{ label }}
+        <i class="fa fa-spinner fa-spin fa-lg fa-fw" v-if="loading"></i>
+    </span>
   </div>
 </template>
 
