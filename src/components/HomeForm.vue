@@ -186,7 +186,7 @@ export default {
 	  	color: #7957d5;
 	}
 	.product-details {
-		margin-top: 10px;
+		margin-top: 13px;
 		margin-bottom: 10px;
 		text-align: center;
 	}

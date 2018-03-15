@@ -1,17 +1,20 @@
 <template>
-	<div class="box">
-	 	<h2>Sign up</h2>
-	 	<div class="inside-form">
-	 		<p class="is-danger" v-if="nonFieldErrors">{{ nonFieldErrors }}</p>
-			<input-style :iconPath="iconMeilPath" :placeholder="'Email'" :type="'email'" @inputVal="setEmail" :errors="emailErrors" class="input-component"></input-style>
-			<input-style :iconPath="iconLockPath" :placeholder="'Password'" :type="'password'" @inputVal="setPass1" :errors="password1Errors" class="input-component"></input-style>
-			<input-style :iconPath="iconLockPath" :placeholder="'Confirm Password'" :type="'password'" @inputVal="setPass2" :errors="password2Errors" :keyup="signUp" class="input-component"></input-style>
-      <router-link :to="{ name: 'login'}"  class="back-to-login">
-          <span>Already registered? Login</span>
-      </router-link>
-			<button-bar :label="'Sign up'" :click="signUp" class="signup-button"></button-bar>
-		</div>
-	</div>
+  <div class="auth-page-wrapper">
+  	<div class="auth-box">
+  	 	<h2 class="auth-title">Sign up</h2>
+  	 	<div class="auth-form-container">
+  	 		<p class="is-danger" v-if="nonFieldErrors">{{ nonFieldErrors }}</p>
+  			<input-style :iconPath="iconMeilPath" :placeholder="'Email'" :type="'email'" @inputVal="setEmail" :errors="emailErrors" class="input-component"></input-style>
+  			<input-style :iconPath="iconLockPath" :placeholder="'Password'" :type="'password'" @inputVal="setPass1" :errors="password1Errors" class="input-component"></input-style>
+  			<input-style :iconPath="iconLockPath" :placeholder="'Confirm Password'" :type="'password'" @inputVal="setPass2" :errors="password2Errors" :keyup="signUp" class="input-component"></input-style>
+        <div class="flexbox-container">
+          <input type="button" :label="'Sign up'" @click="signUp" class="auth-button" value="Sign up">
+          <router-link :to="{ name: 'login'}"  class="link-change-route">
+              <span>Already registered? Login</span>
+          </router-link>
+  			</div>
+  		</div>
+    </div>
   </div>
 </template>
 
@@ -76,17 +79,72 @@ export default {
 </script>
 
 <style scoped>
+  .auth-page-wrapper {
+    font-family: 'Lato', Arial, sans-serif;
+    background: #fcfcfc;
+    box-shadow: inset 0 20px 50px -20px rgba(0,0,0,.06);
+  }
+  .auth-box {
+    border-radius: 8px;
+    width: 40%;
+    min-width: 220px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
+    background: #fff;
+  }
+  .auth-title {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-align: center;
+    padding: 20px 26px 10px;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.3),
+               -1px 1px 1px rgba(0,0,0,0.9);
+    color: #a087bc;
+    position: relative;
+    text-transform: uppercase;
+  }
+  .auth-title::before {
+    content: "";
+    width: 35%;
+    height: 2px;
+    background-color: rgba(0,0,0,0.9);
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .auth-form-container {
+    padding: 10px 26px 25px;
+  }
   .input-component {
     margin-bottom: 25px;
   }
-  .signup-button {
-    margin: 0;
+  .flexbox-container {
+    display: flex;
+    align-items: center;
   }
-  .back-to-login {
-    font-size: 14px;
-    color: #8c40b8;
-    float: right;
-    margin-top: 6px;
+  .auth-button {
+    height: 40px;
+    border: none;
+    width: 75px;
+    border-radius: 8px;
+    text-transform: uppercase;
+    background-color: #7b4fad;
+    color: #fff;
+    cursor: pointer;
+    margin-right: auto;
+  }
+  .auth-button:active {
+    padding: 0;
+  }
+  .link-change-route {
+    font-size: 15px;
+    color: #7b4fad;
   }
   .is-danger {
     font-size: 13px;
@@ -97,39 +155,24 @@ export default {
     line-height: 25px;
     border-radius: 8px;
   }
-  .box {
-    border-radius: 20px;
-    width: 500px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 0;
-    border: 1px solid rgba(128,128,128,.5);
+  @media (max-width: 992px) {
+  .auth-box {
+      width: 80%;
   }
-  .box h2 {
-    font-size: 30px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-align: center;
-    padding: 10px 26px;
-    border-top-right-radius: 19px;
-    border-top-left-radius: 19px;
-    background-color: #c672f7;
-    border-bottom: 1px solid rgba(128,128,128,.5);
-    text-shadow: 0 1px 0 #ccc, 
-               0 2px 0 #c9c9c9,
-               0 3px 0 #bbb,
-               0 4px 0 #b9b9b9,
-               0 0 5px rgba(0,0,0,.1),
-               0 1px 3px rgba(0,0,0,.3),
-               0 3px 5px rgba(0,0,0,.2),
-               0 5px 10px rgba(0,0,0,.25),
-               0 10px 10px rgba(0,0,0,.2),
-               0 15px 15px rgba(0,0,0,.15);
-    color: #0f0e0f;
   }
-  .inside-form {
-     padding: 10px 26px 25px;
+  @media (max-width: 480px) {
+  .flexbox-container {
+      flex-direction: column;
+  }
+  .auth-button {
+    margin-bottom: 15px;
+    width: 50%;
+  }
+  .auth-title::before {
+    width: 70%;
+  }
+  .auth-box {
+    transform: translate(-50%, -75%);
+  }
   }
 </style>

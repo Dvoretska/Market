@@ -29,9 +29,9 @@ export default {
     border-radius: 10px;
 
     box-shadow:
-        0px 3px rgba(128,128,128,1),
-        0px 4px rgba(118,118,118,1),
-        0px 5px 2px rgba(108,108,108,1);
+        0px 1px rgba(128,128,128,1),
+        0px 2px rgba(118,118,118,1),
+        0px 3px 2px rgba(108,108,108,1);
 
     -webkit-transition: -webkit-box-shadow .1s ease-in-out;
   }

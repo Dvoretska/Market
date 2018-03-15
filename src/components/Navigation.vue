@@ -7,12 +7,12 @@
       </router-link>
     </div>
 
-      <router-link :to="{ name: 'login'}" class="button-anim" v-if="!isLogin">
-        <span v-bind:class="{ activelink: page == 'login'}">Login</span>
+      <router-link :to="{ name: 'login'}" class="button-anim" v-if="!isLogin" v-bind:class="{ 'active-link': page == 'login'}">
+        <span>Login</span>
       </router-link>
 
-      <router-link :to="{ name: 'register'}" class="button-anim" v-if="!isLogin">
-        <span v-bind:class="{ activelink: page == 'register' }">Sign up</span>
+      <router-link :to="{ name: 'register'}" class="button-anim right-button" v-if="!isLogin" v-bind:class="{ 'active-link': page == 'register' }">
+        <span>Sign up</span>
       </router-link>
 
         <div class="nav-user-info">
@@ -43,8 +43,8 @@
           </ul>
         </div>
 
-      <router-link :to="{ name: 'ads'}" class="button-anim" v-if="isLogin">
-        <span v-bind:class="{ 'activelink': page == 'ads' }">+ Create an ad</span>
+      <router-link :to="{ name: 'ads'}" class="button-anim" v-if="isLogin" v-bind:class="{ 'active-link': page == 'ads' }">
+        <span>+ Create an ad</span>
       </router-link>
   </nav>
 </template>
@@ -92,21 +92,28 @@ export default {
     height: 50px;
     background-color: transparent;
   }
-  .button-anim {
-    transform: translate(0, -3px);
-    display: inline-block;
-    margin-right: 10px;
-    border-radius: 11px;
-    box-shadow:
-        0px 3px rgba(118,118,118,1),
-        0px 4px 2px rgba(108,108,108,1);
-    transition: box-shadow .1s ease-in-out;
+  .right-button {
+    margin-left: 10px;
   }
+  .button-anim {
+    -webkit-transform: translate(0, -3px);
+    display: inline-block;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0px 1px rgba(128,128,128,1),
+        0px 2px rgba(118,118,118,1),
+        0px 3px 2px rgba(108,108,108,1);
+
+    -webkit-transition: -webkit-box-shadow .1s ease-in-out;
+  }
+
   .button-anim span {
     background-color: #E8E8E8;
 
     background-image:
-    /* gloss gradient */
+        /* gloss gradient */
     -webkit-gradient(
         linear,
         left bottom,
@@ -157,19 +164,30 @@ export default {
     -webkit-transition: -webkit-transform .1s ease-in-out;
 
     display: inline-block;
-    padding: 5px 8px;
+    padding: 5px 10px;
 
     color: #3A474D;
     text-transform: uppercase;
     font: 700 12px Futura, "Trebuchet MS", Arial, sans-serif;
   }
-  .button-anim span:hover, .username:hover {
+  .button-anim span:hover {
     color: #8c40b8;
     cursor: pointer;
   }
-  .activelink {
+
+  .active-link {
+    box-shadow:
+        0px 3px rgba(128,128,128,1),
+        0px 4px rgba(118,118,118,1),
+        0px 5px rgba(108,108,108,1);
+  }
+
+  .active-link span {
     -webkit-transform: translate(0, 3px);
   }
+/*  .active-link {
+      -webkit-transform: translate(0, 3px);
+  }*/
   .nav-user-info {
     position: relative;
   }
@@ -214,7 +232,6 @@ export default {
     transform-origin: 0 0;
   }
   .submenu a {
-    border-bottom: 1px solid #ccc;
     display: inline-block;
     color: black;
     text-align: left;
@@ -229,9 +246,4 @@ export default {
   .submenu a:hover {
     background-color: #f4f4f4;
   }
-  .submenu a:first-child:hover {
-    border-top: 1px solid #ccc;
-    margin-top: -1px;
-  }
 </style>
-

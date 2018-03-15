@@ -1,6 +1,8 @@
 <template>
 	<div>
-		<navigation :page="'login'"></navigation>
+		<mq-layout mq="tablet+">
+			<navigation :page="'login'"></navigation>
+		</mq-layout>
 	    <login-form></login-form>
     </div>
 </template>
@@ -16,4 +18,5 @@ export default {
   }
 }
 </script>
+
 

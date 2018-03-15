@@ -80,7 +80,7 @@ export default {
 <style scoped>
     .ads {
         border-radius: 10px;
-        border: 1px solid rgba(128,128,128,.5);
+        border: 2px solid rgba(128,128,128,.5);
         color: #3A474D;
         padding: 10px 20px;
         font: 500 16px 'TradeGothicLTStd-BdCn20','PT Sans Narrow';
@@ -116,7 +116,7 @@ export default {
     }
     .button-anim-ads {
         margin-bottom: 7px;
-        margin-top: 4px;
+        margin-top: 6px;
     }
     /deep/ .input:hover  {
         border-color: #b5b5b5;

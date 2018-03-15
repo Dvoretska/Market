@@ -36,48 +36,40 @@ export default {
   }
   .input-container {
     margin-top: 15px;
-    border-radius: 10px;
-    box-shadow: 
-    0px 3px rgba(128,128,128,1), 
-    0px 4px rgba(118,118,118,1);
-    -webkit-transition: -webkit-box-shadow .1s ease-in-out;
-    -webkit-transition: -webkit-transform .1s ease-in-out;
+    border-radius: 8px;
   }
   .input-container input {
-    border-radius: 8px;
-    box-shadow:
-        0px -1px #fff,
-        0px 0.5px 5px #FFFFFF;  
-    border: 1px solid rgba(128,128,128,.5);
-  }
-  .input-container input:focus + .input-container-icon, .input-focused + .input-container-icon {
-    -webkit-transform: translate(0, 5px);
+    border-radius: 5px;
+    height: 45px;
+    background-color: #fcfcfc;
+    font-weight: 400;
+    border: 1px solid #bcbaba;
+    opacity: 1;
+    box-shadow: none;
   }
   .input-container input:focus, .input-focused {
-    -webkit-transform: translate(0, 5px);
-    border: 2px solid rgba(128,128,128,.5);
+    box-shadow: 0 0 8px 0 rgba(0,0,0,.1);
+    transition: box-shadow .2s!important;
   }
   .input-container-icon {
     opacity: 0.3;
     position: absolute;
-    top: 6px;
+    top: 50%;
     left: 8px;
+    transform: translateY(-50%);
     z-index: 1;
   }
   .input-container-errors {
     font-size: 13px;
-    padding-top: 7px;
     padding-left: 7px;
     color: red;
     margin-bottom: -15px;
   }
   .input-container-danger input {
     border: 1px solid #F00E0E;
-    box-shadow: 0px 4px 0px #F00E0E;  
   }
   .input-container-danger input:focus {
-    -webkit-transform: translate(0, 5px);
-    border: 2px solid #F00E0E;
+    border: 1px solid #F00E0E;
     box-shadow: none;
   }
 </style>
