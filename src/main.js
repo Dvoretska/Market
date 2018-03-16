@@ -15,8 +15,8 @@ import VueMq from 'vue-mq'
 Vue.use(VueMq, {
   breakpoints: {
     mobile: 480,
-    tablet: 900,
-    laptop: 1250,
+    tablet: 768,
+    laptop: 1024,
     desktop: Infinity
   }
 })

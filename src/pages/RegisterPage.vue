@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<mq-layout mq="tablet+">
+		<mq-layout mq="laptop+">
 			<navigation :page="'register'"></navigation>
 		</mq-layout>
 	    <register-form></register-form>

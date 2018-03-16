@@ -153,7 +153,11 @@ export default {
   }
   @media (max-width: 992px) {
   .auth-box {
-      width: 80%;
+      width: 90%;
+  }
+  .auth-button {
+    margin-bottom: 15px;
+    width: 20%;
   }
   }
   @media (max-width: 480px) {
@@ -166,9 +170,6 @@ export default {
   }
   .auth-title::before {
     width: 70%;
-  }
-  .auth-box {
-    transform: translate(-50%, -90%);
   }
   }
 </style>
