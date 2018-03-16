@@ -94,12 +94,12 @@ export default {
     width: 40%;
     min-width: 220px;
     position: absolute;
-    top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     padding: 0;
     box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
     background: #fff;
+    margin-top: 15vh;
   }
   .auth-title {
     font-size: 26px;
