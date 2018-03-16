@@ -1,18 +1,40 @@
 <template>
   <div class="container">
-    <div class="profile-info-container">
-      <div class="profile-image"></div>
-      <div>
-        <div class="data-profile profile-username">
-          <span>{{ firstName }} {{ lastName }}</span>
+    <div class="wrapper">
+      <div class="profile-info-container">
+        <div class="profile-image"></div>
+        <div class="user-info">
+          <div class="profile-username">
+            <span v-if="firstName || lastName">{{ firstName }} {{ lastName }}</span>
+            <span v-else>{{ username }}</span>
+          </div>
+          <div v-if="country || city">
+            <span>From:</span>
+            <span>{{ country }}<span v-if="country && city">, </span>{{ city }}</span>
+          </div>
         </div>
-        <div class="data-profile">
-          <span>From:</span>
-          <span>{{ country }}, {{ city }}</span>
-        </div>
-        <button-bar :label="'Change'" class="change-button" :click="profileChange"></button-bar>
-        <modal-change></modal-change>
       </div>
+        <ul class="option-box">
+          <li>
+            <router-link to="/profile" active-class="active" class="options" exact> 
+              <span>Ads</span>
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/profile/message" active-class="active" class="options" exact> 
+              <span>Messages</span>
+            </router-link>
+          </li>
+         <li>
+            <router-link to="/profile" class="options"> 
+              <span>Settings</span>
+            </router-link>
+          </li>
+        </ul>
+    </div>
+    <div class="content-box">
+      <profile-ads-form  v-if="$route.path == '/profile'"></profile-ads-form>
+      <router-view></router-view>
     </div>
   </div>  
 </template>
@@ -20,11 +42,18 @@
 <script>
 import buttonBar from '@/components/ButtonBar'
 import modalChange from '@/components/ModalChange'
+import profileAdsForm from '@/components/ProfileAdsForm'
+import profileMessageForm from '@/components/ProfileMessageForm'
 
 export default {
   components: {
     buttonBar,
-    modalChange
+    modalChange,
+    profileAdsForm,
+    profileMessageForm
+  },
+  props: {
+    page: String
   },
   methods: {
     profileChange () {
@@ -32,6 +61,9 @@ export default {
     }
   },
   computed: {
+    currentPath () {
+      return '/profile/'
+    },
     firstName () {
       return this.$store.getters.getUserDetails.first_name
     },
@@ -43,14 +75,54 @@ export default {
     },
     city () {
       return this.$store.getters.getUserDetails.city
+    },
+    username () {
+      return this.$store.getters.getUserDetails.username
     }
   }
 }
 </script>
 
 <style scoped>
+  .content-box {
+    border: solid 1px #D7D7D7;
+    min-height: 350px;
+    margin-bottom: 10px;
+  }
   .container {
-    text-align: center;
+    margin: 0 auto;
+    width: 60%;
+  }
+  .wrapper {
+    width: 100%;
+    text-align: left;
+  }
+  ul.option-box {
+    display: flex;
+    height: 43px;
+    list-style: none;
+  }
+  ul.option-box > li .options {
+    border-bottom: none;
+    display: inline-block;
+    font-size: 16px;
+    padding: 10px 20px;
+    color: #7957d5;
+  }
+    ul.option-box > li .active {
+    border-top: 1px solid #D7D7D7;
+    border-left: 1px solid #D7D7D7;
+    border-right: 1px solid #D7D7D7;
+    border-bottom: none;
+    background-color:  #f0f0f0;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    margin-top: -1px;
+  }
+  .active span {
+    color: #363636;
+    margin-left: -1px;
+    margin-right: -1px;
   }
   .profile-username {
     color: #7957d5;
@@ -62,33 +134,17 @@ export default {
     border: 2px solid grey;
     height: 150px;
     width: 150px;
-    margin-left: 20px;
+    margin: 20px;
     align-self: center;
     background: url('../assets/w128h1281385326502profle.png') 100% 100% no-repeat;
     background-size: cover;
   }
   .profile-info-container {
-    height: 200px;
-    margin: 0px auto;
-    display: inline-flex;
-    align-items: stretch;
-    justify-content: center;
-    border-radius: 10px;
-    border: 1px solid rgba(128,128,128,.5);
-    margin-top: 10px;
-    margin-bottom: 10px;
-    text-align: center;
-    background-color: #f4f4f4;
-    color: #3A474D;
-    font: 500 18px 'TradeGothicLTStd-BdCn20','PT Sans Narrow';
-    -webkit-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
+    display: flex;
+    align-items: baseline;
   }
-  .data-profile {
-    margin: 20px; 
-  }
-  .change-button {
-    margin: 0 20px;
+  .user-info {
+    display: flex;
+    flex-direction: column;
   }
 </style>

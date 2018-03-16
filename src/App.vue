@@ -17,6 +17,9 @@ export default {
   * {
     box-sizing: border-box;
   }
+  body {
+    font-family: 'Lato', Arial, sans-serif;
+  }
   :focus {
   	outline:none;
   }

@@ -10,6 +10,16 @@ import store from './store'
 import 'vue-material-design-icons/styles.css'
 import VModal from 'vue-js-modal'
 import vuePhoneInput from '@/components/extended/vuePhoneInput'
+import VueMq from 'vue-mq'
+
+Vue.use(VueMq, {
+  breakpoints: {
+    mobile: 480,
+    tablet: 900,
+    laptop: 1250,
+    desktop: Infinity
+  }
+})
 
 Vue.component('phone-input', vuePhoneInput)
 

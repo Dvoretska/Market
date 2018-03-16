@@ -80,14 +80,10 @@ export default {
 <style scoped>
     .ads {
         border-radius: 10px;
-        border: 1px solid rgba(128,128,128,.5);
-        background-color: #f4f4f4;
+        border: 2px solid rgba(128,128,128,.5);
         color: #3A474D;
         padding: 10px 20px;
         font: 500 16px 'TradeGothicLTStd-BdCn20','PT Sans Narrow';
-        -webkit-box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.75);
-        -moz-box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.75);
-        box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.75);
         position: absolute;
         left: 50%;
         top: 11%;
@@ -118,12 +114,9 @@ export default {
     .contact-info-container /deep/ input {
         border: 1px solid rgba(128,128,128,.5);
     }
-    .button-anim-ads /deep/ span {
-        background-color: #7957d5 !important;
-    }
     .button-anim-ads {
         margin-bottom: 7px;
-        margin-top: 4px;
+        margin-top: 6px;
     }
     /deep/ .input:hover  {
         border-color: #b5b5b5;
@@ -132,7 +125,6 @@ export default {
     .textarea:focus,
     .textarea:active {
       border-color: #7957d5;
-      -webkit-box-shadow: 0 0 0 0.125em rgba(121, 87, 213, 0.25);
-              box-shadow: 0 0 0 0.125em rgba(121, 87, 213, 0.25);
+      box-shadow: 0 0 0 0.125em rgba(121, 87, 213, 0.25);
     }
 </style>

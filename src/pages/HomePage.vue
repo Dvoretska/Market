@@ -1,12 +1,18 @@
 <template>
-  <home-container></home-container>
+	<div>
+	  <navigation :page="'home'" ></navigation>
+	  <home-form></home-form>
+  	</div>
 </template>
 
 <script>
-import homeContainer from '@/containers/HomeContainer'
+import homeForm from '@/components/HomeForm'
+import navigation from '@/components/Navigation'
+
 export default {
   components: {
-    homeContainer
+    homeForm,
+    navigation
   }
 }
 </script>

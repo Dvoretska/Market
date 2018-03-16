@@ -1,38 +1,52 @@
 <template>
-<div class="parent">
-  <nav class="top-bar">
+  <nav class="nav-bar">
 
-    <div class="home">
+    <div class="nav-logo-container">
       <router-link :to="{ name: 'home'}">
-        <img src="../assets/Home.png" class="logo-img">
+        <img src="../assets/Home.png" class="nav-logo-img">
       </router-link>
     </div>
 
-      <router-link :to="{ name: 'login'}" class="button-anim" v-if="!isLogin">
-        <span v-bind:class="{ activelink: page == 'login'}">Login</span>
+      <router-link :to="{ name: 'login'}" class="button-anim" v-if="!isLogin" v-bind:class="{ 'active-link': page == 'login'}">
+        <span>Login</span>
       </router-link>
 
-      <router-link :to="{ name: 'register'}" class="button-anim" v-if="!isLogin">
-        <span v-bind:class="{ activelink: page == 'register' }">Sign up</span>
+      <router-link :to="{ name: 'register'}" class="button-anim right-button" v-if="!isLogin" v-bind:class="{ 'active-link': page == 'register' }">
+        <span>Sign up</span>
       </router-link>
 
-      <router-link :to="{ name: 'profile'}" v-if="isLogin && (username || name)">
-        <svg style="width:24px;height:24px" viewBox="0 0 24 24" class="user-icon">
-          <path fill="#000000" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
-        </svg>
-        <span class="username" v-if="name">{{ name }}</span>
-        <span class="username" v-else>{{ username }}</span>
-      </router-link>
+        <div class="nav-user-info">
+          <router-link :to="{ name: 'profile'}" v-if="isLogin && (username || name)">
+            <svg style="width:24px;height:24px" viewBox="0 0 24 24" class="user-icon">
+              <path fill="#000000" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+            </svg>
+            <span class="username" v-if="name">{{ name }}</span>
+            <span class="username" v-else>{{ username }}</span>
+            <i class="material-icons">&#xE5C5;</i>
+          </router-link>
+          <ul class="submenu">
+            <li>
+              <router-link to="/profile">Ads</router-link>
+            </li>
+            <li>
+              <router-link to="/profile/message">Messages</router-link>
+            </li>
+            <li>
+              <a href="">Settings</a>
+            </li>
+            <li class="parent-relative">
+              <a @click="logout()">
+                <i class="material-icons">&#xE879;</i>
+                <span>Logout</span>
+              </a>
+            </li>
+          </ul>
+        </div>
 
-      <router-link :to="{ name: 'ads'}" class="button-anim" v-if="isLogin">
-        <span v-bind:class="{ 'activelink': page == 'ads' }">+ Create an ad</span>
+      <router-link :to="{ name: 'ads'}" class="button-anim" v-if="isLogin" v-bind:class="{ 'active-link': page == 'ads' }">
+        <span>+ Create an ad</span>
       </router-link>
-
-      <a class="button-anim button-logout" @click="logout()" v-if="isLogin">
-        <span>Logout</span>
-      </a>
   </nav>
-</div>
 </template>
 
 <script>
@@ -59,41 +73,38 @@ export default {
 }
 </script>
 <style scoped>
-  .parent {
-    position: fixed;
-    top: 0;
-    left: 0;
-    margin: auto;
-    width: 100%;
-    z-index: 9999;
-  }
-  .top-bar {
+  .nav-bar {
     display: flex;
     height: 55px;
     align-items: center;
+    position: sticky;
+    z-index: 10;
+    top: 0;
+    width: 100%;
     padding: 0 10px;
     background-color: #f4f4f4;
-    -webkit-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);
   }
-  .home {
+  .nav-logo-container {
     margin-right: auto;
   }
-  .logo-img {
+  .nav-logo-img {
     height: 50px;
     background-color: transparent;
+  }
+  .right-button {
+    margin-left: 10px;
   }
   .button-anim {
     -webkit-transform: translate(0, -3px);
     display: inline-block;
-    margin-right: 10px;
 
-    -webkit-border-radius: 11px;
+    border-radius: 10px;
 
-    -webkit-box-shadow:
-        0px 3px rgba(118,118,118,1),
-        0px 4px 2px rgba(108,108,108,1);
+    box-shadow:
+        0px 1px rgba(128,128,128,1),
+        0px 2px rgba(118,118,118,1),
+        0px 3px 2px rgba(108,108,108,1);
 
     -webkit-transition: -webkit-box-shadow .1s ease-in-out;
   }
@@ -102,7 +113,7 @@ export default {
     background-color: #E8E8E8;
 
     background-image:
-    /* gloss gradient */
+        /* gloss gradient */
     -webkit-gradient(
         linear,
         left bottom,
@@ -143,37 +154,91 @@ export default {
         color-stop(60%,rgba(255,255,255,0)),
         color-stop(100%,rgba(255,255,255,0)));
 
-    -webkit-box-shadow:
+    box-shadow:
         0px -0.7px #fff,
         0px 0.5px 5px #FFFFFF;
 
-    -webkit-background-size: 100%, 100%, 100%, 4px 4px;
+    background-size: 100%, 100%, 100%, 4px 4px;
 
-    -webkit-border-radius: 10px;
+    border-radius: 10px;
     -webkit-transition: -webkit-transform .1s ease-in-out;
 
     display: inline-block;
-    padding: 5px 8px;
+    padding: 5px 10px;
 
     color: #3A474D;
     text-transform: uppercase;
     font: 700 12px Futura, "Trebuchet MS", Arial, sans-serif;
   }
-    .button-anim span:hover, .username:hover {
-      color: #8c40b8;
-      cursor: pointer;
-    }
-  .activelink, .button-logout:active span {
+  .button-anim span:hover {
+    color: #8c40b8;
+    cursor: pointer;
+  }
+  .active-link {
+    box-shadow:
+        0px 3px rgba(128,128,128,1),
+        0px 4px rgba(118,118,118,1),
+        0px 5px rgba(108,108,108,1);
+  }
+  .active-link span {
     -webkit-transform: translate(0, 3px);
   }
+  .nav-user-info {
+    position: relative;
+  }
+  .nav-user-info .material-icons {
+    position: absolute;
+    left: 75px;
+    top: 16px;
+  }
   .username {
+    display: inline-block;
+    height: 55px;
     font: 700 17px Futura, "Trebuchet MS", Arial, sans-serif;
     margin-right: 10px;
     vertical-align: middle;
     color: #7957d5;
+    padding: 19px 15px 0 0;
   }
   .user-icon {
     vertical-align: middle;
   }
+  .parent-relative {
+    position: relative;
+  }
+  .parent-relative .material-icons {
+    position: absolute;
+    top: 6px;
+    left: 13px;
+  }
+  .parent-relative span {
+    padding-left: 23px;
+    display: inline-block;
+  }
+  .submenu {
+    background: #fff;
+    position: absolute;
+    left: 0;
+    top: 55px;
+    width: 150px;
+    transition: .5s ease-in-out;
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: 0 0;
+  }
+  .submenu a {
+    display: inline-block;
+    color: black;
+    text-align: left;
+    font-size: 15px;
+    padding: 7px 15px;
+    width: 100%;
+  }
+  .nav-user-info:hover .submenu {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  .submenu a:hover {
+    background-color: #f4f4f4;
+  }
 </style>
-

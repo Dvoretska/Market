@@ -1,15 +1,17 @@
 <template>
-  <div>
-    <p class="control has-icons-left style-input">
-      <input class="input" :type="type" :placeholder="placeholder" @input="getInputVal" v-model="inputVal" v-bind:class="{focused: inputVal, 'is-danger-input': errors}" @keyup.enter="keyup()">
-      <div class="is-danger">{{ errors }}</div>
-    </p>
+  <div class="input-wrapper">
+    <div class="control has-icons-left input-container" v-bind:class="{'input-container-danger': errors}">
+      <input class="input" :type="type" :placeholder="placeholder" @input="getInputVal" v-model="inputVal" v-bind:class="{'input-focused': inputVal}" @keyup.enter="keyup()">
+      <img :src='iconPath' class="input-container-icon">
+    </div>
+    <div class="input-container-errors" v-if="errors">{{ errors }}</div>
   </div>
 </template>
 
 <script>
 
 export default {
+
   data () {
     return {inputVal: ''}
   },
@@ -17,7 +19,8 @@ export default {
     placeholder: String,
     type: String,
     errors: String,
-    keyup: Function
+    keyup: Function,
+    iconPath: String
   },
   methods: {
     getInputVal () {
@@ -28,43 +31,45 @@ export default {
 </script>
 
 <style scoped>
-  .is-danger {
+  .input-wrapper {
+    position: relative;
+  }
+  .input-container {
+    margin-top: 15px;
+    border-radius: 8px;
+  }
+  .input-container input {
+    border-radius: 5px;
+    height: 45px;
+    background-color: #fcfcfc;
+    font-weight: 400;
+    border: 1px solid #bcbaba;
+    opacity: 1;
+    box-shadow: none;
+  }
+  .input-container input:focus, .input-focused {
+    box-shadow: 0 0 8px 0 rgba(0,0,0,.1);
+    transition: box-shadow .2s!important;
+  }
+  .input-container-icon {
+    opacity: 0.3;
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    transform: translateY(-50%);
+    z-index: 1;
+  }
+  .input-container-errors {
     font-size: 13px;
-    padding-top: 7px;
     padding-left: 7px;
     color: red;
+    margin-bottom: -15px;
   }
-  .style-input {
-    margin-top: 15px;
-    -webkit-border-radius: 10px;
-    -webkit-box-shadow: 
-    0px 3px rgba(128,128,128,1), 
-    0px 4px rgba(118,118,118,1),
-    0px 5px rgba(108,108,108,1);
-    -webkit-transition: -webkit-box-shadow .1s ease-in-out;
-    -webkit-transition: -webkit-transform .1s ease-in-out;
+  .input-container-danger input {
+    border: 1px solid #F00E0E;
   }
-  .style-input input {
-    -webkit-border-radius: 8px;
-    -webkit-box-shadow:
-        0px -1px #fff,
-        0px 0.5px 5px #FFFFFF;  
-    border: 1px solid rgba(128,128,128,.5);
-  }
-  .style-input input:focus, .focused {
-    -webkit-transform: translate(0, 4px);
-    border: 2px solid rgba(128,128,128,.5);
-  }
-  input.is-danger-input {
-    border: 2px solid red;
-    -webkit-box-shadow: 
-    0px 3px rgba(255,80,80,1), 
-    0px 4px rgba(245,80,80,1),
-    0px 5px rgba(235,80,80,1);
-  }
-  input.is-danger-input:focus {
-    -webkit-transform: translate(0, 5px);
-    border: 2px solid red;
+  .input-container-danger input:focus {
+    border: 1px solid #F00E0E;
     box-shadow: none;
   }
 </style>

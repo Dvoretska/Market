@@ -1,14 +1,20 @@
 <template>
-    <div class="box">
-      <h2>Login</h2>
-      <div class="inside-form">
-        <p class="is-danger">{{ nonFieldErrors }}</p>
-        <input-style :placeholder="'Email'" :type="'email'" @inputVal="setEmail" :errors="emailErrors"></input-style>
-        <input-style :placeholder="'Password'" :type="'password'" @inputVal="setPass" :errors="passwordErrors" :keyup="login"></input-style>
-        <router-link :to="{ name: 'register'}" class="back-to-signup">
-          <span>Not a member? Sign up</span>
-        </router-link>
-        <button-bar :label="'Login'" :click="login" class="login-button"></button-bar>
+    <div class="auth-page-wrapper">
+      <div class="auth-box">
+        <h2 class="auth-title">Login</h2>
+        <div class="auth-form-container">
+          <p class="is-danger" v-if="nonFieldErrors">{{ nonFieldErrors }}</p>
+          <input-style :iconPath="iconMeilPath" :placeholder="'Email'" :type="'email'" @inputVal="setEmail" :errors="emailErrors" class="input-component"></input-style>
+          <input-style :iconPath="iconLockPath" :placeholder="'Password'" :type="'password'" @inputVal="setPass" :errors="passwordErrors" :keyup="login" class="input-component"></input-style>
+          <div class="flexbox-container">
+            <button @click="login" class="auth-button">Login
+              <i class="fa fa-spinner fa-spin fa-lg fa-fw" v-if="loading"></i>
+            </button>
+            <router-link :to="{ name: 'register'}" class="link-change-route">
+              <span>Not a member? Sign up</span>
+            </router-link>
+          </div>
+        </div>
       </div>
     </div>
 </template>
@@ -17,32 +23,124 @@
 
 import buttonBar from '@/components/ButtonBar'
 import inputStyle from '@/components/InputStyle'
+import iconLock from '@/assets/lock.svg'
+import iconMeil from '@/assets/meil.svg'
 
 export default {
   components: {
     buttonBar,
     inputStyle
   },
-  props: {
-    login: Function,
-    setEmail: Function,
-    setPass: Function,
-    nonFieldErrors: String,
-    emailErrors: String,
-    passwordErrors: String
+  created () {
+    this.$store.dispatch('CLEAR_ERRORS')
+  },
+  methods: {
+    login () {
+      this.$store.dispatch('LOGIN', {email: this.email, password: this.password})
+    },
+    setEmail (val) {
+      this.email = val
+    },
+    setPass (val) {
+      this.password = val
+    }
+  },
+  computed: {
+    loading () {
+      return this.$store.getters.getLoading
+    },
+    iconLockPath () {
+      return iconLock
+    },
+    iconMeilPath () {
+      return iconMeil
+    },
+    nonFieldErrors () {
+      if (this.$store.getters.getErrors && this.$store.getters.getErrors.non_field_errors) {
+        return this.$store.getters.getErrors.non_field_errors.join('\n')
+      }
+    },
+    emailErrors () {
+      if (this.$store.getters.getErrors && this.$store.getters.getErrors.email) {
+        return this.$store.getters.getErrors.email.join('\n')
+      }
+    },
+    passwordErrors () {
+      if (this.$store.getters.getErrors && this.$store.getters.getErrors.password) {
+        return this.$store.getters.getErrors.password.join('\n')
+      }
+    }
   }
 }
 </script>
 
 <style scoped>
-  .login-button {
-    margin: 15px 0 20px;
+  .auth-page-wrapper {
+    font-family: 'Lato', Arial, sans-serif;
+    background: #fcfcfc;
+    box-shadow: inset 0 20px 50px -20px rgba(0,0,0,.06);
   }
-  .back-to-signup {
-    font-size: 14px;
-    color: #8c40b8;
-    float: right;
-    margin-top: 20px;
+  .auth-box {
+    border-radius: 8px;
+    width: 40%;
+    min-width: 220px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
+    background: #fff;
+  }
+  .auth-title {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-align: center;
+    padding: 20px 26px 10px;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.3),
+               -1px 1px 1px rgba(0,0,0,0.9);
+    color: #a087bc;
+    position: relative;
+    text-transform: uppercase;
+  }
+  .auth-title::before {
+    content: "";
+    width: 35%;
+    height: 2px;
+    background-color: rgba(0,0,0,0.9);
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .auth-form-container {
+    padding: 10px 26px 25px;
+  }
+  .input-component {
+    margin-bottom: 25px;
+  }
+  .flexbox-container {
+    display: flex;
+    align-items: center;
+  }
+  .auth-button {
+    height: 40px;
+    padding: 0 10px;
+    border: none;
+    border-radius: 8px;
+    text-transform: uppercase;
+    background-color: #7b4fad;
+    color: #fff;
+    cursor: pointer;
+    margin-right: auto;
+  }
+  .auth-button:active {
+    padding: 0 10px;
+  }
+  .link-change-route {
+    font-size: 15px;
+    color: #7b4fad;
   }
   .is-danger {
     font-size: 13px;
@@ -53,40 +151,24 @@ export default {
     line-height: 25px;
     border-radius: 8px;
   }
-  .box {
-    border-radius: 20px;
-    width: 500px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 0;
-    border: 1px solid rgba(128,128,128,.5);
+  @media (max-width: 992px) {
+  .auth-box {
+      width: 80%;
   }
-  .box h2 {
-    font-size: 30px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-align: center;
-    padding: 10px 26px;
-    border-top-right-radius: 19px;
-    border-top-left-radius: 19px;
-    background-color: #c672f7;
-    border-bottom: 1px solid rgba(128,128,128,.5);
-    text-shadow: 0 1px 0 #ccc, 
-               0 2px 0 #c9c9c9,
-               0 3px 0 #bbb,
-               0 4px 0 #b9b9b9,
-               0 0 5px rgba(0,0,0,.1),
-               0 1px 3px rgba(0,0,0,.3),
-               0 3px 5px rgba(0,0,0,.2),
-               0 5px 10px rgba(0,0,0,.25),
-               0 10px 10px rgba(0,0,0,.2),
-               0 15px 15px rgba(0,0,0,.15);
-               color: #0f0e0f;
   }
-  .inside-form {
-    padding: 0 26px;
+  @media (max-width: 480px) {
+  .flexbox-container {
+      flex-direction: column;
+  }
+  .auth-button {
+    margin-bottom: 15px;
+    width: 50%;
+  }
+  .auth-title::before {
+    width: 70%;
+  }
+  .auth-box {
+    transform: translate(-50%, -90%);
+  }
   }
 </style>
-

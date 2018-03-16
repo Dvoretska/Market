@@ -1,17 +1,17 @@
 <template>
-  <div>
-   <navigation :page="'ads'"></navigation>
-   <ads-container></ads-container>
-  </div>
+    <div>
+       <navigation :page="'ads'"></navigation>
+       <ads-form></ads-form>
+    </div>
 </template>
 
 <script>
-import adsContainer from '@/containers/AdsContainer'
+import adsForm from '@/components/AdsForm'
 import navigation from '@/components/Navigation'
 
 export default {
   components: {
-    adsContainer,
+    adsForm,
     navigation
   }
 }
