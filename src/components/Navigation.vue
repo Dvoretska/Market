@@ -174,20 +174,15 @@ export default {
     color: #8c40b8;
     cursor: pointer;
   }
-
   .active-link {
     box-shadow:
         0px 3px rgba(128,128,128,1),
         0px 4px rgba(118,118,118,1),
         0px 5px rgba(108,108,108,1);
   }
-
   .active-link span {
     -webkit-transform: translate(0, 3px);
   }
-/*  .active-link {
-      -webkit-transform: translate(0, 3px);
-  }*/
   .nav-user-info {
     position: relative;
   }

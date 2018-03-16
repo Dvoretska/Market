@@ -7,7 +7,9 @@
           <input-style :iconPath="iconMeilPath" :placeholder="'Email'" :type="'email'" @inputVal="setEmail" :errors="emailErrors" class="input-component"></input-style>
           <input-style :iconPath="iconLockPath" :placeholder="'Password'" :type="'password'" @inputVal="setPass" :errors="passwordErrors" :keyup="login" class="input-component"></input-style>
           <div class="flexbox-container">
-            <input type="button" @click="login" class="auth-button" value="Login">
+            <button @click="login" class="auth-button">Login
+              <i class="fa fa-spinner fa-spin fa-lg fa-fw" v-if="loading"></i>
+            </button>
             <router-link :to="{ name: 'register'}" class="link-change-route">
               <span>Not a member? Sign up</span>
             </router-link>
@@ -44,6 +46,9 @@ export default {
     }
   },
   computed: {
+    loading () {
+      return this.$store.getters.getLoading
+    },
     iconLockPath () {
       return iconLock
     },
@@ -121,8 +126,8 @@ export default {
   }
   .auth-button {
     height: 40px;
+    padding: 0 10px;
     border: none;
-    width: 75px;
     border-radius: 8px;
     text-transform: uppercase;
     background-color: #7b4fad;
@@ -131,7 +136,7 @@ export default {
     margin-right: auto;
   }
   .auth-button:active {
-    padding: 0;
+    padding: 0 10px;
   }
   .link-change-route {
     font-size: 15px;

@@ -8,7 +8,9 @@
   			<input-style :iconPath="iconLockPath" :placeholder="'Password'" :type="'password'" @inputVal="setPass1" :errors="password1Errors" class="input-component"></input-style>
   			<input-style :iconPath="iconLockPath" :placeholder="'Confirm Password'" :type="'password'" @inputVal="setPass2" :errors="password2Errors" :keyup="signUp" class="input-component"></input-style>
         <div class="flexbox-container">
-          <input type="button" :label="'Sign up'" @click="signUp" class="auth-button" value="Sign up">
+          <button @click="signUp" class="auth-button">Sign up
+            <i class="fa fa-spinner fa-spin fa-lg fa-fw" v-if="loading"></i>
+          </button>
           <router-link :to="{ name: 'login'}"  class="link-change-route">
               <span>Already registered? Login</span>
           </router-link>
@@ -48,6 +50,9 @@ export default {
     }
   },
   computed: {
+    loading () {
+      return this.$store.getters.getLoading
+    },
     iconLockPath () {
       return iconLock
     },
@@ -131,7 +136,7 @@ export default {
   .auth-button {
     height: 40px;
     border: none;
-    width: 75px;
+    padding: 0 10px;
     border-radius: 8px;
     text-transform: uppercase;
     background-color: #7b4fad;
@@ -140,7 +145,7 @@ export default {
     margin-right: auto;
   }
   .auth-button:active {
-    padding: 0;
+    padding: 0 10px;
   }
   .link-change-route {
     font-size: 15px;

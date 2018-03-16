@@ -1,14 +1,12 @@
 <template>
-	<div class="product-container">
-		<aside class="filters">Aside</aside>
-		<div class="cards">
+	<div class="main-container">
+		<aside class="filters-box">Aside</aside>
+		<div class="product-cards-container">
 			<div class="product-card">
-			    <div class="image-block">
-					<div class="product-image">
-						<img src="../assets/images.jpeg" alt="">
-					</div>	
-				</div>
-				<div class="product-description">
+				<div class="product-img-wrapper">
+					<img src="../assets/images.jpeg" alt="" class="product-img">
+				</div>	
+				<div class="product-description-box">
 					<div class="product-price">$600</div>
 					<div class="product-name">Lorem Ipsum is simply dummy text of the printing and typesetting industryLorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
 					<div class="product-rating">
@@ -16,72 +14,62 @@
           					<div class="stars-inner" v-bind:style="stars"></div>
         				</div>
         			</div>
-        			<div class="product-details">
+        			<div class="button-cta-wrapper">
 						<button-bar :label="'More options'"></button-bar>
 					</div>
 				</div>
 			</div>
 			<div class="product-card">
-			    <div class="image-block">
-					<div class="product-image">
-						<img src="../assets/index2.jpeg" alt="">
-					</div>
-				</div>
-				<div class="product-description">
-				    <div class="product-price">$560</div>
-					<div class="product-name">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+				<div class="product-img-wrapper">
+					<img src="../assets/index2.jpeg" alt="" class="product-img">
+				</div>	
+				<div class="product-description-box">
+					<div class="product-price">$600</div>
+					<div class="product-name">Lorem Ipsum is simply dummy text of the printing and typesetting industryLorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
 					<div class="product-rating">
 						<div class="stars-outer">
           					<div class="stars-inner" v-bind:style="stars"></div>
         				</div>
         			</div>
-        			<div class="product-details">
+        			<div class="button-cta-wrapper">
 						<button-bar :label="'More options'"></button-bar>
 					</div>
 				</div>
 			</div>
 			<div class="product-card">
-			    <div class="image-block">
-					<div class="product-image">
-						<img src="../assets/index.jpeg" alt="">
-					</div>	
-				</div>
-				<div class="product-description">
-				    <div class="product-price">$760</div>
-					<div class="product-name">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+				<div class="product-img-wrapper">
+					<img src="../assets/index.jpeg" alt="" class="product-img">
+				</div>	
+				<div class="product-description-box">
+					<div class="product-price">$600</div>
+					<div class="product-name">Lorem Ipsum is simply dummy text of the printing and typesetting industryLorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
 					<div class="product-rating">
 						<div class="stars-outer">
           					<div class="stars-inner" v-bind:style="stars"></div>
         				</div>
         			</div>
-        			<div class="product-details">
+        			<div class="button-cta-wrapper">
 						<button-bar :label="'More options'"></button-bar>
 					</div>
 				</div>
 			</div>
 			<div class="product-card">
-			    <div class="image-block">
-					<div class="product-image">
-						<img src="../assets/couch.jpg" alt="">
-					</div>	
-				</div>
-				<div class="product-description">
-				    <div class="product-price">$830</div>
-					<div class="product-name">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+				<div class="product-img-wrapper">
+					<img src="../assets/couch.jpg" alt="" class="product-img">
+				</div>	
+				<div class="product-description-box">
+					<div class="product-price">$600</div>
+					<div class="product-name">Lorem Ipsum is simply dummy text of the printing and typesetting industryLorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
 					<div class="product-rating">
 						<div class="stars-outer">
           					<div class="stars-inner" v-bind:style="stars"></div>
         				</div>
         			</div>
-        			<div class="product-details">
+        			<div class="button-cta-wrapper">
 						<button-bar :label="'More options'"></button-bar>
 					</div>
 				</div>
 			</div>
-			<div class="product-card"></div>
-			<div class="product-card"></div>
-			<div class="product-card"></div>
-			<div class="product-card"></div>
 		</div>
 	</div>
 </template>
@@ -110,10 +98,15 @@ export default {
 </script>
 
 <style scoped>
-    .product-container {
+    .main-container {
 		display: flex;
 	}
-	.cards {
+	.filters-box {
+		width: 270px;
+		height: 1000px;
+		border: 2px solid black;
+	}
+	.product-cards-container {
 		width: calc(100% - 270px);
 		display: flex;
 		justify-content: space-between;
@@ -124,13 +117,8 @@ export default {
 	    margin:10px 0 0 10px;
 	    flex-grow: 1; 
 		height: 420px;
-		font: 500 16px 'TradeGothicLTStd-BdCn20','PT Sans Narrow';
+		font-size: 16px;
         border: 1px solid #D7D7D7;
-	}
-	.filters {
-		width: 270px;
-		height: 1000px;
-		border: 2px solid black;
 	}
 	.product-card:hover {
 		border: solid 1px #CCC;
@@ -138,34 +126,37 @@ export default {
 	    -webkit-box-shadow: 1px 1px 3px #999;
         box-shadow: 1px 1px 3px #999;
 	}
-	.image-block {
-		margin: 15px;
+	.product-img-wrapper {
+	    margin: 15px;
 		height: 200px;
 		position: relative;
-	}
-	.product-price {
-		padding-bottom: 15px;
-		font-size: 21px;
-		font-weight: 600;
-		line-height: 16px;
-	}
-	div.product-image {
-	    height: 100%;
-	    width: 100%;
-	    position: absolute;
-	    top: 0;
-	    left: 0;
-	    display: flex;
-	    justify-content: center;
+		display: flex;
+		justify-content: center;
     }
-    div.product-image img {
+    .product-image {
     	max-width: 100%;
     	max-height: 100%;
     	object-fit: contain;
     }
-    .product-description {
+    .product-description-box {
 		margin: 15px;
     }
+	.product-price {
+		padding-bottom: 10px;
+		font-size: 21px;
+		font-weight: 600;
+		line-height: 16px;
+	}
+	.product-name {
+		height: 60px;
+		font-size: 13px;
+		overflow: hidden;
+	}
+	.product-rating {
+		margin-top: 5px;
+		max-height: 20px;
+		width: 91px;
+	}
     .stars-outer {
 	  	position: relative;
 	  	font-family: FontAwesome;
@@ -185,20 +176,10 @@ export default {
 	  	content: "\f005 \f005 \f005 \f005 \f005";
 	  	color: #7957d5;
 	}
-	.product-details {
+	.button-cta-wrapper {
 		margin-top: 13px;
 		margin-bottom: 10px;
 		text-align: center;
-	}
-	.product-rating {
-		margin-top: 5px;
-		max-height: 20px;
-		width: 91px;
-	}
-	.product-name {
-		height: 70px;
-		font-size: 13px;
-		overflow: hidden;
 	}
 	@media (max-width: 1499px) {
 		.product-card {
@@ -220,7 +201,7 @@ export default {
 			width: calc(100% - 10px - 1px);
 			min-width: 250px;
 		}
-		.product-container {
+		.main-container {
 			overflow-y: scroll;
 		}
 	}
