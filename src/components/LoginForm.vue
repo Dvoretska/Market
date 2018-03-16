@@ -151,13 +151,16 @@ export default {
     line-height: 25px;
     border-radius: 8px;
   }
-  @media (max-width: 992px) {
+  @media (max-width: 1024px) {
   .auth-box {
       width: 90%;
   }
   .auth-button {
     margin-bottom: 15px;
     width: 20%;
+  }
+  .auth-box {
+    margin-top: 10vh;
   }
   }
   @media (max-width: 480px) {
