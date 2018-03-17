@@ -11,6 +11,25 @@ import 'vue-material-design-icons/styles.css'
 import VModal from 'vue-js-modal'
 import vuePhoneInput from '@/components/extended/vuePhoneInput'
 import VueMq from 'vue-mq'
+import GetTextPlugin from 'vue-gettext'
+import translations from './translations.json'
+
+Vue.use(GetTextPlugin, {
+  availableLanguages: {
+    en_US: 'English',
+    ru_RU: 'Русский'
+  },
+  defaultLanguage: 'ru_RU',
+  languageVmMixin: {
+    computed: {
+      currentKebabCase: function () {
+        return this.current.toLowerCase().replace('_', '-')
+      }
+    }
+  },
+  translations: translations,
+  silent: true
+})
 
 Vue.use(VueMq, {
   breakpoints: {

@@ -8,11 +8,11 @@
     </div>
 
       <router-link :to="{ name: 'login'}" class="button-anim" v-if="!isLogin" v-bind:class="{ 'active-link': page == 'login'}">
-        <span>Login</span>
+        <translate>Login</translate>
       </router-link>
 
       <router-link :to="{ name: 'register'}" class="button-anim right-button" v-if="!isLogin" v-bind:class="{ 'active-link': page == 'register' }">
-        <span>Sign up</span>
+        <translate>Sign up</translate>
       </router-link>
 
         <div class="nav-user-info">
@@ -26,26 +26,33 @@
           </router-link>
           <ul class="submenu">
             <li>
-              <router-link to="/profile">Ads</router-link>
+              <router-link to="/profile"><translate>Ads</translate></router-link>
             </li>
             <li>
-              <router-link to="/profile/message">Messages</router-link>
+              <router-link to="/profile/message"><translate>Messages</translate></router-link>
             </li>
             <li>
-              <a href="">Settings</a>
+              <a href="" v-translate>Settings</a>
             </li>
             <li class="parent-relative">
               <a @click="logout()">
                 <i class="material-icons">&#xE879;</i>
-                <span>Logout</span>
+                <translate>Logout</translate>
               </a>
             </li>
           </ul>
         </div>
 
       <router-link :to="{ name: 'ads'}" class="button-anim" v-if="isLogin" v-bind:class="{ 'active-link': page == 'ads' }">
-        <span>+ Create an ad</span>
+        <translate>+ Create an ad</translate>
       </router-link>
+      <div>
+      <select name="language" v-model="$language.current">
+        <option v-for="(language, key) in $language.available" :value="key">{{ language }}</option>
+        </select>
+      </div>
+    <div>
+  </div>
   </nav>
 </template>
 

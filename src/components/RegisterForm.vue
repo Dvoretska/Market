@@ -1,18 +1,18 @@
 <template>
   <div class="auth-page-wrapper">
   	<div class="auth-box">
-  	 	<h2 class="auth-title">Sign up</h2>
+  	 	<h2 class="auth-title" v-translate>Sign up</h2>
   	 	<div class="auth-form-container">
   	 		<p class="is-danger" v-if="nonFieldErrors">{{ nonFieldErrors }}</p>
-  			<input-style :iconPath="iconMeilPath" :placeholder="'Email'" :type="'email'" @inputVal="setEmail" :errors="emailErrors" class="input-component"></input-style>
-  			<input-style :iconPath="iconLockPath" :placeholder="'Password'" :type="'password'" @inputVal="setPass1" :errors="password1Errors" class="input-component"></input-style>
-  			<input-style :iconPath="iconLockPath" :placeholder="'Confirm Password'" :type="'password'" @inputVal="setPass2" :errors="password2Errors" :keyup="signUp" class="input-component"></input-style>
+  			<input-style :iconPath="iconMeilPath" :placeholder="$gettext('Email')" :type="'email'" @inputVal="setEmail" :errors="emailErrors" class="input-component"></input-style>
+  			<input-style :iconPath="iconLockPath" :placeholder="$gettext('Password')" :type="'password'" @inputVal="setPass1" :errors="password1Errors" class="input-component"></input-style>
+  			<input-style :iconPath="iconLockPath" :placeholder="$gettext('Confirm password')" :type="'password'" @inputVal="setPass2" :errors="password2Errors" :keyup="signUp" class="input-component"></input-style>
         <div class="flexbox-container">
-          <button @click="signUp" class="auth-button">Sign up
+          <button @click="signUp" class="auth-button"><translate>Sign up</translate>
             <i class="fa fa-spinner fa-spin fa-lg fa-fw" v-if="loading"></i>
           </button>
           <router-link :to="{ name: 'login'}"  class="link-change-route">
-              <span>Already registered? Login</span>
+              <translate>Already registered? Login</translate>
           </router-link>
   			</div>
   		</div>
