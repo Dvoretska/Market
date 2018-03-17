@@ -4,9 +4,9 @@
   	 	<h2 class="auth-title" v-translate>Sign up</h2>
   	 	<div class="auth-form-container">
   	 		<p class="is-danger" v-if="nonFieldErrors">{{ nonFieldErrors }}</p>
-  			<input-style :iconPath="iconMeilPath" :placeholder="$gettext('Email')" :type="'email'" @inputVal="setEmail" :errors="emailErrors" class="input-component"></input-style>
-  			<input-style :iconPath="iconLockPath" :placeholder="$gettext('Password')" :type="'password'" @inputVal="setPass1" :errors="password1Errors" class="input-component"></input-style>
-  			<input-style :iconPath="iconLockPath" :placeholder="$gettext('Confirm password')" :type="'password'" @inputVal="setPass2" :errors="password2Errors" :keyup="signUp" class="input-component"></input-style>
+  			<input-style :iconPath="iconMeilPath" :placeholder="translations().email" :type="'email'" @inputVal="setEmail" :errors="emailErrors" class="input-component"></input-style>
+  			<input-style :iconPath="iconLockPath" :placeholder="translations().password" :type="'password'" @inputVal="setPass1" :errors="password1Errors" class="input-component"></input-style>
+  			<input-style :iconPath="iconLockPath" :placeholder="translations().confirmPassword" :type="'password'" @inputVal="setPass2" :errors="password2Errors" :keyup="signUp" class="input-component"></input-style>
         <div class="flexbox-container">
           <button @click="signUp" class="auth-button"><translate>Sign up</translate>
             <i class="fa fa-spinner fa-spin fa-lg fa-fw" v-if="loading"></i>
@@ -36,6 +36,13 @@ export default {
     this.$store.dispatch('CLEAR_ERRORS')
   },
   methods: {
+    translations () {
+      return {
+        email: this.$gettext('Email'),
+        password: this.$gettext('Password'),
+        confirmPassword: this.$gettext('Confirm password')
+      }
+    },
     signUp () {
       this.$store.dispatch('SIGNUP', {email: this.email, password1: this.password1, password2: this.password2})
     },

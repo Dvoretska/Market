@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: main 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-17 17:33+0200\n"
+"POT-Creation-Date: 2018-03-17 18:59+0200\n"
 "PO-Revision-Date: 2018-03-17 16:28+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -16,6 +16,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: src/components/Navigation.vue:46
+msgid "+ Create an ad"
+msgstr "+ Создать объявление"
 
 #: src/components/Navigation.vue:28
 msgid "Ads"
@@ -30,6 +34,10 @@ msgstr "Уже зарегистрирован? Логин"
 msgid "Login"
 msgstr "Логин"
 
+#: src/components/Navigation.vue:39
+msgid "Logout"
+msgstr "Выход"
+
 #: src/components/Navigation.vue:31
 msgid "Messages"
 msgstr "Сообщения"
@@ -38,19 +46,19 @@ msgstr "Сообщения"
 msgid "Not a member? Sign up"
 msgstr "Не зарегестрирован? Регистрация"
 
+#: src/components/Navigation.vue:34
+msgid "Settings"
+msgstr "Настройки"
+
 #: src/components/Navigation.vue:14 src/components/RegisterForm.vue:3
 #: src/components/RegisterForm.vue:10
 msgid "Sign up"
 msgstr "Регистрация"
 
-#: src/components/LoginForm.vue:32 src/components/RegisterForm.vue:33
+#: src/components/LoginForm.vue:40
 msgid "Email"
 msgstr "Электронная почта"
 
-#: src/components/LoginForm.vue:33 src/components/RegisterForm.vue:34
+#: src/components/LoginForm.vue:41
 msgid "Password"
 msgstr "Пароль"
-
-#: src/components/RegisterForm.vue:35
-msgid "Confirm password"
-msgstr "Подтвердите пароль"

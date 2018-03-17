@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: main 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-17 18:47+0200\n"
+"POT-Creation-Date: 2018-03-17 19:03+0200\n"
 "PO-Revision-Date: 2018-03-17 16:28+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -54,3 +54,15 @@ msgstr "Настройки"
 #: src/components/RegisterForm.vue:10
 msgid "Sign up"
 msgstr "Регистрация"
+
+#: src/components/LoginForm.vue:40 src/components/RegisterForm.vue:41
+msgid "Email"
+msgstr "Электронная почта"
+
+#: src/components/LoginForm.vue:41 src/components/RegisterForm.vue:42
+msgid "Password"
+msgstr "Пароль"
+
+#: src/components/RegisterForm.vue:43
+msgid "Confirm password"
+msgstr "Повторите пароль"
