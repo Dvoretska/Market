@@ -94,19 +94,21 @@ export default {
   },
   TOKEN_VERIFY: function (context, next) {
     const TOKEN = localStorage.getItem('token')
-    axios.post(`${ACCOUNTS_URL}api-token-verify/`,
-      {token: TOKEN}, {
-        headers: {
-          authorization: `jwt ${TOKEN}`
-        }
-      }).then((response) => {
-        context.commit('createUserState', response.data.user)
-        if (next) next()
-      }).catch((err) => {
-        console.log(err)
-        localStorage.removeItem('token')
-        context.commit('clearUserState')
-        router.push({name: 'login'})
-      })
+    if (TOKEN) {
+      axios.post(`${ACCOUNTS_URL}api-token-verify/`,
+        {token: TOKEN}, {
+          headers: {
+            authorization: `jwt ${TOKEN}`
+          }
+        }).then((response) => {
+          context.commit('createUserState', response.data.user)
+          if (next) next()
+        }).catch((err) => {
+          console.log(err)
+          localStorage.removeItem('token')
+          context.commit('clearUserState')
+          router.push({name: 'login'})
+        })
+    }
   }
 }
