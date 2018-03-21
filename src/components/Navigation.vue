@@ -46,11 +46,12 @@
       <router-link :to="{ name: 'ads'}" class="button-anim" v-if="isLogin" v-bind:class="{ 'active-link': page == 'ads' }">
         <translate>+ Create an ad</translate>
       </router-link>
-      <div>
-      <select name="language" v-model="$language.current">
-        <option v-for="(language, key) in $language.available" :value="key">{{ language }}</option>
+      <div class="select-style">
+        <select name="language" v-model="$language.current">
+          <option v-for="(language, key) in $language.available" :value="key">{{ language }}</option>
         </select>
       </div>
+      <img src="../assets/expand-button.svg" alt="" class="arrow-icon">
     <div>
   </div>
   </nav>
@@ -195,7 +196,7 @@ export default {
   }
   .nav-user-info .material-icons {
     position: absolute;
-    left: 75px;
+    right: 0px;
     top: 16px;
   }
   .username {
@@ -247,5 +248,38 @@ export default {
   }
   .submenu a:hover {
     background-color: #f4f4f4;
+  }
+  .select-style {
+    width: 70px;
+    position: relative;
+    overflow: hidden;
+  }
+  .select-style select:hover {
+    cursor: pointer;
+  }
+  .select-style .material-icons {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .select-style select {
+    padding: 5px 8px;
+    width: 130%;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+  }
+  .select-style select:focus {
+    outline: none;
+  }
+  .select-style select option {
+    background-color: white;
+  }
+  .arrow-icon {
+    width: 10px;
+    height: 10px;
   }
 </style>

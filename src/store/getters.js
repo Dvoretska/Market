@@ -13,5 +13,8 @@ export default {
   },
   getCategories: state => {
     return state.categories
+  },
+  getProductList: state => {
+    return state.productListState
   }
 }

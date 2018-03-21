@@ -8,7 +8,7 @@
 				</div>	
 				<div class="product-description-box">
 					<div class="product-price">$600</div>
-					<div class="product-name">Lorem Ipsum is simply dummy text of the printing and typesetting industryLorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+					<div class="subject">{{ productList }}</div>
 					<div class="product-rating">
 						<div class="stars-outer">
           					<div class="stars-inner" v-bind:style="stars"></div>
@@ -92,6 +92,10 @@ export default {
       return {
         'width': Math.round(((this.rating / 5) * 100) / 10) * 10 + '%'
       }
+    },
+    productList () {
+      console.log(this.$store.getters.getProductList)
+      return this.$store.getters.getProductList.subject
     }
   }
 }
@@ -147,7 +151,7 @@ export default {
 		font-weight: 600;
 		line-height: 16px;
 	}
-	.product-name {
+	.subject {
 		height: 60px;
 		font-size: 13px;
 		overflow: hidden;

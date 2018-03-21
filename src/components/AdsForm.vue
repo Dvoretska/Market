@@ -1,11 +1,11 @@
 <template>
     <section class="ads">
         <b-field horizontal label="Subject">
-            <b-input name="subject" expanded></b-input>
+            <b-input name="subject" expanded v-model="subject"></b-input>
         </b-field>
 
         <b-field horizontal label="Topic">
-            <b-select placeholder="Select a topic" class="topic-in-ads">
+            <b-select placeholder="Select a topic" class="topic-in-ads" v-model="category">
                 <option v-for="category in categories" class="categories">{{ category }}</option>
             </b-select>
         </b-field>
@@ -27,12 +27,12 @@
         </b-field>
 
         <b-field horizontal label="Message">
-            <b-input type="textarea"></b-input>
+            <b-input type="textarea" v-model="message"></b-input>
         </b-field>
 
         <b-field horizontal>
             <p class="control">
-                <button-bar :label="'Create an ad'" class="button-anim-ads"></button-bar>
+                <button-bar :label="'Create an ad'" class="button-anim-ads" :click="createAd"></button-bar>
             </p>
         </b-field>
 
@@ -52,12 +52,20 @@ export default {
       phone: {
         code: '',
         number: ''
-      }
+      },
+      message: '',
+      subject: '',
+      category: ''
     }
   },
   mounted () {
     if (!this.$store.getters.getCategories) {
       this.$store.dispatch('GET_CATEGORIES')
+    }
+  },
+  methods: {
+    createAd () {
+      this.$store.dispatch('CREATE_AD', {subject: this.subject, message: this.message, category: this.category, location: this.location})
     }
   },
   computed: {

@@ -3,6 +3,7 @@ import router from '../router/index.js'
 
 const ACCOUNTS_URL = 'https://servermarket.herokuapp.com/accounts/'
 const MAIN_URL = 'https://servermarket.herokuapp.com/'
+const TOKEN = localStorage.getItem('token')
 
 export default {
   LOGIN: function (context, data) {
@@ -110,5 +111,36 @@ export default {
           router.push({name: 'login'})
         })
     }
+  },
+  CREATE_AD: function (context, data) {
+    context.commit('loading', true)
+    axios.post(`${MAIN_URL}ads/ad/`, {
+      category: data.category,
+      subject: data.subject,
+      message: data.message,
+      location: data.location
+    }, {
+      headers: {
+        authorization: `jwt ${TOKEN}`
+      }
+    }).then((response) => {
+      context.commit('productListMutate', response.data)
+      context.commit('loading', false)
+    }).catch((err) => {
+      console.log(err)
+      context.commit('loading', false)
+    })
   }
+  // GET_PRODUCT_LIST: function (context) {
+  //   axios.get(`${MAIN_URL}ads/`,
+  //     {
+  //       headers: {
+  //         authorization: `jwt ${TOKEN}`
+  //       }
+  //     }).then((response) => {
+  //       context.commit('productListMutate', response.data)
+  //     }).catch((err) => {
+  //       console.log(err)
+  //     })
+  // }
 }

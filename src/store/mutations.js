@@ -28,5 +28,8 @@ export default {
   },
   getCategories (state, data) {
     state.categories = data
+  },
+  productListMutate (state, data) {
+    state.productListState = data
   }
 }
