@@ -55,7 +55,8 @@ export default {
       },
       message: '',
       subject: '',
-      category: ''
+      category: '',
+      location: ''
     }
   },
   mounted () {
@@ -77,9 +78,6 @@ export default {
     },
     email () {
       return this.$store.getters.getUserDetails.email
-    },
-    location () {
-      return this.$store.getters.getUserDetails.country + ', ' + this.$store.getters.getUserDetails.city
     }
   }
 }

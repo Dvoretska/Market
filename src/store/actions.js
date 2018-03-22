@@ -124,23 +124,23 @@ export default {
         authorization: `jwt ${TOKEN}`
       }
     }).then((response) => {
-      context.commit('productListMutate', response.data)
       context.commit('loading', false)
     }).catch((err) => {
       console.log(err)
       context.commit('loading', false)
     })
+  },
+  GET_PRODUCT_LIST: function (context) {
+    axios.get(`${MAIN_URL}ads/`,
+      {
+        headers: {
+          authorization: `jwt ${TOKEN}`
+        }
+      }).then((response) => {
+        console.log(response.data)
+        context.commit('productListMutate', response.data)
+      }).catch((err) => {
+        console.log(err)
+      })
   }
-  // GET_PRODUCT_LIST: function (context) {
-  //   axios.get(`${MAIN_URL}ads/`,
-  //     {
-  //       headers: {
-  //         authorization: `jwt ${TOKEN}`
-  //       }
-  //     }).then((response) => {
-  //       context.commit('productListMutate', response.data)
-  //     }).catch((err) => {
-  //       console.log(err)
-  //     })
-  // }
 }
