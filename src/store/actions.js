@@ -1,8 +1,8 @@
 import axios from 'axios'
 import router from '../router/index.js'
 
-const ACCOUNTS_URL = 'https://servermarket.herokuapp.com/accounts/'
 const MAIN_URL = 'https://servermarket.herokuapp.com/'
+const ACCOUNTS_URL = `${MAIN_URL}accounts/`
 const TOKEN = localStorage.getItem('token')
 
 export default {
@@ -141,7 +141,7 @@ export default {
         }
       }).then((response) => {
         console.log(response.data)
-        context.commit('productListMutate', response.data)
+        context.commit('productListMutate', response.data.results)
       }).catch((err) => {
         console.log(err)
       })
