@@ -23,7 +23,7 @@
 			</div>
 			<div class="style-paginate">
 			  <paginate
-			    :page-count="20"
+			    :page-count="productPageCount"
 			    :page-range="3"
 			    :margin-pages="2"
 			    :prev-text="'Prev'"
@@ -67,6 +67,9 @@ export default {
     },
     productList () {
       return this.$store.getters.getProductList
+    },
+    productPageCount () {
+      return Math.ceil(this.$store.getters.getProductCount / 16)
     }
   }
 }
@@ -81,6 +84,7 @@ export default {
     }
     .main-container {
 		display: flex;
+		margin-top: 55px;
 	}
 	.filters-box {
 		width: 270px;

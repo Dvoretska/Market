@@ -4,5 +4,5 @@ export default {
   },
   userDetailsState: {},
   categories: null,
-  productListState: []
+  productListState: {}
 }

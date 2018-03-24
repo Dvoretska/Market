@@ -90,7 +90,7 @@ export default {
     margin-bottom: 10px;
   }
   .container {
-    margin: 0 auto;
+    margin: 55px auto 0;
     width: 60%;
   }
   .wrapper {

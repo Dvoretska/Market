@@ -140,8 +140,7 @@ export default {
           page: pageNum
         }
       }).then((response) => {
-        console.log(response.data)
-        context.commit('productListMutate', response.data.results)
+        context.commit('productListMutate', response.data)
       }).catch((err) => {
         console.log(err)
       })

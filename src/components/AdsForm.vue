@@ -1,23 +1,23 @@
 <template>
     <section class="ads">
-        <b-field horizontal label="Subject" class="align-left">
+        <b-field horizontal :label="getSubject()" class="align-left">
             <b-input name="subject" expanded v-model="subject"></b-input>
         </b-field>
 
-        <b-field horizontal label="Topic" class="align-left">
+        <b-field horizontal :label="getTopic()" class="align-left">
             <b-select placeholder="Select a topic" v-model="category">
                 <option v-for="category in categories" class="categories">{{ category }}</option>
             </b-select>
         </b-field>
-        <b-field horizontal label="Price" class="align-left">
+        <b-field horizontal :label="getPrice()" class="align-left">
             <b-input name="price" expanded v-model="price" style="width: 146px"></b-input>
         </b-field>
 
-        <b-field horizontal label="Message" class="align-left">
+        <b-field horizontal :label="getDescription()" class="align-left">
             <b-input type="textarea" v-model="message"></b-input>
         </b-field>
 
-        <b-field horizontal label="Photo" class="align-left">
+        <b-field horizontal :label="getPhoto()" class="align-left">
           <div>
             <input type="file">
             <input type="file">
@@ -28,7 +28,7 @@
           </div>
         </b-field>
 
-        <b-field horizontal label="Contact information" class="align-left">
+        <b-field horizontal :label="getPContactInformation()" class="align-left">
             <div  class="contact-info-container">
                 <div class="contact-info-field">
                     <span>Name: </span><b-input name="name" expanded v-model="firstName" disabled="disabled"></b-input>
@@ -47,7 +47,7 @@
 
         <b-field horizontal class="align-center">
             <p class="control">
-                <button-bar :label="'Create an ad'" class="button-anim-ads" :click="createAd"></button-bar>
+                <button-bar :label="getCreateAd()" class="button-anim-ads" :click="createAd"></button-bar>
             </p>
         </b-field>
 
@@ -82,6 +82,27 @@ export default {
   methods: {
     createAd () {
       this.$store.dispatch('CREATE_AD', {subject: this.subject, message: this.message, category: this.category, location: this.location})
+    },
+    getSubject () {
+      return this.$gettext('Subject')
+    },
+    getTopic () {
+      return this.$gettext('Topic')
+    },
+    getPrice () {
+      return this.$gettext('Price')
+    },
+    getDescription () {
+      return this.$gettext('Description')
+    },
+    getPhoto () {
+      return this.$gettext('Photo')
+    },
+    getPContactInformation () {
+      return this.$gettext('Contact information')
+    },
+    getCreateAd () {
+      return this.$gettext('Create an ad')
     }
   },
   computed: {
