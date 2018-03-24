@@ -21,6 +21,19 @@
 					</div>
 				</div>
 			</div>
+			<div class="style-paginate">
+			  <paginate
+			    :page-count="20"
+			    :page-range="3"
+			    :margin-pages="2"
+			    :prev-text="'Prev'"
+			    :next-text="'Next'"
+			    :container-class="'pagination'"
+			    :pageClass="'item-page'"
+			    :page-link-class="'link-page'"
+			    :click-handler="clickCallback">
+			  </paginate>
+			</div>
 		</div>
 	</div>
 </template>
@@ -41,6 +54,11 @@ export default {
   created () {
     this.$store.dispatch('GET_PRODUCT_LIST')
   },
+  methods: {
+    clickCallback (pageNum) {
+      this.$store.dispatch('GET_PRODUCT_LIST', pageNum)
+    }
+  },
   computed: {
     stars: function () {
       return {
@@ -55,6 +73,12 @@ export default {
 </script>
 
 <style scoped>
+    .style-paginate {
+    	width: 100%;
+    	display: flex;
+    	justify-content: center;
+    	margin: 20px 0;
+    }
     .main-container {
 		display: flex;
 	}
@@ -172,12 +196,12 @@ export default {
 	}
 	@media (max-width: 992px) {
 		.product-card {
-			width: calc(50% - 10px - 1px);
+			max-width: calc(50% - 10px - 1px);
 		}
 	}
 	@media (max-width: 650px) {
 		.product-card {
-			width: calc(100% - 10px - 1px);
+			max-width: calc(100% - 10px - 1px);
 			min-width: 250px;
 		}
 		.main-container {

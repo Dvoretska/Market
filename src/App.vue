@@ -26,4 +26,11 @@ export default {
   ::-moz-focus-inner {
   	border:0;
   }
+  a, a:hover, a:visited, a:active, a:focus {
+    text-decoration: none;
+    outline:0 none !important;
+  }
+  select, select:hover, select:active, select:focus {
+    outline:0 none !important;
+  }
 </style>

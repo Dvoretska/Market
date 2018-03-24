@@ -50,8 +50,9 @@
         <select name="language" v-model="$language.current">
           <option v-for="(language, key) in $language.available" :value="key">{{ language }}</option>
         </select>
+        <img src="../assets/expand-button.svg" alt="" class="arrow-icon">
       </div>
-      <img src="../assets/expand-button.svg" alt="" class="arrow-icon">
+      
     <div>
   </div>
   </nav>
@@ -250,7 +251,7 @@ export default {
     background-color: #f4f4f4;
   }
   .select-style {
-    width: 70px;
+    width: 90px;
     position: relative;
     overflow: hidden;
   }
@@ -266,6 +267,8 @@ export default {
   .select-style select {
     padding: 5px 8px;
     width: 130%;
+    font-size: 16px;
+    line-height: 16px;
     border: none;
     box-shadow: none;
     background: transparent;
@@ -281,5 +284,9 @@ export default {
   .arrow-icon {
     width: 10px;
     height: 10px;
+    position: absolute;
+    left: 75px;
+    top: 50%;
+    transform: translateY(-50%);
   }
 </style>

@@ -130,11 +130,14 @@ export default {
       context.commit('loading', false)
     })
   },
-  GET_PRODUCT_LIST: function (context) {
+  GET_PRODUCT_LIST: function (context, pageNum = 1) {
     axios.get(`${MAIN_URL}ads/`,
       {
         headers: {
           authorization: `jwt ${TOKEN}`
+        },
+        params: {
+          page: pageNum
         }
       }).then((response) => {
         console.log(response.data)

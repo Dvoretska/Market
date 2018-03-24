@@ -13,6 +13,7 @@ import vuePhoneInput from '@/components/extended/vuePhoneInput'
 import VueMq from 'vue-mq'
 import GetTextPlugin from 'vue-gettext'
 import translations from './translations.json'
+import Paginate from 'vuejs-paginate'
 
 Vue.use(GetTextPlugin, {
   availableLanguages: {
@@ -40,6 +41,7 @@ Vue.use(VueMq, {
   }
 })
 
+Vue.component('paginate', Paginate)
 Vue.component('phone-input', vuePhoneInput)
 
 Vue.use(Buefy, {
