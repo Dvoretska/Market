@@ -5,9 +5,9 @@
 			<div class="product-card" v-for="product in productList">
 				<div class="product-img-wrapper">
 					<img src="../assets/images.jpeg" alt="" class="product-img">
-				</div>	
+				</div>
 				<div class="product-description-box">
-					<div class="product-price">$600</div>
+					<div class="product-price">{{ product.price}} грн</div>
 					<strong class="subject">{{ product.subject }}</strong>
 					<div class="category">{{ product.category.name }}</div>
 					<div class="location">{{ product.location }}</div>
@@ -100,7 +100,7 @@ export default {
 	}
 	.product-card {
 	    margin:10px 0 0 10px;
-	    flex-grow: 1; 
+	    flex-grow: 1;
 		height: 420px;
 		font-size: 16px;
         border: 1px solid #D7D7D7;
@@ -167,10 +167,10 @@ export default {
     .stars-outer {
 	  	position: relative;
 	  	font-family: FontAwesome;
-	} 
+	}
 	.stars-outer::before {
 	  	content: "\f006 \f006 \f006 \f006 \f006";
-	} 
+	}
 	.stars-inner {
 	  	position: absolute;
 	  	top: 0;

@@ -2,6 +2,7 @@ import axios from 'axios'
 import router from '../router/index.js'
 
 const MAIN_URL = 'https://servermarket.herokuapp.com/'
+// const MAIN_URL = '//localhost:8000/'
 const ACCOUNTS_URL = `${MAIN_URL}accounts/`
 const TOKEN = localStorage.getItem('token')
 
@@ -118,7 +119,9 @@ export default {
       category: data.category,
       subject: data.subject,
       message: data.message,
-      location: data.location
+      location: data.location,
+      price: data.price,
+      image: data.image
     }, {
       headers: {
         authorization: `jwt ${TOKEN}`

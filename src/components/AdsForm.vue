@@ -9,8 +9,8 @@
                 <option v-for="category in categories" class="categories">{{ category }}</option>
             </b-select>
         </b-field>
-        <b-field horizontal :label="getPrice()" class="align-left">
-            <b-input name="price" expanded v-model="price" style="width: 146px"></b-input>
+        <b-field horizontal :label="getPrice()" class="align-left price">
+            <b-input name="price" expanded v-model="price"></b-input>
         </b-field>
 
         <b-field horizontal :label="getDescription()" class="align-left">
@@ -19,12 +19,7 @@
 
         <b-field horizontal :label="getPhoto()" class="align-left">
           <div>
-            <input type="file">
-            <input type="file">
-            <input type="file">
-            <input type="file">
-            <input type="file">
-            <input type="file">
+            <input type="file" @change="onFile($event)">
           </div>
         </b-field>
 
@@ -71,7 +66,8 @@ export default {
       message: '',
       subject: '',
       category: '',
-      location: ''
+      location: '',
+      price: ''
     }
   },
   mounted () {
@@ -81,7 +77,21 @@ export default {
   },
   methods: {
     createAd () {
-      this.$store.dispatch('CREATE_AD', {subject: this.subject, message: this.message, category: this.category, location: this.location})
+      const formData = new FormData()
+      formData.append('file', this.image)
+      this.$store.dispatch('CREATE_AD',
+        {
+          subject: this.subject,
+          message: this.message,
+          category: this.category,
+          location: this.location,
+          price: this.price,
+          image: this.image
+        }
+      )
+    },
+    onFile (event) {
+      this.image = event.target.files[0]
     },
     getSubject () {
       return this.$gettext('Subject')
@@ -119,10 +129,12 @@ export default {
 }
 </script>
 
-<style scoped>
-    .align-left /deep/ label {
+<style scoped lang="scss">
+    .align-left {
+      /deep/ label {
         text-align: left;
         padding: 0;
+      }
     }
     .align-center /deep/ .control {
         text-align: center;
@@ -136,6 +148,9 @@ export default {
         width: 550px;
         transform: translateX(-50%);
         outline: none;
+    }
+    .price {
+      width: 146px;
     }
     .contact-info-container /deep/ label  {
         display: block;
