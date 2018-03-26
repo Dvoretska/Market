@@ -1,8 +1,8 @@
 import axios from 'axios'
 import router from '../router/index.js'
 
-const MAIN_URL = 'https://servermarket.herokuapp.com/'
-// const MAIN_URL = '//localhost:8000/'
+// const MAIN_URL = 'https://servermarket.herokuapp.com/'
+const MAIN_URL = '//localhost:8000/'
 const ACCOUNTS_URL = `${MAIN_URL}accounts/`
 const TOKEN = localStorage.getItem('token')
 
@@ -115,14 +115,7 @@ export default {
   },
   CREATE_AD: function (context, data) {
     context.commit('loading', true)
-    axios.post(`${MAIN_URL}ads/ad/`, {
-      category: data.category,
-      subject: data.subject,
-      message: data.message,
-      location: data.location,
-      price: data.price,
-      image: data.image
-    }, {
+    axios.post(`${MAIN_URL}ads/ad/`, data, {
       headers: {
         authorization: `jwt ${TOKEN}`
       }
@@ -136,9 +129,6 @@ export default {
   GET_PRODUCT_LIST: function (context, pageNum = 1) {
     axios.get(`${MAIN_URL}ads/`,
       {
-        headers: {
-          authorization: `jwt ${TOKEN}`
-        },
         params: {
           page: pageNum
         }

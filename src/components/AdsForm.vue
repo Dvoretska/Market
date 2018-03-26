@@ -19,7 +19,7 @@
 
         <b-field horizontal :label="getPhoto()" class="align-left">
           <div>
-            <input type="file" @change="onFile($event)">
+            <input type="file" @change="onFile($event)" ref="file" accept="image/*" multiple>
           </div>
         </b-field>
 
@@ -67,7 +67,8 @@ export default {
       subject: '',
       category: '',
       location: '',
-      price: ''
+      price: '',
+      file: ''
     }
   },
   mounted () {
@@ -77,21 +78,17 @@ export default {
   },
   methods: {
     createAd () {
-      const formData = new FormData()
-      formData.append('file', this.image)
-      this.$store.dispatch('CREATE_AD',
-        {
-          subject: this.subject,
-          message: this.message,
-          category: this.category,
-          location: this.location,
-          price: this.price,
-          image: this.image
-        }
-      )
+      var formData = new FormData()
+      formData.append('image', this.file)
+      formData.append('category', this.category)
+      formData.append('subject', this.subject)
+      formData.append('message', this.message)
+      formData.append('location', this.location)
+      formData.append('price', this.price)
+      this.$store.dispatch('CREATE_AD', formData)
     },
-    onFile (event) {
-      this.image = event.target.files[0]
+    onFile (e) {
+      this.file = this.$refs.file.files[0]
     },
     getSubject () {
       return this.$gettext('Subject')
