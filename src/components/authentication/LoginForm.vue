@@ -20,21 +20,10 @@
 </template>
 
 <script>
-import buttonBar from '@/components/ButtonBar'
-import inputStyle from '@/components/InputStyle'
-import iconLock from '@/assets/lock.svg'
-import iconMeil from '@/assets/meil.svg'
 import AuthCommon from '@/components/authentication/AuthCommon'
 
 export default {
   extends: AuthCommon,
-  components: {
-    buttonBar,
-    inputStyle
-  },
-  created () {
-    this.$store.dispatch('CLEAR_ERRORS')
-  },
   methods: {
     translations () {
       return {
@@ -53,25 +42,6 @@ export default {
     }
   },
   computed: {
-    loading () {
-      return this.$store.getters.getLoading
-    },
-    iconLockPath () {
-      return iconLock
-    },
-    iconMeilPath () {
-      return iconMeil
-    },
-    nonFieldErrors () {
-      if (this.$store.getters.getErrors && this.$store.getters.getErrors.non_field_errors) {
-        return this.$store.getters.getErrors.non_field_errors.join('\n')
-      }
-    },
-    emailErrors () {
-      if (this.$store.getters.getErrors && this.$store.getters.getErrors.email) {
-        return this.$store.getters.getErrors.email.join('\n')
-      }
-    },
     passwordErrors () {
       if (this.$store.getters.getErrors && this.$store.getters.getErrors.password) {
         return this.$store.getters.getErrors.password.join('\n')

@@ -1,6 +1,37 @@
 <script>
+import buttonBar from '@/components/ButtonBar'
+import inputStyle from '@/components/InputStyle'
 
-
+export default {
+  components: {
+    buttonBar,
+    inputStyle
+  },
+  created () {
+    this.$store.dispatch('CLEAR_ERRORS')
+  },
+  computed: {
+    iconLockPath () {
+      return require('@/assets/lock.svg')
+    },
+    iconMeilPath () {
+      return require('@/assets/meil.svg')
+    },
+    loading () {
+      return this.$store.getters.getLoading
+    },
+    nonFieldErrors () {
+      if (this.$store.getters.getErrors && this.$store.getters.getErrors.non_field_errors) {
+        return this.$store.getters.getErrors.non_field_errors.join('\n')
+      }
+    },
+    emailErrors () {
+      if (this.$store.getters.getErrors && this.$store.getters.getErrors.email) {
+        return this.$store.getters.getErrors.email.join('\n')
+      }
+    }
+  }
+}
 </script>
 
 <style scoped>
