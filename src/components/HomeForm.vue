@@ -71,7 +71,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 	 .style-paginate {
 	    width: 100%;
 	    display: flex;
@@ -89,14 +89,11 @@ export default {
 	}
 	.product-cards-container {
 		width: calc(100% - 270px);
-		display: flex;
-		justify-content: flex-start;
-		flex-wrap: wrap;
-		align-content: baseline;
+		display: grid;
+        grid-template-columns: repeat(auto-fill,minmax(240px, 1fr));
 	}
 	.product-card {
 	    margin:10px 0 0 10px;
-	    flex-grow: 1;
 	    height: 420px;
 	    font-size: 16px;
 	    border: 1px solid #D7D7D7;
@@ -143,36 +140,38 @@ export default {
 		font-size: 16px;
 		line-height: 16px;
 		color: #b4b4b4;
+		min-height: 15px;
 	}
 	.product-location {
 		font-size: 13px;
 		line-height: 16px;
 		font-weight: 700;
 		color: #909090;
+		min-height: 15px;
 	}
 	.button-cta-wrapper {
 		margin-top: 13px;
 		margin-bottom: 10px;
 		text-align: center;
 	}
-	@media (max-width: 1499px) {
-		.product-card {
-			min-width: calc(25% - 10px - 1px);
-		}
-	}
-	@media (min-width: 993px) and (max-width: 1199px) {
-		.product-card {
-			min-width: calc(33% - 10px - 1px);
-		}
-	}
-	@media (max-width: 992px) {
-		.product-card {
-			min-width: calc(50% - 10px - 1px);
-		}
-	}
-	@media (max-width: 650px) {
-		.product-card {
-			min-width: calc(100% - 10px - 1px);
-		}
-	}
+	// @media (max-width: 1499px) {
+	// 	.product-card {
+	// 		min-width: calc(25% - 10px - 1px);
+	// 	}
+	// }
+	// @media (min-width: 993px) and (max-width: 1199px) {
+	// 	.product-card {
+	// 		min-width: calc(33% - 10px - 1px);
+	// 	}
+	// }
+	// @media (max-width: 992px) {
+	// 	.product-card {
+	// 		min-width: calc(50% - 10px - 1px);
+	// 	}
+	// }
+	// @media (max-width: 650px) {
+	// 	.product-card {
+	// 		min-width: calc(100% - 10px - 1px);
+	// 	}
+	// }
 </style>

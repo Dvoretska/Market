@@ -12,7 +12,7 @@
 				</router-link>
 			</li>
 		</ul>
-		<div class="ads-content-empty" v-if="!productList">
+		<div class="ads-content-empty" v-if="productList.length == 0">
 			<i class="material-icons">&#xE14F;</i>
 			<div class="profile-ads-notice" v-translate>There are no active ads</div>
 	    	<router-link :to="{ name: 'ads'}">
@@ -47,6 +47,7 @@ export default {
   },
   computed: {
     productList () {
+      console.log(this.$store.getters.getProductList)
       return this.$store.getters.getProductList
     }
   }
@@ -57,9 +58,6 @@ export default {
 	.buttons {
 		display: inline-block;
 		background: #eeeeee;
-		background: -moz-linear-gradient(top, #eeeeee 0%, #eeeeee 100%); /* FF3.6+ */
-		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#eeeeee));
-		background: linear-gradient(top, #eeeeee 0%,#eeeeee 100%); /* W3C */
 		border: 1px solid #a1a1a1;
 		padding: 4px 14px;
 		margin: 0.3em;
@@ -126,7 +124,7 @@ export default {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		height: calc(100% - 45px);
+		min-height: 305px;
 	}
 	.profile-ads-nav {
 		background: #f0f0f0;

@@ -135,7 +135,7 @@ export default {
 		}
 	}
 	/deep/ .card-header {
-		background-color: rgba(114, 75, 119, .7);
+		background-color: rgba(140, 0, 158, .5);
 	}
 	/deep/ .dropdown-menu {
 		width: 311px;
