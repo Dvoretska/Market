@@ -121,6 +121,7 @@ export default {
       }
     }).then((response) => {
       context.commit('loading', false)
+      router.push({name: 'home'})
     }).catch((err) => {
       console.log(err)
       context.commit('loading', false)

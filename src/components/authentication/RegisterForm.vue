@@ -14,6 +14,10 @@
           <router-link :to="{ name: 'login'}"  class="link-change-route">
               <translate>Already registered? Login</translate>
           </router-link>
+          <router-link :to="{ name: 'home'}" class="link-change-route link-back-home">
+            <img src="@/assets/back-arrow.svg" alt="" class="icon-back-home">
+            <span v-translate>Back to home page</span>
+          </router-link>
   			</div>
   		</div>
     </div>

@@ -13,6 +13,10 @@
             <router-link :to="{ name: 'register'}" class="link-change-route">
               <span v-translate>Not a member? Sign up</span>
             </router-link>
+            <router-link :to="{ name: 'home'}" class="link-change-route link-back-home">
+              <img src="@/assets/back-arrow.svg" alt="" class="icon-back-home">
+              <span v-translate>Back to home page</span>
+            </router-link>
           </div>
         </div>
       </div>

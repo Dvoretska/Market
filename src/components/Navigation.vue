@@ -32,11 +32,11 @@
               <router-link to="/profile/message"><translate>Messages</translate></router-link>
             </li>
             <li>
-              <a href="" v-translate>Settings</a>
+              <router-link to="/profile/settings"><translate>Settings</translate></router-link>
             </li>
             <li class="parent-relative">
               <a @click="logout()">
-                <i class="material-icons">&#xE879;</i>
+                <img src="@/assets/logout.svg" alt="" class="icon-logout">
                 <translate>Logout</translate>
               </a>
             </li>
@@ -215,9 +215,12 @@ export default {
   .parent-relative {
     position: relative;
   }
-  .parent-relative .material-icons {
+  .parent-relative .icon-logout {
     position: absolute;
-    top: 6px;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    transform: translateY(-50%);
     left: 13px;
   }
   .parent-relative span {

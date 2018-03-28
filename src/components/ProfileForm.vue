@@ -17,17 +17,17 @@
         <ul class="option-box">
           <li>
             <router-link to="/profile" active-class="active" class="options" exact> 
-              <span>Ads</span>
+              <span><translate>Ads</translate></span>
             </router-link>
           </li>
           <li>
             <router-link to="/profile/message" active-class="active" class="options" exact> 
-              <span>Messages</span>
+              <span><translate>Messages</translate></span>
             </router-link>
           </li>
          <li>
-            <router-link to="/profile" class="options"> 
-              <span>Settings</span>
+            <router-link to="/profile/settings" active-class="active" class="options" exact> 
+              <span><translate>Settings</translate></span>
             </router-link>
           </li>
         </ul>
@@ -44,13 +44,15 @@ import buttonBar from '@/components/ButtonBar'
 import modalChange from '@/components/ModalChange'
 import profileAdsForm from '@/components/ProfileAdsForm'
 import profileMessageForm from '@/components/ProfileMessageForm'
+import profileSettingsForm from '@/components/ProfileSettingsForm'
 
 export default {
   components: {
     buttonBar,
     modalChange,
     profileAdsForm,
-    profileMessageForm
+    profileMessageForm,
+    profileSettingsForm
   },
   props: {
     page: String
@@ -59,6 +61,9 @@ export default {
     profileChange () {
       this.$modal.show('profileChange')
     }
+  },
+  created () {
+    this.$store.dispatch('GET_PRODUCT_LIST')
   },
   computed: {
     currentPath () {
@@ -86,12 +91,12 @@ export default {
 <style scoped>
   .content-box {
     border: solid 1px #D7D7D7;
-    min-height: 350px;
     margin-bottom: 10px;
   }
   .container {
     margin: 55px auto 0;
-    width: 60%;
+    width: 745px;
+    min-height: calc(100vh - 55px - 80px);
   }
   .wrapper {
     width: 100%;

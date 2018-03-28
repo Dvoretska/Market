@@ -131,20 +131,20 @@ export default {
       /deep/ label {
         text-align: left;
         padding: 0;
+        color: #3A474D;
+        font-weight: 600;
+        font-size: 18px;
       }
     }
     .align-center /deep/ .control {
         text-align: center;
     }
     .ads {
-        color: #3A474D;
-        font: 500 16px 'TradeGothicLTStd-BdCn20','PT Sans Narrow';
-        position: absolute;
-        left: 50%;
-        top: 11%;
+        margin-top: 70px;
         width: 550px;
-        transform: translateX(-50%);
         outline: none;
+        margin-left: auto;
+        margin-right: auto;
     }
     .price {
       width: 146px;

@@ -18,7 +18,7 @@
 		height: 80px;
 		width: 100%;
 	    background:#3C3C4A;
-	    margin-top: 15px;
+	    margin-top: 35px;
 	    padding-bottom: 10px;
 	    .first-row {
 	    	& span{

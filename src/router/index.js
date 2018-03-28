@@ -8,6 +8,7 @@ import adsPage from '@/pages/AdsPage'
 import store from '@/store'
 import profileMessageForm from '@/components/ProfileMessageForm'
 import profileAdsForm from '@/components/ProfileAdsForm'
+import profileSettingsForm from '@/components/ProfileSettingsForm'
 
 Vue.use(Router)
 
@@ -33,7 +34,8 @@ const routes = [
     meta: {title: 'Market | Profile'},
     children: [
     {path: 'message', component: profileMessageForm},
-    {path: 'ads', component: profileAdsForm}
+    {path: 'ads', component: profileAdsForm},
+    {path: 'settings', component: profileSettingsForm}
     ]
   }
 ]

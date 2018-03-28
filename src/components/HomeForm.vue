@@ -17,7 +17,7 @@
 				</div>
 			</div>
 			<div class="style-paginate">
-			  <paginate v-if="productList"
+			  <paginate v-if="productList.count > 12"
 			    :page-count="productPageCount"
 			    :page-range="3"
 			    :margin-pages="2"
@@ -72,16 +72,15 @@ export default {
 </script>
 
 <style scoped>
-  .style-paginate {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
-  }
-  .main-container {
-    display: flex;
-    margin-top: 55px;
-    overflow-y: scroll;
+	 .style-paginate {
+	    width: 100%;
+	    display: flex;
+	    justify-content: center;
+	    margin: 20px 0;
+	 }
+    .main-container {
+	    display: flex;
+	    margin-top: 55px;
 	}
 	.filters-box {
 		width: 270px;
@@ -96,46 +95,47 @@ export default {
 		align-content: baseline;
 	}
 	.product-card {
-    margin:10px 0 0 10px;
-    flex-grow: 1;
-    height: 420px;
-    font-size: 16px;
-    border: 1px solid #D7D7D7;
+	    margin:10px 0 0 10px;
+	    flex-grow: 1;
+	    height: 420px;
+	    font-size: 16px;
+	    border: 1px solid #D7D7D7;
 	}
 	.product-card:hover {
 		border: solid 1px #CCC;
-    box-shadow: 1px 1px 3px #999;
+    	box-shadow: 1px 1px 3px #999;
 	}
 	.product-img-wrapper {
-    margin: 15px;
-    height: 200px;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #f7f7f7;
-  }
-  .product-img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-  }
-  .product-description-box {
-    margin: 15px;
-  }
+	    margin: 15px;
+	    height: 200px;
+	    position: relative;
+	    display: flex;
+	    justify-content: center;
+	    align-items: center;
+	    background: #f7f7f7;
+  	}
+  	.product-img {
+    	max-width: 100%;
+    	max-height: 100%;
+    	object-fit: contain;
+  	}
+  	.product-description-box {
+    	margin: 15px;
+  	}
 	.product-price {
 		padding-bottom: 10px;
-		font-size: 21px;
+		font-size: 18px;
 		font-weight: 600;
 		line-height: 16px;
 	}
 	.product-subject {
 		display: block;
 		height: 40px;
-		font-size: 18px;
+		font-size: 22px;
 		overflow: hidden;
 		line-height: 20px;
 		word-wrap: break-word;
+		color: #8c40b8;
 	}
 	.product-category {
 		margin-top: 10px;
@@ -157,23 +157,22 @@ export default {
 	}
 	@media (max-width: 1499px) {
 		.product-card {
-			max-width: calc(25% - 10px - 1px);
+			min-width: calc(25% - 10px - 1px);
 		}
 	}
 	@media (min-width: 993px) and (max-width: 1199px) {
 		.product-card {
-			max-width: calc(33% - 10px - 1px);
+			min-width: calc(33% - 10px - 1px);
 		}
 	}
 	@media (max-width: 992px) {
 		.product-card {
-			max-width: calc(50% - 10px - 1px);
+			min-width: calc(50% - 10px - 1px);
 		}
 	}
 	@media (max-width: 650px) {
 		.product-card {
-			max-width: calc(100% - 10px - 1px);
-			min-width: 250px;
+			min-width: calc(100% - 10px - 1px);
 		}
 	}
 </style>

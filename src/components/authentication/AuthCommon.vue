@@ -34,7 +34,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
   .auth-page-wrapper {
     font-family: 'Lato', Arial, sans-serif;
     background: #fcfcfc;
@@ -84,6 +84,7 @@ export default {
   .flexbox-container {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
   }
   .auth-button {
     height: 40px;
@@ -111,6 +112,18 @@ export default {
     margin-top: 10px;
     line-height: 25px;
     border-radius: 8px;
+  }
+  .link-back-home {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+    .icon-back-home {
+      width: 15px;
+      height: 15px;
+      margin-right: 5px;
+    }
   }
   @media (max-width: 1024px) {
   .auth-box {
