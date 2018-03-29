@@ -21,17 +21,15 @@
 				</div>
 			</div>
 			<div class="wrapper-paginate">
-				<div class="style-paginate">
-				  <paginate v-if="productPageCount >= 2"
-				    :page-count="productPageCount"
-				    :page-range="3"
-				    :margin-pages="2"
-				    :prev-text="'Prev'"
-				    :next-text="'Next'"
-				    :container-class="'pagination'"
-				    :click-handler="clickCallback">
-				  </paginate>
-				</div>
+			  <paginate v-if="productPageCount >= 2"
+			    :page-count="productPageCount"
+			    :page-range="3"
+			    :margin-pages="2"
+			    :prev-text="'Prev'"
+			    :next-text="'Next'"
+			    :container-class="'pagination'"
+			    :click-handler="clickCallback">
+			  </paginate>
 			</div>
 		</div>
 	</div>
@@ -81,13 +79,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-	.wrapper-paginate {
-		display: flex;
-	    justify-content: center;
-	}
-	.style-paginate {
-	    margin: 30px 0 0;
-	}
     .main-container {
 	    display: flex;
 	    margin-top: 55px;
@@ -168,24 +159,9 @@ export default {
 		margin-bottom: 10px;
 		text-align: center;
 	}
-	// @media (max-width: 1499px) {
-	// 	.product-card {
-	// 		min-width: calc(25% - 10px - 1px);
-	// 	}
-	// }
-	// @media (min-width: 993px) and (max-width: 1199px) {
-	// 	.product-card {
-	// 		min-width: calc(33% - 10px - 1px);
-	// 	}
-	// }
-	// @media (max-width: 992px) {
-	// 	.product-card {
-	// 		min-width: calc(50% - 10px - 1px);
-	// 	}
-	// }
-	// @media (max-width: 650px) {
-	// 	.product-card {
-	// 		min-width: calc(100% - 10px - 1px);
-	// 	}
-	// }
+	.wrapper-paginate {
+		display: flex;
+	    justify-content: center;
+	    margin: 30px 0 0;
+	}
 </style>
