@@ -14,6 +14,9 @@ import VueMq from 'vue-mq'
 import GetTextPlugin from 'vue-gettext'
 import translations from './translations.json'
 import Paginate from 'vuejs-paginate'
+import VueTree from 'liquor-tree'
+
+Vue.use(VueTree)
 
 Vue.use(GetTextPlugin, {
   availableLanguages: {

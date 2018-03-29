@@ -14,44 +14,79 @@
 		   	<BulmaAccordionItem>
 		        <h4 slot="title"><translate>Contact information</translate></h4>
 		        <div class="fill-info-fields" slot="content">
-			        <b-field label="Country:">
+			        <b-field :label="getCountry()">
 			          <b-autocomplete 
 			              v-model="country"
 			              v-on:blur="getCities($event)"
 			              :data="filteredCountryArray"
 			              placeholder="Start typing country name..."
 			              icon="search">
-			              <template slot="empty">No results found</template>
+			              <template slot="empty"><translate>No results found</translate></template>
 			          </b-autocomplete>
 			        </b-field>
-			        <b-field label="City:">
+			        <b-field :label="getCity()">
 			          <b-autocomplete 
 			              v-model="city"
 			              :data="filteredCityArray"
 			              placeholder="Start typing city name..."
 			              icon="search">
-			              <template slot="empty">No results found</template>
+			              <template slot="empty"><translate>No results found</translate></template>
 			          </b-autocomplete>
 			        </b-field>
-			        <div class="name-field field">
+			        <div class="field" slot="content">
 				  		<label>
-							<span>First name:</span>
+							<span><translate>First name</translate></span>
 							<input type="text" class="input">
 				  		</label>
 					</div>
+					<button class="save-button" slot="content"><translate>Save</translate></button>
 			    </div>
 		    </BulmaAccordionItem>
 		    <BulmaAccordionItem>
 		        <h4 slot="title"><translate>Phone number</translate></h4>
+		        <div class="field" slot="content">
+			  		<label>
+						<span><translate>Phone number</translate></span>
+						<input type="text" class="input">
+			  		</label>
+				</div>
+				<button class="save-button" slot="content"><translate>Save</translate></button>
 		    </BulmaAccordionItem>
 		    <BulmaAccordionItem>
 		        <h4 slot="title"><translate>Password</translate></h4>
+		        <div class="field" slot="content">
+			  		<label>
+						<span><translate>New password</translate></span>
+						<input type="text" class="input">
+			  		</label>
+				</div>
+				<div class="field" slot="content">
+			  		<label>
+						<span><translate>Confirm new password</translate></span>
+						<input type="text" class="input">
+			  		</label>
+				</div>
+				<button class="save-button" slot="content"><translate>Save</translate></button>
 		    </BulmaAccordionItem>
 		   	<BulmaAccordionItem>
 		        <h4 slot="title"><translate>Email</translate></h4>
+		        <div class="field" slot="content">
+			  		<label>
+						<span><translate>Your current email</translate></span>
+						<input type="text" class="input">
+			  		</label>
+				</div>
+				<div class="field" slot="content">
+			  		<label>
+						<span><translate>Your new email</translate></span>
+						<input type="text" class="input">
+			  		</label>
+				</div>
+				<button class="save-button" slot="content"><translate>Save</translate></button>
 		    </BulmaAccordionItem>
 		    <BulmaAccordionItem>
 		        <h4 slot="title"><translate>Delete your account</translate></h4>
+		        <button class="delete-button" slot="content"><translate>Delete your account</translate>?</button>
 		    </BulmaAccordionItem>
 		</BulmaAccordion>
 	</div>
@@ -82,6 +117,12 @@ export default {
     })
   },
   methods: {
+    getCountry () {
+      return this.$gettext('Country')
+    },
+    getCity () {
+      return this.$gettext('City')
+    },
     getCities (e) {
       if (e.target.value !== this.$store.getters.getUserDetails.country) {
         this.city = ''
@@ -127,7 +168,6 @@ export default {
 	/deep/ .field label {
 		text-align: left;
 		color: #5F5760;
-		margin-bottom: 6px;
 	}
 	/deep/ .control {
 		& input {
@@ -145,7 +185,13 @@ export default {
 		margin-top: 0;
 		margin-bottom: 0;
 	}
-	.name-field /deep/ label {
+	/deep/ .card-content {
+		padding: 0.6rem 1.5rem;
+	}
+	/deep/ .field:not(:last-child) {
+		margin-bottom: 0.5rem;
+	}
+	.field /deep/ label {
 		& input.input {
 			width: 310px;
 		}
@@ -153,7 +199,8 @@ export default {
 			display: inline-block;
 			width: 100%;
 			margin-bottom: 6px;
-			padding-left: 9.6px;
+			padding-left: 4.8px;
+			line-height: 1;
 		}
 	}
 	/deep/ h4 {
@@ -164,5 +211,34 @@ export default {
 	}
 	/deep/ .plus-minus .horizontal, /deep/ .plus-minus .vertical {
 		background: #fff;
+	}
+	.save-button {
+		height: 30px;
+		padding: 0 20px;
+		border: none;
+		border-radius: 5px;
+		background-color: #7b4fad;
+		color: #fff;
+		cursor: pointer;
+		margin-right: auto;
+		box-shadow:
+        0px 1px rgba(128,128,128,.8),
+        0px 2px rgba(118,118,118,.8),
+        0px 3px 2px rgba(108,108,108,.8);
+        margin-bottom: 7px;
+	}
+	.delete-button {
+		margin: 10px 0;
+		height: 30px;
+		padding: 0 20px;
+		border: none;
+		border-radius: 5px;
+		background-color: red;
+		color: #fff;
+		cursor: pointer;
+		box-shadow:
+        0px 1px rgba(128,128,128,.8),
+        0px 2px rgba(118,118,118,.8),
+        0px 3px 2px rgba(108,108,108,.8);
 	}
 </style>

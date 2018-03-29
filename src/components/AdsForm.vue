@@ -66,7 +66,6 @@ export default {
       message: '',
       subject: '',
       category: '',
-      location: '',
       price: '',
       file: ''
     }
@@ -121,6 +120,15 @@ export default {
     },
     email () {
       return this.$store.getters.getUserDetails.email
+    },
+    country () {
+      return this.$store.getters.getUserDetails.country
+    },
+    city () {
+      return this.$store.getters.getUserDetails.city
+    },
+    location () {
+      return this.country + ', ' + this.city
     }
   }
 }

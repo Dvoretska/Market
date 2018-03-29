@@ -15,11 +15,12 @@
 		justify-content: space-around;
 		align-items: center;
 		flex-direction: column;
-		height: 80px;
+		height: 90px;
 		width: 100%;
 	    background:#3C3C4A;
 	    margin-top: 35px;
 	    padding-bottom: 10px;
+	    padding-top: 10px;
 	    .first-row {
 	    	& span{
 				padding-left: 5px;

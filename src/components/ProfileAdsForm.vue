@@ -29,9 +29,18 @@
 					<strong class="product-subject">{{ product.subject }}</strong>
 				</div>
 				<div class="ad-actions">
-					<a href="" class="buttons ad-view"><img src="@/assets/eye.svg" alt="" class="icon-ad-actions"><translate>View</translate></a>
-					<a href="" class="buttons ad-edit"><img src="@/assets/pencil.svg" alt="" class="icon-ad-actions"><translate>Edit</translate></a>
-					<a href="" class="buttons ad-delete"><img src="@/assets/delete.svg" alt="" class="icon-ad-actions"><translate>Delete</translate></a>
+					<a href="" class="buttons ad-view">
+						<img src="@/assets/eye.svg" alt="" class="icon-ad-actions">
+						<translate>View</translate>
+					</a>
+					<a href="" class="buttons ad-edit">
+						<img src="@/assets/pencil.svg" alt="" class="icon-ad-actions">
+						<translate>Edit</translate>
+					</a>
+					<a href="" class="buttons ad-delete">
+						<img src="@/assets/delete.svg" alt="" class="icon-ad-actions">
+						<translate>Delete</translate>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -47,7 +56,6 @@ export default {
   },
   computed: {
     productList () {
-      console.log(this.$store.getters.getProductList)
       return this.$store.getters.getProductList
     }
   }
@@ -57,7 +65,7 @@ export default {
 <style scoped lang="scss">
 	.buttons {
 		display: inline-block;
-		background: #eeeeee;
+		background-color: rgba(140, 0, 158, .5);
 		border: 1px solid #a1a1a1;
 		padding: 4px 14px;
 		margin: 0.3em;

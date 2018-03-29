@@ -96,7 +96,7 @@ export default {
   .container {
     margin: 55px auto 0;
     width: 745px;
-    min-height: calc(100vh - 55px - 80px);
+    min-height: calc(100vh - 55px - 125px);
   }
   .wrapper {
     width: 100%;

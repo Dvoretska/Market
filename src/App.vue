@@ -18,7 +18,7 @@ export default {
     box-sizing: border-box;
   }
   body {
-    font-family: 'Lato', Arial, sans-serif;
+    font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   }
   :focus {
   	outline:none;

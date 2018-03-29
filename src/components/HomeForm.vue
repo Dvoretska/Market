@@ -1,31 +1,37 @@
 <template>
 	<div class="main-container">
-		<aside class="filters-box">Aside</aside>
-		<div class="product-cards-container">
-			<div class="product-card" v-for="product in productList">
-				<div class="product-img-wrapper">
-					<img :src="product.image || getDefaultImage" alt="" class="product-img">
-				</div>
-				<div class="product-description-box">
-					<div class="product-price">{{ product.price }} грн</div>
-					<strong class="product-subject">{{ product.subject }}</strong>
-					<div class="product-category">{{ product.category.name }}</div>
-					<div class="product-location">{{ product.location }}</div>
-          <div class="button-cta-wrapper">
-						<button-bar :label="'More options'"></button-bar>
+		<aside class="filters-box">
+			<filters-component></filters-component>
+		</aside>
+		<div class="content-wrapper">
+			<div class="product-cards-container">
+				<div class="product-card" v-for="product in productList">
+					<div class="product-img-wrapper">
+						<img :src="product.image || getDefaultImage" alt="" class="product-img">
+					</div>
+					<div class="product-description-box">
+						<div class="product-price">{{ product.price }} грн</div>
+						<strong class="product-subject">{{ product.subject }}</strong>
+						<div class="product-category">{{ product.category.name }}</div>
+						<div class="product-location">{{ product.location }}</div>
+	          <div class="button-cta-wrapper">
+							<button-bar :label="'More options'"></button-bar>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="style-paginate">
-			  <paginate v-if="productList.count > 12"
-			    :page-count="productPageCount"
-			    :page-range="3"
-			    :margin-pages="2"
-			    :prev-text="'Prev'"
-			    :next-text="'Next'"
-			    :container-class="'pagination'"
-			    :click-handler="clickCallback">
-			  </paginate>
+			<div class="wrapper-paginate">
+				<div class="style-paginate">
+				  <paginate v-if="productPageCount >= 2"
+				    :page-count="productPageCount"
+				    :page-range="3"
+				    :margin-pages="2"
+				    :prev-text="'Prev'"
+				    :next-text="'Next'"
+				    :container-class="'pagination'"
+				    :click-handler="clickCallback">
+				  </paginate>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -34,10 +40,12 @@
 <script>
 
 import buttonBar from '@/components/ButtonBar'
+import filtersComponent from '@/components/FiltersComponent'
 
 export default {
   components: {
-    buttonBar
+    buttonBar,
+    filtersComponent
   },
   data () {
     return {
@@ -50,6 +58,7 @@ export default {
   methods: {
     clickCallback (pageNum) {
       this.$store.dispatch('GET_PRODUCT_LIST', pageNum)
+      console.log(this.$store.getters.getProductList)
     }
   },
   computed: {
@@ -72,25 +81,30 @@ export default {
 </script>
 
 <style scoped lang="scss">
-	 .style-paginate {
-	    width: 100%;
-	    display: flex;
+	.wrapper-paginate {
+		display: flex;
 	    justify-content: center;
-	    margin: 20px 0;
-	 }
+	}
+	.style-paginate {
+	    margin: 30px 0 0;
+	}
     .main-container {
 	    display: flex;
 	    margin-top: 55px;
+	    min-height: calc(100vh - 55px - 125px);
+	}
+	.content-wrapper {
+		width: calc(100% - 270px);
 	}
 	.filters-box {
 		width: 270px;
-		height: 1000px;
-		border: 2px solid black;
+		padding-top: 7px;
 	}
 	.product-cards-container {
-		width: calc(100% - 270px);
+		width: 100%;
 		display: grid;
         grid-template-columns: repeat(auto-fill,minmax(240px, 1fr));
+        grid-template-rows: auto [last-line];
 	}
 	.product-card {
 	    margin:10px 0 0 10px;
