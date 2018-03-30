@@ -89,7 +89,7 @@ export default {
     position: fixed;
      top: 40%;
      left: 50%;
-    /deep/ .sk-rect {
+    /deep/ .sk-wave .sk-rect {
              background-color: #7b4fad;
            }
   }
