@@ -4,8 +4,11 @@
 			<filters-component></filters-component>
 		</aside>
 		<div class="content-wrapper">
-			<div class="product-cards-container">
-				<div class="product-card" v-for="product in productList">
+      <div v-if="products.loading" class="loading">
+        <vue-loading spinner="wave"></vue-loading>
+      </div>
+			<div v-else class="product-cards-container">
+				<div class="product-card" v-for="product in products.results">
 					<div class="product-img-wrapper">
 						<img :src="product.image || getDefaultImage" alt="" class="product-img">
 					</div>
@@ -20,7 +23,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="wrapper-paginate">
+			<div class="wrapper-paginate" :class="{'hidden': products.loading}">
 			  <paginate v-if="productPageCount >= 2"
 			    :page-count="productPageCount"
 			    :page-range="3"
@@ -39,11 +42,13 @@
 
 import buttonBar from '@/components/ButtonBar'
 import filtersComponent from '@/components/FiltersComponent'
+import VueLoading from 'vue-simple-loading'
 
 export default {
   components: {
     buttonBar,
-    filtersComponent
+    filtersComponent,
+    VueLoading
   },
   data () {
     return {
@@ -68,18 +73,27 @@ export default {
         'width': Math.round(((this.rating / 5) * 100) / 10) * 10 + '%'
       }
     },
-    productList () {
-      return this.$store.getters.getProductList
+    products () {
+      console.log(this.$store.getters.getProducts)
+      return this.$store.getters.getProducts
     },
     productPageCount () {
-      return Math.ceil(this.$store.getters.getProductCount / 16)
+      return Math.ceil(this.$store.getters.getProducts.count / 16)
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
-    .main-container {
+  .loading {
+    position: fixed;
+     top: 40%;
+     left: 50%;
+    /deep/ .sk-rect {
+             background-color: #7b4fad;
+           }
+  }
+  .main-container {
 	    display: flex;
 	    margin-top: 55px;
 	    min-height: calc(100vh - 55px - 125px);

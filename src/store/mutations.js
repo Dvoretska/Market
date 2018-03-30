@@ -29,7 +29,7 @@ export default {
   getCategories (state, data) {
     state.categories = data
   },
-  productListMutate (state, data) {
-    state.productListState = data
+  productsMutate (state, data) {
+    state.products = {...state.products, ...data}
   }
 }

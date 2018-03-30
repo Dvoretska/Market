@@ -14,10 +14,7 @@ export default {
   getCategories: state => {
     return state.categories
   },
-  getProductList: state => {
-    return state.productListState.results
-  },
-  getProductCount: state => {
-    return state.productListState.count
+  getProducts: state => {
+    return state.products
   }
 }
