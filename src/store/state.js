@@ -4,5 +4,7 @@ export default {
   },
   userDetailsState: {},
   categories: null,
-  products: {}
+  products: {
+    results: []
+  }
 }

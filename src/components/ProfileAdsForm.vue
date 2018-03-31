@@ -16,14 +16,14 @@
 			<i class="material-icons">&#xE14F;</i>
 			<div class="profile-ads-notice" v-translate>There are no active ads</div>
 	    	<router-link :to="{ name: 'ads'}">
-	        	<button-bar :label="'+ Create an ad'"></button-bar>
+	        	<button-bar :label="getCreateAnAd()"></button-bar>
 	      	</router-link>
       	</div>
 		<div class="ads-content-full" v-else>
 			<div class="product-card" v-for="product in productList">
 				<div class="product-img-wrapper">
 					<img src="../assets/images.jpeg" alt="" class="product-img">
-				</div>	
+				</div>
 				<div class="product-description-box">
 					<div class="product-price">$600</div>
 					<strong class="product-subject">{{ product.subject }}</strong>
@@ -54,9 +54,14 @@ export default {
   components: {
     buttonBar
   },
+  methods: {
+    getCreateAnAd () {
+      return this.$gettext('+ Create an ad')
+    }
+  },
   computed: {
     productList () {
-      return this.$store.getters.getProductList
+      return this.$store.getters.getProducts.results
     }
   }
 }

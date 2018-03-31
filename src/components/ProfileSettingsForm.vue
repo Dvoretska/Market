@@ -15,7 +15,7 @@
 		        <h4 slot="title"><translate>Contact information</translate></h4>
 		        <div class="fill-info-fields" slot="content">
 			        <b-field :label="getCountry()">
-			          <b-autocomplete 
+			          <b-autocomplete
 			              v-model="country"
 			              v-on:blur="getCities($event)"
 			              :data="filteredCountryArray"
@@ -25,7 +25,7 @@
 			          </b-autocomplete>
 			        </b-field>
 			        <b-field :label="getCity()">
-			          <b-autocomplete 
+			          <b-autocomplete
 			              v-model="city"
 			              :data="filteredCityArray"
 			              placeholder="Start typing city name..."
@@ -179,12 +179,15 @@ export default {
 	}
 	/deep/ .dropdown-menu {
 		width: 311px;
-	}	
+	}
 	/deep/ .dropdown-content {
 		width: 311px;
 		margin-top: 0;
 		margin-bottom: 0;
 	}
+  /deep/ .dropdown-item {
+    width: 311px;
+  }
 	/deep/ .card-content {
 		padding: 0.6rem 1.5rem;
 	}
