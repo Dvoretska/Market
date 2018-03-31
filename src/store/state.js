@@ -6,5 +6,8 @@ export default {
   categories: null,
   products: {
     results: []
+  },
+  myAds: {
+    results: []
   }
 }

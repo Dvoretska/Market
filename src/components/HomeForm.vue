@@ -17,7 +17,7 @@
 						<strong class="product-subject">{{ product.subject }}</strong>
 						<div class="product-category">{{ product.category.name }}</div>
 						<div class="product-location">{{ product.location }}</div>
-	          <div class="button-cta-wrapper">
+	                    <div class="button-cta-wrapper">
 							<button-bar :label="'More options'"></button-bar>
 						</div>
 					</div>
@@ -56,12 +56,13 @@ export default {
     }
   },
   created () {
-    this.$store.dispatch('GET_PRODUCT_LIST')
+    if (!this.products.results.length) {
+      this.$store.dispatch('GET_PRODUCT_LIST')
+    }
   },
   methods: {
     clickCallback (pageNum) {
       this.$store.dispatch('GET_PRODUCT_LIST', pageNum)
-      console.log(this.$store.getters.getProductList)
     }
   },
   computed: {
@@ -74,7 +75,6 @@ export default {
       }
     },
     products () {
-      console.log(this.$store.getters.getProducts)
       return this.$store.getters.getProducts
     },
     productPageCount () {

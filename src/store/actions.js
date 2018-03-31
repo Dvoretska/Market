@@ -4,7 +4,6 @@ import router from '../router/index.js'
 const MAIN_URL = 'https://servermarket.herokuapp.com/'
 // const MAIN_URL = '//localhost:8000/'
 const ACCOUNTS_URL = `${MAIN_URL}accounts/`
-const TOKEN = localStorage.getItem('token')
 
 export default {
   LOGIN: function (context, data) {
@@ -45,8 +44,8 @@ export default {
   },
   LOGOUT: function (context) {
     localStorage.removeItem('token')
-    context.commit('clearUserState')
     router.push({name: 'login'})
+    window.location.reload()
   },
   CHANGE_USER_DETAILS: function (context, data) {
     const TOKEN = localStorage.getItem('token')
@@ -114,6 +113,7 @@ export default {
     }
   },
   CREATE_AD: function (context, data) {
+    const TOKEN = localStorage.getItem('token')
     context.commit('loading', true)
     axios.post(`${MAIN_URL}ads/ad/`, data, {
       headers: {
@@ -137,6 +137,21 @@ export default {
       }).then((response) => {
         response.data.loading = false
         context.commit('productsMutate', response.data)
+      }).catch((err) => {
+        console.log(err)
+      })
+  },
+  GET_MY_ADS: function (context) {
+    const TOKEN = localStorage.getItem('token')
+    context.commit('myAdsMutate', {loading: true})
+    axios.get(`${MAIN_URL}my/ads/`,
+      {
+        headers: {
+          authorization: `jwt ${TOKEN}`
+        }
+      }).then((response) => {
+        response.data.loading = false
+        context.commit('myAdsMutate', response.data)
       }).catch((err) => {
         console.log(err)
       })

@@ -1,5 +1,5 @@
 <template>
-	<div class="profile-ads-container" v-bind:class="{'has-height': !productList}">
+	<div class="profile-ads-container" v-bind:class="{'has-height': !getMyAds}">
 		<ul class="profile-ads-nav">
 			<li class="profile-ads-item">
 				<router-link :to="{ name: ''}">
@@ -12,7 +12,7 @@
 				</router-link>
 			</li>
 		</ul>
-		<div class="ads-content-empty" v-if="productList.length == 0">
+		<div class="ads-content-empty" v-if="getMyAds.length == 0">
 			<i class="material-icons">&#xE14F;</i>
 			<div class="profile-ads-notice" v-translate>There are no active ads</div>
 	    	<router-link :to="{ name: 'ads'}">
@@ -20,13 +20,13 @@
 	      	</router-link>
       	</div>
 		<div class="ads-content-full" v-else>
-			<div class="product-card" v-for="product in productList">
+			<div class="product-card" v-for="ad in getMyAds">
 				<div class="product-img-wrapper">
-					<img src="../assets/images.jpeg" alt="" class="product-img">
+					<img :src="ad.image" alt="" class="product-image">
 				</div>
 				<div class="product-description-box">
-					<div class="product-price">$600</div>
-					<strong class="product-subject">{{ product.subject }}</strong>
+					<div class="product-price">{{ ad.price }}</div>
+					<strong class="product-subject">{{ ad.subject }}</strong>
 				</div>
 				<div class="ad-actions">
 					<a href="" class="buttons ad-view">
@@ -59,9 +59,13 @@ export default {
       return this.$gettext('+ Create an ad')
     }
   },
+  mounted () {
+    this.$store.dispatch('GET_MY_ADS')
+  },
   computed: {
-    productList () {
-      return this.$store.getters.getProducts.results
+    getMyAds () {
+      console.log('this.$store.getters.getMyAds', this.$store.getters.getMyAds)
+      return this.$store.getters.getMyAds.results
     }
   }
 }
@@ -95,10 +99,11 @@ export default {
 	}
 	.product-img-wrapper {
 		height: 100px;
-		max-width: 100px;
+		width: 100px;
 		position: relative;
 		display: flex;
 		justify-content: center;
+		background: #f7f7f7;
     }
     .product-image {
     	max-width: 100%;

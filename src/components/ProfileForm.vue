@@ -62,9 +62,6 @@ export default {
       this.$modal.show('profileChange')
     }
   },
-  created () {
-    this.$store.dispatch('GET_PRODUCT_LIST')
-  },
   computed: {
     currentPath () {
       return '/profile/'

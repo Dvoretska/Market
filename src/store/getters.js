@@ -16,5 +16,8 @@ export default {
   },
   getProducts: state => {
     return state.products
+  },
+  getMyAds: state => {
+    return state.myAds
   }
 }
