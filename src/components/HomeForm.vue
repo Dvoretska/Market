@@ -92,8 +92,8 @@ export default {
     /deep/ .sk-wave .sk-rect {
              background-color: #7b4fad;
            }
-  }
-  .main-container {
+    }
+    .main-container {
 	    display: flex;
 	    margin-top: 55px;
 	    min-height: calc(100vh - 55px - 125px);
@@ -177,5 +177,13 @@ export default {
 		display: flex;
 	    justify-content: center;
 	    margin: 30px 0 0;
+	    /deep/ .pagination > li > a {
+			color: #7957d5;
+		}
+		/deep/ .pagination .active a {
+			color: #fff;
+			background-color: #7957d5;
+			border-color: #7957d5;
+		}
 	}
 </style>

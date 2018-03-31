@@ -168,6 +168,10 @@ export default {
 	/deep/ .field label {
 		text-align: left;
 		color: #5F5760;
+		font-weight: 500;
+		line-height: 1;
+		margin-bottom: 0;
+		font-size: 14px;
 	}
 	/deep/ .control {
 		& input {
@@ -179,15 +183,17 @@ export default {
 	}
 	/deep/ .dropdown-menu {
 		width: 311px;
+		min-width: 311px;
+		padding-top: 0;
+		padding-bottom: 0;
 	}
 	/deep/ .dropdown-content {
 		width: 311px;
-		margin-top: 0;
-		margin-bottom: 0;
 	}
-  /deep/ .dropdown-item {
-    width: 311px;
-  }
+	/deep/ .dropdown-item {
+	  width: 311px;
+	  height: 100%;
+	}
 	/deep/ .card-content {
 		padding: 0.6rem 1.5rem;
 	}
@@ -201,9 +207,10 @@ export default {
 		& span {
 			display: inline-block;
 			width: 100%;
-			margin-bottom: 6px;
+			margin-bottom: 2px;
 			padding-left: 4.8px;
 			line-height: 1;
+			font-size: 14px;
 		}
 	}
 	/deep/ h4 {
