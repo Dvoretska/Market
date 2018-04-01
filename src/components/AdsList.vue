@@ -75,8 +75,9 @@ export default {
     filtersData () {
       if (this.$store.getters.getCategories.length) {
         let data = []
+        data.push({text: this.$gettext('CATEGORY'), children: []})
         for (const filter of this.$store.getters.getCategories) {
-          data.push({text: filter})
+          data[0].children.push({text: filter})
         }
         return data
       }

@@ -14,8 +14,10 @@ export default {
   },
   methods: {
     onSelected (node) {
+      console.log(node)
     },
     onChecked (node) {
+      console.log(node)
     }
   }
 }
