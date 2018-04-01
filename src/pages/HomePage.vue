@@ -1,19 +1,19 @@
 <template>
 	<div>
 	  <navigation :page="'home'" ></navigation>
-	  <home-form></home-form>
+	  <ads-list></ads-list>
 	  <footer-component></footer-component>
   	</div>
 </template>
 
 <script>
-import homeForm from '@/components/HomeForm'
+import adsList from '@/components/AdsList'
 import navigation from '@/components/Navigation'
 import footerComponent from '@/components/FooterComponent'
 
 export default {
   components: {
-    homeForm,
+    adsList,
     navigation,
     footerComponent
   }

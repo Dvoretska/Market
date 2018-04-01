@@ -1,7 +1,7 @@
 <template>
 	<div class="main-container">
 		<aside class="filters-box">
-			<filters-component></filters-component>
+			<filters-component :data="filtersData" v-if="filtersData"></filters-component>
 		</aside>
 		<div class="content-wrapper">
       <div v-if="products.loading" class="loading">
@@ -59,6 +59,9 @@ export default {
     if (!this.products.results.length) {
       this.$store.dispatch('GET_PRODUCT_LIST')
     }
+    if (!this.$store.getters.getCategories.length) {
+      this.$store.dispatch('GET_CATEGORIES')
+    }
   },
   methods: {
     clickCallback (pageNum) {
@@ -68,6 +71,15 @@ export default {
   computed: {
     getDefaultImage () {
       return require('@/assets/images.jpeg')
+    },
+    filtersData () {
+      if (this.$store.getters.getCategories.length) {
+        let data = []
+        for (const filter of this.$store.getters.getCategories) {
+          data.push({text: filter})
+        }
+        return data
+      }
     },
     stars: function () {
       return {

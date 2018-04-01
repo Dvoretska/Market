@@ -71,7 +71,7 @@ export default {
     }
   },
   mounted () {
-    if (!this.$store.getters.getCategories) {
+    if (!this.$store.getters.getCategories.length) {
       this.$store.dispatch('GET_CATEGORIES')
     }
   },

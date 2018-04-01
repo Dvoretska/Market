@@ -82,7 +82,7 @@ export default {
   },
   GET_CATEGORIES: function (context) {
     const TOKEN = localStorage.getItem('token')
-    axios.get(`${MAIN_URL}ads/categories/`,
+    axios.get(`${MAIN_URL}categories/`,
       {
         headers: {
           authorization: `jwt ${TOKEN}`
