@@ -1,8 +1,8 @@
 import axios from 'axios'
 import router from '../router/index.js'
 
-const MAIN_URL = 'https://servermarket.herokuapp.com/'
-// const MAIN_URL = '//localhost:8000/'
+// const MAIN_URL = 'https://servermarket.herokuapp.com/'
+const MAIN_URL = '//localhost:8000/'
 const ACCOUNTS_URL = `${MAIN_URL}accounts/`
 
 export default {
@@ -81,13 +81,8 @@ export default {
     })
   },
   GET_CATEGORIES: function (context) {
-    const TOKEN = localStorage.getItem('token')
-    axios.get(`${MAIN_URL}categories/`,
-      {
-        headers: {
-          authorization: `jwt ${TOKEN}`
-        }
-      }).then((response) => {
+    axios.get(`${MAIN_URL}categories/`)
+      .then((response) => {
         context.commit('getCategories', response.data)
       }).catch((err) => {
         console.log(err)

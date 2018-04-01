@@ -73,11 +73,11 @@ export default {
       return require('@/assets/images.jpeg')
     },
     filtersData () {
-      if (this.$store.getters.getCategories.length) {
+      if (this.$store.getters.getCategories.results.length) {
         let data = []
         data.push({text: this.$gettext('CATEGORY'), children: []})
-        for (const filter of this.$store.getters.getCategories) {
-          data[0].children.push({text: filter})
+        for (const category of this.$store.getters.getCategories.results) {
+          data[0].children.push({text: category.name})
         }
         return data
       }

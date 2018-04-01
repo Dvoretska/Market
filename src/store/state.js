@@ -3,7 +3,9 @@ export default {
     success: null, errors: null, loading: null
   },
   userDetailsState: {},
-  categories: [],
+  categories: {
+    results: []
+  },
   products: {
     results: []
   },

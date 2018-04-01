@@ -6,7 +6,7 @@
 
         <b-field horizontal :label="getTopic()" class="align-left">
             <b-select placeholder="Select a topic" v-model="category">
-                <option v-for="category in categories" class="categories">{{ category }}</option>
+                <option v-for="category in categories" class="categories">{{ category.name }}</option>
             </b-select>
         </b-field>
         <b-field horizontal :label="getPrice()" class="align-left price">
@@ -113,7 +113,7 @@ export default {
   },
   computed: {
     categories () {
-      return this.$store.getters.getCategories
+      return this.$store.getters.getCategories.results
     },
     firstName () {
       return this.$store.getters.getUserDetails.first_name
