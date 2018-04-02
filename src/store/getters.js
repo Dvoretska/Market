@@ -19,5 +19,8 @@ export default {
   },
   getMyAds: state => {
     return state.myAds
+  },
+  getActiveFilters: state => {
+    return state.activeFiltersState
   }
 }

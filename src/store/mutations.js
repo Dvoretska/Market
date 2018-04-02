@@ -34,5 +34,15 @@ export default {
   },
   myAdsMutate (state, data) {
     state.myAds = {...state.myAds, ...data}
+  },
+  activeFiltersTreeMutate (state, data) {
+    state.activeFiltersState = {}
+    for (const filter of data) {
+      if (state.activeFiltersState[filter.parent.data.text]) {
+        state.activeFiltersState[filter.parent.data.text] += ',' + filter.data.text
+      } else {
+        state.activeFiltersState[filter.parent.data.text] = filter.data.text
+      }
+    }
   }
 }

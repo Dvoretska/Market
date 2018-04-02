@@ -6,7 +6,7 @@
 
         <b-field horizontal :label="getTopic()" class="align-left">
             <b-select placeholder="Select a topic" v-model="category">
-                <option v-for="category in categories" class="categories">{{ category.name }}</option>
+                <option v-for="category in categories" class="categories" :value="category.slug">{{ category.name }}</option>
             </b-select>
         </b-field>
         <b-field horizontal :label="getPrice()" class="align-left price">

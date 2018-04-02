@@ -153,11 +153,10 @@ export default {
   },
   GET_FILTERED_ADS: function (context, data) {
     context.commit('productsMutate', {loading: true})
+    router.push({path: '/', query: data})
     axios.get(`${MAIN_URL}ads/`,
       {
-        params: {
-          category: data.slug
-        }
+        params: data
       }).then((response) => {
         response.data.loading = false
         context.commit('productsMutate', response.data)

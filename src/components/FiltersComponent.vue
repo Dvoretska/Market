@@ -14,12 +14,16 @@ export default {
     data: Array
   },
   methods: {
+    changeFiltersTree (checkedNodes) {
+      this.$store.commit('activeFiltersTreeMutate', checkedNodes)
+      const filters = this.$store.getters.getActiveFilters
+      this.$store.dispatch('GET_FILTERED_ADS', filters)
+    },
     onChecked (node) {
-      console.log('node.data.text', node.data.text)
-      this.$store.dispatch('GET_FILTERED_ADS', {slug: node.data.text})
+      this.changeFiltersTree(node.tree.checkedNodes)
     },
     onUnchecked (node) {
-      this.$store.dispatch('GET_PRODUCT_LIST')
+      this.changeFiltersTree(node.tree.checkedNodes)
     }
   }
 }
