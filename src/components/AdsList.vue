@@ -77,7 +77,7 @@ export default {
         let data = []
         data.push({text: this.$gettext('CATEGORY'), children: []})
         for (const category of this.$store.getters.getCategories.results) {
-          data[0].children.push({text: category.name})
+          data[0].children.push({text: category.slug})
         }
         return data
       }
@@ -159,7 +159,7 @@ export default {
 	}
 	.product-subject {
 		display: block;
-		height: 40px;
+		height: 44px;
 		font-size: 22px;
 		overflow: hidden;
 		line-height: 20px;

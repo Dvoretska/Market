@@ -150,5 +150,19 @@ export default {
       }).catch((err) => {
         console.log(err)
       })
+  },
+  GET_FILTERED_ADS: function (context, data) {
+    context.commit('productsMutate', {loading: true})
+    axios.get(`${MAIN_URL}ads/`,
+      {
+        params: {
+          category: data.slug
+        }
+      }).then((response) => {
+        response.data.loading = false
+        context.commit('productsMutate', response.data)
+      }).catch((err) => {
+        console.log(err)
+      })
   }
 }

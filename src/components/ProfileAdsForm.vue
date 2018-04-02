@@ -12,35 +12,42 @@
 				</router-link>
 			</li>
 		</ul>
-		<div class="ads-content-empty" v-if="getMyAds.length == 0">
-			<i class="material-icons">&#xE14F;</i>
-			<div class="profile-ads-notice" v-translate>There are no active ads</div>
-	    	<router-link :to="{ name: 'ads'}">
-	        	<button-bar :label="getCreateAnAd()"></button-bar>
-	      	</router-link>
+		<div class="ads-content-empty" v-if="getLoading" >
+			<div class="loading">
+	        	<vue-loading spinner="wave"></vue-loading>
+	      	</div>
       	</div>
-		<div class="ads-content-full" v-else>
-			<div class="product-card" v-for="ad in getMyAds">
-				<div class="product-img-wrapper">
-					<img :src="ad.image" alt="" class="product-image">
-				</div>
-				<div class="product-description-box">
-					<div class="product-price">{{ ad.price }}</div>
-					<strong class="product-subject">{{ ad.subject }}</strong>
-				</div>
-				<div class="ad-actions">
-					<a href="" class="buttons ad-view">
-						<img src="@/assets/eye.svg" alt="" class="icon-ad-actions">
-						<translate>View</translate>
-					</a>
-					<a href="" class="buttons ad-edit">
-						<img src="@/assets/pencil.svg" alt="" class="icon-ad-actions">
-						<translate>Edit</translate>
-					</a>
-					<a href="" class="buttons ad-delete">
-						<img src="@/assets/delete.svg" alt="" class="icon-ad-actions">
-						<translate>Delete</translate>
-					</a>
+      	<div v-else>
+			<div class="ads-content-empty" v-if="getMyAds.length == 0">
+				<i class="material-icons">&#xE14F;</i>
+				<div class="profile-ads-notice" v-translate>There are no active ads</div>
+		    	<router-link :to="{ name: 'ads'}">
+		        	<button-bar :label="getCreateAnAd()"></button-bar>
+		      	</router-link>
+	      	</div>
+			<div class="ads-content-full" v-else>
+				<div class="product-card" v-for="ad in getMyAds">
+					<div class="product-img-wrapper">
+						<img :src="ad.image" alt="" class="product-image">
+					</div>
+					<div class="product-description-box">
+						<div class="product-price">{{ ad.price }}</div>
+						<strong class="product-subject">{{ ad.subject }}</strong>
+					</div>
+					<div class="ad-actions">
+						<a href="" class="buttons ad-view">
+							<img src="@/assets/visible.svg" alt="" class="icon-ad-actions">
+							<translate>View</translate>
+						</a>
+						<a href="" class="buttons ad-edit">
+							<img src="@/assets/pencil.svg" alt="" class="icon-ad-actions">
+							<translate>Edit</translate>
+						</a>
+						<a href="" class="buttons ad-delete">
+							<img src="@/assets/delete.svg" alt="" class="icon-ad-actions">
+							<translate>Delete</translate>
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -49,10 +56,12 @@
 
 <script>
 import buttonBar from '@/components/ButtonBar'
+import VueLoading from 'vue-simple-loading'
 
 export default {
   components: {
-    buttonBar
+    buttonBar,
+    VueLoading
   },
   methods: {
     getCreateAnAd () {
@@ -64,25 +73,31 @@ export default {
   },
   computed: {
     getMyAds () {
-      console.log('this.$store.getters.getMyAds', this.$store.getters.getMyAds)
       return this.$store.getters.getMyAds.results
+    },
+    getLoading () {
+      return this.$store.getters.getMyAds.loading
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
+    .loading {
+    /deep/ .sk-wave .sk-rect {
+             background-color: #7b4fad;
+           }
+    }
 	.buttons {
 		display: inline-block;
 		background-color: rgba(140, 0, 158, .5);
-		border: 1px solid #a1a1a1;
 		padding: 4px 14px;
 		margin: 0.3em;
 		font-weight: bold;
 		font-size: 12px;
 		line-height: 14px;
 		text-decoration: none;
-		color: #333;
+		color: #fff;
 		border-radius: .2em;
 		.icon-ad-actions {
 			margin-right: 10px;
@@ -136,11 +151,11 @@ export default {
 	.material-icons {
 		font-size: 130px;
 		opacity: 0.5;
-		padding: 50px 0 0;
 	}
 	.ads-content-empty {
 		display: flex;
 		flex-direction: column;
+		justify-content: center;
 		align-items: center;
 		min-height: 305px;
 	}

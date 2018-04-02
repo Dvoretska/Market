@@ -1,9 +1,10 @@
 <template>
     <tree
         :data="data"
-        @node:selected="onSelected"
         @node:checked="onChecked"
+        @node:unchecked="onUnchecked"
         ref="tree"
+        :options="{checkbox: true, checkOnSelect: true}"
     />
 </template>
 
@@ -13,11 +14,12 @@ export default {
     data: Array
   },
   methods: {
-    onSelected (node) {
-      console.log(node)
-    },
     onChecked (node) {
-      console.log(node)
+      console.log('node.data.text', node.data.text)
+      this.$store.dispatch('GET_FILTERED_ADS', {slug: node.data.text})
+    },
+    onUnchecked (node) {
+      this.$store.dispatch('GET_PRODUCT_LIST')
     }
   }
 }
