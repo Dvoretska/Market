@@ -23,7 +23,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="wrapper-paginate" :class="{'hidden': products.loading}">
+			<div class="wrapper-paginate" v-if="!products.loading">
 			  <paginate v-if="productPageCount >= 2"
 			    :page-count="productPageCount"
 			    :page-range="3"
@@ -191,8 +191,10 @@ export default {
 	    justify-content: center;
 	    margin: 30px 0 0;
 	    /deep/ .pagination > li > a {
-			color: #7957d5;
-		}
+        color: #7957d5;
+        padding: 5px 10px;
+        border: 1px solid gray;
+      }
 		/deep/ .pagination .active a {
 			color: #fff;
 			background-color: #7957d5;
