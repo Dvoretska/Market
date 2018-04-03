@@ -17,7 +17,7 @@ export default {
     changeFiltersTree (checkedNodes) {
       this.$store.commit('activeFiltersTreeMutate', checkedNodes)
       const filters = this.$store.getters.getActiveFilters
-      this.$store.dispatch('GET_FILTERED_ADS', filters)
+      this.$store.dispatch('GET_FILTERED_AD_LIST', filters)
     },
     onChecked (node) {
       this.changeFiltersTree(node.tree.checkedNodes)

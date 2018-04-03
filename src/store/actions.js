@@ -151,7 +151,7 @@ export default {
         console.log(err)
       })
   },
-  GET_FILTERED_ADS: function (context, data) {
+  GET_FILTERED_AD_LIST: function (context, data) {
     context.commit('productsMutate', {loading: true})
     router.push({path: '/', query: data})
     axios.get(`${MAIN_URL}ads/`,

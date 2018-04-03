@@ -56,16 +56,15 @@ export default {
     }
   },
   created () {
-    if (!this.products.results.length) {
-      this.$store.dispatch('GET_PRODUCT_LIST')
-    }
+    this.$store.dispatch('GET_FILTERED_AD_LIST', this.$route.query)
     if (!this.$store.getters.getCategories.length) {
       this.$store.dispatch('GET_CATEGORIES')
     }
   },
   methods: {
     clickCallback (pageNum) {
-      this.$store.dispatch('GET_PRODUCT_LIST', pageNum)
+      console.log(pageNum)
+      this.$store.dispatch('GET_FILTERED_AD_LIST', {page: pageNum})
     }
   },
   computed: {
