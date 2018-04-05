@@ -20,7 +20,7 @@
         tabindex="1"
         ref="anchor"
         @focus="onNodeFocus">
-          <node-content :node="node" /><span>({{ node.text.count }})</span>
+          <node-content :node="node" /><span v-if="node.text.count">({{ node.text.count }})</span>
       </a>
     </div>
 

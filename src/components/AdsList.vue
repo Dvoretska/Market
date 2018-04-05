@@ -79,7 +79,6 @@ export default {
           text: {
             slug: 'category',
             name: this.$gettext('category'),
-            count: 1000
           },
           children: []
         })
