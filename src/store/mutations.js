@@ -38,10 +38,10 @@ export default {
   activeFiltersTreeMutate (state, data) {
     state.activeFiltersState = {}
     for (const filter of data) {
-      if (state.activeFiltersState[filter.parent.data.text]) {
-        state.activeFiltersState[filter.parent.data.text] += ',' + filter.data.text
+      if (state.activeFiltersState[filter.parent.data.text.slug]) {
+        state.activeFiltersState[filter.parent.data.text.slug] += ',' + filter.data.text.slug
       } else {
-        state.activeFiltersState[filter.parent.data.text] = filter.data.text
+        state.activeFiltersState[filter.parent.data.text.slug] = filter.data.text.slug
       }
     }
   }

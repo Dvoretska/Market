@@ -1,7 +1,7 @@
 <template>
 	<div class="main-container">
 		<aside class="filters-box">
-			<filters-component :data="filtersData" v-if="filtersData"></filters-component>
+			<category-filter :data="filtersData" v-if="filtersData"></category-filter>
 		</aside>
 		<div class="content-wrapper">
       <div v-if="products.loading" class="loading">
@@ -41,13 +41,13 @@
 <script>
 
 import buttonBar from '@/components/ButtonBar'
-import filtersComponent from '@/components/FiltersComponent'
+import CategoryFilter from '@/components/filters/CategoryFilter'
 import VueLoading from 'vue-simple-loading'
 
 export default {
   components: {
     buttonBar,
-    filtersComponent,
+    CategoryFilter,
     VueLoading
   },
   data () {
@@ -61,6 +61,7 @@ export default {
       this.$store.dispatch('GET_CATEGORIES')
     }
   },
+
   methods: {
     clickCallback (pageNum) {
       console.log(pageNum)
@@ -74,9 +75,22 @@ export default {
     filtersData () {
       if (this.$store.getters.getCategories.results.length) {
         let data = []
-        data.push({text: this.$gettext('category'), children: []})
+        data.push({
+          text: {
+            slug: 'category',
+            name: this.$gettext('category'),
+            count: 1000
+          },
+          children: []
+        })
         for (const category of this.$store.getters.getCategories.results) {
-          data[0].children.push({text: category.slug})
+          data[0].children.push({
+            text: {
+              slug: category.slug,
+              name: category.name,
+              count: category.count
+            }
+          })
         }
         return data
       }
