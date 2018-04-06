@@ -89,8 +89,9 @@ export default {
            }
     }
 	.buttons {
-		display: inline-block;
-		background-color: rgba(140, 0, 158, .5);
+		display: flex;
+		align-items: center;
+		background-color: rgba(121, 87, 213, .5);
 		padding: 4px 14px;
 		margin: 0.3em;
 		font-weight: bold;

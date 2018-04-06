@@ -169,9 +169,23 @@ export default {
 		text-align: left;
 		color: #5F5760;
 		font-weight: 500;
-		line-height: 1;
-		margin-bottom: 0;
+		line-height: 23px;;
+		margin-bottom: 2px;
+		margin-left: 9.6px;
 		font-size: 14px;
+	}
+	.field /deep/ label {
+		& input.input {
+			width: 310px;
+		}
+		& span {
+			display: inline-block;
+			width: 100%;
+			margin-bottom: 2px;
+			line-height: 1;
+			font-size: 14px;
+			font-weight: 500;
+		}
 	}
 	/deep/ .control {
 		& input {
@@ -179,7 +193,7 @@ export default {
 		}
 	}
 	/deep/ .card-header {
-		background-color: rgba(140, 0, 158, .5);
+		background-color: rgba(121, 87, 213, .5);
 	}
 	/deep/ .dropdown-menu {
 		width: 311px;
@@ -199,19 +213,6 @@ export default {
 	}
 	/deep/ .field:not(:last-child) {
 		margin-bottom: 0.5rem;
-	}
-	.field /deep/ label {
-		& input.input {
-			width: 310px;
-		}
-		& span {
-			display: inline-block;
-			width: 100%;
-			margin-bottom: 2px;
-			padding-left: 4.8px;
-			line-height: 1;
-			font-size: 14px;
-		}
 	}
 	/deep/ h4 {
 		cursor: pointer;
