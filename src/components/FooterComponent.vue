@@ -30,7 +30,7 @@
 </script>
 
 <style scoped lang="scss">
-	/deep/ .button, .button:hover, .button:active, .button:focus, .button.is-primary, .button.is-primary:focus, .button.is-primary:active {
+	/deep/ .button, .button:hover, .button:active, .button:focus, .button.is-primary, .button.is-primary:focus, .button.is-primary:active, .button.is-primary:hover {
       border: none;
       background-color: transparent;
       margin: 0;
