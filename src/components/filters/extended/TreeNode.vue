@@ -20,7 +20,10 @@
         tabindex="1"
         ref="anchor"
         @focus="onNodeFocus">
-          <node-content :node="node" /><span v-if="node.text.count">({{ node.text.count }})</span>
+        <div class="category-filter-style">
+          <node-content :node="node" />
+          <span v-if="node.text.count" class="count-style">{{ node.text.count }}</span>
+        </div>
       </a>
     </div>
 
@@ -175,6 +178,25 @@
 </script>
 
 <style>
+  .category-filter-style {
+    min-width: 150px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .category-filter-style span {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 120px;
+  }
+  .count-style {
+    box-shadow: 0 0 0 .125em rgba(121,87,213,.1);
+    border-radius: 2px;
+    width: 23px;
+    height: 23px;
+    text-align: center;
+    color: #7957d5;
+  }
   .tree-node {
     white-space: nowrap;
     display: flex;
@@ -186,7 +208,7 @@
   .tree-content {
     display: flex;
     align-items: center;
-    padding: 4px;
+    padding: 2px 4px;
     cursor: pointer;
     width: 100%;
     box-sizing: border-box;

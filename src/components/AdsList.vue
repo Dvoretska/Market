@@ -23,15 +23,16 @@
 					</div>
 				</div>
 			</div>
-			<div class="wrapper-paginate" v-if="!products.loading">
-			  <paginate v-if="productPageCount >= 2"
+			<div class="wrapper-paginate">
+			  <paginate v-if="productPageCount >= 2 && !products.loading"
 			    :page-count="productPageCount"
 			    :page-range="3"
 			    :margin-pages="2"
 			    :prev-text="'Prev'"
 			    :next-text="'Next'"
 			    :container-class="'pagination'"
-			    :click-handler="clickCallback">
+			    :click-handler="clickCallback"
+			    :initial-page="parseInt(this.$route.query.page) - 1 || 0">
 			  </paginate>
 			</div>
 		</div>
@@ -50,21 +51,14 @@ export default {
     CategoryFilter,
     VueLoading
   },
-  data () {
-    return {
-      rating: 1
-    }
-  },
   created () {
     this.$store.dispatch('GET_FILTERED_AD_LIST', this.$route.query)
     if (!this.$store.getters.getCategories.length) {
       this.$store.dispatch('GET_CATEGORIES')
     }
   },
-
   methods: {
     clickCallback (pageNum) {
-      console.log(pageNum)
       this.$store.dispatch('GET_FILTERED_AD_LIST', {page: pageNum})
     }
   },
@@ -92,11 +86,6 @@ export default {
           })
         }
         return data
-      }
-    },
-    stars: function () {
-      return {
-        'width': Math.round(((this.rating / 5) * 100) / 10) * 10 + '%'
       }
     },
     products () {
@@ -201,16 +190,38 @@ export default {
 	.wrapper-paginate {
 		display: flex;
 	    justify-content: center;
-	    margin: 30px 0 0;
-	    /deep/ .pagination > li > a {
-        color: #7957d5;
-        padding: 5px 10px;
-        border: 1px solid gray;
-      }
-		/deep/ .pagination .active a {
-			color: #fff;
-			background-color: #7957d5;
-			border-color: #7957d5;
-		}
+	    margin: 30px 0 0 10px;
+	    /deep/ .pagination {
+	    	& li:first-child a {
+	    		border-top-left-radius: 5px;
+	    		border-bottom-left-radius: 5px;
+	    	}	    	
+	    	& li:last-child a {
+	    		border-top-right-radius: 5px;
+	    		border-bottom-right-radius: 5px;
+	    		border-right: 1px solid #ccc;
+	    	}
+	    	& .active a {
+		    	color: #fff;
+				background-color: #7957d5;
+				border-color: #7957d5;
+				&:hover {
+					background-color: #7957d5;
+				}	
+	    	}
+	    	& .disabled:hover a {
+	    		cursor: not-allowed;
+	    	}
+	    	& > li > a {
+		        color: #7957d5;
+		        padding: 5px 10px;
+		        border-left: 1px solid #ccc;
+		        border-bottom: 1px solid #ccc;
+		        border-top: 1px solid #ccc;
+		        &:hover {
+		        	background-color: #efe8e8;
+		        }
+    		}
+        }
 	}
 </style>

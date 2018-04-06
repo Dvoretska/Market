@@ -122,20 +122,6 @@ export default {
       context.commit('loading', false)
     })
   },
-  GET_PRODUCT_LIST: function (context, pageNum = 1) {
-    context.commit('productsMutate', {loading: true})
-    axios.get(`${MAIN_URL}ads/`,
-      {
-        params: {
-          page: pageNum
-        }
-      }).then((response) => {
-        response.data.loading = false
-        context.commit('productsMutate', response.data)
-      }).catch((err) => {
-        console.log(err)
-      })
-  },
   GET_MY_ADS: function (context) {
     const TOKEN = localStorage.getItem('token')
     context.commit('myAdsMutate', {loading: true})
