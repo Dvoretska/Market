@@ -2,20 +2,20 @@
     <div>
        <navigation :page="'ads'"></navigation>
        <ads-form></ads-form>
-       <footer-component></footer-component>
+       <footer-bar></footer-bar>
     </div>
 </template>
 
 <script>
 import adsForm from '@/components/AdsForm'
 import navigation from '@/components/Navigation'
-import footerComponent from '@/components/FooterComponent'
+import footerBar from '@/components/footer/FooterBar'
 
 export default {
   components: {
     adsForm,
     navigation,
-    footerComponent
+    footerBar
   }
 }
 </script>

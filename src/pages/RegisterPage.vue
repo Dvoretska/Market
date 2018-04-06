@@ -4,20 +4,20 @@
 			<navigation :page="'register'"></navigation>
 		</mq-layout>
 	    <register-form></register-form>
-	    <footer-component></footer-component>
+	    <footer-bar></footer-bar>
     </div>
 </template>
 
 <script>
 import navigation from '@/components/Navigation'
 import registerForm from '@/components/authentication/RegisterForm'
-import footerComponent from '@/components/FooterComponent'
+import footerBar from '@/components/footer/FooterBar'
 
 export default {
   components: {
     registerForm,
     navigation,
-    footerComponent
+    footerBar
   }
 }
 </script>

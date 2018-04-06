@@ -2,20 +2,20 @@
   <div>
    <navigation :page="'profile'"></navigation>
    <profile-form :page="'profile'"></profile-form>
-   <footer-component></footer-component>
+   <footer-bar></footer-bar>
   </div>
 </template>
 
 <script>
 import profileForm from '@/components/ProfileForm'
 import navigation from '@/components/Navigation'
-import footerComponent from '@/components/FooterComponent'
+import footerBar from '@/components/footer/FooterBar'
 
 export default {
   components: {
     profileForm,
     navigation,
-    footerComponent
+    footerBar
   }
 }
 </script>
