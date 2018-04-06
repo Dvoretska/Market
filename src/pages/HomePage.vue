@@ -2,20 +2,20 @@
 	<div>
 	  <navigation :page="'home'" ></navigation>
 	  <ads-list></ads-list>
-	  <footer-component></footer-component>
+	  <footer-bar></footer-bar>
   	</div>
 </template>
 
 <script>
 import adsList from '@/components/AdsList'
 import navigation from '@/components/Navigation'
-import footerComponent from '@/components/FooterComponent'
+import footerBar from '@/components/footer/FooterBar'
 
 export default {
   components: {
     adsList,
     navigation,
-    footerComponent
+    footerBar
   }
 }
 </script>

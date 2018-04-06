@@ -4,20 +4,20 @@
 			<navigation :page="'login'"></navigation>
 		</mq-layout>
 	    <login-form></login-form>
-	    <footer-component></footer-component>
+	    <footer-bar></footer-bar>
     </div>
 </template>
 
 <script>
 import navigation from '@/components/Navigation'
 import loginForm from '@/components/authentication/LoginForm'
-import footerComponent from '@/components/FooterComponent'
+import footerBar from '@/components/footer/FooterBar'
 
 export default {
   components: {
     loginForm,
     navigation,
-    footerComponent
+    footerBar
   }
 }
 </script>

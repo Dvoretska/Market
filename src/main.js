@@ -17,13 +17,12 @@ import Paginate from 'vuejs-paginate'
 import VueTree from 'liquor-tree'
 
 Vue.use(VueTree)
-
 Vue.use(GetTextPlugin, {
   availableLanguages: {
     en_US: 'English',
     ru_RU: 'Русский'
   },
-  defaultLanguage: 'ru_RU',
+  defaultLanguage: localStorage.getItem('language') || navigator.language.replace('-', '_'),
   languageVmMixin: {
     computed: {
       currentKebabCase: function () {
@@ -33,7 +32,7 @@ Vue.use(GetTextPlugin, {
   },
   translations: translations,
   silent: true
-})
+});
 
 Vue.use(VueMq, {
   breakpoints: {
