@@ -219,7 +219,7 @@ export default {
 		        border-bottom: 1px solid #ccc;
 		        border-top: 1px solid #ccc;
 		        &:hover {
-		        	background-color: #efe8e8;
+		        	background-color: #f4f4f4;
 		        }
     		}
         }
