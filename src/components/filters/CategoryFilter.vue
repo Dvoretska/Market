@@ -15,6 +15,13 @@
     props: {
       data: Array
     },
+    // mounted () {
+    //   for(var child of this.$refs.tree.tree.activeElement.children) {
+    //     if(child.data.text.slug == $route.query.category) {
+    //       child.states.checked = true
+    //     }
+    //   }
+    // },
     methods: {
       changeFiltersTree (checkedNodes) {
         this.$store.commit('activeFiltersTreeMutate', checkedNodes)

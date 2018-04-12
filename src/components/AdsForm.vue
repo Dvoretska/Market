@@ -18,10 +18,31 @@
         </b-field>
 
         <b-field horizontal :label="getPhoto()" class="align-left">
-          <div>
-            <input type="file" @change="onFile($event)" ref="file" accept="image/*" multiple>
-          </div>
         </b-field>
+
+        <label id="file-drag-drop">
+            <div ref="fileform" class="fileform"
+             @drop="onDrop" 
+             @dragenter="onDragEnter"
+             @dragleave="onDragLeave"
+             v-bind:class="{highlight: isHighlight}">
+                <span>Click or drop your files here</span>
+                <img src="../assets/cloud-download-interface-symbol.svg" alt="" class="icon-cloud-download">
+                <span class="warning" ref="span_warning" v-if="warning">Download images with extansion jpeg, jpg or png</span>
+            </div>
+            <input type="file" class="inputfile" multiple accept="image/*" ref="fileinput">
+          </label>
+
+          <div class="wrapper-file-listing">
+            <div v-for="(file, key) in files" class="file-listing">
+                  <img class="preview" v-bind:ref="'preview'+ parseInt(key)"/>
+                  <div class="remove-container">
+                    <a class="remove" v-on:click.prevent="removeFile(key)" href="#">
+                      <img src="../assets/icon-close.png" alt="" class="icon-close">
+                    </a>
+                  </div>
+            </div>
+          </div>
 
         <b-field horizontal :label="getPContactInformation()" class="align-left">
             <div  class="contact-info-container">
@@ -67,15 +88,79 @@ export default {
       subject: '',
       category: '',
       price: '',
-      file: ''
+      file: '',
+      dragAndDropCapable: false,
+      files: [],
+      isHighlight: false,
+      warning: false
     }
   },
   mounted () {
     if (!this.$store.getters.getCategories.length) {
       this.$store.dispatch('GET_CATEGORIES')
     }
+    this.dragAndDropCapable = this.determineDragAndDropCapable()
+    if (this.dragAndDropCapable) {
+      ['drag', 'dragstart', 'dragend', 'dragover', 'dragenter', 'dragleave', 'drop'].forEach( function(evt) {
+        this.$refs.fileform.addEventListener(evt, function(e){
+          e.preventDefault()
+          e.stopPropagation()
+        }.bind(this), false)
+      }.bind(this))
+      this.$refs.fileform.addEventListener('drop', function(e){
+        for(let i = 0; i < e.dataTransfer.files.length; i++){
+          if (/\.(jpe?g|png|gif)$/i.test(e.dataTransfer.files[i].name)) {
+            this.files.push(e.dataTransfer.files[i])
+            this.getImagePreviews()
+            this.warning = false
+          } else {
+            this.warning = true
+          }
+        }
+      }.bind(this))
+      this.$refs.fileinput.addEventListener('change', function(e){
+        for(let i = 0; i < e.target.files.length; i++){
+          this.files.push(e.target.files[i])
+          this.getImagePreviews()
+        }
+      }.bind(this))
+    }
   },
   methods: {
+    determineDragAndDropCapable () {
+       var div = document.createElement('div')
+       return ( ( 'draggable' in div )
+          || ( 'ondragstart' in div && 'ondrop' in div ) )
+          && 'FormData' in window
+          && 'FileReader' in window
+    },
+    getImagePreviews () {
+      console.log('this.files', this.files)
+      for (let i = 0; i < this.files.length; i++){
+        if (/\.(jpe?g|png|gif)$/i.test(this.files[i].name)) {
+          let reader = new FileReader()
+          reader.addEventListener("load", function (e) {
+            this.$refs['preview' + parseInt(i)][0].src = reader.result
+          }.bind(this), false)
+          reader.readAsDataURL(this.files[i])
+        } else {
+          alert('Download an image!')
+        }
+      }
+    },
+    removeFile (key) {
+      this.files.splice(key, 1)
+      this.getImagePreviews ()
+    },
+    onDragEnter () {
+      this.isHighlight = true
+    },
+    onDragLeave () {
+      this.isHighlight = false
+    },
+    onDrop () {
+      this.isHighlight = false
+    },
     createAd () {
       var formData = new FormData()
       formData.append('image', this.file)
@@ -135,6 +220,75 @@ export default {
 </script>
 
 <style scoped lang="scss">
+    #file-drag-drop {
+      cursor: pointer;
+      position: relative;
+      .fileform {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        height: 70px;
+        background: #f4f4f4;
+        border-radius: 4px;
+        border: 2px dashed #ccc;
+        margin-bottom: 10px;
+        .icon-cloud-download {
+          width: 40px;
+          height: 40px;
+          margin-left: 10px;
+        }
+        .warning {
+          width:100%;
+          color: red;
+          line-height: 16px;
+          font-size: 12px;
+          text-align: center;
+          margin-bottom: 10px;
+        }
+      }
+      .inputfile {
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        z-index: -1;
+        top: 100%;
+        left: 0; 
+      }
+    }
+    .wrapper-file-listing {
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      .file-listing{
+        width: 100px;
+        margin: 5px;
+        border-bottom: 1px solid #ddd;
+        position: relative;
+        & img {
+          height: 100px;
+          width: 100px; 
+        }
+        .remove-container {
+          position: absolute;
+          top: 0; 
+          right: 0;
+          z-index: 100;
+          .icon-close {
+            width: 16px;
+            height: 16px;
+            margin-top: 3px;
+            margin-right: 3px;
+          }
+        }
+      }
+    }
+    .highlight {
+      border: 2px dashed #7957d5 !important;
+      background-color: #fff !important;
+    }
     .align-left {
       /deep/ label {
         text-align: left;
