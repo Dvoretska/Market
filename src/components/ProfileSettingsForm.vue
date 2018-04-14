@@ -36,10 +36,10 @@
 			        <div class="field" slot="content">
 				  		<label>
 							<span><translate>First name</translate></span>
-							<input type="text" class="input">
+							<input type="text" class="input" v-model="firstName" @keyup.enter="changeProfileHandler">
 				  		</label>
 					</div>
-					<button class="save-button" slot="content"><translate>Save</translate></button>
+					<button class="save-button" slot="content" @click="changeProfileHandler"><translate>Save</translate></button>
 			    </div>
 		    </BulmaAccordionItem>
 		    <BulmaAccordionItem>
@@ -104,6 +104,7 @@ export default {
   },
   data () {
     return {
+      firstName: this.$store.getters.getUserDetails.first_name,
       country: this.$store.getters.getUserDetails.country,
       city: this.$store.getters.getUserDetails.city,
       countryData: [],
@@ -135,6 +136,9 @@ export default {
       if (code) {
         this.$store.dispatch('GET_CITIES', { 'code': code, 'callback': (data) => { this.cityData = data } })
       }
+    },
+    changeProfileHandler () {
+      this.$store.dispatch('CHANGE_USER_DETAILS', {first_name: this.firstName, last_name: this.lastName, country: this.country, city: this.city})
     }
   },
   computed: {
@@ -181,7 +185,7 @@ export default {
 		& span {
 			display: inline-block;
 			width: 100%;
-			margin-bottom: 2px;
+			margin-bottom: 3px;
 			line-height: 1;
 			font-size: 14px;
 			font-weight: 500;

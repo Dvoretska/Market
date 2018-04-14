@@ -79,7 +79,7 @@
 		flex-direction: column;
 		height: 90px;
 		width: 100%;
-    background:#3C3C4A;
+    background: #e2e2e2;
     margin-top: 35px;
     padding-bottom: 10px;
     padding-top: 10px;
@@ -96,7 +96,7 @@
       }
     }
     .second-row span{
-      color: #fff;
+      color: #000;
     }
     i {
       display: inline-block;

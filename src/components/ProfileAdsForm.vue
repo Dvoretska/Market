@@ -100,6 +100,9 @@ export default {
 		text-decoration: none;
 		color: #fff;
 		border-radius: .2em;
+		&:hover {
+			box-shadow: 0 0 2px 1px rgba(0, 0, 0, .7);
+		}
 		.icon-ad-actions {
 			margin-right: 10px;
 			width: 15px;

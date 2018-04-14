@@ -9,6 +9,7 @@ import store from '@/store'
 import profileMessageForm from '@/components/ProfileMessageForm'
 import profileAdsForm from '@/components/ProfileAdsForm'
 import profileSettingsForm from '@/components/ProfileSettingsForm'
+import adDetailsPage from '@/pages/AdDetailsPage'
 
 Vue.use(Router)
 
@@ -37,6 +38,9 @@ const routes = [
     {path: 'ads', component: profileAdsForm},
     {path: 'settings', component: profileSettingsForm}
     ]
+  },
+  {
+    path: '/ad-details', name: 'adDetails', component: adDetailsPage, meta: {title: 'Market | Ads'}
   }
 ]
 
