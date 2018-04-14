@@ -3,7 +3,8 @@
 		<div class="first-row">
 			<span>Contact me</span>
 			<span>Terms&Privacy</span>
-			 <b-dropdown v-model="$language.current"
+			 <b-dropdown position="is-top-right"
+                   v-model="$language.current"
                    @change="changeLanguage()">
           <button class="button is-primary" type="button" slot="trigger">
               <template>
@@ -60,6 +61,17 @@
 	    	font-size: 16px;
 	    }
 	}
+	/deep/ .dropdown-menu {
+		min-width: 20px;
+    height: 100%;
+		& .dropdown-content {
+			border-radius: 5px;
+			padding-bottom: 3px;
+			padding-top: 3px;
+			box-shadow: 0 2px 7px rgba(10, 10, 10, 0.3), 0 0 0 1px rgba(10, 10, 10, 0.1);
+
+		}
+	}
 	.footer-container {
 		display: flex;
 		justify-content: space-around;
@@ -92,7 +104,7 @@
       position: absolute;
       background: white;
       left: 30px;
-      top: 68px;
+      top: 70px;
       box-shadow: 5px 0 5px -4px gray, 0 5px -5px -4px gray;
     }
     .arrow-point {
@@ -100,16 +112,8 @@
       -webkit-transform: rotate(-135deg);
     }
     /deep/ .dropdown-menu {
-      min-width: 20px;
-      height: 100%;
       top: -80px;
       right: -52px;
-      & .dropdown-content {
-        border-radius: 5px;
-        padding-bottom: 3px;
-        padding-top: 3px;
-        box-shadow: 0 2px 7px rgba(10, 10, 10, 0.3), 0 0 0 1px rgba(10, 10, 10, 0.1);
-      }
-	  }
+    }
 	}
 </style>
