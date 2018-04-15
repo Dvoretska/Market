@@ -12,6 +12,7 @@
         <b-field horizontal :label="getPrice()" class="align-left price">
             <b-input name="price" expanded v-model="price"></b-input>
         </b-field>
+        <span></span>
 
         <b-field horizontal :label="getDescription()" class="align-left">
             <b-input type="textarea" v-model="message"></b-input>
@@ -269,18 +270,21 @@ export default {
         position: relative;
         & img {
           height: 100px;
-          width: 100px; 
+          width: 100px;
         }
         .remove-container {
           position: absolute;
           top: 0; 
           right: 0;
           z-index: 100;
+          width: 16px;
+          height: 16px;
           .icon-close {
             width: 16px;
             height: 16px;
-            margin-top: 3px;
-            margin-right: 3px;
+            position: absolute;
+            top: 3px;
+            right: 3px;
           }
         }
       }

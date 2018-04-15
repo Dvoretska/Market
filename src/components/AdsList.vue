@@ -11,19 +11,19 @@
 		</aside>
 		<div class="content-wrapper">
        <bread-crumbs></bread-crumbs>
-      <div v-if="products.loading" class="loading">
+      <div v-if="ads.loading" class="loading">
         <vue-loading spinner="wave"></vue-loading>
       </div>
 			<div v-else class="product-cards-container">
-				<div class="product-card" v-for="product in products.results">
+				<div class="product-card" v-for="ad in ads.results">
 					<div class="product-img-wrapper">
-						<img :src="product.image || getDefaultImage" alt="" class="product-img">
+						<img :src="ad.image || getDefaultImage" alt="" class="product-img">
 					</div>
 					<div class="product-description-box">
-						<div class="product-price">{{ product.price }} грн</div>
-						<strong class="product-subject">{{ product.subject }}</strong>
-						<div class="product-category">{{ product.category.name }}</div>
-						<div class="product-location">{{ product.location }}</div>
+						<div class="product-price">{{ ad.price }} грн</div>
+						<strong class="product-subject">{{ ad.subject }}</strong>
+						<div class="product-category">{{ ad.category.name }}</div>
+						<div class="product-location">{{ ad.location }}</div>
 	                    <div class="button-cta-wrapper">
 							<button-bar :label="'More options'"></button-bar>
 						</div>
@@ -31,8 +31,8 @@
 				</div>
 			</div>
 			<div class="wrapper-paginate">
-			  <paginate v-if="productPageCount >= 2 && !products.loading"
-			    :page-count="productPageCount"
+			  <paginate v-if="adsPageCount >= 2 && !ads.loading"
+			    :page-count="adsPageCount"
 			    :page-range="3"
 			    :margin-pages="2"
 			    :prev-text="'Prev'"
@@ -61,6 +61,7 @@ export default {
     breadCrumbs
   },
   created () {
+  	console.log('this.$store.getters.getAds', this.$store.getters.getAds)
     this.$store.dispatch('GET_FILTERED_AD_LIST', this.$route.query)
     if (!this.$store.getters.getCategories.length) {
       this.$store.dispatch('GET_CATEGORIES')
@@ -104,10 +105,10 @@ export default {
     categories() {
       return this.$store.getters.getCategories;
     },
-    products () {
+    ads () {
       return this.$store.getters.getAds;
     },
-    productPageCount () {
+    adsPageCount () {
       return Math.ceil(this.$store.getters.getAds.count / 16)
     }
   }
@@ -133,7 +134,7 @@ export default {
 	}
 	.filters-box {
 		width: 270px;
-		padding-top: 7px;
+		padding: 7px 20px 0 20px;
 	}
 	.product-cards-container {
 		width: 100%;

@@ -199,6 +199,16 @@
     text-align: center;
     color: #7957d5;
   }
+  .tree-node.checked .count-style {
+    background-color: #7957d5;
+  }
+  .tree-node.checked .count-style {
+    color: #fff;
+  }
+  .tree-node.checked .tree-content {
+    background-color: rgba(121,87,213,.1);
+    border-radius: 5px;
+  }
   .tree-node {
     white-space: nowrap;
     display: flex;
@@ -214,10 +224,12 @@
     cursor: pointer;
     width: 100%;
     box-sizing: border-box;
+    margin-bottom: 3px;
   }
 
   .tree-node:not(.selected) > .tree-content:hover {
-    background: #f6f8fb;
+    background: rgba(121,87,213,.1);
+    border-radius: 5px;
   }
 
   .tree-node.selected > .tree-content {
@@ -261,7 +273,8 @@
   }
 
   .tree-checkbox {
-    flex-shrink: 0;
+    display: none;
+    /*flex-shrink: 0;
     position: relative;
     width: 30px;
     height: 30px;
@@ -269,7 +282,7 @@
     border: 1px solid #dadada;
     border-radius: 2px;
     background: #fff;
-    transition: border-color .25s, background-color .25s;
+    transition: border-color .25s, background-color .25s;*/
   }
 
   .tree-checkbox:after,
@@ -355,8 +368,9 @@
   }
 
   .tree--small .tree-checkbox {
-    width: 23px;
-    height: 23px;
+    display: none;
+/*    width: 23px;
+    height: 23px;*/
   }
 
   .tree--small .tree-arrow {
