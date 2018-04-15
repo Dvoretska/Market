@@ -82,7 +82,7 @@ export default {
         data.push({
           text: {
             slug: categories.results[0].parent_slug,
-            name: categories.results[0].parent
+            name: categories.results[0].parent,
           },
           state: {expanded: true},
           children: []
@@ -105,10 +105,10 @@ export default {
       return this.$store.getters.getCategories;
     },
     products () {
-      return this.$store.getters.getProducts;
+      return this.$store.getters.getAds;
     },
     productPageCount () {
-      return Math.ceil(this.$store.getters.getProducts.count / 16)
+      return Math.ceil(this.$store.getters.getAds.count / 16)
     }
   }
 }

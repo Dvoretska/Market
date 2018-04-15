@@ -29,8 +29,8 @@ export default {
   categoriesMutate (state, data) {
     state.categories = {...state.categories, ...data}
   },
-  productsMutate (state, data) {
-    state.products = {...state.products, ...data}
+  adsMutate (state, data) {
+    state.ads = {...state.ads, ...data}
   },
   myAdsMutate (state, data) {
     state.myAds = {...state.myAds, ...data}

@@ -14,8 +14,8 @@ export default {
   getCategories: state => {
     return state.categories
   },
-  getProducts: state => {
-    return state.products
+  getAds: state => {
+    return state.ads
   },
   getMyAds: state => {
     return state.myAds

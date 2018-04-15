@@ -22,7 +22,7 @@
         @focus="onNodeFocus">
         <div class="category-filter-style">
           <node-content :node="node" />
-          <span v-if="node.text.count" class="count-style">{{ node.text.count }}</span>
+          <span class="count-style">{{ getNodeCount }}</span>
         </div>
       </a>
     </div>
@@ -82,7 +82,9 @@
       paddingLeft() {
         return this.node.depth * this.options.paddingLeft + 'px'
       },
-
+      getNodeCount() {
+        return this.node.text.count === undefined ? this.$store.getters.getAds.count : this.node.text.count
+      },
       nodeClass() {
         let state = this.state
         let hasChildren = this.hasChildren()
