@@ -80,13 +80,23 @@ export default {
       console.log(err)
     })
   },
-  GET_CATEGORIES: function (context) {
-    axios.get(`${MAIN_URL}categories/`)
-      .then((response) => {
-        context.commit('getCategories', response.data)
-      }).catch((err) => {
+  GET_CATEGORIES: function (context, data) {
+    if (data === undefined || data.isLeafNode === false) {
+      context.commit('categoriesMutate', {loading: true});
+      axios.get(`${MAIN_URL}categories/`, {
+        params: data
+      })
+        .then((response) => {
+          if (response.data.results && response.data.results.length) {
+            response.data.loading = false;
+            context.commit('categoriesMutate', response.data);
+          } else {
+            context.commit('categoriesMutate', {loading: false});
+          }
+        }).catch((err) => {
         console.log(err)
       })
+    }
   },
   TOKEN_VERIFY: function (context, next) {
     const TOKEN = localStorage.getItem('token')

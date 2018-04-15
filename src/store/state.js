@@ -12,5 +12,8 @@ export default {
   myAds: {
     results: []
   },
-  activeFiltersState: {}
+  activeFiltersState: {
+    search: {},
+    node: ''
+  },
 }

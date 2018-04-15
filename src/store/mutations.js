@@ -26,8 +26,8 @@ export default {
   clearUserState (state) {
     state.userDetailsState = {}
   },
-  getCategories (state, data) {
-    state.categories = data
+  categoriesMutate (state, data) {
+    state.categories = {...state.categories, ...data}
   },
   productsMutate (state, data) {
     state.products = {...state.products, ...data}
@@ -35,14 +35,21 @@ export default {
   myAdsMutate (state, data) {
     state.myAds = {...state.myAds, ...data}
   },
-  activeFiltersTreeMutate (state, data) {
-    state.activeFiltersState = {}
-    for (const filter of data) {
-      if (state.activeFiltersState[filter.parent.data.text.slug]) {
-        state.activeFiltersState[filter.parent.data.text.slug] += ',' + filter.data.text.slug
-      } else {
-        state.activeFiltersState[filter.parent.data.text.slug] = filter.data.text.slug
+  activeFiltersCategoryMutate (state, data) {
+    state.activeFiltersState.search = {};
+    if (data.length) {
+      for (const filter of data) {
+        if (state.activeFiltersState.search['category'] && filter.data.text.isLeafNode) {
+          state.activeFiltersState.search['category'] += ',' + filter.data.text.slug;
+        } else {
+          state.activeFiltersState.search['category'] = filter.data.text.slug;
+        }
+        if (!filter.data.text.isLeafNode) {
+          state.activeFiltersState.node = filter.data.text.slug
+        }
       }
+    } else {
+      state.activeFiltersState.search['category'] = state.activeFiltersState.node
     }
   }
 }

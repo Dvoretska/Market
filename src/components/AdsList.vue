@@ -1,9 +1,16 @@
 <template>
 	<div class="main-container">
 		<aside class="filters-box">
-			<category-filter :data="filtersData" v-if="filtersData"></category-filter>
+      <div v-if="categories.loading" class="loading">
+        <vue-loading spinner="wave"></vue-loading>
+      </div>
+			<category-filter
+        v-else-if="filtersData"
+        :data="filtersData">
+      </category-filter>
 		</aside>
 		<div class="content-wrapper">
+       <bread-crumbs></bread-crumbs>
       <div v-if="products.loading" class="loading">
         <vue-loading spinner="wave"></vue-loading>
       </div>
@@ -42,6 +49,7 @@
 <script>
 
 import buttonBar from '@/components/ButtonBar'
+import breadCrumbs from '@/components/BreadCrumbs'
 import CategoryFilter from '@/components/filters/CategoryFilter'
 import VueLoading from 'vue-simple-loading'
 
@@ -49,7 +57,8 @@ export default {
   components: {
     buttonBar,
     CategoryFilter,
-    VueLoading
+    VueLoading,
+    breadCrumbs
   },
   created () {
     this.$store.dispatch('GET_FILTERED_AD_LIST', this.$route.query)
@@ -67,19 +76,23 @@ export default {
       return require('@/assets/images.jpeg')
     },
     filtersData () {
-      if (this.$store.getters.getCategories.results.length) {
+      const categories = this.$store.getters.getCategories;
+      if (categories.results.length) {
         let data = []
         data.push({
           text: {
-            slug: 'category',
-            name: this.$gettext('category'),
+            slug: categories.results[0].parent_slug,
+            name: categories.results[0].parent
           },
+          state: {expanded: true},
           children: []
         })
-        for (const category of this.$store.getters.getCategories.results) {
+        for (const category of categories.results) {
           data[0].children.push({
             text: {
+              parent_slug: category.parent_slug,
               slug: category.slug,
+              isLeafNode: category.is_leaf_node,
               name: category.name,
               count: category.count
             }
@@ -88,8 +101,11 @@ export default {
         return data
       }
     },
+    categories() {
+      return this.$store.getters.getCategories;
+    },
     products () {
-      return this.$store.getters.getProducts
+      return this.$store.getters.getProducts;
     },
     productPageCount () {
       return Math.ceil(this.$store.getters.getProducts.count / 16)
@@ -195,7 +211,7 @@ export default {
 	    	& li:first-child a {
 	    		border-top-left-radius: 5px;
 	    		border-bottom-left-radius: 5px;
-	    	}	    	
+	    	}
 	    	& li:last-child a {
 	    		border-top-right-radius: 5px;
 	    		border-bottom-right-radius: 5px;
@@ -207,7 +223,7 @@ export default {
 				border-color: #7957d5;
 				&:hover {
 					background-color: #7957d5;
-				}	
+				}
 	    	}
 	    	& .disabled:hover a {
 	    		cursor: not-allowed;
