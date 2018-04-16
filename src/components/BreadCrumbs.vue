@@ -3,7 +3,7 @@
   	<nav class="breadcrumbs">
 	  	<ul>
 		  	<li>
-		  		<a v-for="crumb in breadcrumbs">{{ crumb.name }}</a>
+		  		<a v-for="crumb in breadcrumbs" v-if="crumb.name !== 'empty'">{{ crumb.name }}</a>
 		  	</li>
 	  	</ul>
   	</nav>

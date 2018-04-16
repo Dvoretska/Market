@@ -130,7 +130,7 @@ export default {
     }).catch((err) => {
       console.log(err)
       context.commit('loading', false)
-      context.commit('AdErrors', err.response.data)
+      // context.commit('AdErrors', err.response.data)
     })
   },
   GET_MY_ADS: function (context) {

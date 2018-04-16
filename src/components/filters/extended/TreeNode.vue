@@ -192,22 +192,44 @@
     max-width: 120px;
   }
   .count-style {
-    box-shadow: 0 0 0 .125em rgba(121,87,213,.1);
+/*    box-shadow: 0 0 0 .125em rgba(121,87,213,.1);*/
     border-radius: 2px;
     width: 23px;
     height: 23px;
     text-align: center;
-    color: #7957d5;
+    color: #ccc;
   }
-  .tree-node.checked .count-style {
+  .tree-children .tree-node.checked .count-style {
     background-color: #7957d5;
-  }
-  .tree-node.checked .count-style {
+    border-radius: 2px;
     color: #fff;
   }
   .tree-node.checked .tree-content {
     background-color: rgba(121,87,213,.1);
-    border-radius: 5px;
+    border-radius: 5px; 
+  }
+  .tree-node > .tree-content .category-filter-style {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .tree-node.expanded > .tree-content {
+    background-color: rgba(121,87,213,.5);
+    border-radius: 5px;  
+  }
+  .tree-node.expanded.checked > .tree-content .count-style {
+    color: #fff;
+  }
+  .tree-node.expanded > .tree-content .count-style {
+    color: #fff;
+  }
+  .tree-node.expanded.checked > .tree-content .count-style {
+    background-color: transparent;
+    color: #fff;
+  }
+  .tree-node > .tree-content .count-style {
+    background-color: transparent;
+    color: #7957d5;
   }
   .tree-node {
     white-space: nowrap;
@@ -231,7 +253,9 @@
     background: rgba(121,87,213,.1);
     border-radius: 5px;
   }
-
+  .tree-node.expanded:hover > .tree-content {
+    background-color: rgba(121,87,213,.5);
+  }
   .tree-node.selected > .tree-content {
     background-color: #e7eef7;
   }

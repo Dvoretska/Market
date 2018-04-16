@@ -4,7 +4,7 @@
       <div v-if="categories.loading" class="loading">
         <vue-loading spinner="wave"></vue-loading>
       </div>
-			<category-filter
+	  <category-filter
         v-else-if="filtersData"
         :data="filtersData">
       </category-filter>
@@ -29,6 +29,10 @@
 						</div>
 					</div>
 				</div>
+			</div>
+			<div class="no-results-box" v-if="ads.count == 0 && !ads.loading">
+					<img src="../assets/searching-magnifying-glass.svg" alt="" class="no-results-icon">
+					<span class="no-results-span">Sorry, no results were found.</span>
 			</div>
 			<div class="wrapper-paginate">
 			  <paginate v-if="adsPageCount >= 2 && !ads.loading"
@@ -116,6 +120,22 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  .no-results-box {
+	display: flex;
+	justify-content: flex-start;
+	flex-direction: column;
+	align-items: center;
+	height: 100%;
+  	.no-results-span {
+		font-size: 22px;
+  	}
+  	.no-results-icon {
+		width: 100px;
+		height: 100px;
+		margin-top: 80px;
+		margin-bottom: 15px;
+  	}
+  }
   .loading {
     position: fixed;
      top: 40%;
