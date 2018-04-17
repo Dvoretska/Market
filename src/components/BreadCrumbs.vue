@@ -16,7 +16,7 @@ export default {
   computed: {
     breadcrumbs () {
       if(this.$store.getters.getAds.bread_crumbs) {
-      	return this.$store.getters.getAds.bread_crumbs.reverse();
+      	return this.$store.getters.getAds.bread_crumbs;
   	  }
     }
   }
