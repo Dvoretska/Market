@@ -1,9 +1,9 @@
 <template>
-  <div class="container-breadcrumbs" v-if="breadcrumbs.length > 0">
+  <div class="container-breadcrumbs" v-if="breadcrumbs && breadcrumbs.length > 0">
   	<nav class="breadcrumbs">
 	  	<ul>
 		  	<li>
-		  		<a v-for="crumb in breadcrumbs" v-if="crumb.name !== 'empty'">{{ crumb.name }}</a>
+		  		<a v-for="crumb in breadcrumbs" v-if="crumb.name !== 'empty'" @click="filterHandler(crumb)">{{ crumb.name }}</a>
 		  	</li>
 	  	</ul>
   	</nav>
@@ -13,10 +13,21 @@
 <script>
 
 export default {
+  methods: {
+  	filterHandler (crumb) {
+  		if(crumb.slug) {
+  			this.$store.dispatch('GET_FILTERED_AD_LIST', {category: crumb.slug})
+  			this.$store.dispatch('GET_CATEGORIES', {category: crumb.slug, isLeafNode: false})
+  		} else {
+  			this.$store.dispatch('GET_FILTERED_AD_LIST')
+  			this.$store.dispatch('GET_CATEGORIES')
+  		}
+  	} 
+  },
   computed: {
     breadcrumbs () {
       if(this.$store.getters.getAds.bread_crumbs) {
-      	return this.$store.getters.getAds.bread_crumbs;
+      	return this.$store.getters.getAds.bread_crumbs
   	  }
     }
   }
