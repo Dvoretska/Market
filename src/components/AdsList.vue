@@ -65,10 +65,9 @@ export default {
     breadCrumbs
   },
   created () {
-  	console.log('this.$store.getters.getAds', this.$store.getters.getAds)
     this.$store.dispatch('GET_FILTERED_AD_LIST', this.$route.query)
     if (!this.$store.getters.getCategories.length) {
-      this.$store.dispatch('GET_CATEGORIES')
+      this.$store.dispatch('GET_CATEGORIES', {category: this.$route.query.category, isLeafNode: false})
     }
   },
   methods: {

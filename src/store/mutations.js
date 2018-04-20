@@ -51,5 +51,11 @@ export default {
     } else {
       state.activeFiltersState.search['category'] = state.activeFiltersState.node
     }
+  },
+  categoriesStaleMutate (state) {
+    state.categories.staleResults = state.categories.results
+  },
+  clearCategoriesMutate (state) {
+    state.categories.results = []
   }
 }

@@ -3,7 +3,7 @@
   	<nav class="breadcrumbs">
 	  	<ul>
 		  	<li>
-		  		<a v-for="crumb in breadcrumbs" v-if="crumb.name !== 'empty'" @click="filterHandler(crumb)">{{ crumb.name }}</a>
+		  		<a v-for="crumb in breadcrumbs" v-if="crumb.name !== 'empty'" @click.prevent="filterHandler(crumb)" v-bind:class="{'disabled': crumb == breadcrumbs[breadcrumbs.length-1]}">{{ crumb.name }}</a>
 		  	</li>
 	  	</ul>
   	</nav>
@@ -35,6 +35,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+	.disabled {
+		pointer-events: none;
+		cursor: default;
+	}
  	.container-breadcrumbs {
  		height: auto;
  		padding: 10px;

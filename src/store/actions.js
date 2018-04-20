@@ -81,14 +81,17 @@ export default {
     })
   },
   GET_CATEGORIES: function (context, data) {
+    context.commit('loading', true)
     if (data === undefined || data.isLeafNode === false) {
-      context.commit('categoriesMutate', {loading: true});
+      context.commit('categoriesStaleMutate');  
+      context.commit('categoriesMutate', {loading: true});      
       axios.get(`${MAIN_URL}categories/`, {
         params: data
       })
         .then((response) => {
           if (response.data.results && response.data.results.length) {
             response.data.loading = false;
+            context.commit('loading', false)
             context.commit('categoriesMutate', response.data);
           } else {
             context.commit('categoriesMutate', {loading: false});
@@ -130,7 +133,6 @@ export default {
     }).catch((err) => {
       console.log(err)
       context.commit('loading', false)
-      // context.commit('AdErrors', err.response.data)
     })
   },
   GET_MY_ADS: function (context) {

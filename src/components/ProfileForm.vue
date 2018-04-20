@@ -41,7 +41,6 @@
 
 <script>
 import buttonBar from '@/components/ButtonBar'
-import modalChange from '@/components/ModalChange'
 import profileAdsForm from '@/components/ProfileAdsForm'
 import profileMessageForm from '@/components/ProfileMessageForm'
 import profileSettingsForm from '@/components/ProfileSettingsForm'
@@ -49,7 +48,6 @@ import profileSettingsForm from '@/components/ProfileSettingsForm'
 export default {
   components: {
     buttonBar,
-    modalChange,
     profileAdsForm,
     profileMessageForm,
     profileSettingsForm

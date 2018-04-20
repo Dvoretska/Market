@@ -15,11 +15,14 @@
     props: {
       data: Array
     },
+    mounted () {
+
+    },
     methods: {
       changeFiltersTree (checkedNodes) {
-        this.$store.commit('activeFiltersCategoryMutate', checkedNodes);
-        const filters = this.$store.getters.getActiveFilters;
-        this.$store.dispatch('GET_FILTERED_AD_LIST', filters);
+        this.$store.commit('activeFiltersCategoryMutate', checkedNodes)
+        const filters = this.$store.getters.getActiveFilters
+        this.$store.dispatch('GET_FILTERED_AD_LIST', filters)
         if(checkedNodes.length) {
           this.$store.dispatch('GET_CATEGORIES', {
             category: checkedNodes[0].data.text.slug,

@@ -2,20 +2,22 @@
     <section class="ads">
         <b-field horizontal :label="getSubject()" class="align-left">
             <b-input name="subject" expanded v-model="subject"></b-input>
+            <div class="counter"><b>70 </b>signs left</div>
         </b-field>
 
         <b-field horizontal :label="getTopic()" class="align-left">
-            <b-select placeholder="Select a topic" v-model="category">
-                <option v-for="category in categories" class="categories" :value="category.slug">{{ category.name }}</option>
-            </b-select>
+            <button @click="show" class="topic-button input">
+              <img src="../assets/arrow-down-expand.svg" alt="" class="icon-expand-arrow">
+            </button>
+            <modal-choose-category :rootCategory="rootCategory" :fetchSubcategory="fetchSubcategory"></modal-choose-category>
         </b-field>
         <b-field horizontal :label="getPrice()" class="align-left price">
             <b-input name="price" expanded v-model="price"></b-input>
         </b-field>
-        <span></span>
 
         <b-field horizontal :label="getDescription()" class="align-left">
             <b-input type="textarea" v-model="message"></b-input>
+            <div class="counter"><b>4000 </b>signs left</div>
         </b-field>
 
         <b-field horizontal :label="getPhoto()" class="align-left">
@@ -72,12 +74,13 @@
 </template>
 
 <script>
-
 import buttonBar from '@/components/ButtonBar'
+import modalChooseCategory from '@/components/ModalChooseCategory'
 
 export default {
   components: {
-    buttonBar
+    buttonBar,
+    modalChooseCategory
   },
   data () {
     return {
@@ -93,7 +96,8 @@ export default {
       dragAndDropCapable: false,
       files: [],
       isHighlight: false,
-      warning: false
+      warning: false,
+      rootCategory: true
     }
   },
   mounted () {
@@ -128,6 +132,15 @@ export default {
     }
   },
   methods: {
+    fetchSubcategory (item) {
+      this.rootCategory = false
+      this.$store.dispatch('GET_CATEGORIES', {category: item, isLeafNode: false})
+    },
+    show () {
+      this.rootCategory = true
+      this.$modal.show('choose-category')
+      this.$store.dispatch('GET_CATEGORIES')
+    },
     determineDragAndDropCapable () {
        var div = document.createElement('div')
        return ( ( 'draggable' in div )
@@ -221,134 +234,148 @@ export default {
 </script>
 
 <style scoped lang="scss">
-    #file-drag-drop {
-      cursor: pointer;
-      position: relative;
-      .fileform {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        height: 70px;
-        background: #f4f4f4;
-        border-radius: 4px;
-        border: 2px dashed #ccc;
-        margin-bottom: 10px;
-        .icon-cloud-download {
-          width: 40px;
-          height: 40px;
-          margin-left: 10px;
-        }
-        .warning {
-          width:100%;
-          color: red;
-          line-height: 16px;
-          font-size: 12px;
-          text-align: center;
-          margin-bottom: 10px;
-        }
+  .topic-button {
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    .icon-expand-arrow {
+      width: 15px;
+      height: 15px;
+    }
+  }
+  /deep/ .field {
+    flex-direction: column;
+    .counter {
+      color: #A6A6A6;
+      font-size: 12px;
+    }
+  }
+  #file-drag-drop {
+    cursor: pointer;
+    position: relative;
+    .fileform {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      height: 70px;
+      background: #f4f4f4;
+      border-radius: 4px;
+      border: 2px dashed #ccc;
+      margin-bottom: 10px;
+      .icon-cloud-download {
+        width: 40px;
+        height: 40px;
+        margin-left: 10px;
       }
-      .inputfile {
-        width: 0.1px;
-        height: 0.1px;
-        opacity: 0;
-        overflow: hidden;
-        position: absolute;
-        z-index: -1;
-        top: 100%;
-        left: 0; 
+      .warning {
+        width:100%;
+        color: red;
+        line-height: 16px;
+        font-size: 12px;
+        text-align: center;
+        margin-bottom: 10px;
       }
     }
-    .wrapper-file-listing {
-      display: flex;
-      justify-content: flex-start;
-      flex-wrap: wrap;
-      .file-listing{
+    .inputfile {
+      width: 0.1px;
+      height: 0.1px;
+      opacity: 0;
+      overflow: hidden;
+      position: absolute;
+      z-index: -1;
+      top: 100%;
+      left: 0; 
+    }
+  }
+  .wrapper-file-listing {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    .file-listing{
+      width: 100px;
+      margin: 5px;
+      border-bottom: 1px solid #ddd;
+      position: relative;
+      & img {
+        height: 100px;
         width: 100px;
-        margin: 5px;
-        border-bottom: 1px solid #ddd;
-        position: relative;
-        & img {
-          height: 100px;
-          width: 100px;
-        }
-        .remove-container {
-          position: absolute;
-          top: 0; 
-          right: 0;
-          z-index: 100;
+      }
+      .remove-container {
+        position: absolute;
+        top: 0; 
+        right: 0;
+        z-index: 100;
+        width: 16px;
+        height: 16px;
+        .icon-close {
           width: 16px;
           height: 16px;
-          .icon-close {
-            width: 16px;
-            height: 16px;
-            position: absolute;
-            top: 3px;
-            right: 3px;
-          }
+          position: absolute;
+          top: 3px;
+          right: 3px;
         }
       }
     }
-    .highlight {
-      border: 2px dashed #7957d5 !important;
-      background-color: #fff !important;
+  }
+  .highlight {
+    border: 2px dashed #7957d5 !important;
+    background-color: #fff !important;
+  }
+  .align-left {
+    /deep/ label {
+      text-align: left;
+      padding: 0;
+      color: #3A474D;
+      font-weight: 600;
+      font-size: 18px;
     }
-    .align-left {
-      /deep/ label {
-        text-align: left;
-        padding: 0;
-        color: #3A474D;
-        font-weight: 600;
-        font-size: 18px;
-      }
-    }
-    .align-center /deep/ .control {
-        text-align: center;
-    }
-    .ads {
-        margin-top: 70px;
-        width: 550px;
-        outline: none;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .price {
-      width: 146px;
-    }
-    .contact-info-container /deep/ label  {
-        display: block;
-    }
-    .contact-info-field {
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 5px;
-    }
-    .contact-info-field /deep/ .control {
-        display: inline-block;
-    }
-    .contact-info-container /deep/ input {
-        width: 420px;
-        height: 30px;
-    }
-    /deep/ .intl-phone-input {
-        width: 420px;
-    }
-    .contact-info-container /deep/ input {
-        border: 1px solid rgba(128,128,128,.5);
-    }
-    .button-anim-ads {
-        margin-bottom: 7px;
-        margin-top: 6px;
-    }
-    /deep/ .input:hover  {
-        border-color: #b5b5b5;
-    }
-    /deep/ .input:focus, .input:active,
-    .textarea:focus,
-    .textarea:active {
-      border-color: #7957d5;
-      box-shadow: 0 0 0 0.125em rgba(121, 87, 213, 0.25);
-    }
+  }
+  .ads {
+      margin-top: 70px;
+      width: 550px;
+      outline: none;
+      margin-left: auto;
+      margin-right: auto;
+  }
+  .price, .topic-button {
+    width: 146px;
+  }
+  .contact-info-container /deep/ label  {
+      display: block;
+  }
+  .contact-info-field {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 5px;
+  }
+  .contact-info-field /deep/ .control {
+      display: inline-block;
+  }
+  /deep/ .intl-phone-input {
+      width: 420px;
+  }
+  .contact-info-container /deep/ input {
+      width: 420px;
+      height: 30px;
+      border: 1px solid rgba(128,128,128,.5);
+  }
+  .button-anim-ads {
+      margin-bottom: 7px;
+      margin-top: 6px;
+  }
+  /deep/ .input:hover  {
+      border-color: #b5b5b5;
+  }
+  /deep/ .input:focus, .input:active,
+  .textarea:focus,
+  .textarea:active {
+    border-color: #7957d5;
+    box-shadow: 0 0 0 0.125em rgba(121, 87, 213, 0.25);
+  }
+  p.control {
+    text-align: center;
+  }
 </style>

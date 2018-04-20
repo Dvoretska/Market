@@ -4,7 +4,8 @@ export default {
   },
   userDetailsState: {},
   categories: {
-    results: []
+    results: [],
+    staleResults: []
   },
   ads: {
     results: []
