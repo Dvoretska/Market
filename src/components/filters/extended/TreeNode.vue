@@ -85,6 +85,9 @@
       getNodeCount() {
         return this.node.text.count === undefined ? this.$store.getters.getAds.count : this.node.text.count
       },
+      getActiveFiltersStateSearch() {
+        return this.$store.getters.getActiveFilters
+      },
       nodeClass() {
         let state = this.state
         let hasChildren = this.hasChildren()
@@ -96,15 +99,22 @@
         }
 
         if (this.options.checkbox) {
-          classes['checked'] = state.checked
+          classes['checked'] = state.checked || this.getSelectedFromSearch()
           classes['indeterminate'] = state.indeterminate
         }
-
         return classes
       }
     },
 
     methods: {
+      getSelectedFromSearch() {
+        if (this.node.data.text.isLeafNode) {
+          this.state.checked = this.getActiveFiltersStateSearch.category.split(',').includes(
+            this.node.data.text.name.toLowerCase()
+          );
+          return this.state.checked
+        }
+      },
       onNodeFocus() {
         this.tree.activeElement = this.node
       },
@@ -206,7 +216,7 @@
   }
   .tree-node.checked .tree-content {
     background-color: rgba(121,87,213,.1);
-    border-radius: 5px; 
+    border-radius: 5px;
   }
   .tree-node > .tree-content .category-filter-style {
     width: 100%;
@@ -215,7 +225,7 @@
   }
   .tree-node.expanded > .tree-content {
     background-color: rgba(121,87,213,.5);
-    border-radius: 5px;  
+    border-radius: 5px;
   }
   .tree-node.expanded.checked > .tree-content .count-style {
     color: #fff;

@@ -35,6 +35,9 @@ export default {
   myAdsMutate (state, data) {
     state.myAds = {...state.myAds, ...data}
   },
+  activeFiltersSearchMutate(state, data) {
+    state.activeFiltersState.search = data;
+  },
   activeFiltersCategoryMutate (state, data) {
     state.activeFiltersState.search = {};
     if (data.length) {
