@@ -132,7 +132,7 @@
         }
       },
 
-      select({ctrlKey} = evnt) {
+      select({ctrlKey} = event) {
         const opts = this.options
 
         if (opts.checkbox && opts.checkOnSelect) {

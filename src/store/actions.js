@@ -80,28 +80,6 @@ export default {
       console.log(err)
     })
   },
-  GET_CATEGORIES: function (context, data) {
-    context.commit('loading', true)
-    if (data === undefined || data.isLeafNode === false) {
-      context.commit('categoriesStaleMutate');
-      context.commit('categoriesMutate', {loading: true});
-      axios.get(`${MAIN_URL}categories/`, {
-        params: data
-      })
-        .then((response) => {
-          if (response.data.results && response.data.results.length) {
-            response.data.loading = false;
-            context.commit('loading', false);
-            context.commit('categoriesMutate', response.data);
-            context.commit('activeFiltersSearchMutate', {category: data.category});
-          } else {
-            context.commit('categoriesMutate', {loading: false});
-          }
-        }).catch((err) => {
-        console.log(err)
-      })
-    }
-  },
   TOKEN_VERIFY: function (context, next) {
     const TOKEN = localStorage.getItem('token')
     if (TOKEN) {
@@ -150,6 +128,28 @@ export default {
       }).catch((err) => {
         console.log(err)
       })
+  },
+  GET_CATEGORIES: function (context, data) {
+    context.commit('loading', true)
+    if (data === undefined || data.isLeafNode === false) {
+      context.commit('categoriesStaleMutate');
+      context.commit('categoriesMutate', {loading: true});
+      axios.get(`${MAIN_URL}categories/`, {
+        params: data
+      })
+        .then((response) => {
+          if (response.data.results && response.data.results.length) {
+            response.data.loading = false;
+            context.commit('loading', false);
+            context.commit('categoriesMutate', response.data);
+            context.commit('activeFiltersSearchMutate', {category: data.category});
+          } else {
+            context.commit('categoriesMutate', {loading: false});
+          }
+        }).catch((err) => {
+        console.log(err)
+      })
+    }
   },
   GET_FILTERED_AD_LIST: function (context, data) {
     context.commit('adsMutate', {loading: true})
