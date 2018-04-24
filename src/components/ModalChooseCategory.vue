@@ -18,12 +18,8 @@
       </div>
 
       <div v-else class="subcategories-container">
-        <div v-for="subcategory in categories" class="category-item subcategory-item" ref="subCategory_item" @click="fetchSubSubCategory(subcategory.slug)">{{ subcategory.name }}<img src="../assets/categoryIcons/arrow-right.svg" v-if="subcategory.is_leaf_node == false" class="icon-arrow-right"></div>
+        <div v-for="subcategory in categories" class="category-item subcategory-item" ref="subCategory_item" @click="fetchSubSubCategory(subcategory)" v-on="{ click: subcategory.is_leaf_node == true ? hide : null }">{{ subcategory.name }}<img src="../assets/categoryIcons/arrow-right.svg" v-if="subcategory.is_leaf_node == false" class="icon-arrow-right"></div>
       </div>
-
-<!--       <div class="subcategories-container">
-        <div v-for="subSubCategory in categories" class="category-item subcategory-item">{{ subSubCategory.name }}</div>
-      </div> -->
 
     </div>
 	</modal>
@@ -36,32 +32,26 @@ export default {
   components: {
     VueLoading
   },
-  // data () {
-  //   return {
-  //     chosenCategory: ''
-  //   }
-  // },
   props: {
     rootCategory: Boolean,
-    fetchSubcategory: Function
+    fetchSubcategory: Function,
+    fetchSubSubCategory: Function
   },
 
   methods: {
     getIconURL (category) {
-      return require(`@/assets/categoryIcons/${category}.svg`)
+      try {
+        return require(`@/assets/categoryIcons/${category}.svg`)        
+      }
+      catch (ex) {
+        console.log(ex)
+      }
     },
     hide () {
       this.$modal.hide('choose-category')
-    },
-    fetchSubSubCategory (item) {
-      this.$store.dispatch('GET_CATEGORIES', {category: item, isLeafNode: false})
-      this.$refs.subCategory_item.hidden = true
     }
   },
   computed: {
-    subCategories() {
-      return this.$store.getters.getCategories.staleResults
-    },
     categories() {
       return this.$store.getters.getCategories.results
     },

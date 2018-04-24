@@ -1,23 +1,24 @@
 <template>
-    <section class="ads">
+    <section class="section-ads">
         <b-field horizontal :label="getSubject()" class="align-left">
             <b-input name="subject" expanded v-model="subject"></b-input>
-            <div class="counter"><b>70 </b>signs left</div>
+            <div class="counter-validation"><b>70 </b>signs left</div>
         </b-field>
 
         <b-field horizontal :label="getTopic()" class="align-left">
-            <button @click="show" class="topic-button input">
+            <button @click="show" class="field-topic input">
+              <span class="topic-span">{{ category.name }}</span>
               <img src="../assets/arrow-down-expand.svg" alt="" class="icon-expand-arrow">
             </button>
-            <modal-choose-category :rootCategory="rootCategory" :fetchSubcategory="fetchSubcategory"></modal-choose-category>
+            <modal-choose-category :rootCategory="rootCategory" :fetchSubcategory="fetchSubcategory" :fetchSubSubCategory="fetchSubSubCategory"></modal-choose-category>
         </b-field>
-        <b-field horizontal :label="getPrice()" class="align-left price">
+        <b-field horizontal :label="getPrice()" class="align-left field-price">
             <b-input name="price" expanded v-model="price"></b-input>
         </b-field>
 
         <b-field horizontal :label="getDescription()" class="align-left">
             <b-input type="textarea" v-model="message"></b-input>
-            <div class="counter"><b>4000 </b>signs left</div>
+            <div class="counter-validation"><b>4000 </b>signs left</div>
         </b-field>
 
         <b-field horizontal :label="getPhoto()" class="align-left">
@@ -136,6 +137,10 @@ export default {
       this.rootCategory = false
       this.$store.dispatch('GET_CATEGORIES', {category: item, isLeafNode: false})
     },
+    fetchSubSubCategory (category) {
+      this.$store.dispatch('GET_CATEGORIES', {category: category.slug, isLeafNode: false})
+      this.category = category
+    },
     show () {
       this.rootCategory = true
       this.$modal.show('choose-category')
@@ -149,7 +154,6 @@ export default {
           && 'FileReader' in window
     },
     getImagePreviews () {
-      console.log('this.files', this.files)
       for (let i = 0; i < this.files.length; i++){
         if (/\.(jpe?g|png|gif)$/i.test(this.files[i].name)) {
           let reader = new FileReader()
@@ -177,8 +181,11 @@ export default {
     },
     createAd () {
       var formData = new FormData()
-      formData.append('image', this.file)
-      formData.append('category', this.category)
+       for( var i = 0; i < this.files.length; i++ ){
+        let file = this.files[i]
+        formData.append('files[' + i + ']', file)
+      }
+      formData.append('category', this.category.slug)
       formData.append('subject', this.subject)
       formData.append('message', this.message)
       formData.append('location', this.location)
@@ -234,148 +241,156 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .topic-button {
-    text-align: right;
-    display: flex;
-    justify-content: flex-end;
-    .icon-expand-arrow {
-      width: 15px;
-      height: 15px;
-    }
-  }
-  /deep/ .field {
-    flex-direction: column;
-    .counter {
-      color: #A6A6A6;
-      font-size: 12px;
-    }
-  }
-  #file-drag-drop {
-    cursor: pointer;
-    position: relative;
-    .fileform {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      height: 70px;
-      background: #f4f4f4;
-      border-radius: 4px;
-      border: 2px dashed #ccc;
-      margin-bottom: 10px;
-      .icon-cloud-download {
-        width: 40px;
-        height: 40px;
-        margin-left: 10px;
-      }
-      .warning {
-        width:100%;
-        color: red;
-        line-height: 16px;
-        font-size: 12px;
-        text-align: center;
-        margin-bottom: 10px;
-      }
-    }
-    .inputfile {
-      width: 0.1px;
-      height: 0.1px;
-      opacity: 0;
-      overflow: hidden;
-      position: absolute;
-      z-index: -1;
-      top: 100%;
-      left: 0; 
-    }
-  }
-  .wrapper-file-listing {
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    .file-listing{
-      width: 100px;
-      margin: 5px;
-      border-bottom: 1px solid #ddd;
+  .section-ads {
+    margin-top: 70px;
+    width: 550px;
+    outline: none;
+    margin-left: auto;
+    margin-right: auto;
+    .field-topic {
       position: relative;
-      & img {
-        height: 100px;
-        width: 100px;
+      .topic-span {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        max-width: 130px;
+        display: inline-block;
+        height: auto;
       }
-      .remove-container {
+      .icon-expand-arrow {
+        width: 15px;
+        height: 15px;
         position: absolute;
-        top: 0; 
-        right: 0;
-        z-index: 100;
-        width: 16px;
-        height: 16px;
-        .icon-close {
+        right: 10px;
+      }
+    }
+    /deep/ .field {
+      flex-direction: column;
+      .counter-validation {
+        color: #A6A6A6;
+        font-size: 12px;
+      }
+    }
+    #file-drag-drop {
+      cursor: pointer;
+      position: relative;
+      .fileform {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        height: 70px;
+        background: #f4f4f4;
+        border-radius: 4px;
+        border: 2px dashed #ccc;
+        margin-bottom: 10px;
+        .icon-cloud-download {
+          width: 40px;
+          height: 40px;
+          margin-left: 10px;
+        }
+        .warning {
+          width:100%;
+          color: red;
+          line-height: 16px;
+          font-size: 12px;
+          text-align: center;
+          margin-bottom: 10px;
+        }
+      }
+      .inputfile {
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        z-index: -1;
+        top: 100%;
+        left: 0; 
+      }
+    }
+    .wrapper-file-listing {
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      .file-listing{
+        width: 100px;
+        margin: 5px;
+        border-bottom: 1px solid #ddd;
+        position: relative;
+        & img {
+          height: 100px;
+          width: 100px;
+        }
+        .remove-container {
+          position: absolute;
+          top: 0; 
+          right: 0;
+          z-index: 100;
           width: 16px;
           height: 16px;
-          position: absolute;
-          top: 3px;
-          right: 3px;
+          .icon-close {
+            width: 16px;
+            height: 16px;
+            position: absolute;
+            top: 3px;
+            right: 3px;
+          }
         }
       }
     }
-  }
-  .highlight {
-    border: 2px dashed #7957d5 !important;
-    background-color: #fff !important;
-  }
-  .align-left {
-    /deep/ label {
-      text-align: left;
-      padding: 0;
-      color: #3A474D;
-      font-weight: 600;
-      font-size: 18px;
+    .highlight {
+      border: 2px dashed #7957d5 !important;
+      background-color: #fff !important;
     }
-  }
-  .ads {
-      margin-top: 70px;
-      width: 550px;
-      outline: none;
-      margin-left: auto;
-      margin-right: auto;
-  }
-  .price, .topic-button {
-    width: 146px;
-  }
-  .contact-info-container /deep/ label  {
-      display: block;
-  }
-  .contact-info-field {
-      display: flex;
-      width: 100%;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 5px;
-  }
-  .contact-info-field /deep/ .control {
-      display: inline-block;
-  }
-  /deep/ .intl-phone-input {
-      width: 420px;
-  }
-  .contact-info-container /deep/ input {
-      width: 420px;
-      height: 30px;
-      border: 1px solid rgba(128,128,128,.5);
-  }
-  .button-anim-ads {
-      margin-bottom: 7px;
-      margin-top: 6px;
-  }
-  /deep/ .input:hover  {
-      border-color: #b5b5b5;
-  }
-  /deep/ .input:focus, .input:active,
-  .textarea:focus,
-  .textarea:active {
-    border-color: #7957d5;
-    box-shadow: 0 0 0 0.125em rgba(121, 87, 213, 0.25);
-  }
-  p.control {
-    text-align: center;
+    .align-left {
+      /deep/ label {
+        text-align: left;
+        padding: 0;
+        color: #3A474D;
+        font-weight: 600;
+        font-size: 18px;
+      }
+    }
+    .field-price, .field-topic {
+      width: 170px;
+    }
+    .contact-info-container /deep/ label  {
+        display: block;
+    }
+    .contact-info-field {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 5px;
+    }
+    .contact-info-field /deep/ .control {
+        display: inline-block;
+    }
+    /deep/ .intl-phone-input {
+        width: 420px;
+    }
+    .contact-info-container /deep/ input {
+        width: 420px;
+        height: 30px;
+        border: 1px solid rgba(128,128,128,.5);
+    }
+    .button-anim-ads {
+        margin-bottom: 7px;
+        margin-top: 6px;
+    }
+    /deep/ .input:hover  {
+        border-color: #b5b5b5;
+    }
+    /deep/ .input:focus, .input:active,
+    .textarea:focus,
+    .textarea:active {
+      border-color: #7957d5;
+      box-shadow: 0 0 0 0.125em rgba(121, 87, 213, 0.25);
+    }
+    p.control {
+      text-align: center;
+    }
   }
 </style>

@@ -92,10 +92,12 @@ export default {
           if (response.data.results && response.data.results.length) {
             response.data.loading = false;
             context.commit('loading', false);
-            context.commit('categoriesMutate', response.data);
-            context.commit('activeFiltersSearchMutate', {category: data.category});
+            context.commit('categoriesMutate', response.data)
+            if(data) {
+              context.commit('activeFiltersSearchMutate', {category: data.category})
+            }
           } else {
-            context.commit('categoriesMutate', {loading: false});
+            context.commit('categoriesMutate', {loading: false})
           }
         }).catch((err) => {
         console.log(err)
@@ -126,7 +128,8 @@ export default {
     context.commit('loading', true)
     axios.post(`${MAIN_URL}ads/ad/`, data, {
       headers: {
-        authorization: `jwt ${TOKEN}`
+        authorization: `jwt ${TOKEN}`,
+        'Content-Type': 'multipart/form-data'
       }
     }).then((response) => {
       context.commit('loading', false)
