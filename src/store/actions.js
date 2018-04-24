@@ -1,5 +1,6 @@
 import axios from 'axios'
 import router from '../router/index.js'
+import serviceLanguage from '../services/language.js'
 
 const MAIN_URL = 'https://servermarket.herokuapp.com/'
 // const MAIN_URL = '//localhost:8000/'
@@ -120,7 +121,8 @@ export default {
     axios.get(`${MAIN_URL}my/ads/`,
       {
         headers: {
-          authorization: `jwt ${TOKEN}`
+          authorization: `jwt ${TOKEN}`,
+          'Accept-Language': serviceLanguage.language
         }
       }).then((response) => {
         response.data.loading = false
@@ -135,7 +137,8 @@ export default {
       context.commit('categoriesStaleMutate');
       context.commit('categoriesMutate', {loading: true});
       axios.get(`${MAIN_URL}categories/`, {
-        params: data
+        params: {category: data.category},
+        headers: {'Accept-Language': serviceLanguage.language}
       })
         .then((response) => {
           if (response.data.results && response.data.results.length) {
@@ -156,7 +159,8 @@ export default {
     router.push({path: '/', query: data})
     axios.get(`${MAIN_URL}ads/`,
       {
-        params: data
+        params: data,
+        headers: {'Accept-Language': serviceLanguage.language}
       }).then((response) => {
         response.data.loading = false
         context.commit('adsMutate', response.data)

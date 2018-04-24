@@ -37,6 +37,7 @@
     methods: {
       changeLanguage() {
         localStorage.setItem('language', this.$language.current)
+        window.location.reload()
       }
     }
   }

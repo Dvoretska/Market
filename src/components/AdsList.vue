@@ -67,7 +67,9 @@ export default {
   created () {
     this.$store.dispatch('GET_FILTERED_AD_LIST', this.$route.query)
     if (!this.$store.getters.getCategories.length) {
-      this.$store.dispatch('GET_CATEGORIES', {category: this.$route.query.category, isLeafNode: false})
+      this.$store.dispatch('GET_CATEGORIES', {
+        category: this.$route.query.category, isLeafNode: false, language: this.$language.current
+      })
     }
   },
   methods: {

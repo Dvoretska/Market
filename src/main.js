@@ -15,6 +15,7 @@ import GetTextPlugin from 'vue-gettext'
 import translations from './translations.json'
 import Paginate from 'vuejs-paginate'
 import VueTree from 'liquor-tree'
+import serviceLanguage from './services/language.js'
 
 Vue.use(VueTree)
 Vue.use(GetTextPlugin, {
@@ -22,7 +23,7 @@ Vue.use(GetTextPlugin, {
     en_US: 'English',
     ru_RU: 'Русский'
   },
-  defaultLanguage: localStorage.getItem('language') || navigator.language.replace('-', '_'),
+  defaultLanguage: serviceLanguage.locale,
   languageVmMixin: {
     computed: {
       currentKebabCase: function () {
