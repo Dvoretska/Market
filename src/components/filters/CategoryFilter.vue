@@ -19,23 +19,32 @@
 
     },
     methods: {
-      changeFiltersTree (checkedNodes) {
+      changeFiltersTree (node) {
+        let nodes = node.tree.checkedNodes
+        let checkedNodes = []
+        if (node.parent) {
+          for (let item of node.parent.children) {
+            if (item.states.checked) {
+              checkedNodes.push(item)
+            }
+          }
+        }
         this.$store.commit('activeFiltersCategoryMutate', checkedNodes)
         const filters = this.$store.getters.getActiveFilters
         this.$store.dispatch('GET_FILTERED_AD_LIST', filters)
-        if(checkedNodes.length) {
+        if(nodes.length) {
           this.$store.dispatch('GET_CATEGORIES', {
-            category: checkedNodes[0].data.text.slug,
-            parent: checkedNodes[0].data.text.parent_slug,
-            isLeafNode: checkedNodes[0].data.text.isLeafNode
+            category: nodes[0].data.text.slug,
+            parent: nodes[0].data.text.parent_slug,
+            isLeafNode: nodes[0].data.text.isLeafNode
           })
         }
       },
       onChecked (node) {
-        this.changeFiltersTree(node.tree.checkedNodes)
+        this.changeFiltersTree(node)
       },
       onUnchecked (node) {
-        this.changeFiltersTree(node.tree.checkedNodes)
+        this.changeFiltersTree(node)
       }
     },
     components: {

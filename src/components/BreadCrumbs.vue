@@ -22,7 +22,7 @@ export default {
   			this.$store.dispatch('GET_FILTERED_AD_LIST')
   			this.$store.dispatch('GET_CATEGORIES')
   		}
-  	} 
+  	}
   },
   computed: {
     breadcrumbs () {
@@ -45,18 +45,6 @@ export default {
  		color: #3f4c52;
  		font-size: 16px;
  	}
- // 	nav.breadcrumbs a {
-	//   color: #666;
-	//   font-size: 12px;
-	// }
-	// nav.breadcrumbs ul {
-	//   list-style: none;
-	//   margin: 0;
-	//   padding: 0;
-	// }
-	// nav.breadcrumbs ul li {
-	//   display: inline-block;
-	// }
 	nav.breadcrumbs ul li a:after {
 	  content: '/';
 	  margin-left: 5px;

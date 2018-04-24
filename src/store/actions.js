@@ -1,5 +1,6 @@
 import axios from 'axios'
 import router from '../router/index.js'
+import serviceLanguage from '../services/language.js'
 
 const MAIN_URL = 'https://servermarket.herokuapp.com/'
 // const MAIN_URL = '//localhost:8000/'
@@ -80,30 +81,6 @@ export default {
       console.log(err)
     })
   },
-  GET_CATEGORIES: function (context, data) {
-    context.commit('loading', true)
-    if (data === undefined || data.isLeafNode === false) {
-      context.commit('categoriesStaleMutate');
-      context.commit('categoriesMutate', {loading: true});
-      axios.get(`${MAIN_URL}categories/`, {
-        params: data
-      })
-        .then((response) => {
-          if (response.data.results && response.data.results.length) {
-            response.data.loading = false;
-            context.commit('loading', false);
-            context.commit('categoriesMutate', response.data)
-            if(data) {
-              context.commit('activeFiltersSearchMutate', {category: data.category})
-            }
-          } else {
-            context.commit('categoriesMutate', {loading: false})
-          }
-        }).catch((err) => {
-        console.log(err)
-      })
-    }
-  },
   TOKEN_VERIFY: function (context, next) {
     const TOKEN = localStorage.getItem('token')
     if (TOKEN) {
@@ -145,7 +122,8 @@ export default {
     axios.get(`${MAIN_URL}my/ads/`,
       {
         headers: {
-          authorization: `jwt ${TOKEN}`
+          authorization: `jwt ${TOKEN}`,
+          'Accept-Language': serviceLanguage.language
         }
       }).then((response) => {
         response.data.loading = false
@@ -154,12 +132,36 @@ export default {
         console.log(err)
       })
   },
+  GET_CATEGORIES: function (context, data) {
+    context.commit('loading', true)
+    if (data === undefined || data.isLeafNode === false) {
+      context.commit('categoriesStaleMutate');
+      context.commit('categoriesMutate', {loading: true});
+      axios.get(`${MAIN_URL}categories/`, {
+        params: {category: data.category},
+        headers: {'Accept-Language': serviceLanguage.language}
+      })
+        .then((response) => {
+          if (response.data.results && response.data.results.length) {
+            response.data.loading = false;
+            context.commit('loading', false);
+            context.commit('categoriesMutate', response.data);
+            context.commit('activeFiltersSearchMutate', {category: data.category});
+          } else {
+            context.commit('categoriesMutate', {loading: false});
+          }
+        }).catch((err) => {
+        console.log(err)
+      })
+    }
+  },
   GET_FILTERED_AD_LIST: function (context, data) {
     context.commit('adsMutate', {loading: true})
     router.push({path: '/', query: data})
     axios.get(`${MAIN_URL}ads/`,
       {
-        params: data
+        params: data,
+        headers: {'Accept-Language': serviceLanguage.language}
       }).then((response) => {
         response.data.loading = false
         context.commit('adsMutate', response.data)
