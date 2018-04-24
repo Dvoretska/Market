@@ -137,8 +137,9 @@ export default {
     if (data === undefined || data.isLeafNode === false) {
       context.commit('categoriesStaleMutate');
       context.commit('categoriesMutate', {loading: true});
+      const payload = data ? {category: data.category} : ''
       axios.get(`${MAIN_URL}categories/`, {
-        params: {category: data.category},
+        params: {category: payload},
         headers: {'Accept-Language': serviceLanguage.language}
       })
         .then((response) => {
