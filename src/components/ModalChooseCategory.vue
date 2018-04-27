@@ -1,26 +1,28 @@
 <template>
 	<modal name="choose-category" :height="270" :width="600" class="modal-window">
-    <div class="modal-title">
-        <h2>Choose a category</h2>
-        <img src="../assets/cancel.svg" alt="" class="icon-close" @click="hide()">
-    </div>
-    <ul v-if="rootCategory && !loading">
-      <li class="category-item" v-for="category in categories" @click="fetchSubcategory(category.slug)">
-        <img :src="getIconURL(category.slug)" alt="" class="icon-category-item">
-        <span>{{ category.name }}</span>
-      </li>
-    </ul>
-
-    <div class="subcategories-wrapper" v-else>
-
-      <div v-if="loading" class="loading">
-        <vue-loading spinner="wave"></vue-loading>
+    <div class="modal-window-contant">
+      <div class="modal-title">
+          <h2>Choose a category</h2>
+          <img src="../assets/cancel.svg" alt="" class="icon-close" @click="hide()">
       </div>
+      <ul v-if="rootCategory && !loading" class="categories-wrapper">
+        <li class="category-item" v-for="category in categories" @click="fetchSubcategory(category.slug)">
+          <img :src="getIconURL(category.slug)" alt="" class="icon-category-item">
+          <span>{{ category.name }}</span>
+        </li>
+      </ul>
 
-      <div v-else class="subcategories-container">
-        <div v-for="subcategory in categories" class="category-item subcategory-item" ref="subCategory_item" @click="fetchSubSubCategory(subcategory)" v-on="{ click: subcategory.is_leaf_node == true ? hide : null }">{{ subcategory.name }}<img src="../assets/categoryIcons/arrow-right.svg" v-if="subcategory.is_leaf_node == false" class="icon-arrow-right"></div>
+      <div class="subcategories-wrapper" v-else>
+
+        <div v-if="loading" class="loading">
+          <vue-loading spinner="wave"></vue-loading>
+        </div>
+
+        <div v-else class="subcategories-container">
+          <div v-for="subcategory in categories" class="category-item subcategory-item" ref="subCategory_item" @click="fetchSubSubCategory(subcategory)" v-on="{ click: subcategory.is_leaf_node == true ? hide : null }">{{ subcategory.name }}<img src="../assets/categoryIcons/arrow-right.svg" v-if="subcategory.is_leaf_node == false" class="icon-arrow-right"></div>
+        </div>
+
       </div>
-
     </div>
 	</modal>
 </template>
@@ -63,6 +65,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  .modal-window-contant {
+    max-width: 600px;
+    .categories-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
   .subcategories-wrapper {
     display: flex;
   }
@@ -87,11 +96,12 @@ export default {
   }
   .category-item {
     cursor: pointer;
-    width: 150px;
+    width: 170px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     margin: 5px 5px 10px;
+    font-size: 12px;
     &:hover {
       box-shadow: 0 0 2px 1px rgba(121,87,213,.7);
       border-radius: 10px;

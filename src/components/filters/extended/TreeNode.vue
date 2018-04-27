@@ -21,7 +21,10 @@
         ref="anchor"
         @focus="onNodeFocus">
         <div class="category-filter-style">
-          <node-content :node="node" />
+          <div class="img-wrapper">
+            <img :src="getIconURL(node.text.slug)" alt="" class="icon-category-item">
+            <node-content :node="node" />
+          </div>
           <span class="count-style">{{ getNodeCount }}</span>
         </div>
       </a>
@@ -107,6 +110,14 @@
     },
 
     methods: {
+      getIconURL (category) {
+        try {
+          return require(`@/assets/categoryIcons/${category}.svg`)        
+        }
+        catch (ex) {
+          console.log(ex)
+        }
+      },
       getSelectedFromSearch() {
         if (this.node.data.text.isLeafNode) {
           this.state.checked = this.getActiveFiltersStateSearch.category.split(',').includes(
@@ -125,6 +136,7 @@
       },
 
       check() {
+        console.log(this.node)
         if (this.node.checked()) {
           this.node.uncheck()
         } else {
@@ -190,6 +202,16 @@
 </script>
 
 <style>
+  .img-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .icon-category-item {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+  }
   .category-filter-style {
     min-width: 150px;
     display: flex;
@@ -199,7 +221,7 @@
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    max-width: 120px;
+    max-width: 180px;
   }
   .count-style {
 /*    box-shadow: 0 0 0 .125em rgba(121,87,213,.1);*/
@@ -222,6 +244,20 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+/*    font-size: 12px;*/
+  }
+  .tree-node > .tree-content .category-filter-style{
+    font-size: 16px;
+  }
+  .tree-node > .tree-children .category-filter-style {
+    font-size: 14px;
+  }
+  .tree-node > .tree-children .tree-anchor {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .tree-children > .tree-node .tree-content {
+    padding-left: 5px !important;
   }
   .tree-node.expanded > .tree-content {
     background-color: rgba(121,87,213,.5);
@@ -258,7 +294,9 @@
     box-sizing: border-box;
     margin-bottom: 3px;
   }
-
+  .tree-content .tree-arrow {
+    display: none;
+  }
   .tree-node:not(.selected) > .tree-content:hover {
     background: rgba(121,87,213,.1);
     border-radius: 5px;

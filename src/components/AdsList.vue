@@ -151,11 +151,11 @@ export default {
 	    min-height: calc(100vh - 55px - 125px);
 	}
 	.content-wrapper {
-		width: calc(100% - 270px);
+		width: calc(100% - 300px);
 	}
 	.filters-box {
-		width: 270px;
-		padding: 7px 20px 0 20px;
+		width: 300px;
+		padding: 7px 20px 0 10px;
 	}
 	.product-cards-container {
 		width: 100%;
