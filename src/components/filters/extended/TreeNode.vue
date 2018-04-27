@@ -22,7 +22,7 @@
         @focus="onNodeFocus">
         <div class="category-filter-style">
           <div class="img-wrapper">
-            <img :src="getIconURL(node.text.slug)" alt="" class="icon-category-item">
+            <img :src="getIconURL(node.text.slug)" v-if="getIconURL(node.text.slug)" alt="" class="icon-category-item">
             <node-content :node="node" />
           </div>
           <span class="count-style">{{ getNodeCount }}</span>
@@ -112,14 +112,12 @@
     methods: {
       getIconURL (category) {
         try {
-          return require(`@/assets/categoryIcons/${category}.svg`)        
+          return require(`@/assets/categoryIcons/${category}.svg`)
         }
-        catch (ex) {
-          console.log(ex)
-        }
+        catch (ex) {}
       },
       getSelectedFromSearch() {
-        if (this.node.data.text.isLeafNode) {
+        if (this.node.data.text.isLeafNode && this.getActiveFiltersStateSearch.category) {
           this.state.checked = this.getActiveFiltersStateSearch.category.split(',').includes(
             this.node.data.text.name.toLowerCase()
           );
@@ -136,7 +134,6 @@
       },
 
       check() {
-        console.log(this.node)
         if (this.node.checked()) {
           this.node.uncheck()
         } else {

@@ -147,7 +147,9 @@ export default {
             response.data.loading = false;
             context.commit('loading', false);
             context.commit('categoriesMutate', response.data);
-            context.commit('activeFiltersSearchMutate', {category: data.category});
+            if (data) {
+              context.commit('activeFiltersSearchMutate', {category: data.category});
+            }
           } else {
             context.commit('categoriesMutate', {loading: false});
           }
