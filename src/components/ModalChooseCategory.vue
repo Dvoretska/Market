@@ -18,7 +18,7 @@
           <vue-loading spinner="wave"></vue-loading>
         </div>
 
-        <div v-else class="subcategories-container">
+        <div v-else class="subcategories-container categories-wrapper">
           <div v-for="subcategory in categories" class="category-item subcategory-item" ref="subCategory_item" @click="fetchSubSubCategory(subcategory)" v-on="{ click: subcategory.is_leaf_node == true ? hide : null }">{{ subcategory.name }}<img src="../assets/categoryIcons/arrow-right.svg" v-if="subcategory.is_leaf_node == false" class="icon-arrow-right"></div>
         </div>
 

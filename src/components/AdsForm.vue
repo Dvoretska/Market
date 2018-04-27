@@ -32,16 +32,16 @@
              v-bind:class="{highlight: isHighlight}">
                 <span>Click or drop your files here</span>
                 <img src="../assets/cloud-download-interface-symbol.svg" alt="" class="icon-cloud-download">
-                <span class="warning" ref="span_warning" v-if="warning">Download images with extansion jpeg, jpg or png</span>
+                <span class="warning" v-if="warning">Download images with extansion jpeg, jpg or png</span>
             </div>
             <input type="file" class="inputfile" multiple accept="image/*" ref="fileinput">
           </label>
 
           <div class="wrapper-file-listing">
-            <div v-for="(file, key) in files" class="file-listing">
-                  <img class="preview" v-bind:ref="'preview'+ parseInt(key)"/>
+            <div v-for="(file, key) in files" class="file-listing" @click="makeMainImg(key)">
+                  <img class="preview" v-bind:ref="'preview'+ parseInt(key)" :class="{'highlight-main-img': files[key] == selectedImg}"/>
                   <div class="remove-container">
-                    <a class="remove" v-on:click.prevent="removeFile(key)" href="#">
+                    <a class="remove" v-on:click.stop.prevent="removeFile(key)" href="#">
                       <img src="../assets/icon-close.png" alt="" class="icon-close">
                     </a>
                   </div>
@@ -98,7 +98,8 @@ export default {
       files: [],
       isHighlight: false,
       warning: false,
-      rootCategory: true
+      rootCategory: true,
+      selectedImg: undefined
     }
   },
   mounted () {
@@ -126,13 +127,23 @@ export default {
       }.bind(this))
       this.$refs.fileinput.addEventListener('change', function(e){
         for(let i = 0; i < e.target.files.length; i++){
-          this.files.push(e.target.files[i])
-          this.getImagePreviews()
+          if (/\.(jpe?g|png|gif)$/i.test(e.target.files[i].name)) {
+            this.files.push(e.target.files[i])
+            this.getImagePreviews()
+            this.warning = false
+          } else {
+            this.warning = true
+          }
         }
       }.bind(this))
     }
   },
   methods: {
+    makeMainImg (key) {
+      let a = this.files.splice(key,1)
+      this.files.unshift(a[0])
+      this.selectedImg = this.files[key] 
+    },
     fetchSubcategory (item) {
       this.rootCategory = false
       this.$store.dispatch('GET_CATEGORIES', {category: item, isLeafNode: false})
@@ -161,8 +172,6 @@ export default {
             this.$refs['preview' + parseInt(i)][0].src = reader.result
           }.bind(this), false)
           reader.readAsDataURL(this.files[i])
-        } else {
-          alert('Download an image!')
         }
       }
     },
@@ -249,11 +258,13 @@ export default {
     margin-right: auto;
     .field-topic {
       position: relative;
+      width: 200px;
+      padding-right: 20px;
       .topic-span {
+        font-size: 14px;
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
-        max-width: 130px;
         display: inline-block;
         height: auto;
       }
@@ -321,6 +332,7 @@ export default {
         & img {
           height: 100px;
           width: 100px;
+          cursor: pointer;
         }
         .remove-container {
           position: absolute;
@@ -339,6 +351,10 @@ export default {
         }
       }
     }
+    .highlight-main-img {
+      outline: 2px solid rgba(121,87,213,1);
+      outline-offset: 2px;
+    }
     .highlight {
       border: 2px dashed #7957d5 !important;
       background-color: #fff !important;
@@ -352,8 +368,8 @@ export default {
         font-size: 18px;
       }
     }
-    .field-price, .field-topic {
-      width: 170px;
+    .field-price {
+      width: 200px;
     }
     .contact-info-container /deep/ label  {
         display: block;

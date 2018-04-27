@@ -241,7 +241,6 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-/*    font-size: 12px;*/
   }
   .tree-node > .tree-content .category-filter-style{
     font-size: 16px;

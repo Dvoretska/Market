@@ -17,7 +17,7 @@
 			<div v-else class="product-cards-container">
 				<div class="product-card" v-for="ad in ads.results">
 					<div class="product-img-wrapper">
-						<img :src="ad.image || getDefaultImage" alt="" class="product-img">
+						<img :src="ad.images[0] || getDefaultImage" alt="" class="product-img">
 					</div>
 					<div class="product-description-box">
 						<div class="product-price">{{ ad.price }} грн</div>
