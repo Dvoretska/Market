@@ -105,7 +105,7 @@
       position: absolute;
       background: white;
       left: 30px;
-      top: 70px;
+      top: 68px;
       box-shadow: 5px 0 5px -4px gray, 0 5px -5px -4px gray;
     }
     .arrow-point {

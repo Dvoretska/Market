@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: main 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-29 11:10+0300\n"
+"POT-Creation-Date: 2018-04-28 00:03+0300\n"
 "PO-Revision-Date: 2018-03-17 16:28+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: src/components/Navigation.vue:46
+#: src/components/Navigation.vue:46 src/components/ProfileAdsForm.vue:68
 msgid "+ Create an ad"
 msgstr "+ Создать объявление"
 
@@ -42,11 +42,11 @@ msgstr "Вернуться на домашнюю страницу"
 msgid "Confirm new password"
 msgstr "Повторите новый пароль"
 
-#: src/components/ProfileSettingsForm.vue:14 src/components/AdsForm.vue:108
+#: src/components/ProfileSettingsForm.vue:14 src/components/AdsForm.vue:214
 msgid "Contact information"
 msgstr "Контактная информация"
 
-#: src/components/ProfileAdsForm.vue:41
+#: src/components/ProfileAdsForm.vue:47
 msgid "Delete"
 msgstr "Удалить"
 
@@ -55,13 +55,13 @@ msgstr "Удалить"
 msgid "Delete your account"
 msgstr "Удалить учетную запись"
 
-#: src/components/ProfileAdsForm.vue:37
+#: src/components/ProfileAdsForm.vue:43
 msgid "Edit"
 msgstr "Редактировать"
 
 #: src/components/ProfileSettingsForm.vue:71
-#: src/components/authentication/RegisterForm.vue:35
 #: src/components/authentication/LoginForm.vue:34
+#: src/components/authentication/RegisterForm.vue:35
 msgid "Email"
 msgstr "Электронная почта"
 
@@ -101,8 +101,8 @@ msgid "Not active"
 msgstr "Неактивные"
 
 #: src/components/ProfileSettingsForm.vue:55
-#: src/components/authentication/RegisterForm.vue:36
 #: src/components/authentication/LoginForm.vue:35
+#: src/components/authentication/RegisterForm.vue:36
 msgid "Password"
 msgstr "Пароль"
 
@@ -128,11 +128,15 @@ msgstr "Настройки"
 msgid "Sign up"
 msgstr "Регистрация"
 
-#: src/components/ProfileAdsForm.vue:16
+#: src/components/AdsList.vue:34
+msgid "Sorry, no results were found."
+msgstr "Ничего не найдено"
+
+#: src/components/ProfileAdsForm.vue:22
 msgid "There are no active ads"
 msgstr "У Вас нет активных объявлений"
 
-#: src/components/ProfileAdsForm.vue:33
+#: src/components/ProfileAdsForm.vue:39
 msgid "View"
 msgstr "Просмотреть"
 
@@ -144,37 +148,37 @@ msgstr "Ваш текущий email-адрес"
 msgid "Your new email"
 msgstr "Ваш новый email-адрес"
 
-#: src/components/AdsForm.vue:93
-msgid "Subject"
-msgstr "Заголовок"
-
-#: src/components/AdsForm.vue:96
-msgid "Topic"
-msgstr "Категория"
-
-#: src/components/AdsForm.vue:99
-msgid "Price"
-msgstr "Цена"
-
-#: src/components/AdsForm.vue:102
-msgid "Description"
-msgstr "Описание"
-
-#: src/components/AdsForm.vue:105
-msgid "Photo"
-msgstr "Фотографии"
-
-#: src/components/AdsForm.vue:111
-msgid "Create an ad"
-msgstr "Создать объявление"
-
-#: src/components/ProfileSettingsForm.vue:121
+#: src/components/ProfileSettingsForm.vue:122
 msgid "Country"
 msgstr "Страна"
 
-#: src/components/ProfileSettingsForm.vue:124
+#: src/components/ProfileSettingsForm.vue:125
 msgid "City"
 msgstr "Город"
+
+#: src/components/AdsForm.vue:199
+msgid "Subject"
+msgstr "Заголовок"
+
+#: src/components/AdsForm.vue:202
+msgid "Topic"
+msgstr "Категория"
+
+#: src/components/AdsForm.vue:205
+msgid "Price"
+msgstr "Цена"
+
+#: src/components/AdsForm.vue:208
+msgid "Description"
+msgstr "Описание"
+
+#: src/components/AdsForm.vue:211
+msgid "Photo"
+msgstr "Фотографии"
+
+#: src/components/AdsForm.vue:217
+msgid "Create an ad"
+msgstr "Создать объявление"
 
 #: src/components/authentication/RegisterForm.vue:37
 msgid "Confirm password"
