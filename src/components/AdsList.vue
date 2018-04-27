@@ -32,7 +32,7 @@
 			</div>
 			<div class="no-results-box" v-if="ads.count == 0 && !ads.loading">
 					<img src="../assets/searching-magnifying-glass.svg" alt="" class="no-results-icon">
-					<span class="no-results-span">Sorry, no results were found.</span>
+					<span class="no-results-span" v-translate>Sorry, no results were found.</span>
 			</div>
 			<div class="wrapper-paginate">
 			  <paginate v-if="adsPageCount >= 2 && !ads.loading"
