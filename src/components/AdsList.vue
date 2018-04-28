@@ -14,18 +14,20 @@
       <div v-if="ads.loading" class="loading">
         <vue-loading spinner="wave"></vue-loading>
       </div>
-			<div v-else class="product-cards-container">
-				<div class="product-card" v-for="ad in ads.results">
-					<div class="product-img-wrapper">
-						<img :src="ad.images[0] || getDefaultImage" alt="" class="product-img">
+			<div v-else class="ad-cards-container">
+				<div class="ad-card" v-for="ad in ads.results">
+					<div class="ad-img-wrapper">
+						<img :src="ad.image || getDefaultImage" alt="" class="ad-img">
 					</div>
-					<div class="product-description-box">
-						<div class="product-price">{{ ad.price }} грн</div>
-						<strong class="product-subject">{{ ad.subject }}</strong>
-						<div class="product-category">{{ ad.category.name }}</div>
-						<div class="product-location">{{ ad.location }}</div>
-	                    <div class="button-cta-wrapper">
-							<button-bar :label="'More options'"></button-bar>
+					<div class="ad-description-box">
+						<div>
+							<div class="ad-price">{{ ad.price }} грн</div>
+							<strong class="ad-subject">{{ ad.subject }}</strong>
+							<div class="ad-category">{{ ad.category.name }}</div>
+						</div>
+						<div>
+							<div class="ad-location">{{ ad.location }}</div>
+							<div class="ad-date">{{ getDate(ad.created) }}</div>
 						</div>
 					</div>
 				</div>
@@ -73,6 +75,14 @@ export default {
     }
   },
   methods: {
+  	getDate (created) {
+  		let now = this.$moment()
+  		let date = this.$moment(created)
+  		if (now.diff(date, 'hours') > 2) {
+  			return date.locale('en').format('ll')
+  		}
+  		return this.$moment(created).fromNow()
+  	},
     clickCallback (pageNum) {
       this.$store.dispatch('GET_FILTERED_AD_LIST', {page: pageNum})
     }
@@ -157,23 +167,23 @@ export default {
 		width: 300px;
 		padding: 7px 20px 0 10px;
 	}
-	.product-cards-container {
+	.ad-cards-container {
 		width: 100%;
 		display: grid;
         grid-template-columns: repeat(auto-fill,minmax(240px, 1fr));
         grid-template-rows: auto [last-line];
 	}
-	.product-card {
+	.ad-card {
 	    margin:10px 0 0 10px;
-	    height: 420px;
+	    height: 400px;
 	    font-size: 16px;
 	    border: 1px solid #D7D7D7;
 	}
-	.product-card:hover {
+	.ad-card:hover {
 		border: solid 1px #CCC;
     	box-shadow: 1px 1px 3px #999;
 	}
-	.product-img-wrapper {
+	.ad-img-wrapper {
 	    margin: 15px;
 	    height: 200px;
 	    position: relative;
@@ -181,40 +191,53 @@ export default {
 	    justify-content: center;
 	    align-items: center;
 	    background: #f7f7f7;
+	    cursor: pointer;
   	}
-  	.product-img {
+  	.ad-img {
     	max-width: 100%;
     	max-height: 100%;
     	object-fit: contain;
   	}
-  	.product-description-box {
+  	.ad-description-box {
     	margin: 15px;
+    	height: 155px;
+    	display: flex;
+    	flex-direction: column;
+    	justify-content: space-between;
   	}
-	.product-price {
+	.ad-price {
 		padding-bottom: 10px;
 		font-size: 18px;
 		font-weight: 600;
 		line-height: 16px;
 	}
-	.product-subject {
-		display: block;
-		height: 44px;
-		font-size: 22px;
+	.ad-subject {
+		max-height: 40px;
+		font-size: 18px;
 		overflow: hidden;
 		line-height: 20px;
 		word-wrap: break-word;
 		color: #8c40b8;
 	}
-	.product-category {
+	.ad-category, .ad-date {
+		text-overflow: ellipsis;
+    	overflow: hidden;
+    	white-space: nowrap;
+		max-height: 20px;
 		margin-top: 10px;
 		margin-bottom: 10px;
-		font-size: 16px;
-		line-height: 16px;
+		font-size: 14px;
+		line-height: 18px;
 		color: #b4b4b4;
 		min-height: 15px;
 	}
-	.product-location {
-		font-size: 13px;
+	.ad-date {
+		font-size:12px;
+		line-height: 1;
+		margin-bottom: 0;
+	}
+	.ad-location {
+		font-size: 14px;
 		line-height: 16px;
 		font-weight: 700;
 		color: #909090;

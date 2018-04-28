@@ -16,6 +16,10 @@ import translations from './translations.json'
 import Paginate from 'vuejs-paginate'
 import VueTree from 'liquor-tree'
 import serviceLanguage from './services/language.js'
+import moment from "moment"
+import VueMomentJS from "vue-momentjs"
+ 
+Vue.use(VueMomentJS, moment);
 
 Vue.use(VueTree)
 Vue.use(GetTextPlugin, {

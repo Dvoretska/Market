@@ -39,7 +39,7 @@
 
           <div class="wrapper-file-listing">
             <div v-for="(file, key) in files" class="file-listing" @click="makeMainImg(key)">
-                  <img class="preview" v-bind:ref="'preview'+ parseInt(key)" :class="{'highlight-main-img': files[key] == selectedImg}"/>
+                  <img class="preview" v-bind:ref="'preview'+ parseInt(key)" :class="{'highlight-main-img': key == selectedImgKey}"/>
                   <div class="remove-container">
                     <a class="remove" v-on:click.stop.prevent="removeFile(key)" href="#">
                       <img src="../assets/icon-close.png" alt="" class="icon-close">
@@ -99,7 +99,7 @@ export default {
       isHighlight: false,
       warning: false,
       rootCategory: true,
-      selectedImg: undefined
+      selectedImgKey: 0
     }
   },
   mounted () {
@@ -140,9 +140,7 @@ export default {
   },
   methods: {
     makeMainImg (key) {
-      let a = this.files.splice(key,1)
-      this.files.unshift(a[0])
-      this.selectedImg = this.files[key] 
+      this.selectedImgKey = key
     },
     fetchSubcategory (item) {
       this.rootCategory = false
@@ -190,6 +188,8 @@ export default {
     },
     createAd () {
       var formData = new FormData()
+      let a = this.files.splice(this.selectedImgKey,1)
+      this.files.unshift(a[0])
        for( var i = 0; i < this.files.length; i++ ){
         let file = this.files[i]
         formData.append('files[' + i + ']', file)
