@@ -26,7 +26,7 @@
 
         <label id="file-drag-drop">
             <div ref="fileform" class="fileform"
-             @drop="onDrop" 
+             @drop="onDrop"
              @dragenter="onDragEnter"
              @dragleave="onDragLeave"
              v-bind:class="{highlight: isHighlight}">
@@ -188,11 +188,13 @@ export default {
     },
     createAd () {
       var formData = new FormData()
-      let a = this.files.splice(this.selectedImgKey,1)
-      this.files.unshift(a[0])
-       for( var i = 0; i < this.files.length; i++ ){
-        let file = this.files[i]
-        formData.append('files[' + i + ']', file)
+      if (this.files.length) {
+        let a = this.files.splice(this.selectedImgKey, 1)
+        this.files.unshift(a[0])
+        for (var i = 0; i < this.files.length; i++) {
+          let file = this.files[i]
+          formData.append('files[' + i + ']', file)
+        }
       }
       formData.append('category', this.category.slug)
       formData.append('subject', this.subject)
@@ -317,7 +319,7 @@ export default {
         position: absolute;
         z-index: -1;
         top: 100%;
-        left: 0; 
+        left: 0;
       }
     }
     .wrapper-file-listing {
@@ -336,7 +338,7 @@ export default {
         }
         .remove-container {
           position: absolute;
-          top: 0; 
+          top: 0;
           right: 0;
           z-index: 100;
           width: 16px;

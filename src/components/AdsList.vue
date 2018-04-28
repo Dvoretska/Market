@@ -89,7 +89,7 @@ export default {
   },
   computed: {
     getDefaultImage () {
-      return require('@/assets/images.jpeg')
+      return require('@/assets/default.png')
     },
     filtersData () {
       const categories = this.$store.getters.getCategories;
