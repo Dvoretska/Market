@@ -36,6 +36,7 @@
     "vue-mq": "^0.1.2",
     "vue-router": "^3.0.1",
     "vue-simple-loading": "^1.1.5",
+    "vue-slider-component": "^2.6.2",
     "vue-template-compiler": "^2.5.2",
     "vue-tiny-slider": "^0.1.14",
     "vue-tree": "^1.0.0",
