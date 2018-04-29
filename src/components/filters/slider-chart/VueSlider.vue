@@ -44,7 +44,7 @@ export default {
   margin-left: 2px;
 }
 
-.vue-slider-component {
+.vue-slider-component.vue-slider-horizontal {
   margin-top: 50px;
   /deep/ .vue-slider-tooltip {
     background: rgba(121,87,213,.5);
