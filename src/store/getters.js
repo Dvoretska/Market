@@ -22,5 +22,8 @@ export default {
   },
   getActiveFilters: state => {
     return state.activeFiltersState.search
+  },
+  getAdDetails: state => {
+    return state.adDetails
   }
 }

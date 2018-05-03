@@ -26,6 +26,14 @@ import Slider from '@/components/Slider'
 export default {
 	components: {
       Slider
+    },
+    created () {
+    	this.$store.dispatch('GET_AD_DETAILS', this.$route.params.slug)    
+    },
+    computed: {
+    	getAdDetails () {
+    		return this.$store.getters.getAdDetails
+    	}
     }
 }
 </script>
