@@ -4,10 +4,11 @@
       <div v-if="categories.loading" class="loading">
         <vue-loading spinner="wave"></vue-loading>
       </div>
-	  <category-filter
+	    <category-filter
         v-else-if="filtersData"
         :data="filtersData">
       </category-filter>
+      <vue-slider></vue-slider>
 		</aside>
 		<div class="content-wrapper">
        <bread-crumbs></bread-crumbs>
@@ -57,12 +58,14 @@
 import buttonBar from '@/components/ButtonBar'
 import breadCrumbs from '@/components/BreadCrumbs'
 import CategoryFilter from '@/components/filters/CategoryFilter'
+import VueSlider from '@/components/filters/slider-chart/VueSlider'
 import VueLoading from 'vue-simple-loading'
 
 export default {
   components: {
     buttonBar,
     CategoryFilter,
+    VueSlider,
     VueLoading,
     breadCrumbs
   },
@@ -92,7 +95,7 @@ export default {
   },
   computed: {
     getDefaultImage () {
-      return require('@/assets/images.jpeg')
+      return require('@/assets/default.png')
     },
     filtersData () {
       const categories = this.$store.getters.getCategories;

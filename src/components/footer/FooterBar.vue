@@ -3,8 +3,7 @@
 		<div class="first-row">
 			<span>Contact me</span>
 			<span>Terms&Privacy</span>
-			 <b-dropdown position="is-top-right"
-                   v-model="$language.current"
+			 <b-dropdown v-model="$language.current"
                    @change="changeLanguage()">
           <button class="button is-primary" type="button" slot="trigger">
               <template>
