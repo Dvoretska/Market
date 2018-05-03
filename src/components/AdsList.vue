@@ -8,7 +8,7 @@
         v-else-if="filtersData"
         :data="filtersData">
       </category-filter>
-      <vue-slider></vue-slider>
+      <vue-slider :callback="callback"></vue-slider>
 		</aside>
 		<div class="content-wrapper">
        <bread-crumbs></bread-crumbs>
@@ -78,6 +78,9 @@ export default {
     }
   },
   methods: {
+    callback(args) {
+      console.log(args)
+    },
   	getDate (created) {
   		let now = this.$moment()
   		let date = this.$moment(created)
