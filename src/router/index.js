@@ -17,7 +17,7 @@ const TOKEN_REQUIRED_PAGES = ['profile']
 
 const routes = [
   {
-    path: '/', name: 'home', component: homePage, meta: {title: 'Market | Home'}
+    path: '/ads', name: 'home', component: homePage,  alias: '/', meta: {title: 'Market | Home'}
   },
   {
     path: '/login', name: 'login', component: loginPage, meta: {title: 'Market | Login'}
@@ -26,7 +26,7 @@ const routes = [
     path: '/register', name: 'register', component: registerPage, meta: {title: 'Market | Signup'}
   },
   {
-    path: '/ads', name: 'ads', component: adsPage, meta: {title: 'Market | Ads'}
+    path: '/create-ad', name: 'create-ad', component: adsPage, meta: {title: 'Market | Ads'}
   },
   {
     path: '/profile',
@@ -35,12 +35,12 @@ const routes = [
     meta: {title: 'Market | Profile'},
     children: [
     {path: 'message', component: profileMessageForm},
-    {path: 'ads', component: profileAdsForm},
+    {path: 'my-ads', component: profileAdsForm},
     {path: 'settings', component: profileSettingsForm}
     ]
   },
   {
-    path: '/ad-details', name: 'adDetails', component: adDetailsPage, meta: {title: 'Market | Ads'}
+    path: '/ads/:slug', name: 'adDetails', component: adDetailsPage, meta: {title: 'Market | Ads'}
   }
 ]
 

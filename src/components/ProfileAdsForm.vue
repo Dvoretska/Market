@@ -21,7 +21,7 @@
 			<div class="ads-content-empty" v-if="getMyAds.length == 0">
 				<i class="material-icons">&#xE14F;</i>
 				<div class="profile-ads-notice" v-translate>There are no active ads</div>
-		    	<router-link :to="{ name: 'ads'}">
+		    	<router-link :to="{ name: 'create-ad'}">
 		        	<button-bar :label="getCreateAnAd()"></button-bar>
 		      	</router-link>
 	      	</div>

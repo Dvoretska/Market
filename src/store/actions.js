@@ -160,7 +160,7 @@ export default {
   },
   GET_FILTERED_AD_LIST: function (context, data) {
     context.commit('adsMutate', {loading: true})
-    router.push({path: '/', query: data})
+    router.push({name: 'home', query: data})
     axios.get(`${MAIN_URL}ads/`,
       {
         params: data,
@@ -168,6 +168,19 @@ export default {
       }).then((response) => {
         response.data.loading = false
         context.commit('adsMutate', response.data)
+      }).catch((err) => {
+        console.log(err)
+      })
+  },
+  GET_AD_DETAILS: function (context, data) {
+    context.commit('loading', true)
+    // router.push({path: `/ads/${data}` })
+    axios.get(`${MAIN_URL}ads/${data}`,
+      {
+        // params: data
+      }).then((response) => {
+        response.data.loading = false
+        context.commit('adDetailsMutate', response.data)
       }).catch((err) => {
         console.log(err)
       })

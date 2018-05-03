@@ -17,7 +17,7 @@
       </div>
 			<div v-else class="ad-cards-container">
 				<div class="ad-card" v-for="ad in ads.results">
-					<div class="ad-img-wrapper">
+					<div class="ad-img-wrapper" @click="openAdDetails(ad.slug)">
 						<img :src="ad.image || getDefaultImage" alt="" class="ad-img">
 					</div>
 					<div class="ad-description-box">
@@ -88,6 +88,9 @@ export default {
   	},
     clickCallback (pageNum) {
       this.$store.dispatch('GET_FILTERED_AD_LIST', {page: pageNum})
+    },
+    openAdDetails (slug) {
+    	this.$router.push({ name: 'adDetails', params: { slug }})
     }
   },
   computed: {

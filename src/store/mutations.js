@@ -58,7 +58,7 @@ export default {
   categoriesStaleMutate (state) {
     state.categories.staleResults = state.categories.results
   },
-  clearCategoriesMutate (state) {
-    state.categories.results = []
+  adDetailsMutate (state, data) {
+    state.adDetails = data
   }
 }

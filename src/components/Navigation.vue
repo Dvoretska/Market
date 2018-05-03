@@ -43,7 +43,7 @@
           </ul>
         </div>
 
-      <router-link :to="{ name: 'ads'}" class="button-anim" v-if="isLogin" v-bind:class="{ 'active-link': page == 'ads' }">
+      <router-link :to="{ name: 'create-ad'}" class="button-anim" v-if="isLogin" v-bind:class="{ 'active-link': page == 'ads' }">
         <translate>+ Create an ad</translate>
       </router-link>
       

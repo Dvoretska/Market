@@ -17,4 +17,5 @@ export default {
     search: {},
     node: ''
   },
+  adDetails: {}
 }
