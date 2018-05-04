@@ -291,7 +291,7 @@ export default {
 		.main-container {
 			flex-direction: column;
 			.filters-box {
-				width: 60%;
+				width: 100%;
 			}
 			.content-wrapper {
 				width: 100%;
@@ -302,6 +302,16 @@ export default {
 				    margin:10px 0 0 15px;
 					}	    
 				}
+				.no-results-box {
+			  	.no-results-span {
+						font-size: 18px;
+			  	}
+			  	.no-results-icon {
+						width: 70px;
+						height: 70px;
+						margin-top: 20px;
+			  	}
+			  }
 			}
 		}
 	}
@@ -315,16 +325,6 @@ export default {
 				.ad-cards-container {
 					width: 100%;    
 				}
-				.no-results-box {
-			  	.no-results-span {
-						font-size: 18px;
-			  	}
-			  	.no-results-icon {
-						width: 70px;
-						height: 70px;
-						margin-top: 20px;
-			  	}
-			  }
 			}
 		}
 	}

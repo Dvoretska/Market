@@ -27,7 +27,7 @@ export default {
 	components: {
       Slider
     },
-    created () {
+    mounted () {
     	this.$store.dispatch('GET_AD_DETAILS', this.$route.params.slug)    
     },
     methods: {
