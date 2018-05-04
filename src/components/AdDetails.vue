@@ -113,38 +113,61 @@ export default {
 				color: #fff;
 				cursor: pointer;
 				box-shadow:
-	        0px 1px rgba(128,128,128,.8),
-	        0px 2px rgba(118,118,118,.8),
-	        0px 3px 2px rgba(108,108,108,.8);
-	        .contact-icon {
-	        	width: 20px;
-	        	height: 20px;
-	        	margin-right: 10px;
-	        }
+        0px 1px rgba(128,128,128,.8),
+        0px 2px rgba(118,118,118,.8),
+        0px 3px 2px rgba(108,108,108,.8);
+        .contact-icon {
+        	width: 20px;
+        	height: 20px;
+        	margin-right: 10px;
+        }
 			}
 		}
 	}
 	@media screen and (max-width:991px){
 		.main-container {
-			margin: 80px 50px;
+			margin: 80px 30px;
 		}
 	}
 	@media screen and (max-width:767px){
 		.main-container {
 			margin: 80px 30px;
+			.right-column {
+				padding: 0 10px;
+				.contact-button {
+					font-size: 10px;
+	        .contact-icon {
+	        	width: 20px;
+	        	height: 20px;
+	        	margin-right: 10px;
+	        }
+				}
+			}
+		}
+	}
+	@media screen and (max-width:575px){
+		.main-container {
+			margin: 80px 50px;
+			flex-direction: column;
+			.right-column {
+				width: 220px;
+				margin-left: 0;
+				.contact-button {
+					font-size: 12px;
+				}
+			}
+			.left-column {
+				width: 100%;
+				margin-bottom: 10px;
+			}
 		}
 	}
 	@media screen and (max-width:320px){
 		.main-container {
 			margin: 80px 30px;
-			flex-direction: column;
 			.right-column {
 				width: 100%;
 				margin-left: 0;
-			}
-			.left-column {
-				width: 100%;
-				margin-bottom: 10px;
 			}
 		}
 	}

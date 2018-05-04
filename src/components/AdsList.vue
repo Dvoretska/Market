@@ -5,7 +5,7 @@
         <vue-loading spinner="wave"></vue-loading>
       </div>
 	    <category-filter
-        v-else-if="filtersData"
+        v-else="filtersData"
         :data="filtersData">
       </category-filter>
       <vue-slider :callback="callback"></vue-slider>
@@ -287,11 +287,11 @@ export default {
 			}
 		}
 	}
-	@media screen and (max-width:320px){
+	@media screen and (max-width:575px){
 		.main-container {
 			flex-direction: column;
 			.filters-box {
-				width: 100%;
+				width: 60%;
 			}
 			.content-wrapper {
 				width: 100%;
@@ -301,6 +301,19 @@ export default {
 			    .ad-card {
 				    margin:10px 0 0 15px;
 					}	    
+				}
+			}
+		}
+	}
+	@media screen and (max-width:320px){
+		.main-container {
+			.filters-box {
+				width: 100%;
+			}
+			.content-wrapper {
+				width: 100%;
+				.ad-cards-container {
+					width: 100%;    
 				}
 				.no-results-box {
 			  	.no-results-span {
