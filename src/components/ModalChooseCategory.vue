@@ -39,7 +39,6 @@ export default {
     fetchSubcategory: Function,
     fetchSubSubCategory: Function
   },
-
   methods: {
     getIconURL (category) {
       try {

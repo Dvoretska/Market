@@ -1,7 +1,10 @@
 <template>
 	<div class="main-container">
 		<div class="left-column">
-			<div class="ad-details-card">
+			<div v-if="loading" class="loading">
+		        <vue-loading spinner="wave"></vue-loading>
+		    </div>
+			<div v-else class="ad-details-card">
 				<slider :images="getAdDetails.images" v-if="getAdDetails.images"></slider>
 				<div class="content-wrapper">
 					<h1 class="ad-details-title">{{ getAdDetails.subject }}</h1>
@@ -22,12 +25,14 @@
 
 <script>
 import Slider from '@/components/Slider'
+import VueLoading from 'vue-simple-loading'
 
 export default {
 	components: {
-      Slider
+      Slider,
+	  	VueLoading
     },
-    mounted () {
+    created () {
     	this.$store.dispatch('GET_AD_DETAILS', this.$route.params.slug)    
     },
     methods: {
@@ -38,7 +43,10 @@ export default {
     computed: {
     	getAdDetails () {
     		return this.$store.getters.getAdDetails
-    	}
+    	},
+    	loading () {
+	      return this.$store.getters.getLoading
+	    }
     }
 }
 </script>
@@ -52,8 +60,14 @@ export default {
 			padding: 0 25px;
 			width: 75%;
 			border: 1px solid #eee;
+			min-height: 60px;
+			.loading {
+				position: fixed;
+				left: 35%;
+				top: 20%;
+			}
 			.content-wrapper{
-				margin-top: 90px;
+				margin-top: 20px;
 				.ad-details-title {
 					font-size: 22px;
 					font-weight: 700;
@@ -147,7 +161,7 @@ export default {
 	}
 	@media screen and (max-width:575px){
 		.main-container {
-			margin: 80px 50px;
+			margin: 80px 10px;
 			flex-direction: column;
 			.right-column {
 				width: 220px;
@@ -159,12 +173,17 @@ export default {
 			.left-column {
 				width: 100%;
 				margin-bottom: 10px;
+				.loading {
+					left: 50%;
+					top: inherit;
+					transform: translateX(-50%);
+				}
 			}
 		}
 	}
 	@media screen and (max-width:320px){
 		.main-container {
-			margin: 80px 30px;
+			margin: 80px 10px;
 			.right-column {
 				width: 100%;
 				margin-left: 0;
