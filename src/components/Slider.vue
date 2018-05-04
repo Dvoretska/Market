@@ -1,12 +1,7 @@
 <template>
 <div class="slider-container">
-	<tiny-slider :mouse-drag="true" :loop="false" items="1" gutter="20" :controlsText="[prevButton, nextButton]" :nav="true">
-	  <div></div>
-	  <div></div>
-	  <div></div>
-	  <div></div>
-	  <div></div>
-	  <div></div>
+	<tiny-slider :mouse-drag="true" :loop="false" items="1" gutter="20" :controlsText="[prevButton, nextButton]" :nav="false">
+	  <div v-for="image in images" :key="image"><img :src="image" alt="Photo"></div>
 	</tiny-slider>
 </div>
 </template>
@@ -17,6 +12,9 @@ import VueTinySlider from 'vue-tiny-slider'
 export default {
 	components: {
 		'tiny-slider': VueTinySlider
+	},
+	props: {
+		images: Array
 	},
 	data () {
 		return {
@@ -47,13 +45,13 @@ export default {
 		position: relative;
 		height: 500px;
 	}
-	/deep/ .tns-nav {
-		position: absolute;
-		top: 500px;
-		display: flex;
-		height: 80px;
-		margin-top: 10px;
-	}
+	// /deep/ .tns-nav {
+	// 	position: absolute;
+	// 	top: 500px;
+	// 	display: flex;
+	// 	height: 80px;
+	// 	margin-top: 10px;
+	// }
 	/deep/ button[data-controls] {
 		border: 0;
 		background-color: transparent;
@@ -95,31 +93,35 @@ export default {
 			height: 25px;
 		}
 	}
-	/deep/ button[data-nav] {
-		border: 0;
-		background-color: transparent;
-		text-decoration: none;
-		height: 70px;
-		width: 50px;
-		cursor: pointer;
-		border: 1px solid #eee;
-		margin-right: 10px;
-		&:hover {
-			box-shadow: 0 2px 8px 0 rgba(0,0,0,.08);
-		}
-	}
-	#app {
+	// /deep/ button[data-nav] {
+	// 	border: 0;
+	// 	background-color: transparent;
+	// 	text-decoration: none;
+	// 	height: 70px;
+	// 	width: 50px;
+	// 	cursor: pointer;
+	// 	border: 1px solid #eee;
+	// 	margin-right: 10px;
+	// 	&:hover {
+	// 		box-shadow: 0 2px 8px 0 rgba(0,0,0,.08);
+	// 	}
+	// }
+	/deep/ .tns-item {
+		padding: 0;
+	  text-align: center;
+	  // background:#fafafb;
+	  height: 500px;
 	  position: relative;
 	}
-	.tns-item {
-	  font-size: 3rem;
-	  font-family: Arial;
-	  text-align: center;
-	  padding: 2em;
-	  background:#fafafb;
-	  height: 500px;
+	/deep/ .tns-item img {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
 	}
-	.tns-item:nth-child(odd) {  
-	  background: #c8e1ff;
+	@media screen and (max-width:320px){
+		.slider-container, /deep/ .tns-item {
+			height: 250px;
+		}
 	}
 </style>

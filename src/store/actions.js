@@ -174,11 +174,7 @@ export default {
   },
   GET_AD_DETAILS: function (context, data) {
     context.commit('loading', true)
-    // router.push({path: `/ads/${data}` })
-    axios.get(`${MAIN_URL}ads/${data}`,
-      {
-        // params: data
-      }).then((response) => {
+    axios.get(`${MAIN_URL}ads/${data}`).then((response) => {
         response.data.loading = false
         context.commit('adDetailsMutate', response.data)
       }).catch((err) => {

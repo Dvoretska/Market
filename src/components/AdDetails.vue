@@ -2,13 +2,13 @@
 	<div class="main-container">
 		<div class="left-column">
 			<div class="ad-details-card">
-				<slider></slider>
+				<slider :images="getAdDetails.images" v-if="getAdDetails.images"></slider>
 				<div class="content-wrapper">
-					<h1 class="ad-details-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</h1>
-					<div class="ad-details-price"><span>Price:</span>600$</div>
-					<div class="ad-details-location">Kyiv</div>
-					<div class="ad-details-date">Добавлено: в 10:18, 13 апреля 2018</div>
-					<div class="ad-details-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</div>
+					<h1 class="ad-details-title">{{ getAdDetails.subject }}</h1>
+					<div class="ad-details-price"><translate>Price:</translate>600$</div>
+					<div class="ad-details-location">{{ getAdDetails.location }}</div>
+					<div class="ad-details-date"><translate>Added at </translate>{{ getDate(getAdDetails.created) }}</div>
+					<div class="ad-details-description">{{ getAdDetails.message }}</div>
 				</div>
 			</div>
 		</div>
@@ -30,6 +30,11 @@ export default {
     created () {
     	this.$store.dispatch('GET_AD_DETAILS', this.$route.params.slug)    
     },
+    methods: {
+	  	getDate (created) {
+	  		return this.$moment(created).format('HH:mm MMMM D')
+	  	}
+	  },
     computed: {
     	getAdDetails () {
     		return this.$store.getters.getAdDetails
@@ -73,14 +78,18 @@ export default {
 				}
 				.ad-details-date {
 					border-bottom: 1px solid #eee;
-					padding-bottom: 20px;
+					padding-bottom: 10px;
 					font-size: 13px;
+					overflow: hidden;
+					word-wrap: break-word;
+					color: #b4b4b4;
 				}
 				.ad-details-description {
 					font-size: 16px;
 					text-align: left;
 					line-height: 20px;
 					margin-top: 20px;
+					margin-bottom: 20px;
 				}
 			}
 		}
@@ -104,14 +113,38 @@ export default {
 				color: #fff;
 				cursor: pointer;
 				box-shadow:
-		        0px 1px rgba(128,128,128,.8),
-		        0px 2px rgba(118,118,118,.8),
-		        0px 3px 2px rgba(108,108,108,.8);
-		        .contact-icon {
-		        	width: 20px;
-		        	height: 20px;
-		        	margin-right: 10px;
-		        }
+	        0px 1px rgba(128,128,128,.8),
+	        0px 2px rgba(118,118,118,.8),
+	        0px 3px 2px rgba(108,108,108,.8);
+	        .contact-icon {
+	        	width: 20px;
+	        	height: 20px;
+	        	margin-right: 10px;
+	        }
+			}
+		}
+	}
+	@media screen and (max-width:991px){
+		.main-container {
+			margin: 80px 50px;
+		}
+	}
+	@media screen and (max-width:767px){
+		.main-container {
+			margin: 80px 30px;
+		}
+	}
+	@media screen and (max-width:320px){
+		.main-container {
+			margin: 80px 30px;
+			flex-direction: column;
+			.right-column {
+				width: 100%;
+				margin-left: 0;
+			}
+			.left-column {
+				width: 100%;
+				margin-bottom: 10px;
 			}
 		}
 	}

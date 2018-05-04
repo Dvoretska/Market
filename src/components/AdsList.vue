@@ -55,7 +55,6 @@
 
 <script>
 
-import buttonBar from '@/components/ButtonBar'
 import breadCrumbs from '@/components/BreadCrumbs'
 import CategoryFilter from '@/components/filters/CategoryFilter'
 import VueSlider from '@/components/filters/slider-chart/VueSlider'
@@ -63,7 +62,6 @@ import VueLoading from 'vue-simple-loading'
 
 export default {
   components: {
-    buttonBar,
     CategoryFilter,
     VueSlider,
     VueLoading,
@@ -137,149 +135,142 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .no-results-box {
-	display: flex;
-	justify-content: flex-start;
-	flex-direction: column;
-	align-items: center;
-	height: 100%;
-  	.no-results-span {
-		font-size: 22px;
-  	}
-  	.no-results-icon {
-		width: 100px;
-		height: 100px;
-		margin-top: 80px;
-		margin-bottom: 15px;
-  	}
-  }
-  .loading {
-    position: fixed;
-     top: 40%;
-     left: 50%;
-    /deep/ .sk-wave .sk-rect {
-             background-color: #7b4fad;
-           }
-    }
-    .main-container {
-	    display: flex;
-	    margin-top: 55px;
-	    min-height: calc(100vh - 55px - 125px);
-	}
-	.content-wrapper {
-		width: calc(100% - 300px);
-	}
-	.filters-box {
-		width: 300px;
-		padding: 7px 20px 0 10px;
-	}
-	.ad-cards-container {
-		width: 100%;
-		display: grid;
-        grid-template-columns: repeat(auto-fill,minmax(240px, 1fr));
-        grid-template-rows: auto [last-line];
-	}
-	.ad-card {
-	    margin:10px 0 0 10px;
-	    height: 400px;
-	    font-size: 16px;
-	    border: 1px solid #D7D7D7;
-	}
-	.ad-card:hover {
-		border: solid 1px #CCC;
-    	box-shadow: 1px 1px 3px #999;
-	}
-	.ad-img-wrapper {
-	    margin: 15px;
-	    height: 200px;
-	    position: relative;
-	    display: flex;
-	    justify-content: center;
-	    align-items: center;
-	    background: #f7f7f7;
-	    cursor: pointer;
-  	}
-  	.ad-img {
-    	max-width: 100%;
-    	max-height: 100%;
-    	object-fit: contain;
-  	}
-  	.ad-description-box {
-    	margin: 15px;
-    	height: 155px;
-    	display: flex;
-    	flex-direction: column;
-    	justify-content: space-between;
-  	}
-	.ad-price {
-		padding-bottom: 10px;
-		font-size: 18px;
-		font-weight: 600;
-		line-height: 16px;
-	}
-	.ad-subject {
-		max-height: 40px;
-		font-size: 18px;
-		overflow: hidden;
-		line-height: 20px;
-		word-wrap: break-word;
-		color: #8c40b8;
-	}
-	.ad-category, .ad-date {
-		text-overflow: ellipsis;
-    	overflow: hidden;
-    	white-space: nowrap;
-		max-height: 20px;
-		margin-top: 10px;
-		margin-bottom: 10px;
-		font-size: 14px;
-		line-height: 18px;
-		color: #b4b4b4;
-		min-height: 15px;
-	}
-	.ad-date {
-		font-size:12px;
-		line-height: 1;
-		margin-bottom: 0;
-	}
-	.ad-location {
-		font-size: 14px;
-		line-height: 16px;
-		font-weight: 700;
-		color: #909090;
-		min-height: 15px;
-	}
-	.button-cta-wrapper {
-		margin-top: 13px;
-		margin-bottom: 10px;
-		text-align: center;
-	}
-	.wrapper-paginate {
-		display: flex;
-	    justify-content: center;
-	    margin: 30px 0 0 10px;
-	    /deep/ .pagination {
-	    	& li:first-child a {
-	    		border-top-left-radius: 5px;
-	    		border-bottom-left-radius: 5px;
-	    	}
-	    	& li:last-child a {
-	    		border-top-right-radius: 5px;
-	    		border-bottom-right-radius: 5px;
-	    		border-right: 1px solid #ccc;
-	    	}
-	    	& .active a {
-		    	color: #fff;
-				background-color: #7957d5;
-				border-color: #7957d5;
-				&:hover {
-					background-color: #7957d5;
-				}
-	    	}
-	    	& .disabled:hover a {
-	    		cursor: not-allowed;
-	    	}
-	    	& > li > a {
+  .main-container {
+    display: flex;
+    margin-top: 55px;
+    min-height: calc(100vh - 55px - 125px);
+    .filters-box {
+			width: 300px;
+			padding: 7px 20px 0 10px;
+		}
+    .content-wrapper {
+			width: calc(100% - 300px);
+			.loading {
+		    position: fixed;
+				top: 40%;
+				left: 50%;
+					/deep/ .sk-wave .sk-rect {
+					 	background-color: #7b4fad;
+					}
+		    }
+			.ad-cards-container {
+				width: 100%;
+				display: grid;
+		    grid-template-columns: repeat(auto-fill,minmax(240px, 1fr));
+		    grid-template-rows: auto [last-line];
+		    .ad-card {
+			    margin:10px 0 0 10px;
+			    height: 400px;
+			    font-size: 16px;
+			    border: 1px solid #D7D7D7;
+			    &:hover {
+			    	border: solid 1px #CCC;
+		    		box-shadow: 1px 1px 3px #999;
+			    }
+			    .ad-img-wrapper {
+				    margin: 15px;
+				    height: 200px;
+				    position: relative;
+				    display: flex;
+				    justify-content: center;
+				    align-items: center;
+				    background: #f7f7f7;
+				    cursor: pointer;
+				    .ad-img {
+				    	max-width: 100%;
+				    	max-height: 100%;
+				    	object-fit: contain;
+				  	}
+			  	}
+			  	.ad-description-box {
+			    	margin: 15px;
+			    	height: 155px;
+			    	display: flex;
+			    	flex-direction: column;
+			    	justify-content: space-between;
+			    	.ad-price {
+							padding-bottom: 10px;
+							font-size: 18px;
+							font-weight: 600;
+							line-height: 16px;
+						}
+						.ad-subject {
+							max-height: 40px;
+							font-size: 18px;
+							overflow: hidden;
+							line-height: 20px;
+							word-wrap: break-word;
+							color: #8c40b8;
+						}
+						.ad-category, .ad-date {
+							text-overflow: ellipsis;
+					    	overflow: hidden;
+					    	white-space: nowrap;
+							max-height: 20px;
+							margin-top: 10px;
+							margin-bottom: 10px;
+							font-size: 14px;
+							line-height: 18px;
+							color: #b4b4b4;
+							min-height: 15px;
+						}
+						.ad-location {
+							font-size: 14px;
+							line-height: 16px;
+							font-weight: 700;
+							color: #909090;
+							min-height: 15px;
+						}
+						.ad-date {
+							font-size:12px;
+							line-height: 1;
+							margin-bottom: 0;
+						}	
+			  	}
+				}	    
+			}
+			.no-results-box {
+				display: flex;
+				justify-content: flex-start;
+				flex-direction: column;
+				align-items: center;
+				height: 100%;
+		  	.no-results-span {
+					font-size: 22px;
+		  	}
+		  	.no-results-icon {
+					width: 100px;
+					height: 100px;
+					margin-top: 80px;
+					margin-bottom: 15px;
+		  	}
+		  }
+		  .wrapper-paginate {
+				display: flex;
+		    justify-content: center;
+		    margin: 30px 0 0 10px;
+		    /deep/ .pagination {
+		    	& li:first-child a {
+		    		border-top-left-radius: 5px;
+		    		border-bottom-left-radius: 5px;
+		    	}
+		    	& li:last-child a {
+		    		border-top-right-radius: 5px;
+		    		border-bottom-right-radius: 5px;
+		    		border-right: 1px solid #ccc;
+		    	}
+		    	& .active a {
+			    	color: #fff;
+						background-color: #7957d5;
+						border-color: #7957d5;
+						&:hover {
+							background-color: #7957d5;
+						}
+		    	}
+		    	& .disabled:hover a {
+		    		cursor: not-allowed;
+		    	}
+		    	& > li > a {
 		        color: #7957d5;
 		        padding: 5px 10px;
 		        border-left: 1px solid #ccc;
@@ -288,7 +279,37 @@ export default {
 		        &:hover {
 		        	background-color: #f4f4f4;
 		        }
-    		}
-        }
+		  		}
+		    }
+			}
+		}
+	}
+	@media screen and (max-width:320px){
+		.main-container {
+			flex-direction: column;
+			.filters-box {
+				width: 100%;
+			}
+			.content-wrapper {
+				width: 100%;
+				padding-right: 15px;
+				.ad-cards-container {
+					width: 100%;
+			    .ad-card {
+				    margin:10px 0 0 15px;
+					}	    
+				}
+				.no-results-box {
+			  	.no-results-span {
+						font-size: 18px;
+			  	}
+			  	.no-results-icon {
+						width: 70px;
+						height: 70px;
+						margin-top: 20px;
+			  	}
+			  }
+			}
+		}
 	}
 </style>
