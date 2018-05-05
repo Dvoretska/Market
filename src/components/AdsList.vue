@@ -287,11 +287,11 @@ export default {
 			}
 		}
 	}
-	@media screen and (max-width:575px){
+	@media screen and (max-width:767px){
 		.main-container {
 			flex-direction: column;
 			.filters-box {
-				width: 100%;
+				width: 50%;
 			}
 			.content-wrapper {
 				width: 100%;
@@ -302,16 +302,13 @@ export default {
 				    margin:10px 0 0 15px;
 					}	    
 				}
-				.no-results-box {
-			  	.no-results-span {
-						font-size: 18px;
-			  	}
-			  	.no-results-icon {
-						width: 70px;
-						height: 70px;
-						margin-top: 20px;
-			  	}
-			  }
+			}
+		}
+	}
+	@media screen and (max-width:575px){
+		.main-container {
+			.filters-box {
+				width: 100%;
 			}
 		}
 	}
