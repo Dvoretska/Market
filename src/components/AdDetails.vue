@@ -1,11 +1,11 @@
 <template>
 	<div class="main-container">
 		<div class="left-column">
-			<div v-if="loading" class="loading">
+			<div v-if="getAdDetails.loading" class="loading">
 		        <vue-loading spinner="wave"></vue-loading>
 		    </div>
 			<div v-else class="ad-details-card">
-				<slider :images="getAdDetails.images" v-if="getAdDetails.images"></slider>
+				<slider :images="getAdDetails.images"></slider>
 				<div class="content-wrapper">
 					<h1 class="ad-details-title">{{ getAdDetails.subject }}</h1>
 					<div class="ad-details-price"><translate>Price:</translate>600$</div>
@@ -43,10 +43,7 @@ export default {
     computed: {
     	getAdDetails () {
     		return this.$store.getters.getAdDetails
-    	},
-    	loading () {
-	      return this.$store.getters.getLoading
-	    }
+    	}
     }
 }
 </script>

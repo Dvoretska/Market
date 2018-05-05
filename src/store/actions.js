@@ -112,7 +112,7 @@ export default {
       context.commit('loading', false)
       router.push({name: 'home'})
     }).catch((err) => {
-      console.log(err)
+      context.commit('error', err.response.data)
       context.commit('loading', false)
     })
   },
@@ -173,9 +173,9 @@ export default {
       })
   },
   GET_AD_DETAILS: function (context, data) {
-    context.commit('loading', true)
+    context.commit('adDetailsMutate', {loading: true})
     axios.get(`${MAIN_URL}ads/${data}`).then((response) => {
-        context.commit('loading', false);
+        response.data.loading = false
         context.commit('adDetailsMutate', response.data)
       }).catch((err) => {
         console.log(err)

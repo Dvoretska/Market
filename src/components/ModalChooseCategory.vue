@@ -116,6 +116,7 @@ export default {
     padding: 3px 5px 3px 10px;
     margin-bottom: 5px;
     min-width: 150px;
+    word-wrap: break-word;
     .icon-arrow-right {
       width: 10px;
       height: 10px;

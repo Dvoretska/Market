@@ -1,8 +1,9 @@
 <template>
     <section class="section-ads">
         <b-field horizontal :label="getSubject()" class="align-left">
-            <b-input name="subject" expanded v-model="subject"></b-input>
-            <div class="counter-validation"><b>70 </b>signs left</div>
+            <b-input name="subject" expanded v-model="subject" :maxlength="subjectMaxLength"></b-input>
+            <div class="counter-validation"><b>{{ subjectSignsLeft() }}</b> signs left</div>
+            <div class="error" v-if="getErrors && getErrors.subject">{{ getErrors.subject[0] }}</div>
         </b-field>
 
         <b-field horizontal :label="getTopic()" class="align-left">
@@ -10,15 +11,21 @@
               <span class="topic-span">{{ category.name }}</span>
               <img src="../assets/arrow-down-expand.svg" alt="" class="icon-expand-arrow">
             </button>
+            <div class="error" v-if="getErrors">{{ getErrors.category }}</div>
             <modal-choose-category :rootCategory="rootCategory" :fetchSubcategory="fetchSubcategory" :fetchSubSubCategory="fetchSubSubCategory"></modal-choose-category>
         </b-field>
         <b-field horizontal :label="getPrice()" class="align-left field-price">
-            <b-input name="price" expanded v-model="price"></b-input>
+            <div class="price-wrapper">
+                <input name="price" expanded v-model="price" class="input">
+                <span class="currency">грн.</span>
+            </div>
+            <div class="error" v-if="getErrors && getErrors.price">{{ getErrors.price[0] }}</div>
         </b-field>
 
         <b-field horizontal :label="getDescription()" class="align-left">
-            <b-input type="textarea" v-model="message"></b-input>
-            <div class="counter-validation"><b>4000 </b>signs left</div>
+            <b-input type="textarea" v-model="message" :maxlength="messageMaxLength"></b-input>
+            <div class="counter-validation"><b>{{ messageSignsLeft() }}</b> signs left</div>
+            <div class="error" v-if="getErrors && getErrors.message">{{ getErrors.message[0] }}</div>
         </b-field>
 
         <b-field horizontal :label="getPhoto()" class="align-left">
@@ -99,8 +106,13 @@ export default {
       isHighlight: false,
       warning: false,
       rootCategory: true,
-      selectedImgKey: 0
+      selectedImgKey: 0,
+      subjectMaxLength: 70,
+      messageMaxLength: 4000
     }
+  },
+  created () {
+    this.$store.dispatch('CLEAR_ERRORS')
   },
   mounted () {
     if (!this.$store.getters.getCategories.length) {
@@ -139,6 +151,12 @@ export default {
     }
   },
   methods: {
+    subjectSignsLeft () {
+      return this.subjectMaxLength - this.subject.length
+    },    
+    messageSignsLeft () {
+      return this.messageMaxLength - this.message.length
+    },
     makeMainImg (key) {
       this.selectedImgKey = key
     },
@@ -229,6 +247,10 @@ export default {
     }
   },
   computed: {
+    getErrors () {
+      console.log(this.$store.getters.getErrors)
+      return this.$store.getters.getErrors
+    },
     categories () {
       return this.$store.getters.getCategories.results
     },
@@ -258,6 +280,10 @@ export default {
     outline: none;
     margin-left: auto;
     margin-right: auto;
+    .error {
+      color: red;
+      font-size: 12px;
+    }
     .field-topic {
       position: relative;
       width: 200px;
@@ -282,6 +308,7 @@ export default {
       .counter-validation {
         color: #A6A6A6;
         font-size: 12px;
+        margin-top: 2px;
       }
     }
     #file-drag-drop {
@@ -373,6 +400,17 @@ export default {
     .field-price {
       width: 200px;
     }
+    .price-wrapper {
+      display: flex;
+      position: relative;
+        .currency {
+          position: absolute;
+          right: -40px;
+          top: 50%;
+          transform: translateY(-50%);
+          font-size: 18px;
+        }
+    }
     .contact-info-container /deep/ label  {
         display: block;
     }
@@ -409,6 +447,9 @@ export default {
     }
     p.control {
       text-align: center;
+    }
+    /deep/ .help.counter {
+      display: none;
     }
   }
 </style>
