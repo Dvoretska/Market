@@ -16,9 +16,41 @@
 			</div>
 		</div>
 		<div class="right-column">
-			<button class="contact-button button-message"><img src="../assets/message.svg" alt="" class="contact-icon">Contact the author</button>
-			<button class="contact-button button-call"><img src="../assets/mobile-phone.svg" alt="" class="contact-icon">Phone number</button>
-			<button class="contact-button button-call"><img src="../assets/star.svg" alt="" class="contact-icon">Add to favorites</button>
+			<button slot="reference" v-if="isAuthenticated" class="contact-button button-message">
+				<img src="../assets/message.svg" alt="" class="contact-icon">
+				<span>Contact the author</span>
+			</button>
+			<popper trigger="hover" :options="{placement: 'top'}" v-else>
+			    <div class="popper">
+			      You should be logged in to send message
+			    </div>
+				<button slot="reference" class="contact-button" @click="redirectToLogin">
+					<img src="../assets/message.svg" alt="" class="contact-icon">
+					<span>Contact the author</span>
+				</button>
+			</popper>
+			<button class="contact-button">
+				<img src="../assets/mobile-phone.svg" alt="" class="contact-icon">
+				<span v-if="getOwner">{{ getOwner.phone }}</span>
+			</button>
+			<button slot="reference" v-if="isAuthenticated" class="contact-button">
+				<img src="../assets/star.svg" alt="" class="contact-icon">
+				<span>Add to favorites</span>
+			</button>
+			<popper trigger="hover" :options="{placement: 'top'}" v-else>
+			    <div class="popper">
+			      You should be logged in to send message
+			    </div>	
+				<button slot="reference" class="contact-button" @click="redirectToLogin">
+					<img src="../assets/star.svg" alt="" class="contact-icon">
+					<span>Add to favorites</span>
+				</button>
+			</popper>
+			<div class="owner-card">
+				<div class="owner-avatar"></div>
+				<div v-if="getOwner" class="owner-name">{{ getOwner.first_name }}</div>
+				<div v-if="getOwner" class="owner-date-joined">since {{ getDateOwnerJoined(getOwner.date_joined) }}</div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -26,24 +58,41 @@
 <script>
 import Slider from '@/components/Slider'
 import VueLoading from 'vue-simple-loading'
+import Popper from 'vue-popperjs'
+import 'vue-popperjs/dist/css/vue-popper.css'
 
 export default {
 	components: {
-      Slider,
-	  	VueLoading
+      	Slider,
+	  	VueLoading,
+	  	'popper': Popper
     },
     created () {
     	this.$store.dispatch('GET_AD_DETAILS', this.$route.params.slug)    
     },
     methods: {
+    	redirectToLogin () {
+    		this.$router.push({name: 'login'})
+    	},
 	  	getDate (created) {
 	  		return this.$moment(created).format('HH:mm MMMM D')
+	  	},
+	  	getDateOwnerJoined (joined) {
+	  		return this.$moment(joined).format('MMMM YYYY')
 	  	}
 	  },
     computed: {
     	getAdDetails () {
     		return this.$store.getters.getAdDetails
-    	}
+    	},
+	  	isAuthenticated () {
+		    if(Object.keys(this.$store.getters.getUserDetails).length !== 0) {
+		    	return true
+		    }
+		},
+		getOwner () {
+			return this.$store.getters.getAdDetails.user
+		}
     }
 }
 </script>
@@ -118,26 +167,87 @@ export default {
 				border: none;
 				border-radius: 5px;
 				background-color: #7b4fad;
-				font-size: 13px;
 				text-transform: uppercase;
 				font-weight: 600;
 				color: #fff;
 				cursor: pointer;
 				box-shadow:
-        0px 1px rgba(128,128,128,.8),
-        0px 2px rgba(118,118,118,.8),
-        0px 3px 2px rgba(108,108,108,.8);
-        .contact-icon {
-        	width: 20px;
-        	height: 20px;
-        	margin-right: 10px;
-        }
+		        0px 1px rgba(128,128,128,.8),
+		        0px 2px rgba(118,118,118,.8),
+		        0px 3px 2px rgba(108,108,108,.8);
+		        span {
+		        	font-size: 13px;
+		        }
+		        .contact-icon {
+		        	width: 20px;
+		        	height: 20px;
+		        	margin-right: 10px;
+		        }
+			}
+			.owner-card {
+				width: 100%;
+				background-color: #f4f4f4;
+				padding: 5px 5px 15px;
+				.owner-avatar {
+					background-image: url('../assets/default-profile-picture.png');
+					background-position: center center;
+    				background-repeat: no-repeat;
+    				background-size: cover;
+					border-radius: 50%;
+					width: 60%;
+					height: auto;
+					padding-top: 60%;
+					margin: 5px auto 10px;
+				}
+				.owner-name {
+					color: #7b4fad;
+					font-size: 20px;
+					text-align: center;
+					overflow: hidden;
+					word-wrap: break-word;
+				}
+				.owner-date-joined {
+					font-size: 14px;
+					text-align: center;
+					color: #86739D;
+					overflow: hidden;
+					word-wrap: break-word;
+				}
+			}
+		}
+	}
+	@media screen and (max-width:1200px){
+		.main-container {
+			.right-column {
+				.contact-button {
+					span {
+						font-size: 12px;
+					}
+				}
 			}
 		}
 	}
 	@media screen and (max-width:991px){
 		.main-container {
 			margin: 80px 30px;
+			.right-column {
+				.contact-button {
+					span {
+						font-size: 10px;
+					}
+			        .contact-icon {
+			        	width: 20px;
+			        	height: 20px;
+			        	margin-right: 10px;
+			        }
+				}
+				.owner-card {
+					.owner-avatar {
+						width: 60%;
+						padding-top: 60%;
+					}
+				}
+			}
 		}
 	}
 	@media screen and (max-width:767px){
@@ -145,14 +255,6 @@ export default {
 			margin: 80px 30px;
 			.right-column {
 				padding: 0 10px;
-				.contact-button {
-					font-size: 10px;
-	        .contact-icon {
-	        	width: 20px;
-	        	height: 20px;
-	        	margin-right: 10px;
-	        }
-				}
 			}
 		}
 	}
@@ -165,6 +267,9 @@ export default {
 				margin-left: 0;
 				.contact-button {
 					font-size: 12px;
+					span {
+						font-size: 12px;
+					}
 				}
 			}
 			.left-column {
@@ -184,6 +289,17 @@ export default {
 			.right-column {
 				width: 100%;
 				margin-left: 0;
+				.contact-button {
+					span {
+						font-size: 12px;
+					}
+				}
+				.owner-card {
+					.owner-avatar {
+						width: 40%;
+						padding-top: 40%;
+					}
+				}
 			}
 		}
 	}

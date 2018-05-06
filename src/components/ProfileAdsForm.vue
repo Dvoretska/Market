@@ -31,7 +31,10 @@
 						<img :src="ad.image" alt="" class="product-image">
 					</div>
 					<div class="product-description-box">
-						<div class="product-price">{{ ad.price }}</div>
+						<div class="price-wrapper">
+							<div class="product-price">{{ ad.price }}</div>
+							<span>грн.</span>
+						</div>
 						<strong class="product-subject">{{ ad.subject }}</strong>
 					</div>
 					<div class="ad-actions">
@@ -131,9 +134,18 @@ export default {
     }
     .product-description-box {
 		margin-left: 10px;
+		max-width: 435px;
+    }
+    .price-wrapper {
+    	display: flex;
+    	align-items: center;
+    	padding-bottom: 10px;
+    	span {
+    		margin-left: 5px;
+    		font-weight: 600;
+    	}
     }
 	.product-price {
-		padding-bottom: 10px;
 		font-size: 16px;
 		font-weight: 600;
 		line-height: 18px;

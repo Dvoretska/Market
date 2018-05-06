@@ -1,7 +1,7 @@
 <template>
   <nav class="nav-bar">
 
-    <div class="nav-logo-container">
+    <div class="nav-logo-container" @click="clearAllFilters">
       <router-link :to="{ name: 'home'}">
         <img src="../assets/Home.png" class="nav-logo-img">
       </router-link>
@@ -56,6 +56,10 @@ export default {
     page: String
   },
   methods: {
+    clearAllFilters () {
+      this.$store.dispatch('GET_FILTERED_AD_LIST')
+      this.$store.dispatch('GET_CATEGORIES')
+    },
     logout () {
       this.$store.dispatch('LOGOUT')
     }
