@@ -48,7 +48,7 @@
 			</popper>
 			<div class="owner-card">
 				<div class="owner-avatar"></div>
-				<div v-if="getOwner" class="owner-name">{{ getOwner.first_name }}</div>
+				<div v-if="getOwner" class="owner-name">{{ getOwnerName }}</div>
 				<div v-if="getOwner" class="owner-date-joined">since {{ getDateOwnerJoined(getOwner.date_joined) }}</div>
 			</div>
 		</div>
@@ -92,6 +92,12 @@ export default {
 		},
 		getOwner () {
 			return this.$store.getters.getAdDetails.user
+		},
+		getOwnerName () {
+			if(this.getOwner.first_name || this.getOwner.last_name) {
+				return `${this.getOwner.first_name} ${this.getOwner.first_name}` 
+			}
+			return this.getOwner.username
 		}
     }
 }
