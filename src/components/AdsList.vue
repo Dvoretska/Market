@@ -1,20 +1,20 @@
 <template>
 	<div class="main-container">
 		<aside class="filters-box">
-      <div v-if="categories.loading" class="loading">
-        <vue-loading spinner="wave"></vue-loading>
-      </div>
-	    <category-filter
-        v-else="filtersData"
-        :data="filtersData">
-      </category-filter>
-      <vue-slider :callback="callback"></vue-slider>
+	      <div v-if="categories.loading" class="loading">
+	        <vue-loading spinner="wave"></vue-loading>
+	      </div>
+		  <category-filter
+	        v-else="filtersData"
+	        :data="filtersData">
+	      </category-filter>
+	      <vue-slider v-if="!ads.loading"></vue-slider>
 		</aside>
 		<div class="content-wrapper">
-       <bread-crumbs></bread-crumbs>
-      <div v-if="ads.loading" class="loading">
-        <vue-loading spinner="wave"></vue-loading>
-      </div>
+	       <bread-crumbs></bread-crumbs>
+	      <div v-if="ads.loading" class="loading">
+	        <vue-loading spinner="wave"></vue-loading>
+	      </div>
 			<div v-else class="ad-cards-container">
 				<div class="ad-card" v-for="ad in ads.results">
 					<div class="ad-img-wrapper" @click="openAdDetails(ad.slug)">
@@ -76,9 +76,6 @@ export default {
     }
   },
   methods: {
-    callback(args) {
-      console.log(args)
-    },
   	getDate (created) {
   		let now = this.$moment()
   		let date = this.$moment(created)

@@ -14,19 +14,35 @@
 import VueSlider from 'vue-slider-component';
 
 export default {
+  data () {
+    return {
+      min: 0,
+      max: this.$store.getters.getAds.max_price,
+      startRange: this.$route.query.min_price || 0,
+      endRange: this.$route.query.max_price || this.$store.getters.getAds.max_price
+    }
+  },
   props: {
-    startRange: {type: Number, default: 0},
-    min: {type: Number, default: 0},
-    endRange: {type: Number, default: 2000},
-    max: {type: Number, default: 2000},
-    callback: Function,
     lazy: {type: Boolean, default: true},
     dotSize: {type: Number, default: 24}
   },
   methods: {
-    getFormattedSPrice(price) {
+    getFormattedSPrice (price) {
       return  price + ' грн';
+    },
+    callback (args) {
+      this.startRange = args[0]
+      this.endRange = args[1]
+      this.$store.dispatch('GET_FILTERED_AD_LIST', {min_price: args[0], max_price: args[1]})
     }
+  },
+  computed: {
+    // startRange () {
+    //   return this.$store.getters.getAds.min_price
+    // },
+    // endRange () {
+    //   return this.$store.getters.getAds.max_price
+    // }
   },
   components: {VueSlider}
 };
