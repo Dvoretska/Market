@@ -1,7 +1,7 @@
 <template>
 	<div class="slider-container" v-if="images.length !== 0">
 	    <gallery :images="images" :index="index" @close="index = null"></gallery>
-	    <div 
+	    <div
 	      class="image"
 	      v-for="(image, imageIndex) in images"
 	      :key="imageIndex"
@@ -11,7 +11,7 @@
 	</div>
 	<div class="slider-container" v-else>
 	    <gallery :images="images" :index="index" @close="index = null"></gallery>
-	    <div 
+	    <div
 	      class="image"
 	      :style="{ backgroundImage: 'url(' + getDefaultImage + ')', backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center center' }"
 	    ></div>

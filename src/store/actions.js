@@ -2,8 +2,8 @@ import axios from 'axios'
 import router from '../router/index.js'
 import serviceLanguage from '../services/language.js'
 
-// const MAIN_URL = 'https://servermarket.herokuapp.com/'
-const MAIN_URL = '//localhost:8000/'
+const MAIN_URL = 'https://servermarket.herokuapp.com/'
+// const MAIN_URL = '//localhost:8000/'
 const ACCOUNTS_URL = `${MAIN_URL}accounts/`
 
 export default {

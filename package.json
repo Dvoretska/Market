@@ -40,6 +40,7 @@
     "vue-simple-loading": "^1.1.5",
     "vue-slider-component": "^2.6.2",
     "vue-template-compiler": "^2.5.2",
+    "vue-tiny-slider": "^0.1.17",
     "vue-tree": "^1.0.0",
     "vue2-phone-input": "^1.1.1",
     "vuejs-paginate": "^1.8.0",
