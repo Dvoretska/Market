@@ -248,7 +248,6 @@ export default {
   },
   computed: {
     getErrors () {
-      console.log(this.$store.getters.getErrors)
       return this.$store.getters.getErrors
     },
     categories () {

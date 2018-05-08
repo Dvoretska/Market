@@ -1,15 +1,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import homePage from '@/pages/HomePage'
+import adsListPage from '@/pages/AdsListPage'
 import loginPage from '@/pages/LoginPage'
 import registerPage from '@/pages/RegisterPage'
 import profilePage from '@/pages/ProfilePage'
-import adsPage from '@/pages/AdsPage'
+import createAdPage from '@/pages/CreateAdPage'
 import store from '@/store'
 import profileMessageForm from '@/components/ProfileMessageForm'
 import profileAdsForm from '@/components/ProfileAdsForm'
 import profileSettingsForm from '@/components/ProfileSettingsForm'
 import adDetailsPage from '@/pages/AdDetailsPage'
+import homePage from '@/pages/HomePage'
 
 Vue.use(Router)
 
@@ -17,7 +18,10 @@ const TOKEN_REQUIRED_PAGES = ['profile']
 
 const routes = [
   {
-    path: '/ads', name: 'home', component: homePage,  alias: '/', meta: {title: 'Market | Home'}
+    path: '/', name: 'home', component: homePage, meta: {title: 'Market | Home'}
+  },
+  {
+    path: '/ads', name: 'ads-list', component: adsListPage, meta: {title: 'Market | Home'}
   },
   {
     path: '/login', name: 'login', component: loginPage, meta: {title: 'Market | Login'}
@@ -26,7 +30,7 @@ const routes = [
     path: '/register', name: 'register', component: registerPage, meta: {title: 'Market | Signup'}
   },
   {
-    path: '/create-ad', name: 'create-ad', component: adsPage, meta: {title: 'Market | Ads'}
+    path: '/create-ad', name: 'create-ad', component: createAdPage, meta: {title: 'Market | Ads'}
   },
   {
     path: '/profile',

@@ -17,7 +17,7 @@ export default {
       context.commit('loading', false)
       context.commit('createUserState', response.data.user)
       localStorage.setItem('token', response.data.token)
-      router.push({name: 'home'})
+      router.push({name: 'ads-list'})
     }).catch((err) => {
       context.commit('loading', false)
       context.commit('error', err.response.data)
@@ -34,7 +34,7 @@ export default {
       context.commit('loading', false)
       context.commit('createUserState', response.data.user)
       localStorage.setItem('token', response.data.token)
-      router.push({name: 'home'})
+      router.push({name: 'ads-list'})
     }, (err) => {
       context.commit('error', err.response.data)
       context.commit('loading', false)
@@ -110,7 +110,7 @@ export default {
       }
     }).then((response) => {
       context.commit('loading', false)
-      router.push({name: 'home'})
+      router.push({name: 'ads-list'})
     }).catch((err) => {
       context.commit('error', err.response.data)
       context.commit('loading', false)
@@ -160,7 +160,7 @@ export default {
   },
   GET_FILTERED_AD_LIST: function (context, data) {
     context.commit('adsMutate', {loading: true})
-    router.push({name: 'home', query: data})
+    router.push({name: 'ads-list', query: data})
     axios.get(`${MAIN_URL}ads/`,
       {
         params: data,
