@@ -95,7 +95,7 @@ export default {
 		},
 		getOwnerName () {
 			if(this.getOwner.first_name || this.getOwner.last_name) {
-				return `${this.getOwner.first_name} ${this.getOwner.first_name}` 
+				return `${this.getOwner.first_name} ${this.getOwner.last_name}` 
 			}
 			return this.getOwner.username
 		}
@@ -204,6 +204,8 @@ export default {
 					height: auto;
 					padding-top: 60%;
 					margin: 5px auto 10px;
+					background-color: white;
+					box-shadow: 0 0 12px #b3b3b3;
 				}
 				.owner-name {
 					color: #7b4fad;
