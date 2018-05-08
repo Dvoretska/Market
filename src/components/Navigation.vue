@@ -7,11 +7,11 @@
       </router-link>
     </div>
 
-    <router-link :to="{ name: 'login'}" class="button-anim" v-if="!isLogin" v-bind:class="{ 'active-link': page == 'login'}">
+    <router-link :to="{ name: 'login'}" class="auth-button" v-if="!isLogin" v-bind:class="{ 'active-link': page == 'login'}">
       <translate>Login</translate>
     </router-link>
 
-    <router-link :to="{ name: 'register'}" class="button-anim right-button" v-if="!isLogin" v-bind:class="{ 'active-link': page == 'register' }">
+    <router-link :to="{ name: 'register'}" class="auth-button right-button" v-if="!isLogin" v-bind:class="{ 'active-link': page == 'register' }">
       <translate>Sign up</translate>
     </router-link>
 
@@ -46,7 +46,7 @@
     <router-link :to="{ name: 'create-ad'}" class="button-anim" v-if="isLogin" v-bind:class="{ 'active-link': page == 'ads' }">
       <translate>+ Create an ad</translate>
     </router-link>
-      
+
   </nav>
 </template>
 
@@ -79,16 +79,28 @@ export default {
 </script>
 <style scoped lang="scss">
   .nav-bar {
-    display: flex;
-    height: 55px;
-    align-items: center;
-    position: fixed;
-    z-index: 10;
-    top: 0;
-    width: 100%;
-    padding: 0 10px;
-    background-color: #f4f4f4;
+    /*display: flex;*/
+    /*height: 55px;*/
+    /*align-items: center;*/
+    /*position: fixed;*/
+    /*z-index: 10;*/
+    /*top: 0;*/
+    /*width: 100%;*/
+    /*padding: 0 10px;*/
+    /*background-color: #f4f4f4;*/
+		position: fixed;
+		top: 0;
+		left: 0;
+		height: 55px;
+		width: 100%;
+		z-index: 50;
+		background-color: #7b4fad;
+    opacity: .6;
+		border-bottom: 1px solid rgba(255, 255, 255, 1);
+		padding: 0 50px;
     box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);
+    display: flex;
+    align-items: center;
     .nav-logo-container {
       margin-right: auto;
       .nav-logo-img {
@@ -96,6 +108,15 @@ export default {
         background-color: transparent;
       }
     }
+  .auth-button {
+    cursor: pointer;
+				font-size: 16px;
+				line-height: 55px;
+				display: inline-block;
+				padding: 0 10px;
+				color: #FFFFFF;
+				transition: color 0.4s ease 0s;
+  }
     .button-anim.active-link {
       box-shadow:
           0px 3px rgba(128,128,128,1),
@@ -173,7 +194,7 @@ export default {
         color: #3A474D;
         text-transform: uppercase;
         font: 700 12px Futura, "Trebuchet MS", Arial, sans-serif;
-        
+
         &:hover {
           color: #8c40b8;
           cursor: pointer;

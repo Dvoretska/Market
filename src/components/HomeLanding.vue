@@ -86,19 +86,18 @@ export default {
 		position: fixed;
 		top: 0;
 		left: 0;
-		height: 90px;
+		height: 80px;
 		width: 100%;
-		background: red;
 		z-index: 50;
 		background-color: rgba(36, 42, 53, 0.6);
 		border-bottom: 1px solid rgba(255, 255, 255, 1);
 		padding: 0 50px;
-		cursor: pointer;
 		.home-menu {
 			list-style: none;
 			.menu-item {
+        cursor: pointer;
 				font-size: 14px;
-				line-height: 90px;
+				line-height: 80px;
 				display: inline-block;
 				padding: 0 10px;
 				color: #FFFFFF;
