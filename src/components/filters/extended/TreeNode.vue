@@ -119,7 +119,7 @@
       getSelectedFromSearch() {
         if (this.node.data.text.isLeafNode && this.getActiveFiltersStateSearch.category) {
           this.state.checked = this.getActiveFiltersStateSearch.category.split(',').includes(
-            this.node.data.text.name.toLowerCase()
+            this.node.data.text.slug.toLowerCase()
           );
           return this.state.checked
         }

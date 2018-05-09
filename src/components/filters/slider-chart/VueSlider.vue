@@ -31,18 +31,11 @@ export default {
       return  price + ' грн';
     },
     callback (args) {
-      this.startRange = args[0]
-      this.endRange = args[1]
-      this.$store.dispatch('GET_FILTERED_AD_LIST', {min_price: args[0], max_price: args[1]})
+      this.startRange = args[0];
+      this.endRange = args[1];
+      this.$store.dispatch('GET_FILTERED_AD_LIST', {...this.$route.query, min_price: args[0], max_price: args[1]});
+      this.$store.dispatch('GET_FILTERED_CATEGORIES', {...this.$route.query, min_price: args[0], max_price: args[1]});
     }
-  },
-  computed: {
-    // startRange () {
-    //   return this.$store.getters.getAds.min_price
-    // },
-    // endRange () {
-    //   return this.$store.getters.getAds.max_price
-    // }
   },
   components: {VueSlider}
 };

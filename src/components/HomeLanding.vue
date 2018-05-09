@@ -143,13 +143,13 @@ export default {
 				border: 1px solid transparent;
 				&:hover {
 	    		border: 1px solid white;
-	    		border-radius: 10px;   			
-    		}	
+	    		border-radius: 10px;
+    		}
 			}
 			.signup-item {
 				padding: 5px 10px;
     		border: 1px solid white;
-    		border-radius: 10px;		
+    		border-radius: 10px;
 			}
 		}
 	}
@@ -376,7 +376,7 @@ opacity: 0;
 		  		}
 		  		.info-cta:hover span {
 		  			color: rgba(123, 79, 173, 0.4);
-		  			font-weight: 600; 
+		  			font-weight: 600;
 		  		}
 		  	}
 		  }
