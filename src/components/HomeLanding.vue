@@ -7,6 +7,8 @@
 				<li class="menu-item">CREATE AD</li>
 				<li class="menu-item">ABOUT</li>
 				<li class="menu-item">CONTACT</li>
+				<li class="menu-item login-item">LOGIN</li>
+				<li class="menu-item signup-item">SIGN UP</li>
 			</ul>
 		</header>
 		<section class="main-img">
@@ -19,7 +21,7 @@
 			</div>
 		</section>
     <section class="rubrics-section">
-      <h5 class="rubrics-title">Our Rubrics</h5>
+      <h5 class="section-title">Our Rubrics</h5>
       <div class="slider-wrapper">
         <tiny-slider :mouse-drag="true" :loop="false" items="4" gutter="20" :controlsText="[prevButton, nextButton]">
           <div class="slider-item slider-item9"><div class="popover-wrapper">Fashion</div></div>
@@ -36,15 +38,31 @@
         </tiny-slider>
       </div>
     </section>
+    <section class="team-section">
+    	<h5 class="section-title">Our Team</h5>
+    	<div class="team-content">
+	    	<div class="slider-container">
+				    <gallery :images="images" :index="2" @close="index = null" :carousel="true"></gallery>
+				</div>
+				<div class="info-container">
+					<p class="info-title">YOU THINK WE'RE COOL ? LET'S WORK TOGETHER</p>
+					<button class="cta info-cta">
+						<span>get in touch</span>
+					</button>
+				</div>
+			</div>
+    </section>
 	</div>
 </template>
 
 <script>
 import VueTinySlider from 'vue-tiny-slider'
+import VueGallery from 'vue-gallery'
 
 export default {
   components: {
-    'tiny-slider': VueTinySlider
+    'tiny-slider': VueTinySlider,
+    'gallery': VueGallery
   },
   data () {
     return {
@@ -64,11 +82,15 @@ export default {
       " />
       </g>
       </svg>
-      </span>`
+      </span>`,
+      images: [
+          {href: require('@/assets/my-photo.jpg'), description: 'description'},
+          {href: require('@/assets/avatar2.jpg'), description: 'test'},
+          {href: require('@/assets/man.png'), description: 'test'}],
+        index: null
       }
     },
   created () {
-    console.log('getAds', this.getAds)
     this.$store.dispatch('GET_CATEGORIES')
   },
   computed: {
@@ -82,6 +104,9 @@ export default {
 
 <style scoped lang="scss">
 .home-landing {
+	/deep/ .image {
+	height: 200px;
+}
 	.home-header {
 		position: fixed;
 		top: 0;
@@ -94,28 +119,66 @@ export default {
 		padding: 0 50px;
 		.home-menu {
 			list-style: none;
+			display: flex;
+			align-items: center;
+			height: 100%;
 			.menu-item {
         cursor: pointer;
 				font-size: 14px;
-				line-height: 80px;
-				display: inline-block;
 				padding: 0 10px;
 				color: #FFFFFF;
 				transition: color 0.4s ease 0s;
 			}
+			.login-item {
+				margin-left: auto;
+				margin-right: 20px;
+				padding: 5px 10px;
+				border: 1px solid transparent;
+				&:hover {
+	    		border: 1px solid white;
+	    		border-radius: 10px;   			
+    		}	
+			}
+			.signup-item {
+				padding: 5px 10px;
+    		border: 1px solid white;
+    		border-radius: 10px;		
+			}
 		}
 	}
+	.cta {
+				width: 145px;
+				height: 40px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background-color: rgba(123, 79, 173, 0.4);
+				border: solid rgba(255, 255, 255, 1) 1px;
+				cursor: pointer;
+				transition: border-color 0.4s ease 0s, background-color 0.4s ease 0s;
+				text-transform: uppercase;
+				&:hover {
+					background-color: rgba(255, 255, 255, 0.26);
+					border-color: transparent;
+					transition: border-color 0.4s ease 0s, background-color 0.4s ease 0s;
+				}
+				span {
+					font-weight: 300;
+					font-size: 14px;
+					color: #fff;
+				}
+			}
 	.main-img {
 		background-image: url('../assets/Online-Market-Place.jpg');
 		background-repeat: no-repeat;
 		background-position: auto 700px;
 		background-size: cover;
-		padding-right: 150px;
+		padding-right: 100px;
 		width: 100%;
 		height: 800px;
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
+		padding-top: 250px;
 		align-items: flex-end;
 		.title-wrapper {
 			display: flex;
@@ -129,48 +192,25 @@ export default {
 				font-family: 'Muli', sans-serif;
         font-weight: 600;
         letter-spacing: 2px;
+        margin-bottom: 10px;
 			}
 			.main-text {
 				font-size: 38px;
 				line-height: 1.3em;
 				color: #fff;
 				font-weight: 300;
-				margin-bottom: 35px;
-			}
-			.cta {
-				width: 145px;
-				height: 40px;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				background-color: transparent;
-				border: solid rgba(255, 255, 255, 1) 1px;
-				cursor: pointer;
-				transition: border-color 0.4s ease 0s, background-color 0.4s ease 0s;
-				&:hover {
-					background-color: rgba(255, 255, 255, 0.26);
-					border-color: transparent;
-					transition: border-color 0.4s ease 0s, background-color 0.4s ease 0s;
-				}
-				span {
-					font-weight: 300;
-					font-size: 14px;
-					color: #fff;
-				}
+				margin-bottom: 40px;
 			}
 		}
 	}
-  .rubrics-section {
-    padding: 90px 0;
-    .rubrics-title {
-      font-size: 36px;
-      /*color: #242A35;*/
-      color: #0C0145;
+	.section-title {
+      font-size: 34px;
+      color: #8c40b8;
       margin: 0 auto 50px;
       text-align: center;
       font-family: 'GFS Didot', serif;
       position: relative;
-      width: 200px;
+      max-width: 220px;
       &:before {
           content: "";
           position: absolute;
@@ -190,6 +230,8 @@ export default {
           background-color: rgba(36, 42, 53, 1);
        }
     }
+  .rubrics-section {
+    padding: 90px 0;
      .slider-wrapper {
      position:relative;
      height:280px;
@@ -291,5 +333,46 @@ opacity: 0;
       }
     }
   }
+  .team-section {
+  	.team-content {
+  		display: flex;
+  		background-color: rgba(36, 42, 53, 0.3);
+  		padding: 0 35px;
+			.slider-container {
+		  		margin: 0 auto;
+		  		flex-basis: 700px;
+		  		/deep/ .blueimp-gallery {
+						background-color: rgba(36, 42, 53, 0.4);
+						box-shadow: 0 0 3px #000;
+		  		}
+		  		/deep/ .blueimp-gallery > .slides > .slide > .slide-content {
+		  			width: 200px;
+		  			height: 200px;
+		  			border-radius: 50%;
+		  			left: -300px;
+		  		}
+		  	}
+		  	.info-container {
+		  		flex: 1;
+		  		display: flex;
+		  		flex-direction: column;
+		  		align-items: center;
+		  		justify-content: center;
+		  		.info-title {
+		  			text-align: center;
+		  			font-size: 30px;
+		  			color: #fff;
+		  			margin: 0 0 30px 15px;
+		  		}
+		  		.info-cta:hover {
+		  			border: 2px solid rgba(123, 79, 173, 0.4);
+		  		}
+		  		.info-cta:hover span {
+		  			color: rgba(123, 79, 173, 0.4);
+		  			font-weight: 600; 
+		  		}
+		  	}
+		  }
+  	}
 }
 </style>

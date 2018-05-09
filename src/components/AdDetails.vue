@@ -105,14 +105,18 @@ export default {
 
 <style scoped lang="scss">
 	.main-container {
-		min-height: 100vh;
+		// min-height: 100vh;
 		margin: 80px 150px;
 		display: flex;
+		align-items: flex-start;
+		// background-color: #F7F7F7;
 		.left-column {
 			padding: 0 25px;
 			width: 75%;
-			border: 1px solid #eee;
+			border: 1px solid #ccc;
+			outline: 1px solid #fff;
 			min-height: 60px;
+			background-color: #F7F7F7;
 			.loading {
 				position: fixed;
 				left: 35%;
@@ -160,9 +164,13 @@ export default {
 			}
 		}
 		.right-column {
+			height: auto;
 			width: 25%;
-			padding: 0 15px;
-			margin-left: 20px;
+			padding: 15px 15px 0;
+			background-color: #F7F7F7;
+			margin-left: 10px;
+			// background-color: rgba(36, 42, 53, 0.1);
+			// margin-left: 20px;
 			.contact-button {
 				width: 100%;
 				height: 40px;
@@ -170,17 +178,17 @@ export default {
 				padding: 0 15px;
 				display: flex;
 				align-items: center;
-				border: none;
-				border-radius: 5px;
-				background-color: #7b4fad;
+				// border: none;
+				// border-radius: 5px;
+				background-color: rgba(123, 79, 173, 0.7);
 				text-transform: uppercase;
 				font-weight: 600;
 				color: #fff;
 				cursor: pointer;
-				box-shadow:
-		        0px 1px rgba(128,128,128,.8),
-		        0px 2px rgba(118,118,118,.8),
-		        0px 3px 2px rgba(108,108,108,.8);
+				// box-shadow:
+		  //       0px 1px 1px rgba(128,128,128,.8);
+		        				// background-color: rgba(123, 79, 173, 0.4);
+				border: solid rgba(255, 255, 255, 1) 1px;
 		        span {
 		        	font-size: 13px;
 		        }
@@ -194,6 +202,8 @@ export default {
 				width: 100%;
 				background-color: #f4f4f4;
 				padding: 5px 5px 15px;
+				border: 1px solid white;
+				margin-bottom: 20px;
 				.owner-avatar {
 					background-image: url('../assets/default-profile-picture.png');
 					background-position: center center;
@@ -205,7 +215,6 @@ export default {
 					padding-top: 60%;
 					margin: 5px auto 10px;
 					background-color: white;
-					box-shadow: 0 0 12px #b3b3b3;
 				}
 				.owner-name {
 					color: #7b4fad;

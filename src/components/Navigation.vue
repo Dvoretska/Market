@@ -94,8 +94,8 @@ export default {
 		height: 55px;
 		width: 100%;
 		z-index: 50;
-		background-color: #7b4fad;
-    opacity: .6;
+		background-color: rgba(123, 79, 173, .4);
+    // opacity: .6;
 		border-bottom: 1px solid rgba(255, 255, 255, 1);
 		padding: 0 50px;
     box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);
@@ -110,96 +110,24 @@ export default {
     }
   .auth-button {
     cursor: pointer;
-				font-size: 16px;
-				line-height: 55px;
-				display: inline-block;
-				padding: 0 10px;
-				color: #FFFFFF;
-				transition: color 0.4s ease 0s;
+		font-size: 16px;
+		display: inline-block;
+		padding: 0 10px;
+		color: #FFFFFF;
+		transition: color 0.4s ease 0s;
+    padding: 5px 10px;
+    border: 1px solid transparent;
+    &:hover {
+      border: 1px solid white;
+      border-radius: 10px;
+    }
   }
-    .button-anim.active-link {
-      box-shadow:
-          0px 3px rgba(128,128,128,1),
-          0px 4px rgba(118,118,118,1);
-          border-radius: 15px;
-          span {
-            -webkit-transform: translate(0, 2px);
-          }
+    .auth-button.active-link {
+      border: 1px solid white;
+      border-radius: 10px;
     }
     .right-button {
       margin-left: 10px;
-    }
-    .button-anim {
-      -webkit-transform: translate(0, -3px);
-      display: inline-block;
-      border-radius: 15px;
-      box-shadow:
-          0px 1px rgba(128,128,128,1),
-          0px 2px rgba(118,118,118,1),
-          0px 3px 2px rgba(108,108,108,1);
-      -webkit-transition: -webkit-box-shadow .1s ease-in-out;
-
-      span {
-        background-color: #E8E8E8;
-        background-image:
-            /* gloss gradient */
-        -webkit-gradient(
-            linear,
-            left bottom,
-            left top,
-            color-stop(50%,rgba(255,255,255,0)),
-            color-stop(50%,rgba(255,255,255,0.3)),
-            color-stop(100%,rgba(255,255,255,0.2))),
-
-        /* dark outside gradient */
-        -webkit-gradient(
-            linear,
-            left top,
-            right top,
-            color-stop(0%,rgba(210,210,210,0.3)),
-            color-stop(20%,rgba(210,210,210,0)),
-            color-stop(80%,rgba(210,210,210,0)),
-            color-stop(100%,rgba(210,210,210,0.3))),
-
-        /* light inner gradient */
-        -webkit-gradient(
-            linear,
-            left top,
-            right top,
-            color-stop(0%,rgba(255,255,255,0)),
-            color-stop(20%,rgba(255,255,255,0.5)),
-            color-stop(80%,rgba(255,255,255,0.5)),
-            color-stop(100%,rgba(255,255,255,0))),
-
-        /* diagonal line pattern */
-        -webkit-gradient(
-            linear,
-            0% 100%,
-            100% 0%,
-            color-stop(0%,rgba(255,255,255,0)),
-            color-stop(40%,rgba(255,255,255,0)),
-            color-stop(40%,#D2D2D1),
-            color-stop(60%,#D2D2D1),
-            color-stop(60%,rgba(255,255,255,0)),
-            color-stop(100%,rgba(255,255,255,0)));
-
-        box-shadow:
-          0px -0.7px #fff,
-          0px 0.5px 5px #FFFFFF;
-        background-size: 100%, 100%, 100%, 4px 4px;
-        border-radius: 10px;
-        -webkit-transition: -webkit-transform .1s ease-in-out;
-        display: inline-block;
-        padding: 5px 10px;
-        color: #3A474D;
-        text-transform: uppercase;
-        font: 700 12px Futura, "Trebuchet MS", Arial, sans-serif;
-
-        &:hover {
-          color: #8c40b8;
-          cursor: pointer;
-        }
-      }
     }
     .nav-user-info {
       position: relative;

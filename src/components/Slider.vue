@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import VueGallery from 'vue-gallery';
+import VueGallery from 'vue-gallery'
 
 export default {
 	components: {
