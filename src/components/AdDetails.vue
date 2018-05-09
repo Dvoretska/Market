@@ -8,7 +8,7 @@
 				<slider :images="getAdDetails.images"></slider>
 				<div class="content-wrapper">
 					<h1 class="ad-details-title">{{ getAdDetails.subject }}</h1>
-					<div class="ad-details-price"><translate>Price:</translate>600$</div>
+					<div class="ad-details-price">{{ getAdDetails.price }}<span>  грн.</span></div>
 					<div class="ad-details-location">{{ getAdDetails.location }}</div>
 					<div class="ad-details-date"><translate>Added at </translate>{{ getDate(getAdDetails.created) }}</div>
 					<div class="ad-details-description">{{ getAdDetails.message }}</div>
@@ -134,11 +134,10 @@ export default {
 					margin-top: 15px;
 				}
 				.ad-details-price {
-					display: flex;
-					align-items: center;
 					font-size: 27px;
+					margin-bottom: 10px;
 					span {
-						font-size: 16px;
+						font-size: 20px;
 						margin-right: 10px;
 					}
 				}

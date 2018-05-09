@@ -1,6 +1,6 @@
 <template>
     <div>
-       <navigation :page="'ads'"></navigation>
+       <navigation :page="'create-ad'"></navigation>
        <ads-form></ads-form>
        <footer-bar></footer-bar>
     </div>

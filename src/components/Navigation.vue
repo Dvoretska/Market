@@ -11,7 +11,7 @@
       <translate>Login</translate>
     </router-link>
 
-    <router-link :to="{ name: 'register'}" class="auth-button right-button" v-if="!isLogin" v-bind:class="{ 'active-link': page == 'register' }">
+    <router-link :to="{ name: 'register'}" class="auth-button right-button" v-if="!isLogin" v-bind:class="{ 'active-link': page == 'register' || page == 'ads' || page == 'ad-details'}">
       <translate>Sign up</translate>
     </router-link>
 
@@ -79,15 +79,6 @@ export default {
 </script>
 <style scoped lang="scss">
   .nav-bar {
-    /*display: flex;*/
-    /*height: 55px;*/
-    /*align-items: center;*/
-    /*position: fixed;*/
-    /*z-index: 10;*/
-    /*top: 0;*/
-    /*width: 100%;*/
-    /*padding: 0 10px;*/
-    /*background-color: #f4f4f4;*/
 		position: fixed;
 		top: 0;
 		left: 0;
@@ -95,7 +86,6 @@ export default {
 		width: 100%;
 		z-index: 50;
 		background-color: rgba(123, 79, 173, .4);
-    // opacity: .6;
 		border-bottom: 1px solid rgba(255, 255, 255, 1);
 		padding: 0 50px;
     box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);
@@ -112,10 +102,9 @@ export default {
     cursor: pointer;
 		font-size: 16px;
 		display: inline-block;
-		padding: 0 10px;
 		color: #FFFFFF;
 		transition: color 0.4s ease 0s;
-    padding: 5px 10px;
+    padding: 3px 10px;
     border: 1px solid transparent;
     &:hover {
       border: 1px solid white;

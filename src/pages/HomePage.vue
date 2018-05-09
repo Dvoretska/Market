@@ -1,6 +1,6 @@
 <template>
     <div>
-       <home-landing></home-landing>
+       <home-landing :page="'home'"></home-landing>
 <!--        <footer-bar></footer-bar> -->
     </div>
 </template>

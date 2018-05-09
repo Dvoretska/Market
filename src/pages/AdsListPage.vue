@@ -1,6 +1,6 @@
 <template>
 	<div>
-	  <navigation :page="'home'" ></navigation>
+	  <navigation :page="'ads'" ></navigation>
 	  <ads-list></ads-list>
 	  <footer-bar></footer-bar>
   	</div>

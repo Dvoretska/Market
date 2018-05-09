@@ -7,8 +7,12 @@
 				<li class="menu-item">CREATE AD</li>
 				<li class="menu-item">ABOUT</li>
 				<li class="menu-item">CONTACT</li>
-				<li class="menu-item login-item">LOGIN</li>
-				<li class="menu-item signup-item">SIGN UP</li>
+				<li class="menu-item login-item">
+					<router-link :to="{ name: 'login'}">LOGIN</router-link>
+				</li>
+				<li class="menu-item signup-item">
+					<router-link :to="{ name: 'register'}">SIGN UP</router-link>
+				</li>
 			</ul>
 		</header>
 		<section class="main-img">
@@ -111,7 +115,7 @@ export default {
 		position: fixed;
 		top: 0;
 		left: 0;
-		height: 80px;
+		height: 70px;
 		width: 100%;
 		z-index: 50;
 		background-color: rgba(36, 42, 53, 0.6);
@@ -128,10 +132,13 @@ export default {
 				padding: 0 10px;
 				color: #FFFFFF;
 				transition: color 0.4s ease 0s;
+				a {
+					color: #FFFFFF;
+				}
 			}
 			.login-item {
 				margin-left: auto;
-				margin-right: 20px;
+				margin-right: 15px;
 				padding: 5px 10px;
 				border: 1px solid transparent;
 				&:hover {
