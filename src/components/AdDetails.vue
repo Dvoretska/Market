@@ -111,7 +111,7 @@ export default {
 		align-items: flex-start;
 		// background-color: #F7F7F7;
 		.left-column {
-			padding: 0 25px;
+			padding: 15px 25px 0;
 			width: 75%;
 			border: 1px solid #ccc;
 			outline: 1px solid #fff;

@@ -1,11 +1,11 @@
 <template>
   <nav class="nav-bar">
 
-    <div class="nav-logo-container" @click="clearAllFilters">
-      <router-link :to="{ name: 'home'}">
-        <img src="../assets/Home.png" class="nav-logo-img">
-      </router-link>
-    </div>
+    <router-link :to="{ name: 'home'}">
+      <img src="../assets/Home.png" class="nav-logo-img">
+    </router-link>
+
+    <div @click="clearAllFilters" class="item-all-ads">All ads</div>
 
     <router-link :to="{ name: 'login'}" class="auth-button" v-if="!isLogin" v-bind:class="{ 'active-link': page == 'login'}">
       <translate>Login</translate>
@@ -43,7 +43,7 @@
       </ul>
     </div>
 
-    <router-link :to="{ name: 'create-ad'}" class="button-anim" v-if="isLogin" v-bind:class="{ 'active-link': page == 'ads' }">
+    <router-link :to="{ name: 'create-ad'}" class="button-create-ad" v-if="isLogin" v-bind:class="{ 'active-link': page == 'create-ad' }">
       <translate>+ Create an ad</translate>
     </router-link>
 
@@ -91,14 +91,18 @@ export default {
     box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);
     display: flex;
     align-items: center;
-    .nav-logo-container {
-      margin-right: auto;
-      .nav-logo-img {
-        height: 50px;
-        background-color: transparent;
-      }
+    .nav-logo-img {
+      height: 50px;
+      background-color: transparent;
     }
-  .auth-button {
+    .item-all-ads {
+      margin-right: auto;
+      cursor: pointer;
+      color: #FFFFFF;
+      font-size: 18px;
+      margin-left: 15px;
+    }
+  .main-button {
     cursor: pointer;
 		font-size: 16px;
 		display: inline-block;
@@ -111,7 +115,7 @@ export default {
       border-radius: 10px;
     }
   }
-    .auth-button.active-link {
+    .main-button.active-link {
       border: 1px solid white;
       border-radius: 10px;
     }
@@ -133,13 +137,14 @@ export default {
         font: 700 17px Futura, "Trebuchet MS", Arial, sans-serif;
         margin-right: 10px;
         vertical-align: middle;
-        color: #7957d5;
+        color: #404851;
         padding: 19px 15px 0 0;
       }
       .material-icons {
         position: absolute;
         right: 0px;
         top: 16px;
+        color: #404851;
       }
       .submenu {
         background: #fff;
@@ -179,10 +184,19 @@ export default {
         }
       }
     }
+    .button-create-ad {
+      color: #8c40b8;
+      background-color: white;
+      margin-left: 15px;
+      text-transform: uppercase;
+      font-size: 14px;
+      border-radius: 5px;
+      padding: 5px 10px;
+    }
   }
   @media screen and (max-width:320px){
     .nav-bar {
-      .button-anim {
+      .main-button {
         span {
           font: 700 10px Futura, "Trebuchet MS", Arial, sans-serif;
         }

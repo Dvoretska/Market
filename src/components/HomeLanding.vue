@@ -19,9 +19,7 @@
 			<div class="title-wrapper">
 				<h1 class="main-title">Buy & Sell Easy</h1>
 				<p class="main-text">With Home Market</p>
-				<button class="cta">
-					<span>START NOW</span>
-				</button>
+				<router-link :to="{ name: 'ads-list'}" class="cta">START NOW</router-link>
 			</div>
 		</section>
     <section class="rubrics-section">
@@ -108,9 +106,6 @@ export default {
 
 <style scoped lang="scss">
 .home-landing {
-	/deep/ .image {
-	height: 200px;
-}
 	.home-header {
 		position: fixed;
 		top: 0;
@@ -164,15 +159,13 @@ export default {
 				cursor: pointer;
 				transition: border-color 0.4s ease 0s, background-color 0.4s ease 0s;
 				text-transform: uppercase;
+				font-weight: 300;
+				font-size: 14px;
+				color: #fff;
 				&:hover {
 					background-color: rgba(255, 255, 255, 0.26);
 					border-color: transparent;
 					transition: border-color 0.4s ease 0s, background-color 0.4s ease 0s;
-				}
-				span {
-					font-weight: 300;
-					font-size: 14px;
-					color: #fff;
 				}
 			}
 	.main-img {
@@ -240,9 +233,9 @@ export default {
   .rubrics-section {
     padding: 90px 0;
      .slider-wrapper {
-     position:relative;
-     height:280px;
-      /deep/ button[data-controls] {
+	     position:relative;
+	     height:280px;
+	      /deep/ button[data-controls] {
         border: 0;
         background-color: transparent;
         text-decoration: none;
@@ -317,26 +310,25 @@ export default {
         background-size: cover;
         height: 280px;
         position: relative;
-
+        cursor: pointer;
         &:focus .popover-wrapper, &:hover .popover-wrapper {
-  opacity: 1;
-                                   }
-
-          .popover-wrapper {
-            height: 280px;
-            width: 100%;
-            position: absolute;
-            tot: 0;
-            left: 0;
-            background-color: hsla(0,0%,9%,.6);
-opacity: 0;
-                transition: opacity 0.2s ease-in;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            font-size: 20px;
-          }
+ 					 opacity: 1;
+      	}
+        .popover-wrapper {
+          height: 280px;
+          width: 100%;
+          position: absolute;
+          tot: 0;
+          left: 0;
+          background-color: hsla(0,0%,9%,.6);
+					opacity: 0;
+          transition: opacity 0.2s ease-in;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: #fff;
+          font-size: 20px;
+        }
       }
     }
   }
@@ -346,40 +338,38 @@ opacity: 0;
   		background-color: rgba(36, 42, 53, 0.3);
   		padding: 0 35px;
 			.slider-container {
-		  		margin: 0 auto;
-		  		flex-basis: 700px;
-		  		/deep/ .blueimp-gallery {
-						background-color: rgba(36, 42, 53, 0.4);
-						box-shadow: 0 0 3px #000;
-		  		}
-		  		/deep/ .blueimp-gallery > .slides > .slide > .slide-content {
-		  			width: 200px;
-		  			height: 200px;
-		  			border-radius: 50%;
-		  			left: -300px;
-		  		}
-		  	}
-		  	.info-container {
-		  		flex: 1;
-		  		display: flex;
-		  		flex-direction: column;
-		  		align-items: center;
-		  		justify-content: center;
-		  		.info-title {
-		  			text-align: center;
-		  			font-size: 30px;
-		  			color: #fff;
-		  			margin: 0 0 30px 15px;
-		  		}
-		  		.info-cta:hover {
-		  			border: 2px solid rgba(123, 79, 173, 0.4);
-		  		}
-		  		.info-cta:hover span {
-		  			color: rgba(123, 79, 173, 0.4);
-		  			font-weight: 600;
-		  		}
-		  	}
-		  }
-  	}
+	  		margin: 0 auto;
+	  		flex-basis: 700px;
+	  		/deep/ .blueimp-gallery {
+					background-color: rgba(36, 42, 53, 0.4);
+					box-shadow: 0 0 3px #000;
+	  		}
+	  		/deep/ .blueimp-gallery > .slides > .slide > .slide-content {
+	  			width: 200px;
+	  			height: 200px;
+	  			border-radius: 50%;
+	  			left: -300px;
+	  		}
+	  	}
+	  	.info-container {
+	  		flex: 1;
+	  		display: flex;
+	  		flex-direction: column;
+	  		align-items: center;
+	  		justify-content: center;
+	  		.info-title {
+	  			text-align: center;
+	  			font-size: 30px;
+	  			color: #fff;
+	  			margin: 0 0 30px 15px;
+	  		}
+	  		.info-cta:hover {
+	  			border: 2px solid rgba(123, 79, 173, 0.4);
+	  			color: rgba(123, 79, 173, 0.4);
+	  			font-weight: 600;	
+	  		}
+	  	}
+	  }
+	}
 }
 </style>

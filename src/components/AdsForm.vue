@@ -73,8 +73,8 @@
         </b-field>
 
         <b-field horizontal class="align-center">
-            <p class="control">
-                <button-bar :label="getCreateAd()" class="button-anim-ads" :click="createAd"></button-bar>
+            <p class="button-submit-container">
+                <button :label="getCreateAd()" class="button-submit" @click="createAd">Create an ad</button>
             </p>
         </b-field>
 
@@ -431,9 +431,27 @@ export default {
         height: 30px;
         border: 1px solid rgba(128,128,128,.5);
     }
-    .button-anim-ads {
-        margin-bottom: 7px;
-        margin-top: 6px;
+    .button-submit {
+        width: 145px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(123, 79, 173, 0.4);
+        border: solid rgba(255, 255, 255, 1) 1px;
+        cursor: pointer;
+        transition: border-color 0.4s ease 0s, background-color 0.4s ease 0s;
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: 14px;
+        color: #fff;
+        border-radius: 5px;
+        margin: 20px auto;
+        &:hover {
+          background-color: #F4F4F4;
+          border-color: #8c40b8;
+          color: #8c40b8;
+        }
     }
     /deep/ .input:hover  {
         border-color: #b5b5b5;
@@ -443,9 +461,6 @@ export default {
     .textarea:active {
       border-color: #7957d5;
       box-shadow: 0 0 0 0.125em rgba(121, 87, 213, 0.25);
-    }
-    p.control {
-      text-align: center;
     }
     /deep/ .help.counter {
       display: none;
