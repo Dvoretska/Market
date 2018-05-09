@@ -137,7 +137,7 @@ export default {
     if (data === undefined || data.isLeafNode === false) {
       context.commit('categoriesStaleMutate');
       context.commit('categoriesMutate', {loading: true});
-      const payload = data ? {category: data.category} : '';
+      const payload = data && data.category ? {category: data.category} : '';
       axios.get(`${MAIN_URL}categories/`, {
         params: payload,
         headers: {'Accept-Language': serviceLanguage.language}
@@ -157,6 +157,29 @@ export default {
         console.log(err)
       })
     }
+  },
+  GET_FILTERED_CATEGORIES: function (context, data) {
+    context.commit('loading', true);
+    context.commit('categoriesStaleMutate');
+    context.commit('categoriesMutate', {loading: true});
+    axios.get(`${MAIN_URL}categories/`, {
+      params: data,
+      headers: {'Accept-Language': serviceLanguage.language}
+    })
+      .then((response) => {
+        if (response.data.results && response.data.results.length) {
+          response.data.loading = false;
+          context.commit('loading', false);
+          context.commit('categoriesMutate', response.data);
+          if (data) {
+            context.commit('activeFiltersSearchMutate', {category: data.category});
+          }
+        } else {
+          context.commit('categoriesMutate', {loading: false});
+        }
+      }).catch((err) => {
+      console.log(err)
+    })
   },
   GET_FILTERED_AD_LIST: function (context, data) {
     context.commit('adsMutate', {loading: true})
