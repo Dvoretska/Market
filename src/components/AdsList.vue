@@ -139,6 +139,7 @@ export default {
     display: flex;
     margin-top: 55px;
     min-height: calc(100vh - 55px - 125px);
+    box-shadow: inset 0 20px 50px -20px rgba(0,0,0,.06);
     .filters-box {
 			width: 300px;
 			padding: 7px 20px 0 10px;

@@ -199,9 +199,7 @@ export default {
 			}
 			.owner-card {
 				width: 100%;
-				background-color: #f4f4f4;
 				padding: 5px 5px 15px;
-				border: 1px solid white;
 				margin-bottom: 20px;
 				.owner-avatar {
 					background-image: url('../assets/default-profile-picture.png');

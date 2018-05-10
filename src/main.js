@@ -18,9 +18,10 @@ import VueTree from 'liquor-tree'
 import serviceLanguage from './services/language.js'
 import moment from "moment"
 import VueMomentJS from "vue-momentjs"
+import vueScrollTo from 'vue-scroll-to';
  
+Vue.use(vueScrollTo);
 Vue.use(VueMomentJS, moment);
-
 Vue.use(VueTree)
 Vue.use(GetTextPlugin, {
   availableLanguages: {

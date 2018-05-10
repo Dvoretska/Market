@@ -2,54 +2,60 @@
 	<div class="home-landing">
 		<header class="home-header">
 			<ul class="home-menu">
-				<li class="menu-item">HOME</li>
-				<li class="menu-item">SHOP</li>
-				<li class="menu-item">CREATE AD</li>
-				<li class="menu-item">ABOUT</li>
-				<li class="menu-item">CONTACT</li>
+				<li class="menu-item">
+          <a href="#" v-scroll-to="'.main-img, 0'"><translate>HOME</translate></a>
+        </li>
+				<li class="menu-item">
+          <a href="#" v-scroll-to="'.rubrics-section, 60px'"><translate>SHOP</translate></a>
+        </li>
+				<li class="menu-item">
+          <a href="#" v-scroll-to="'.team-section, 0'"><translate>TEAM</translate></a>
+        </li>
+				<li class="menu-item">
+          <a href="#"><translate>ABOUT</translate></a>
+        </li>
+				<li class="menu-item">
+          <a href="#"><translate>CONTACT</translate></a>
+        </li>
 				<li class="menu-item login-item">
-					<router-link :to="{ name: 'login'}">LOGIN</router-link>
+					<router-link :to="{ name: 'login'}"><translate>LOGIN</translate></router-link>
 				</li>
 				<li class="menu-item signup-item">
-					<router-link :to="{ name: 'register'}">SIGN UP</router-link>
+					<router-link :to="{ name: 'register'}"><translate>SIGN UP</translate></router-link>
 				</li>
 			</ul>
 		</header>
 		<section class="main-img">
 			<div class="title-wrapper">
-				<h1 class="main-title">Buy & Sell Easy</h1>
-				<p class="main-text">With Home Market</p>
-				<router-link :to="{ name: 'ads-list'}" class="cta">START NOW</router-link>
+				<h1 class="main-title"><translate>Buy & Sell Easy</translate></h1>
+				<p class="main-text"><translate>With Home Market</translate></p>
+				<router-link :to="{ name: 'ads-list'}" class="cta"><translate>START NOW</translate></router-link>
 			</div>
 		</section>
     <section class="rubrics-section">
-      <h5 class="section-title">Our Rubrics</h5>
+      <h5 class="section-title"><translate>Our Rubrics</translate></h5>
+      <p></p>
       <div class="slider-wrapper">
-        <tiny-slider :mouse-drag="true" :loop="false" items="4" gutter="20" :controlsText="[prevButton, nextButton]">
-          <div class="slider-item slider-item9"><div class="popover-wrapper">Fashion</div></div>
-          <div class="slider-item slider-item2"><div class="popover-wrapper">House and garden</div></div>
-          <div class="slider-item slider-item3"><div class="popover-wrapper">Kids stuff</div></div>
-          <div class="slider-item slider-item8"><div class="popover-wrapper">Real estate</div></div>
-          <div class="slider-item slider-item5"><div class="popover-wrapper">Spare parts for transport</div></div>
-          <div class="slider-item slider-item6"><div class="popover-wrapper">Hobby, rest and sport</div></div>
-          <div class="slider-item slider-item7"><div class="popover-wrapper">Electronics</div></div>
-          <div class="slider-item slider-item11"><div class="popover-wrapper">Job</div></div>
-          <div class="slider-item slider-item1"><div class="popover-wrapper">Transport</div></div>
-          <div class="slider-item slider-item4"><div class="popover-wrapper">Animals</div></div>
-          <div class="slider-item slider-item10"><div class="popover-wrapper">Business and services</div></div>
+        <tiny-slider :mouse-drag="true" :loop="false" items="4" gutter="20" :controlsText="[prevButton, nextButton]" v-if="getCategories.length">
+          <div v-for="category in getCategories" class="slider-item" v-bind:style="{ backgroundImage: 'url(' + getImageUrl(category.slug) + ')'}">
+              <div class="popover-wrapper" :key="category.name">
+                <div><translate>{{category.name}}</translate></div>
+                <div>{{category.count}} <translate>ads</translate></div>
+              </div>
+          </div>
         </tiny-slider>
       </div>
     </section>
     <section class="team-section">
-    	<h5 class="section-title">Our Team</h5>
+    	<h5 class="section-title"><translate>Our Team</translate></h5>
     	<div class="team-content">
 	    	<div class="slider-container">
 				    <gallery :images="images" :index="2" @close="index = null" :carousel="true"></gallery>
 				</div>
 				<div class="info-container">
-					<p class="info-title">YOU THINK WE'RE COOL ? LET'S WORK TOGETHER</p>
+					<p class="info-title"><translate>YOU THINK WE'RE COOL ? LET'S WORK TOGETHER</translate></p>
 					<button class="cta info-cta">
-						<span>get in touch</span>
+						<span><translate>get in touch</translate></span>
 					</button>
 				</div>
 			</div>
@@ -95,9 +101,14 @@ export default {
   created () {
     this.$store.dispatch('GET_CATEGORIES')
   },
+  methods: {
+    getImageUrl(slug) {
+      return require(`@/assets/rubrics/${slug}.jpg`)
+    }
+  },
   computed: {
-    getAds () {
-      return this.$store.getters.getAds;
+    getCategories () {
+      return this.$store.getters.getCategories.results
     }
   }
 }
@@ -271,39 +282,6 @@ export default {
           fill: #fff;
         }
       }
-      .slider-item1 {
-        background-image: url('../assets/1495.jpg');
-      }
-      .slider-item2 {
-        background-image: url('../assets/furniture.jpeg');
-      }
-      .slider-item3 {
-        background-image: url('../assets/149972-OTYS5J-238.jpg');
-      }
-      .slider-item4 {
-        background-image: url('../assets/242.jpg');
-      }
-      .slider-item5 {
-        background-image: url('../assets/887.jpg');
-      }
-      .slider-item6 {
-        background-image: url('../assets/1017.jpg');
-      }
-      .slider-item7 {
-        background-image: url('../assets/282483-P61FUH-317.jpg');
-      }
-      .slider-item8 {
-        background-image: url('../assets/85.jpg');
-      }
-      .slider-item9 {
-        background-image: url('../assets/468.jpg');
-      }
-      .slider-item10 {
-        background-image: url('../assets/O6JTUC0.jpg');
-      }
-      .slider-item11 {
-        background-image: url('../assets/O6XN980.jpg');
-      }
       .slider-item {
         background-repeat: no-repeat;
         background-position: center;
@@ -324,6 +302,7 @@ export default {
 					opacity: 0;
           transition: opacity 0.2s ease-in;
           display: flex;
+          flex-direction: column;
           justify-content: center;
           align-items: center;
           color: #fff;

@@ -7,11 +7,11 @@
 
     <div @click="clearAllFilters" class="item-all-ads">All ads</div>
 
-    <router-link :to="{ name: 'login'}" class="auth-button" v-if="!isLogin" v-bind:class="{ 'active-link': page == 'login'}">
+    <router-link :to="{ name: 'login'}" class="main-button" v-if="!isLogin" v-bind:class="{ 'active-link': page == 'login'}">
       <translate>Login</translate>
     </router-link>
 
-    <router-link :to="{ name: 'register'}" class="auth-button right-button" v-if="!isLogin" v-bind:class="{ 'active-link': page == 'register' || page == 'ads' || page == 'ad-details'}">
+    <router-link :to="{ name: 'register'}" class="main-button right-button" v-if="!isLogin" v-bind:class="{ 'active-link': page == 'register' || page == 'ads' || page == 'ad-details'}">
       <translate>Sign up</translate>
     </router-link>
 
@@ -185,13 +185,20 @@ export default {
       }
     }
     .button-create-ad {
-      color: #8c40b8;
-      background-color: white;
       margin-left: 15px;
       text-transform: uppercase;
       font-size: 14px;
       border-radius: 5px;
       padding: 5px 10px;
+      transition: background-color 0.4s ease 0s;
+      border: 2px solid white;
+      background-color: rgba(123, 79, 173, 0.4);
+      color: white;
+      &:hover {
+        border: 2px solid transparent;
+        color: #8c40b8;
+        background-color: white;
+      }
     }
   }
   @media screen and (max-width:320px){

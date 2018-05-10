@@ -437,7 +437,7 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: rgba(123, 79, 173, 0.4);
+        background-color: rgba(123, 79, 173, 0.7);
         border: solid rgba(255, 255, 255, 1) 1px;
         cursor: pointer;
         transition: border-color 0.4s ease 0s, background-color 0.4s ease 0s;
