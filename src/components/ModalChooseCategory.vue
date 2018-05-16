@@ -1,14 +1,14 @@
 <template>
-	<modal name="choose-category" :height="270" :width="600" class="modal-window">
+	<modal name="choose-category" :width="600" :scrollable="true" class="modal-window" :height="'auto'">
     <div class="modal-window-contant">
       <div class="modal-title">
           <h2>Choose a category</h2>
           <img src="../assets/cancel.svg" alt="" class="icon-close" @click="hide()">
       </div>
       <ul v-if="rootCategory && !loading" class="categories-wrapper">
-        <li class="category-item" v-for="category in categories" @click="fetchSubcategory(category.slug)">
-          <img :src="getIconURL(category.slug)" alt="" class="icon-category-item">
-          <span>{{ category.name }}</span>
+        <li class="category-item" v-for="category_item in categories" @click="fetchSubcategory(category_item.slug)">
+          <img :src="getIconURL(category_item.slug)" alt="" class="icon-category-item">
+          <span>{{ category_item.name }}</span>
         </li>
       </ul>
 
@@ -19,7 +19,7 @@
         </div>
 
         <div v-else class="subcategories-container categories-wrapper">
-          <div v-for="subcategory in categories" class="category-item subcategory-item" ref="subCategory_item" @click="fetchSubSubCategory(subcategory)" v-on="{ click: subcategory.is_leaf_node == true ? hide : null }">{{ subcategory.name }}<img src="../assets/categoryIcons/arrow-right.svg" v-if="subcategory.is_leaf_node == false" class="icon-arrow-right"></div>
+          <div v-for="subcategory in categories" class="category-item subcategory-item" @click="subcategory.is_leaf_node == true ? hide(subcategory) : fetchSubSubCategory(subcategory)">{{ subcategory.name }}<img src="../assets/categoryIcons/arrow-right.svg" v-if="subcategory.is_leaf_node == false" class="icon-arrow-right"></div>
         </div>
 
       </div>
@@ -48,7 +48,8 @@ export default {
         console.log(ex)
       }
     },
-    hide () {
+    hide (subcategory) {
+      this.$emit('subcategory', subcategory)
       this.$modal.hide('choose-category')
     }
   },

@@ -11,7 +11,7 @@
 					<div class="ad-details-price">{{ getAdDetails.price }}<span>  грн.</span></div>
 					<div class="ad-details-location">{{ getAdDetails.location }}</div>
 					<div class="ad-details-date"><translate>Added at </translate>{{ getDate(getAdDetails.created) }}</div>
-					<div class="ad-details-description">{{ getAdDetails.message }}</div>
+					<div class="ad-details-description" v-html="getAdDetails.message">{{ getAdDetails.message }}</div>
 				</div>
 			</div>
 		</div>

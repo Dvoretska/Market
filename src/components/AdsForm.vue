@@ -8,11 +8,11 @@
 
         <b-field horizontal :label="getTopic()" class="align-left">
             <button @click="show" class="field-topic input">
-              <span class="topic-span">{{ category.name }}</span>
+              <span class="topic-span">{{ subcategoryObj.name }}</span>
               <img src="../assets/arrow-down-expand.svg" alt="" class="icon-expand-arrow">
             </button>
             <div class="error" v-if="getErrors">{{ getErrors.category }}</div>
-            <modal-choose-category :rootCategory="rootCategory" :fetchSubcategory="fetchSubcategory" :fetchSubSubCategory="fetchSubSubCategory"></modal-choose-category>
+            <modal-choose-category :rootCategory="rootCategory" :fetchSubcategory="fetchSubcategory" :fetchSubSubCategory="fetchSubSubCategory" @subcategory="subcategory"></modal-choose-category>
         </b-field>
         <b-field horizontal :label="getPrice()" class="align-left field-price">
             <div class="price-wrapper">
@@ -23,7 +23,8 @@
         </b-field>
 
         <b-field horizontal :label="getDescription()" class="align-left">
-            <b-input type="textarea" v-model="message" :maxlength="messageMaxLength"></b-input>
+            <vue-editor v-model="message" :editorToolbar="customToolbar"></vue-editor>
+<!--             <b-input type="textarea" v-model="message" :maxlength="messageMaxLength"></b-input> -->
             <div class="counter-validation"><b>{{ messageSignsLeft() }}</b> signs left</div>
             <div class="error" v-if="getErrors && getErrors.message">{{ getErrors.message[0] }}</div>
         </b-field>
@@ -84,11 +85,13 @@
 <script>
 import buttonBar from '@/components/ButtonBar'
 import modalChooseCategory from '@/components/ModalChooseCategory'
+import { VueEditor } from 'vue2-editor'
 
 export default {
   components: {
     buttonBar,
-    modalChooseCategory
+    modalChooseCategory,
+    VueEditor
   },
   data () {
     return {
@@ -99,16 +102,23 @@ export default {
       message: '',
       subject: '',
       category: '',
+      subcategoryObj: {},
       price: '',
       file: '',
       dragAndDropCapable: false,
       files: [],
       isHighlight: false,
       warning: false,
-      rootCategory: true,
+      rootCategory: false,
       selectedImgKey: 0,
       subjectMaxLength: 70,
-      messageMaxLength: 4000
+      messageMaxLength: 4000,
+      customToolbar: [
+        ['bold', 'italic', 'underline'],
+        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+        [{ 'font': [] }],
+        [{ 'align': [] }]
+      ]
     }
   },
   created () {
@@ -151,6 +161,10 @@ export default {
     }
   },
   methods: {
+    subcategory (data) {
+      console.log(data)
+      this.subcategoryObj = data
+    },
     subjectSignsLeft () {
       return this.subjectMaxLength - this.subject.length
     },    
@@ -170,8 +184,8 @@ export default {
     },
     show () {
       this.rootCategory = true
-      this.$modal.show('choose-category')
       this.$store.dispatch('GET_CATEGORIES')
+      this.$modal.show('choose-category')
     },
     determineDragAndDropCapable () {
        var div = document.createElement('div')
@@ -205,6 +219,7 @@ export default {
       this.isHighlight = false
     },
     createAd () {
+      console.log(this.subcategoryObj.slug)
       var formData = new FormData()
       if (this.files.length) {
         let a = this.files.splice(this.selectedImgKey, 1)
@@ -214,7 +229,7 @@ export default {
           formData.append('files[' + i + ']', file)
         }
       }
-      formData.append('category', this.category.slug)
+      formData.append('category', this.subcategoryObj.slug)
       formData.append('subject', this.subject)
       formData.append('message', this.message)
       formData.append('location', this.location)

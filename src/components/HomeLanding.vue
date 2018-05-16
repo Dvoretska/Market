@@ -34,7 +34,7 @@
 		</section>
     <section class="rubrics-section">
       <h5 class="section-title"><translate>Our Rubrics</translate></h5>
-      <p></p>
+      <p>Home Market is a great way of selling your products online. Create ads easely and for free, and we will help get your products in front of more people. Also you can buy everything you need just staying at home. Save your time finding products of electronics, fashion, clothing, home and kitchen essentials, food and many more on our website.</p>
       <div class="slider-wrapper">
         <tiny-slider :mouse-drag="true" :loop="false" items="4" gutter="20" :controlsText="[prevButton, nextButton]" v-if="getCategories.length">
           <div v-for="category in getCategories" class="slider-item" v-bind:style="{ backgroundImage: 'url(' + getImageUrl(category.slug) + ')'}">
