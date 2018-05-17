@@ -108,11 +108,9 @@ export default {
 		margin-left: 15px;
 	}
 	.main-container {
-		// min-height: 100vh;
 		margin: 80px 150px;
 		display: flex;
 		align-items: flex-start;
-		// background-color: #F7F7F7;
 		.left-column {
 			padding: 15px 25px 0;
 			width: 75%;
@@ -120,6 +118,7 @@ export default {
 			outline: 1px solid #fff;
 			min-height: 60px;
 			background-color: #F7F7F7;
+			min-height: 150px;
 			.loading {
 				position: fixed;
 				left: 35%;
@@ -171,8 +170,6 @@ export default {
 			padding: 15px 15px 0;
 			background-color: rgba(36, 42, 53, 0.2);
 			margin-left: 10px;
-			// background-color: rgba(36, 42, 53, 0.1);
-			// margin-left: 20px;
 			.contact-button {
 				width: 100%;
 				height: 40px;
@@ -180,19 +177,17 @@ export default {
 				padding: 0 15px;
 				display: flex;
 				align-items: center;
-				// border: none;
-				// border-radius: 5px;
 				background-color: rgba(123, 79, 173, 0.7);
 				text-transform: uppercase;
 				font-weight: 600;
 				color: #fff;
 				cursor: pointer;
-				// box-shadow:
-		  //       0px 1px 1px rgba(128,128,128,.8);
-		        				// background-color: rgba(123, 79, 173, 0.4);
 				border: solid rgba(255, 255, 255, 1) 1px;
 		        span {
 		        	font-size: 13px;
+		        	@media screen and (max-width:1200px){
+						font-size: 12px;
+					}
 		        }
 		        .contact-icon {
 		        	width: 20px;
@@ -271,7 +266,7 @@ export default {
 		.main-container {
 			margin: 80px 30px;
 			.right-column {
-				padding: 0 10px;
+				padding: 10px;
 			}
 		}
 	}

@@ -40,9 +40,21 @@
 		</section>
     <section class="rubrics-section">
       <h5 class="section-title"><translate>Our Rubrics</translate></h5>
-      <p>Home Market is a great way of selling your products online. Create ads easely and for free, and we will help get your products in front of more people. Also you can buy everything you need just staying at home.</p>
+      <p class="section-subtitle">Home Market is a great way of selling your products online. Create ads easely and for free, and we will help get your products in front of more people. Also you can buy everything you need just staying at home.</p>
       <div class="slider-wrapper">
-        <tiny-slider :mouse-drag="true" :loop="false" :responsive="{320: {items: 2, nav: true, navAsThumbnails: true, navContainer: true}, 767: {items: 4}}" items="4" gutter="20" :controlsText="[prevButton, nextButton]" v-if="getCategories.length">
+        <tiny-slider 
+          :mouse-drag="true" 
+          :loop="false" 
+          :responsive="{
+          1: {items: 1, nav: true, navAsThumbnails: true, navContainer: true, controls: false}, 
+          480: {items: 2, nav: true, navAsThumbnails: true, navContainer: true, controls: false},
+          568: {items: 3, nav: false, navAsThumbnails: false, navContainer: false, controls: true},  
+          767: {items: 4, nav: false, navAsThumbnails: false, navContainer: false, controls: true}
+          }" 
+          items="4" 
+          gutter="20" 
+          :controlsText="[prevButton, nextButton]" 
+          v-if="getCategories.length">
           <div v-for="category in getCategories" class="slider-item" v-bind:style="{ backgroundImage: 'url(' + getImageUrl(category.slug) + ')'}">
               <div class="popover-wrapper" :key="category.name">
                 <div><translate>{{category.name}}</translate></div>
@@ -56,10 +68,10 @@
     	<h5 class="section-title"><translate>Our Team</translate></h5>
     	<div class="team-content">
 	    	<div class="slider-container">
-				    <gallery :images="images" :index="2" @close="index = null" :carousel="true"></gallery>
+				    <gallery :images="images" :index="null" @close="index=null" :carousel="true"></gallery>
 				</div>
 				<div class="info-container">
-					<p class="info-title"><translate>YOU THINK WE'RE COOL ? LET'S WORK TOGETHER</translate></p>
+					<p class="info-title"><translate>You think we're cool? Let's work together</translate></p>
 					<button class="cta info-cta">
 						<span><translate>get in touch</translate></span>
 					</button>
@@ -71,7 +83,7 @@
 
 <script>
 import VueTinySlider from 'vue-tiny-slider'
-import VueGallery from 'vue-gallery'
+import VueGallery from '@/components/extended/vueGallery'
 
 export default {
   components: {
@@ -112,6 +124,9 @@ export default {
     window.addEventListener('resize', this.handleWindowResize)
   },
   methods: {
+    test() {
+      console.log('teset')
+    },
     handleWindowResize(event) { 
       if(event.currentTarget.innerWidth > 767) {
         this.showMenu = false
@@ -148,6 +163,9 @@ export default {
 		padding: 0 50px;
     display: flex;
     align-items: center;
+    @media screen and (max-width:320px){
+      padding: 0 25px;
+    }
     .menu-burger {
       width: 30px;
       height: 30px;
@@ -231,7 +249,6 @@ export default {
 		&:hover {
 			background-color: rgba(255, 255, 255, 0.26);
 			border-color: transparent;
-			transition: border-color 0.4s ease 0s, background-color 0.4s ease 0s;
 		}
 	}
 	.main-img {
@@ -281,41 +298,56 @@ export default {
 				color: #fff;
 				font-weight: 300;
 				margin-bottom: 40px;
+        font-style: italic;
         @media screen and (max-width:320px){
           font-size: 26px;
         }
 			}
 		}
 	}
-	.section-title {
-      font-size: 34px;
-      color: #8c40b8;
-      margin: 0 auto 50px;
-      text-align: center;
-      font-family: 'GFS Didot', serif;
-      position: relative;
-      max-width: 220px;
-      &:before {
-          content: "";
-          position: absolute;
-          width: 330px;
-          height: 1px;
-          left: 240px;
-          top: 50%;
-          background-color: rgba(36, 42, 53, 1);
-       }
-       &:after {
-          content: "";
-          position: absolute;
-          width: 330px;
-          height: 1px;
-          right: 240px;
-          top: 50%;
-          background-color: rgba(36, 42, 53, 1);
-       }
+.section-title {
+    font-size: 34px;
+    color: #8c40b8;
+    margin: 0 auto 20px;
+    text-align: center;
+    font-family: 'Arapey', serif;
+    position: relative;
+    max-width: 220px;
+    font-style: italic;
+    @media screen and (max-width:320px){
+      margin: 0 auto 20px;
     }
+    &:before {
+        content: "";
+        position: absolute;
+        width: 330px;
+        height: 1px;
+        left: 240px;
+        top: 50%;
+        background-color: rgba(36, 42, 53, 1);
+     }
+     &:after {
+        content: "";
+        position: absolute;
+        width: 330px;
+        height: 1px;
+        right: 240px;
+        top: 50%;
+        background-color: rgba(36, 42, 53, 1);
+     }
+  }
+  .section-subtitle {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 40px;
+  }
   .rubrics-section {
     padding: 90px 0;
+    @media screen and (max-width:320px){
+      padding: 30px 0 50px;
+    }
      .slider-wrapper {
 	     position:relative;
 	     height:280px;
@@ -355,6 +387,29 @@ export default {
           fill: #fff;
         }
       }
+      /deep/ .tns-nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        bottom: -40px;
+        height: 30px;
+        width: 100%;
+        button[data-nav] {
+          display: inline-block;
+          background-color: rgba(36, 42, 53, 0.6);
+          width: 10px;
+          height: 0;
+          padding-bottom: 10px;
+          border-radius: 50%;
+          margin: 0 3px;
+          overflow: hidden;
+          border: none;
+          &:hover {
+            background-color: rgba(123, 79, 173, 0.4);
+          }
+        }
+      }
       .slider-item {
         background-repeat: no-repeat;
         background-position: center;
@@ -389,9 +444,14 @@ export default {
   		display: flex;
   		background-color: rgba(36, 42, 53, 0.3);
   		padding: 0 35px;
+      @media screen and (max-width:841px){
+        flex-direction: column;
+      }
 			.slider-container {
 	  		margin: 0 auto;
-	  		flex-basis: 700px;
+        height: 350px;
+        width: 100%;
+	  		flex: 2;
 	  		/deep/ .blueimp-gallery {
 					background-color: rgba(36, 42, 53, 0.4);
 					box-shadow: 0 0 3px #000;
@@ -414,12 +474,20 @@ export default {
 	  			font-size: 30px;
 	  			color: #fff;
 	  			margin: 0 0 30px 15px;
+          @media screen and (max-width:841px){
+            margin: 25px 0 15px;
+          }
 	  		}
-	  		.info-cta:hover {
-	  			border: 2px solid rgba(123, 79, 173, 0.4);
-	  			color: rgba(123, 79, 173, 0.4);
-	  			font-weight: 600;	
-	  		}
+        .info-cta {
+          @media screen and (max-width:841px){
+            margin-bottom: 15px;
+          }
+          &:hover {
+            border: 2px solid rgba(123, 79, 173, 0.4);
+            color: rgba(123, 79, 173, 0.4);
+            font-weight: 600; 
+          }
+        }
 	  	}
 	  }
 	}
@@ -459,31 +527,12 @@ export default {
 @media screen and (max-width: 320px) {
   .home-landing {
     .home-header {
+      .menu-burger {
+        width: 20px;
+        height: 20px;
+      }
       .home-menu {
-        flex-direction: column;
-        align-items: flex-start;
-        position: fixed;
-        background: rgba(0, 0, 0, .7);
-        top: 0;
-        left: 0;
-        margin: 0;
-        padding: 70px 50px 15px 50px;
-        text-align: left;
-        z-index: -1;
-        transform: translate(-100%, 0);
-        transition: transform 0.5s;
-        opacity: 0;
-        .menu-item {
-          margin-top: 20px;
-          margin-left: 0;
-        }
-      }
-      .home-menu--open {
-        opacity: 1;
-        transform: translate(0, 0);
-      }
-      .home-menu--close {
-        opacity: 1;
+        padding: 70px 30px 15px 25px;
       }
     }
   }
