@@ -104,6 +104,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+	ol, ul {
+		margin-left: 15px;
+	}
 	.main-container {
 		// min-height: 100vh;
 		margin: 80px 150px;
@@ -166,7 +169,7 @@ export default {
 			height: auto;
 			width: 25%;
 			padding: 15px 15px 0;
-			background-color: #F7F7F7;
+			background-color: rgba(36, 42, 53, 0.2);
 			margin-left: 10px;
 			// background-color: rgba(36, 42, 53, 0.1);
 			// margin-left: 20px;

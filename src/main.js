@@ -42,7 +42,7 @@ Vue.use(GetTextPlugin, {
 
 Vue.use(VueMq, {
   breakpoints: {
-    mobile: 480,
+    mobile: 320,
     tablet: 768,
     laptop: 1024,
     desktop: Infinity

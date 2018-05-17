@@ -1,26 +1,32 @@
 <template>
 	<div class="home-landing">
 		<header class="home-header">
-			<ul class="home-menu">
+      <span v-if="$mq === 'mobile' || $mq === 'tablet'">
+        <img src="../assets/burger-open-icon.svg" alt="" class="menu-burger" @click="toggleMenu" v-if="!showMenu">
+        <img src="../assets/burger-close-icon.svg" alt="" @click="toggleMenu" class="menu-burger" v-else>
+      </span>
+			<ul class="home-menu" :class="{'home-menu--open': showMenu, 'home-menu--close': !showMenu}">
 				<li class="menu-item">
-          <a href="#" v-scroll-to="'.main-img, 0'"><translate>HOME</translate></a>
+          <a href="#" class="menu-item-link" v-scroll-to="'.main-img, 0'"><translate>HOME</translate></a>
         </li>
 				<li class="menu-item">
-          <a href="#" v-scroll-to="'.rubrics-section, 60px'"><translate>SHOP</translate></a>
+          <a href="#" class="menu-item-link" v-scroll-to="'.rubrics-section, 60px'"><translate>SHOP</translate></a>
         </li>
 				<li class="menu-item">
-          <a href="#" v-scroll-to="'.team-section, 0'"><translate>TEAM</translate></a>
+          <a href="#" class="menu-item-link" v-scroll-to="'.team-section, 0'"><translate>TEAM</translate></a>
         </li>
 				<li class="menu-item">
-          <a href="#"><translate>ABOUT</translate></a>
+          <a href="#" class="menu-item-link"><translate>ABOUT</translate></a>
         </li>
 				<li class="menu-item">
-          <a href="#"><translate>CONTACT</translate></a>
+          <a href="#" class="menu-item-link"><translate>CONTACT</translate></a>
         </li>
-				<li class="menu-item login-item">
+       </ul>
+       <ul class="home-auth"> 
+				<li class="auth-item login-item">
 					<router-link :to="{ name: 'login'}"><translate>LOGIN</translate></router-link>
 				</li>
-				<li class="menu-item signup-item">
+				<li class="auth-item signup-item">
 					<router-link :to="{ name: 'register'}"><translate>SIGN UP</translate></router-link>
 				</li>
 			</ul>
@@ -34,9 +40,9 @@
 		</section>
     <section class="rubrics-section">
       <h5 class="section-title"><translate>Our Rubrics</translate></h5>
-      <p>Home Market is a great way of selling your products online. Create ads easely and for free, and we will help get your products in front of more people. Also you can buy everything you need just staying at home. Save your time finding products of electronics, fashion, clothing, home and kitchen essentials, food and many more on our website.</p>
+      <p>Home Market is a great way of selling your products online. Create ads easely and for free, and we will help get your products in front of more people. Also you can buy everything you need just staying at home.</p>
       <div class="slider-wrapper">
-        <tiny-slider :mouse-drag="true" :loop="false" items="4" gutter="20" :controlsText="[prevButton, nextButton]" v-if="getCategories.length">
+        <tiny-slider :mouse-drag="true" :loop="false" :responsive="{320: {items: 2, nav: true, navAsThumbnails: true, navContainer: true}, 767: {items: 4}}" items="4" gutter="20" :controlsText="[prevButton, nextButton]" v-if="getCategories.length">
           <div v-for="category in getCategories" class="slider-item" v-bind:style="{ backgroundImage: 'url(' + getImageUrl(category.slug) + ')'}">
               <div class="popover-wrapper" :key="category.name">
                 <div><translate>{{category.name}}</translate></div>
@@ -74,6 +80,7 @@ export default {
   },
   data () {
     return {
+      showMenu: false,
       prevButton: `<span class="my-slide-prev">
       <svg viewBox="0 0 477.175 477.175">
       <g>
@@ -101,7 +108,18 @@ export default {
   created () {
     this.$store.dispatch('GET_CATEGORIES')
   },
+  mounted () {
+    window.addEventListener('resize', this.handleWindowResize)
+  },
   methods: {
+    handleWindowResize(event) { 
+      if(event.currentTarget.innerWidth > 767) {
+        this.showMenu = false
+      }
+    },
+    toggleMenu () {
+      this.showMenu = !this.showMenu
+    },
     getImageUrl(slug) {
       return require(`@/assets/rubrics/${slug}.jpg`)
     }
@@ -111,6 +129,7 @@ export default {
       return this.$store.getters.getCategories.results
     }
   }
+ 
 }
 
 </script>
@@ -127,23 +146,59 @@ export default {
 		background-color: rgba(36, 42, 53, 0.6);
 		border-bottom: 1px solid rgba(255, 255, 255, 1);
 		padding: 0 50px;
+    display: flex;
+    align-items: center;
+    .menu-burger {
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+    }
 		.home-menu {
 			list-style: none;
 			display: flex;
 			align-items: center;
 			height: 100%;
-			.menu-item {
+      .menu-item {
         cursor: pointer;
-				font-size: 14px;
-				padding: 0 10px;
-				color: #FFFFFF;
-				transition: color 0.4s ease 0s;
-				a {
-					color: #FFFFFF;
-				}
-			}
+        font-size: 14px;
+        margin: 0 10px;
+        transition: color 0.4s ease 0s;
+        &:hover .menu-item-link::after {
+          width: 100%;
+        }
+        .menu-item-link {
+          color: #FFFFFF;
+          position: relative;
+          &::after {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 0;
+            bottom: -7px;
+            height: 3px;
+            background-color: #fff;
+            transition: width 0.5s;
+          } 
+        }
+      }
+    }
+    .home-auth {
+      margin-left: auto;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      .auth-item {
+        cursor: pointer;
+        font-size: 14px;
+        padding: 0 10px;
+        color: #FFFFFF;
+        transition: color 0.4s ease 0s;
+        a {
+          color: #FFFFFF;
+        }
+      }
 			.login-item {
-				margin-left: auto;
 				margin-right: 15px;
 				padding: 5px 10px;
 				border: 1px solid transparent;
@@ -160,25 +215,25 @@ export default {
 		}
 	}
 	.cta {
-				width: 145px;
-				height: 40px;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				background-color: rgba(123, 79, 173, 0.4);
-				border: solid rgba(255, 255, 255, 1) 1px;
-				cursor: pointer;
-				transition: border-color 0.4s ease 0s, background-color 0.4s ease 0s;
-				text-transform: uppercase;
-				font-weight: 300;
-				font-size: 14px;
-				color: #fff;
-				&:hover {
-					background-color: rgba(255, 255, 255, 0.26);
-					border-color: transparent;
-					transition: border-color 0.4s ease 0s, background-color 0.4s ease 0s;
-				}
-			}
+		width: 145px;
+		height: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: rgba(123, 79, 173, 0.4);
+		border: 1px solid rgba(255, 255, 255, 1);
+		cursor: pointer;
+		transition: border-color 0.4s ease 0s, background-color 0.4s ease 0s;
+		text-transform: uppercase;
+		font-weight: 300;
+		font-size: 14px;
+		color: #fff;
+		&:hover {
+			background-color: rgba(255, 255, 255, 0.26);
+			border-color: transparent;
+			transition: border-color 0.4s ease 0s, background-color 0.4s ease 0s;
+		}
+	}
 	.main-img {
 		background-image: url('../assets/Online-Market-Place.jpg');
 		background-repeat: no-repeat;
@@ -191,12 +246,24 @@ export default {
 		flex-direction: column;
 		padding-top: 250px;
 		align-items: flex-end;
+    @media screen and (max-width:1024px){
+      align-items: center;
+      padding-right: 0;
+    }
+    @media screen and (max-width:768px){
+      height: 600px;
+    }
+    @media screen and (max-width:320px){
+      padding-top: 0;
+      justify-content: center;
+      height: 400px;
+    }
 		.title-wrapper {
 			display: flex;
 			flex-direction: column;
-			justify-content: center;
 			align-items: center;
 			.main-title {
+        text-align: center;
 				font-size: 48px;
 				line-height: 1.3em;
 				color: #fff;
@@ -204,6 +271,9 @@ export default {
         font-weight: 600;
         letter-spacing: 2px;
         margin-bottom: 10px;
+        @media screen and (max-width:320px){
+          font-size: 32px;
+        }
 			}
 			.main-text {
 				font-size: 38px;
@@ -211,6 +281,9 @@ export default {
 				color: #fff;
 				font-weight: 300;
 				margin-bottom: 40px;
+        @media screen and (max-width:320px){
+          font-size: 26px;
+        }
 			}
 		}
 	}
@@ -350,5 +423,69 @@ export default {
 	  	}
 	  }
 	}
+}
+@media screen and (max-width: 768px) {
+  .home-landing {
+    .home-header {
+      .home-menu {
+        flex-direction: column;
+        align-items: flex-start;
+        position: fixed;
+        background: rgba(0, 0, 0, .7);
+        top: 0;
+        left: 0;
+        margin: 0;
+        padding: 70px 50px 15px 50px;
+        text-align: left;
+        z-index: -1;
+        transform: translate(-100%, 0);
+        transition: transform 0.5s;
+        opacity: 0;
+        .menu-item {
+          margin-top: 20px;
+          margin-left: 0;
+        }
+      }
+      .home-menu--open {
+        opacity: 1;
+        transform: translate(0, 0);
+      }
+      .home-menu--close {
+        opacity: 1;
+      }
+    }
+  }
+}
+@media screen and (max-width: 320px) {
+  .home-landing {
+    .home-header {
+      .home-menu {
+        flex-direction: column;
+        align-items: flex-start;
+        position: fixed;
+        background: rgba(0, 0, 0, .7);
+        top: 0;
+        left: 0;
+        margin: 0;
+        padding: 70px 50px 15px 50px;
+        text-align: left;
+        z-index: -1;
+        transform: translate(-100%, 0);
+        transition: transform 0.5s;
+        opacity: 0;
+        .menu-item {
+          margin-top: 20px;
+          margin-left: 0;
+        }
+      }
+      .home-menu--open {
+        opacity: 1;
+        transform: translate(0, 0);
+      }
+      .home-menu--close {
+        opacity: 1;
+      }
+    }
+  }
 }
 </style>

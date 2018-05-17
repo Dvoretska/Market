@@ -24,8 +24,6 @@
 
         <b-field horizontal :label="getDescription()" class="align-left">
             <vue-editor v-model="message" :editorToolbar="customToolbar"></vue-editor>
-<!--             <b-input type="textarea" v-model="message" :maxlength="messageMaxLength"></b-input> -->
-            <div class="counter-validation"><b>{{ messageSignsLeft() }}</b> signs left</div>
             <div class="error" v-if="getErrors && getErrors.message">{{ getErrors.message[0] }}</div>
         </b-field>
 
@@ -112,7 +110,6 @@ export default {
       rootCategory: false,
       selectedImgKey: 0,
       subjectMaxLength: 70,
-      messageMaxLength: 4000,
       customToolbar: [
         ['bold', 'italic', 'underline'],
         [{ 'list': 'ordered'}, { 'list': 'bullet' }],
@@ -168,9 +165,6 @@ export default {
     subjectSignsLeft () {
       return this.subjectMaxLength - this.subject.length
     },    
-    messageSignsLeft () {
-      return this.messageMaxLength - this.message.length
-    },
     makeMainImg (key) {
       this.selectedImgKey = key
     },
