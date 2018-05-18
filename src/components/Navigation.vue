@@ -91,6 +91,9 @@ export default {
     box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);
     display: flex;
     align-items: center;
+    @media screen and (min-width:320px) and (max-width: 480px){
+      padding: 0 25px;
+    }
     .nav-logo-img {
       height: 50px;
       background-color: transparent;
@@ -201,7 +204,7 @@ export default {
       }
     }
   }
-  @media screen and (max-width:320px){
+  @media screen and (min-width:320px) and (max-width: 480px){
     .nav-bar {
       .main-button {
         span {

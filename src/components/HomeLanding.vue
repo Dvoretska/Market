@@ -63,7 +63,7 @@
     </section>
     <section class="team-section">
     	<h5 class="section-title"><translate>Our Team</translate></h5>
-      <p class="section-subtitle">We are team of open and passionate people that love to launch new initiatives. We make innovative products that people love and adopt in their everyday work. We're seeking another software developers for exciting and challenging work.</p>
+      <p class="section-subtitle">We are team of open and passionate people that love to launch new initiatives. We make innovative products that people love and adopt in their everyday work. We're seeking new opportunities and another software developers for exciting and challenging work.</p>
     	<div class="team-content">
 	    	<div class="slider-container">
 				    <gallery :images="images" :index="null" @close="index=null" :carousel="true"></gallery>
@@ -277,6 +277,9 @@ export default {
 			display: flex;
 			flex-direction: column;
 			align-items: center;
+      @media screen and (min-width:320px) and (max-width: 480px){
+        padding-top: 25px;
+      }
 			.main-title {
         text-align: center;
 				font-size: 48px;
@@ -400,7 +403,7 @@ export default {
         width: 100%;
         button[data-nav] {
           display: inline-block;
-          background-color: rgba(36, 42, 53, 0.6);
+          background-color: rgba(36, 42, 53, 0.4);
           width: 10px;
           height: 0;
           padding-bottom: 10px;
@@ -411,6 +414,9 @@ export default {
           &:hover {
             background-color: rgba(123, 79, 173, 0.4);
           }
+        }
+        button[data-nav].tns-nav-active {
+          background-color: rgba(123, 79, 173, 0.4);
         }
       }
       .slider-item {

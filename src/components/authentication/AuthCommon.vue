@@ -119,6 +119,7 @@ export default {
     align-items: center;
     justify-content: center;
     opacity: 0.7;
+    margin-top: 10px;
     .icon-back-home {
       width: 15px;
       height: 15px;
