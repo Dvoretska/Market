@@ -161,7 +161,7 @@ export default {
 		padding: 0 50px;
     display: flex;
     align-items: center;
-    @media screen and (max-width:320px){
+    @media screen and (min-width:320px) and (max-width: 480px){
       padding: 0 25px;
     }
     .menu-burger {
@@ -268,7 +268,7 @@ export default {
     @media screen and (max-width:768px){
       height: 600px;
     }
-    @media screen and (max-width:320px){
+    @media screen and (min-width:320px) and (max-width: 480px){
       padding-top: 0;
       justify-content: center;
       height: 400px;
@@ -286,8 +286,8 @@ export default {
         font-weight: 600;
         letter-spacing: 2px;
         margin-bottom: 10px;
-        @media screen and (max-width:320px){
-          font-size: 32px;
+        @media screen and (min-width:320px) and (max-width: 480px){
+          font-size: 40px;
         }
 			}
 			.main-text {
@@ -297,8 +297,8 @@ export default {
 				font-weight: 300;
 				margin-bottom: 40px;
         font-style: italic;
-        @media screen and (max-width:320px){
-          font-size: 26px;
+        @media screen and (min-width:320px) and (max-width: 480px){
+          font-size: 28px;
         }
 			}
 		}
@@ -312,7 +312,7 @@ export default {
     position: relative;
     max-width: 220px;
     font-style: italic;
-    @media screen and (max-width:320px){
+    @media screen and (min-width:320px) and (max-width: 480px){
       margin: 0 auto 20px;
     }
     &:before {
@@ -340,18 +340,20 @@ export default {
     text-align: center;
     max-width: 600px;
     margin: 0 auto 40px;
-    @media screen and (max-width:320px){
+    @media screen and (min-width:320px) and (max-width: 480px){
       padding: 0 10px;
     }
   }
   .rubrics-section {
     padding-top: 90px;
-    @media screen and (max-width:320px){
+    overflow-x: hidden;
+    @media screen and (min-width:320px) and (max-width: 480px){
       padding-top: 30px;
     }
      .slider-wrapper {
 	     position:relative;
 	     height:280px;
+       margin-bottom: 40px;
 	      /deep/ button[data-controls] {
         border: 0;
         background-color: transparent;
@@ -442,7 +444,8 @@ export default {
   }
   .team-section {
     padding-top: 90px;
-    @media screen and (max-width:320px){
+    overflow-x: hidden;
+    @media screen and (min-width:320px) and (max-width: 480px){
       padding-top: 30px;
     }
   	.team-content {
@@ -512,7 +515,7 @@ export default {
           @media screen and (max-width:841px){
             margin: 25px 0 15px;
           }
-          @media screen and (max-width:320px){
+          @media screen and (min-width:320px) and (max-width: 480px){
             font-size: 22px;
             margin-top: 15px;
           }
@@ -565,13 +568,9 @@ export default {
     }
   }
 }
-@media screen and (max-width: 320px) {
+@media screen and (min-width:320px) and (max-width: 480px) {
   .home-landing {
     .home-header {
-      .menu-burger {
-        width: 20px;
-        height: 20px;
-      }
       .home-menu {
         padding: 70px 30px 15px 25px;
       }
