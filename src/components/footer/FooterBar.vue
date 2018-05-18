@@ -116,6 +116,11 @@
       color: #000;
     }
 	}
+  @media screen and (max-width: 1023px) {
+    /deep/ .dropdown:not(.is-hoverable):not(.is-inline) .dropdown-menu {
+      top: 40% !important;
+    }
+  }
   @media screen and (max-width:320px){
     .footer-container {
       margin-top: 10px;
