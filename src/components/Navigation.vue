@@ -206,6 +206,9 @@ export default {
   }
   @media screen and (min-width:320px) and (max-width: 480px){
     .nav-bar {
+      .item-all-ads {
+        display: none;
+      }
       .main-button {
         span {
           font: 700 10px Futura, "Trebuchet MS", Arial, sans-serif;

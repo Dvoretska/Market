@@ -411,9 +411,6 @@ export default {
           margin: 0 3px;
           overflow: hidden;
           border: none;
-          &:hover {
-            background-color: rgba(123, 79, 173, 0.4);
-          }
         }
         button[data-nav].tns-nav-active {
           background-color: rgba(123, 79, 173, 0.4);
