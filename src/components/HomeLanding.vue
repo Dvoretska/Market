@@ -413,7 +413,7 @@ export default {
           border: none;
         }
         button[data-nav].tns-nav-active {
-          background-color: rgba(123, 79, 173, 0.4);
+          background-color: #8c40b8;
         }
       }
       .slider-item {
