@@ -216,6 +216,7 @@ export default {
       }
       .nav-user-info {
         position: relative;
+        margin-left: auto;
         .user-info-wrapper {
           display: flex;
           align-items: center;
