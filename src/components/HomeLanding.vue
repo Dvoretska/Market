@@ -10,13 +10,10 @@
           <a href="#" class="menu-item-link" v-scroll-to="'.main-img, 0'"><translate>HOME</translate></a>
         </li>
 				<li class="menu-item">
-          <a href="#" class="menu-item-link" v-scroll-to="'.rubrics-section, 60px'"><translate>SHOP</translate></a>
+          <a href="#" class="menu-item-link" v-scroll-to="'.rubrics-section, 0'"><translate>SHOP</translate></a>
         </li>
 				<li class="menu-item">
-          <a href="#" class="menu-item-link" v-scroll-to="'.team-section, 0'"><translate>TEAM</translate></a>
-        </li>
-				<li class="menu-item">
-          <a href="#" class="menu-item-link"><translate>ABOUT</translate></a>
+          <a href="#" class="menu-item-link" v-scroll-to="'.team-section, 40px'"><translate>TEAM</translate></a>
         </li>
 				<li class="menu-item">
           <a href="#" class="menu-item-link"><translate>CONTACT</translate></a>
@@ -66,6 +63,7 @@
     </section>
     <section class="team-section">
     	<h5 class="section-title"><translate>Our Team</translate></h5>
+      <p class="section-subtitle">We are team of open and passionate people that love to launch new initiatives. We make innovative products that people love and adopt in their everyday work. We're seeking another software developers for exciting and challenging work.</p>
     	<div class="team-content">
 	    	<div class="slider-container">
 				    <gallery :images="images" :index="null" @close="index=null" :carousel="true"></gallery>
@@ -111,8 +109,8 @@ export default {
       </svg>
       </span>`,
       images: [
-          {href: require('@/assets/my-photo.jpg'), description: 'description'},
-          {href: require('@/assets/avatar2.jpg'), description: 'test'},
+          {href: require('@/assets/my-photo.jpg'), description: 'Front-End Developer'},
+          {href: require('@/assets/20170610_085704.jpg'), description: 'Back-End Developer'},
           {href: require('@/assets/man.png'), description: 'test'}],
         index: null
       }
@@ -342,6 +340,9 @@ export default {
     text-align: center;
     max-width: 600px;
     margin: 0 auto 40px;
+    @media screen and (max-width:320px){
+      padding: 0 10px;
+    }
   }
   .rubrics-section {
     padding: 90px 0;
@@ -442,26 +443,51 @@ export default {
   .team-section {
   	.team-content {
   		display: flex;
+      background: url('../assets/4639.jpg') top center no-repeat;
+      background-size: cover;
   		background-color: rgba(36, 42, 53, 0.3);
-  		padding: 0 35px;
+  		padding: 0 10%;
+      @media screen and (max-width:1024px){
+        padding: 0 15px;
+      }
       @media screen and (max-width:841px){
         flex-direction: column;
       }
 			.slider-container {
 	  		margin: 0 auto;
-        height: 350px;
         width: 100%;
 	  		flex: 2;
+        /deep/ .blueimp-gallery-carousel {
+          padding-bottom: 50.25%;
+        }
 	  		/deep/ .blueimp-gallery {
-					background-color: rgba(36, 42, 53, 0.4);
+					background-color: rgba(36, 42, 53, 0.7);
 					box-shadow: 0 0 3px #000;
+          & > .description {
+            left: 50%;
+          }
 	  		}
 	  		/deep/ .blueimp-gallery > .slides > .slide > .slide-content {
 	  			width: 200px;
 	  			height: 200px;
 	  			border-radius: 50%;
-	  			left: -300px;
+	  			left: -250px;
+          position: absolute;
+          @media screen and (max-width:500px){
+            width: 100px;
+            height: 100px;
+          }
+          @media screen and (max-width:400px){
+            width: 100px;
+            height: 100px;
+            left: -150px;
+          }
 	  		}
+        /deep/ .blueimp-gallery>.next, /deep/ .blueimp-gallery>.prev {
+          @media screen and (max-width:500px){
+            display: none;
+          }
+        }
 	  	}
 	  	.info-container {
 	  		flex: 1;
@@ -469,23 +495,34 @@ export default {
 	  		flex-direction: column;
 	  		align-items: center;
 	  		justify-content: center;
+        margin-left: 30px;
+        @media screen and (max-width:841px){
+          margin-left: 0;
+        }
 	  		.info-title {
 	  			text-align: center;
 	  			font-size: 30px;
-	  			color: #fff;
+	  			color: rgba(0,0,0,1);
+          text-shadow: 2px 2px 3px rgba(255,255,255,1);
 	  			margin: 0 0 30px 15px;
           @media screen and (max-width:841px){
             margin: 25px 0 15px;
           }
+          @media screen and (max-width:320px){
+            font-size: 22px;
+            margin-top: 15px;
+          }
 	  		}
         .info-cta {
+          border: 2px solid rgba(123, 79, 173, 1);
+          background-color: rgba(36, 42, 53, 0.7);
           @media screen and (max-width:841px){
-            margin-bottom: 15px;
+            margin-bottom: 20px;
           }
           &:hover {
-            border: 2px solid rgba(123, 79, 173, 0.4);
-            color: rgba(123, 79, 173, 0.4);
-            font-weight: 600; 
+            border: 2px solid rgba(123, 79, 173, 1);
+            color: rgba(36, 42, 53, 0.7);
+            background-color: rgba(255, 255, 255, .6);
           }
         }
 	  	}

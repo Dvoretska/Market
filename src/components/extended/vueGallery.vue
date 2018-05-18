@@ -8,7 +8,6 @@ export default {
         this.$emit('onslide', { index, slide });
 
         const image = this.images[index];
-        console.log(this.instance)
         if (image !== undefined && this.instance !== null) {
           const text = image.description;
           const node = this.instance.container.find('.description');
