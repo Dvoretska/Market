@@ -13,7 +13,7 @@
           <a href="#" class="menu-item-link" v-scroll-to="'.rubrics-section, 0'"><translate>SHOP</translate></a>
         </li>
 				<li class="menu-item">
-          <a href="#" class="menu-item-link" v-scroll-to="'.team-section, 40px'"><translate>TEAM</translate></a>
+          <a href="#" class="menu-item-link" v-scroll-to="'.team-section, 0'"><translate>TEAM</translate></a>
         </li>
 				<li class="menu-item">
           <a href="#" class="menu-item-link"><translate>CONTACT</translate></a>
@@ -345,9 +345,9 @@ export default {
     }
   }
   .rubrics-section {
-    padding: 90px 0;
+    padding-top: 90px;
     @media screen and (max-width:320px){
-      padding: 30px 0 50px;
+      padding-top: 30px;
     }
      .slider-wrapper {
 	     position:relative;
@@ -441,6 +441,10 @@ export default {
     }
   }
   .team-section {
+    padding-top: 90px;
+    @media screen and (max-width:320px){
+      padding-top: 30px;
+    }
   	.team-content {
   		display: flex;
       background: url('../assets/4639.jpg') top center no-repeat;
