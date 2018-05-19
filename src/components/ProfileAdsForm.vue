@@ -38,7 +38,7 @@
 						<strong class="product-subject">{{ ad.subject }}</strong>
 					</div>
 					<div class="ad-actions">
-						<a href="" class="buttons ad-view" @click="openAdDetails(ad.slug)">
+						<a href="" class="buttons ad-view" @click.prevent="openAdDetails(ad.slug)">
 							<img src="@/assets/visible.svg" alt="" class="icon-ad-actions">
 							<translate>View</translate>
 						</a>
@@ -150,16 +150,19 @@ export default {
     	display: flex;
     	align-items: center;
     	padding-bottom: 10px;
+    	.product-price {
+			font-size: 16px;
+			font-weight: 600;
+			line-height: 18px;
+			@media screen and (min-width:320px) and (max-width: 480px){
+	      font-size: 14px;
+	    }
+		}
     	span {
     		margin-left: 5px;
     		font-weight: 600;
     	}
     }
-	.product-price {
-		font-size: 16px;
-		font-weight: 600;
-		line-height: 18px;
-	}
 	.product-subject {
 		display: block;
 		height: 40px;
@@ -168,6 +171,9 @@ export default {
 		line-height: 20px;
 		word-wrap: break-word;
 		max-width: 500px;
+		@media screen and (min-width:320px) and (max-width: 480px){
+	      font-size: 14px;
+	    }
 	}
 	.profile-ads-notice {
 		font-size: 22px;

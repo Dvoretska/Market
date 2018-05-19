@@ -109,9 +109,9 @@ export default {
       </svg>
       </span>`,
       images: [
-          {href: require('@/assets/my-photo.jpg'), description: 'Front-End Developer'},
-          {href: require('@/assets/20170610_085704.jpg'), description: 'Back-End Developer'},
-          {href: require('@/assets/man.png'), description: 'test'}],
+          {href: require('@/assets/my-photo.jpg'), description: '<h3 class="description-title">Founder, Front-End Developer</h3><p class="description-text">"People believe that programming is the science of the elite, but in reality the opposite is true - many people create programs that use other people\'s programs, like building a wall of small bricks."</p>'},
+          {href: require('@/assets/20170610_085704.jpg'), description: '<h3 class="description-title">Founder, Back-End Developer</h3><p class="description-text">"Programming is the science that can help a person to know themselves, improve the quality of life, learn the unknown, understand the origin of life. This is a very amazing thing that we come across in everyday life more often than one can imagine."</p>'},
+          {href: require('@/assets/man.png'), description: '<h3 class="description-title">Future Developer</h3>'}],
         index: null
       }
     },
@@ -356,8 +356,10 @@ export default {
      .slider-wrapper {
 	     position:relative;
 	     height:280px;
-       margin-bottom: 40px;
-	      /deep/ button[data-controls] {
+       @media screen and (max-width: 480px){
+          margin-bottom: 40px;
+        }
+	     /deep/ button[data-controls] {
         border: 0;
         background-color: transparent;
         text-decoration: none;
@@ -473,28 +475,43 @@ export default {
 	  		/deep/ .blueimp-gallery {
 					background-color: rgba(36, 42, 53, 0.7);
 					box-shadow: 0 0 3px #000;
-          & > .description {
-            left: 50%;
-          }
+            /deep/ .description-title {
+              font-size: 20px;
+              margin-bottom: 15px;
+               @media screen and (max-width:575px){
+                font-size: 16px;
+                margin-bottom: 10px;
+              }
+            }
+             /deep/ .description-text {
+              font-size: 14px;
+              @media screen and (max-width:575px){
+                font-size: 12px;
+              }
+              @media screen and (min-width:320px) and (max-width: 480px){
+                display: none;
+              }
+            }
 	  		}
 	  		/deep/ .blueimp-gallery > .slides > .slide > .slide-content {
 	  			width: 200px;
 	  			height: 200px;
 	  			border-radius: 50%;
-	  			left: -250px;
+	  			left: -300px;
           position: absolute;
-          @media screen and (max-width:500px){
-            width: 100px;
-            height: 100px;
+          @media screen and (max-width:575px){
+            width: 150px;
+            height: 150px;
+            left: -250px;
           }
-          @media screen and (max-width:400px){
+          @media screen and (min-width:320px) and (max-width: 480px){
             width: 100px;
             height: 100px;
             left: -150px;
           }
 	  		}
         /deep/ .blueimp-gallery>.next, /deep/ .blueimp-gallery>.prev {
-          @media screen and (max-width:500px){
+          @media screen and (max-width:575px){
             display: none;
           }
         }

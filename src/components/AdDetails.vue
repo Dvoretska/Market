@@ -295,7 +295,7 @@ export default {
 			}
 		}
 	}
-	@media screen and (max-width:320px){
+	@media screen and (min-width:320px) and (max-width: 480px){
 		.main-container {
 			margin: 80px 10px;
 			.right-column {
@@ -307,6 +307,7 @@ export default {
 					}
 				}
 				.owner-card {
+					margin-bottom: 0;
 					.owner-avatar {
 						width: 40%;
 						padding-top: 40%;

@@ -1,3 +1,20 @@
+<template>
+  <div
+    :id="id"
+    class="blueimp-gallery blueimp-gallery-controls"
+    :class="{'blueimp-gallery-carousel': carousel}">
+
+    <div class="slides"></div>
+    <h3 class="title"></h3>
+    <div class="description"></div>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a v-if="!carousel" class="close">×</a>
+    <ol v-if="!carousel" class="indicator"></ol>
+    <a v-if="carousel" class="play-pause"></a>
+  </div>
+</template>
+
 <script>
 import VueGallery from 'vue-gallery'
 
@@ -13,10 +30,21 @@ export default {
           const node = this.instance.container.find('.description');
           if (text) {
             node.empty();
-            node[0].appendChild(document.createTextNode(text));
+            let div = document.createElement('div');
+            node[0].appendChild(div);
+            div.innerHTML = text;
           }
         }
     }
   }
 }
 </script>
+
+<style>
+.blueimp-gallery > .description {
+  width: 40%;
+  left: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+</style>

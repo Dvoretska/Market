@@ -83,7 +83,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
   .content-box {
     border: solid 1px #D7D7D7;
     margin-bottom: 10px;
@@ -92,6 +92,9 @@ export default {
     margin: 55px auto 0;
     width: 745px;
     min-height: calc(100vh - 55px - 125px);
+    @media screen and (max-width:768px){
+      width: 100%;
+    }
   }
   .wrapper {
     width: 100%;
@@ -128,16 +131,19 @@ export default {
     color: #7957d5;
     margin: 20px 20px 20px 0;
     font: 700 20px Futura, "Trebuchet MS", Arial, sans-serif;
+    @media screen and (min-width:320px) and (max-width: 480px){
+      margin: 20px 20px 10px 0; 
+    }
   }
   div.profile-image {
-    border-radius: 100%;
-    border: 2px solid grey;
-    height: 150px;
-    width: 150px;
-    margin: 20px;
-    align-self: center;
-    background: url('../assets/w128h1281385326502profle.png') 100% 100% no-repeat;
+    background: url('../assets/w128h1281385326502profle.png') center center no-repeat;
     background-size: cover;
+    border-radius: 50%;
+    height: auto;
+    width: 20%;
+    margin: 20px;
+    padding-bottom: 20%;
+    align-self: center;
   }
   .profile-info-container {
     display: flex;
