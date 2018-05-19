@@ -18,6 +18,7 @@
 			          <b-autocomplete
 			              v-model="country"
 			              v-on:blur="getCities($event)"
+			              @change="handleInputChange({country})"
 			              :data="filteredCountryArray"
 			              placeholder="Start typing country name..."
 			              icon="search">
@@ -28,6 +29,7 @@
 			          <b-autocomplete
 			              v-model="city"
 			              :data="filteredCityArray"
+			              @change="handleInputChange({city})"
 			              placeholder="Start typing city name..."
 			              icon="search">
 			              <template slot="empty"><translate>No results found</translate></template>
@@ -35,34 +37,44 @@
 			        </b-field>
 			        <div class="field" slot="content">
 				  		<label>
-							<span><translate>First name</translate></span>
-							<input type="text" class="input" v-model="firstName" @keyup.enter="changeProfileHandler">
+							<translate>First name</translate>
+							<input type="text" class="input" v-model="firstName" @input="handleInputChange({firstName})">
 				  		</label>
 					</div>
-					<button class="save-button" slot="content" @click="changeProfileHandler"><translate>Save</translate></button>
+					<div class="field" slot="content">
+				  		<label>
+							<translate>Last name</translate>
+							<input type="text" class="input" v-model="lastName" @input="handleInputChange({lastName})" @keyup.enter="changeContactInfo">
+				  		</label>
+					</div>
+					<button class="save-button" slot="content" @click="changeContactInfo">
+						<translate>Save</translate>
+					</button>
 			    </div>
 		    </BulmaAccordionItem>
 		    <BulmaAccordionItem>
 		        <h4 slot="title"><translate>Phone number</translate></h4>
 		        <div class="field" slot="content">
 			  		<label>
-						<span><translate>Phone number</translate></span>
-						<input type="text" class="input">
+						<translate>Phone number</translate>
+						<phone-input :phone="phone" class="vue-phone-input"></phone-input>
 			  		</label>
 				</div>
-				<button class="save-button" slot="content"><translate>Save</translate></button>
+				<button class="save-button" slot="content" @click="saveUserPhone(phone)">
+					<translate>Save</translate>
+				</button>
 		    </BulmaAccordionItem>
 		    <BulmaAccordionItem>
 		        <h4 slot="title"><translate>Password</translate></h4>
 		        <div class="field" slot="content">
 			  		<label>
-						<span><translate>New password</translate></span>
+						<translate>New password</translate>
 						<input type="text" class="input">
 			  		</label>
 				</div>
 				<div class="field" slot="content">
 			  		<label>
-						<span><translate>Confirm new password</translate></span>
+						<translate>Confirm new password</translate>
 						<input type="text" class="input">
 			  		</label>
 				</div>
@@ -72,21 +84,25 @@
 		        <h4 slot="title"><translate>Email</translate></h4>
 		        <div class="field" slot="content">
 			  		<label>
-						<span><translate>Your current email</translate></span>
+						<translate>Your current email</translate>
 						<input type="text" class="input">
 			  		</label>
 				</div>
 				<div class="field" slot="content">
 			  		<label>
-						<span><translate>Your new email</translate></span>
+						<translate>Your new email</translate>
 						<input type="text" class="input">
 			  		</label>
 				</div>
-				<button class="save-button" slot="content"><translate>Save</translate></button>
+				<button class="save-button" slot="content">
+					<translate>Save</translate>
+				</button>
 		    </BulmaAccordionItem>
 		    <BulmaAccordionItem>
 		        <h4 slot="title"><translate>Delete your account</translate></h4>
-		        <button class="delete-button" slot="content"><translate>Delete your account</translate>?</button>
+		        <button class="delete-button" slot="content">
+		        	<translate>Delete your account</translate>?
+		        </button>
 		    </BulmaAccordionItem>
 		</BulmaAccordion>
 	</div>
@@ -104,11 +120,13 @@ export default {
   },
   data () {
     return {
+      countryData: [],
+      cityData: [],
       firstName: this.$store.getters.getUserDetails.first_name,
+      lastName: this.$store.getters.getUserDetails.last_name,
       country: this.$store.getters.getUserDetails.country,
       city: this.$store.getters.getUserDetails.city,
-      countryData: [],
-      cityData: []
+      phone: {number: this.$store.getters.getUserDetails.phone, code: ''}
     }
   },
   created () {
@@ -118,6 +136,10 @@ export default {
     })
   },
   methods: {
+  	handleInputChange (data) {
+  		console.log(data)
+  		this.$store.commit('updateUserDetailsField', data)
+  	},
     getCountry () {
       return this.$gettext('Country')
     },
@@ -137,8 +159,8 @@ export default {
         this.$store.dispatch('GET_CITIES', { 'code': code, 'callback': (data) => { this.cityData = data } })
       }
     },
-    changeProfileHandler () {
-      this.$store.dispatch('CHANGE_USER_DETAILS', {first_name: this.firstName, last_name: this.lastName, country: this.country, city: this.city})
+    changeContactInfo () {
+      this.$store.dispatch('CHANGE_CONTACT_INFO', {first_name: this.firstName, last_name: this.lastName, country: this.country, city: this.city})
     }
   },
   computed: {
@@ -146,20 +168,26 @@ export default {
       return this.$store.getters.getLoading
     },
     filteredCountryArray () {
-      return this.countryData.filter((option) => {
-        return option
-          .toString()
-          .toLowerCase()
-          .indexOf(this.country.toLowerCase()) >= 0
-      })
+      if(this.country) {
+	      return this.countryData.filter((option) => {
+	        return option
+	          .toString()
+	          .toLowerCase()
+	          .indexOf(this.country.toLowerCase()) >= 0
+	      })
+	  } 
+	  return [];
     },
     filteredCityArray () {
-      return this.cityData.filter((option) => {
-        return option
-          .toString()
-          .toLowerCase()
-          .indexOf(this.city.toLowerCase()) >= 0
-      })
+    	if(this.city) {
+	      return this.cityData.filter((option) => {
+	        return option
+	          .toString()
+	          .toLowerCase()
+	          .indexOf(this.city.toLowerCase()) >= 0
+	      })
+	    }
+	    return [];
     }
   }
 }
@@ -168,6 +196,9 @@ export default {
 <style scoped lang="scss">
 	.profile-settings-container {
 		margin: 5px;
+	}
+	.vue-phone-input {
+		width: 310px;
 	}
 	/deep/ .field label {
 		text-align: left;

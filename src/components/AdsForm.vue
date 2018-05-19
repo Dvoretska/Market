@@ -159,7 +159,6 @@ export default {
   },
   methods: {
     subcategory (data) {
-      console.log(data)
       this.subcategoryObj = data
     },
     subjectSignsLeft () {
@@ -213,7 +212,6 @@ export default {
       this.isHighlight = false
     },
     createAd () {
-      console.log(this.subcategoryObj.slug)
       var formData = new FormData()
       if (this.files.length) {
         let a = this.files.splice(this.selectedImgKey, 1)

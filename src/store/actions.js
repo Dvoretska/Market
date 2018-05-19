@@ -48,25 +48,6 @@ export default {
     router.push({name: 'login'})
     window.location.reload()
   },
-  CHANGE_USER_DETAILS: function (context, data) {
-    const TOKEN = localStorage.getItem('token')
-    context.commit('loading', true)
-    axios.put(`${ACCOUNTS_URL}profile/`, {
-      first_name: data.first_name,
-      last_name: data.last_name,
-      country: data.country,
-      city: data.city
-    }, {
-      headers: {
-        authorization: `jwt ${TOKEN}`
-      }
-    }).then((response) => {
-      context.commit('updateUserState', response.data)
-      context.commit('loading', false)
-    }).catch((err) => {
-      console.log(err)
-    })
-  },
   GET_COUNTRIES: function (context, callback) {
     axios.get(`${MAIN_URL}location/countries/`).then((response) => {
       callback(response.data)
@@ -211,6 +192,23 @@ export default {
       headers: {authorization: `jwt ${TOKEN}`}
     }).then((response) => {
       context.commit('deleteFromMyAdsMutate', data)
+    }).catch((err) => {
+      console.log(err)
+    })
+  },
+  CHANGE_CONTACT_INFO: function (context, data) {
+    const TOKEN = localStorage.getItem('token')
+    axios.patch(`${ACCOUNTS_URL}profile/`, {
+      first_name: data.first_name,
+      last_name: data.last_name,
+      country: data.country,
+      city: data.city
+    }, {
+      headers: {
+        authorization: `jwt ${TOKEN}`
+      }
+    }).then((response) => {
+      context.commit('updateUserState', response.data)
     }).catch((err) => {
       console.log(err)
     })

@@ -53,6 +53,9 @@ import PhoneInput from 'vue2-phone-input'
 
 export default {
   extends: PhoneInput,
+  props: {
+    phone: Object
+  },
   created () {
     this.setCode('ua')
   }
