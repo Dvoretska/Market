@@ -27,7 +27,7 @@
 	      	</div>
 			<div class="ads-content-full" v-else>
 				<div class="product-card" v-for="ad in getMyAds">
-					<div class="product-img-wrapper">
+					<div class="product-img-wrapper" @click="openAdDetails(ad.slug)">
 						<img :src="ad.image" alt="" class="product-image">
 					</div>
 					<div class="product-description-box">
@@ -38,7 +38,7 @@
 						<strong class="product-subject">{{ ad.subject }}</strong>
 					</div>
 					<div class="ad-actions">
-						<a href="" class="buttons ad-view">
+						<a href="" class="buttons ad-view" @click="openAdDetails(ad.slug)">
 							<img src="@/assets/visible.svg" alt="" class="icon-ad-actions">
 							<translate>View</translate>
 						</a>
@@ -46,7 +46,7 @@
 							<img src="@/assets/pencil.svg" alt="" class="icon-ad-actions">
 							<translate>Edit</translate>
 						</a>
-						<a href="" class="buttons ad-delete">
+						<a href="#" class="buttons ad-delete" @click.prevent="deleteAd(ad.slug)">
 							<img src="@/assets/delete.svg" alt="" class="icon-ad-actions">
 							<translate>Delete</translate>
 						</a>
@@ -67,6 +67,12 @@ export default {
     VueLoading
   },
   methods: {
+  	openAdDetails (slug) {
+    	this.$router.push({ name: 'adDetails', params: { slug }})
+    },
+    deleteAd (slug) {
+    	this.$store.dispatch('DELETE_AD', slug)
+    },
     getCreateAnAd () {
       return this.$gettext('+ Create an ad')
     }
@@ -75,6 +81,9 @@ export default {
     this.$store.dispatch('GET_MY_ADS')
   },
   computed: {
+  	ads () {
+      return this.$store.getters.getAds;
+    },
     getMyAds () {
       return this.$store.getters.getMyAds.results
     },
@@ -120,6 +129,7 @@ export default {
         margin: 3px;
 	}
 	.product-img-wrapper {
+		cursor: pointer;
 		height: 100px;
 		width: 100px;
 		position: relative;

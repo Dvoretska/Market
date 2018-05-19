@@ -28,7 +28,7 @@
         </b-field>
 
         <b-field horizontal :label="getPhoto()" class="align-left">
-        </b-field>
+        </b-field> 
 
         <label id="file-drag-drop">
             <div ref="fileform" class="fileform"

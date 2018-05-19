@@ -203,5 +203,16 @@ export default {
       }).catch((err) => {
         console.log(err)
       })
+  },
+  DELETE_AD: function (context, data) {
+    const TOKEN = localStorage.getItem('token')
+    axios.delete(`${MAIN_URL}my/ads/delete/${data}/`,
+    {
+      headers: {authorization: `jwt ${TOKEN}`}
+    }).then((response) => {
+      context.commit('deleteFromMyAdsMutate', data)
+    }).catch((err) => {
+      console.log(err)
+    })
   }
 }
