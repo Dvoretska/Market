@@ -41,7 +41,7 @@ export default {
 </script>
 
 <style>
-.blueimp-gallery > .description {
+.blueimp-gallery.blueimp-gallery-carousel > .description {
   width: 40%;
   left: 50%;
   top: 50%;
