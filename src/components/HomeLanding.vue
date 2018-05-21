@@ -52,10 +52,10 @@
           gutter="20" 
           :controlsText="[prevButton, nextButton]" 
           v-if="getCategories.length">
-          <div v-for="category in getCategories" class="slider-item" v-bind:style="{ backgroundImage: 'url(' + getImageUrl(category.slug) + ')'}">
-              <div class="popover-wrapper" :key="category.name">
-                <div><translate>{{category.name}}</translate></div>
-                <div>{{category.count}} <translate>ads</translate></div>
+          <div v-for="category in imageURLs" class="slider-item" v-bind:style="{ backgroundImage: 'url(' + getImageUrl(category) + ')'}" @click="chooseRubric(category)">
+              <div v-if="!getCategoriesLoading" class="popover-wrapper" :key="category.name">
+                <div><translate>{{getCategoryInfo(category, 'name')}}</translate></div>
+                <div>{{getCategoryInfo(category, 'count')}} <translate>ads</translate></div>
               </div>
           </div>
         </tiny-slider>
@@ -108,6 +108,19 @@ export default {
       </g>
       </svg>
       </span>`,
+      imageURLs: [
+        'animals', 
+        'business-and-services',
+        'electronics',
+        'fashion',
+        'hobby-rest-and-sport',
+        'house-and-garden',
+        'job',
+        'kids-stuff',
+        'real-estate',
+        'spare-parts-for-transport',
+        'transport'
+      ],
       images: [
           {href: require('@/assets/my-photo.jpg'), description: '<h3 class="description-title">Founder, Front-End Developer</h3><p class="description-text">"People believe that programming is the science of the elite, but in reality the opposite is true - many people create programs that use other people\'s programs, like building a wall of small bricks."</p>'},
           {href: require('@/assets/20170610_085704.jpg'), description: '<h3 class="description-title">Founder, Back-End Developer</h3><p class="description-text">"Programming is the science that can help a person to know themselves, improve the quality of life, learn the unknown, understand the origin of life. This is a very amazing thing that we come across in everyday life more often than one can imagine."</p>'},
@@ -122,8 +135,13 @@ export default {
     window.addEventListener('resize', this.handleWindowResize)
   },
   methods: {
-    test() {
-      console.log('teset')
+    getCategoryInfo (slug, type) {
+      return this.getCategories.find(function(category) {
+        return category.slug === slug
+      })[type]
+    },
+    chooseRubric (slug) {
+        this.$router.push({name: 'ads-list', query: {category: slug}})
     },
     handleWindowResize(event) { 
       if(event.currentTarget.innerWidth > 767) {
@@ -140,9 +158,11 @@ export default {
   computed: {
     getCategories () {
       return this.$store.getters.getCategories.results
-    }
+    },    
+    getCategoriesLoading () {
+      return this.$store.getters.getCategories.loading
+    }   
   }
- 
 }
 
 </script>
