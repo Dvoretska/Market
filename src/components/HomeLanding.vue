@@ -71,11 +71,27 @@
 				<div class="info-container">
 					<p class="info-title"><translate>You think we're cool? Let's work together</translate></p>
 					<button class="cta info-cta">
-						<span><translate>get in touch</translate></span>
+						<a href="https://www.linkedin.com/in/daria-dvoretska-340b74146/"><translate>get in touch</translate></a>
 					</button>
 				</div>
 			</div>
     </section>
+    <section class="contact-section">
+      <h5 class="section-title"><translate>Contact us</translate></h5>
+      <p class="section-subtitle">Get to Know Home Market Better</p>
+      <div class="contact-content">
+        <div class="contact-info-wrapper">
+          <div class="contact-info-item">Zaporizhzhya</div>
+          <div class="contact-info-item">Tel: +38 093 489 04 36</div>
+          <div class="contact-info-item">dvoretska4@gmail.com</div>
+        </div>
+        <div class="contact-input-wrapper">
+          <input type="text" placeholder="Email Address">
+          <button>Subscribe now</button>
+        </div>
+      </div>
+    </section>
+    <div class="interlayer"></div>
 	</div>
 </template>
 
@@ -478,7 +494,7 @@ export default {
       background: url('../assets/4639.jpg') top center no-repeat;
       background-size: cover;
   		background-color: rgba(36, 42, 53, 0.3);
-  		padding: 0 10%;
+  		padding: 30px 10%;
       @media screen and (max-width:1024px){
         padding: 0 15px;
       }
@@ -561,20 +577,94 @@ export default {
           }
 	  		}
         .info-cta {
-          border: 2px solid rgba(123, 79, 173, 1);
+          border: 1px solid white;
           background-color: rgba(36, 42, 53, 0.7);
+          a {
+            color: #fff;
+          }
           @media screen and (max-width:841px){
             margin-bottom: 20px;
           }
           &:hover {
-            border: 2px solid rgba(123, 79, 173, 1);
-            color: rgba(36, 42, 53, 0.7);
+            border: 1px solid rgba(123, 79, 173, 1);
             background-color: rgba(255, 255, 255, .6);
+            a {
+              color: rgba(36, 42, 53, 0.7);
+            }
           }
         }
 	  	}
 	  }
 	}
+  .contact-section {
+    padding: 90px 0;
+      @media screen and (min-width:320px) and (max-width: 480px){
+        padding: 30px 0;
+      }
+    .contact-content {
+      display: flex;
+      align-items: center;
+      @media screen and (max-width:767px){
+        flex-direction: column;
+      }
+      .contact-info-wrapper {
+        flex: 1;
+        text-align: center;
+        width: 100%;
+        font-size: 19px;
+        font-family: 'Muli', sans-serif;
+        font-weight: bold;
+        .contact-info-item:nth-child(2) {
+          margin: 10px 0;
+        }
+      }
+      .contact-input-wrapper {
+        flex: 1;
+        width: 100%;
+        @media screen and (max-width:767px){
+          text-align: center;
+          margin-top: 20px;
+        }
+        input {
+          width: 50%; 
+          background: #e2e2e2;
+          color: rgba(36,42,53,1);
+          border: none;
+          padding: 10px;
+          font-size: 17px;
+          display: inline-block;
+          font-family: 'Muli', sans-serif;
+          @media screen and (min-width:320px) and (max-width: 480px){
+            width: 90%;
+            margin-bottom: 10px; 
+          }
+        }
+        button {
+          white-space: nowrap;
+          padding: 10px 24px;
+          color: white;
+          background-color: rgba(123, 79, 173, 0.4);
+          font-size: 17px;
+          font-family: 'Muli', sans-serif;
+          border: none;
+          cursor: pointer;
+          transition: background-color 0.4s ease 0s;
+          &:hover {
+            background-color: rgba(36, 42, 53, 0.6);
+          }
+        }
+      }
+    }
+  }
+  .interlayer {
+    border-top: 1px solid rgba(36, 42, 53, 1);
+    border-bottom: 2px solid rgba(36, 42, 53, 1);
+    background: #e2e2e2;
+    padding: 5px 0 0 0;
+  }
+}
+/deep/ .footer-container {
+  margin-top: 0;
 }
 @media screen and (max-width: 768px) {
   .home-landing {

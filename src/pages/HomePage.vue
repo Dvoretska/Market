@@ -1,7 +1,7 @@
 <template>
     <div>
        <home-landing :page="'home'"></home-landing>
-       <footer-bar></footer-bar>
+       <footer-bar :hasTopMargin="false"></footer-bar>
     </div>
 </template>
 
