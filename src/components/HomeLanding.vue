@@ -16,7 +16,7 @@
           <a href="#" class="menu-item-link" v-scroll-to="'.team-section, 0'"><translate>TEAM</translate></a>
         </li>
 				<li class="menu-item">
-          <a href="#" class="menu-item-link"><translate>CONTACT</translate></a>
+          <a href="#" class="menu-item-link" v-scroll-to="'.contact-section, 0'"><translate>CONTACT</translate></a>
         </li>
        </ul>
        <ul class="home-auth"> 
@@ -86,8 +86,9 @@
           <div class="contact-info-item">dvoretska4@gmail.com</div>
         </div>
         <div class="contact-input-wrapper">
-          <input type="text" placeholder="Email Address">
-          <button>Subscribe now</button>
+          <input type="text" placeholder="Email Address" v-model="email" :class="{'input-error': !isValidEmail}">
+          <button @click="validateEmail(email)">Subscribe now</button>
+          <div v-if="!isValidEmail" class="error">Please enter a valid email address</div>
         </div>
       </div>
     </section>
@@ -141,7 +142,9 @@ export default {
           {href: require('@/assets/my-photo.jpg'), description: '<h3 class="description-title">Founder, Front-End Developer</h3><p class="description-text">"People believe that programming is the science of the elite, but in reality the opposite is true - many people create programs that use other people\'s programs, like building a wall of small bricks."</p>'},
           {href: require('@/assets/20170610_085704.jpg'), description: '<h3 class="description-title">Founder, Back-End Developer</h3><p class="description-text">"Programming is the science that can help a person to know themselves, improve the quality of life, learn the unknown, understand the origin of life. This is a very amazing thing that we come across in everyday life more often than one can imagine."</p>'},
           {href: require('@/assets/man.png'), description: '<h3 class="description-title">Future Developer</h3>'}],
-        index: null
+      index: null,
+      email: '',
+      isValidEmail: true
       }
     },
   created () {
@@ -151,6 +154,10 @@ export default {
     window.addEventListener('resize', this.handleWindowResize)
   },
   methods: {
+    validateEmail (email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      this.isValidEmail = re.test(String(email).toLowerCase());
+    },
     getCategoryInfo (slug, type) {
       return this.getCategories.find(function(category) {
         return category.slug === slug
@@ -629,14 +636,17 @@ export default {
           width: 50%; 
           background: #e2e2e2;
           color: rgba(36,42,53,1);
-          border: none;
-          padding: 10px;
+          padding: 9px;
           font-size: 17px;
           display: inline-block;
           font-family: 'Muli', sans-serif;
+          border: 1px solid transparent;
           @media screen and (min-width:320px) and (max-width: 480px){
             width: 90%;
             margin-bottom: 10px; 
+          }
+          &.input-error {
+            border: 1px solid red;
           }
         }
         button {
@@ -652,6 +662,12 @@ export default {
           &:hover {
             background-color: rgba(36, 42, 53, 0.6);
           }
+        }
+        .error {
+          font-size: 13px;
+          color: red;
+          margin-top: 5px;
+          padding-left: 5px;
         }
       }
     }
