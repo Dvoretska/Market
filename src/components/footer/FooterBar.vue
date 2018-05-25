@@ -1,5 +1,5 @@
 <template>
-	<div class="footer-container" v-bind:class="{'top-margin': 'hasTopMargin'}">
+	<div class="footer-container" >
 		<div class="first-row">
 			 <span>Contact me</span>
 			 <span>Terms&Privacy</span>
@@ -32,9 +32,6 @@
 
 <script>
   export default {
-    props: {
-      hasTopMargin: {type: Boolean, default: true}
-    },
     mounted() {
       if(!this.$language.current) {
         this.$language.current = 'en_US'
@@ -50,9 +47,6 @@
 </script>
 
 <style scoped lang="scss">
-  .top-margin {
-    margin-top: 35px;
-  }
 	.footer-container {
 		display: flex;
 		justify-content: space-around;
@@ -63,7 +57,7 @@
     background: #e2e2e2;
     padding-bottom: 10px;
     padding-top: 10px;
-    margin-top: 0;
+    margin-top: 35px;
     .first-row {
       & span {
         font-size: 16px;

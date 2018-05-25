@@ -28,82 +28,87 @@
 				</li>
 			</ul>
 		</header>
-		<section class="main-img">
-			<div class="title-wrapper">
-				<h1 class="main-title"><translate>Buy & Sell Easy</translate></h1>
-				<p class="main-text"><translate>With Home Market</translate></p>
-				<router-link :to="{ name: 'ads-list'}" class="cta"><translate>START NOW</translate></router-link>
-			</div>
-		</section>
-    <section class="rubrics-section">
-      <h5 class="section-title"><translate>Our Rubrics</translate></h5>
-      <p class="section-subtitle">Home Market is a great way of selling your products online. Create ads easely and for free, and we will help get your products in front of more people. Also you can buy everything you need just staying at home.</p>
-      <div class="slider-wrapper">
-        <tiny-slider 
-          :mouse-drag="true" 
-          :loop="false" 
-          :responsive="{
-          1: {items: 1, nav: true, navAsThumbnails: true, navContainer: true, controls: false}, 
-          480: {items: 2, nav: true, navAsThumbnails: true, navContainer: true, controls: false},
-          568: {items: 3, nav: false, navAsThumbnails: false, navContainer: false, controls: true},  
-          767: {items: 4, nav: false, navAsThumbnails: false, navContainer: false, controls: true}
-          }" 
-          items="4" 
-          gutter="20" 
-          :controlsText="[prevButton, nextButton]" 
-          v-if="getCategories.length">
-          <div v-for="category in imageURLs" class="slider-item" v-bind:style="{ backgroundImage: 'url(' + getImageUrl(category) + ')'}" @click="chooseRubric(category)">
-              <div v-if="!getCategoriesLoading" class="popover-wrapper" :key="category.name">
-                <div><translate>{{getCategoryInfo(category, 'name')}}</translate></div>
-                <div>{{getCategoryInfo(category, 'count')}} <translate>ads</translate></div>
-              </div>
+    <div class="home-landing-parallax">
+  		<section class="main-img">
+  			<div class="title-wrapper">
+  				<h1 class="main-title"><translate>Buy & Sell Easy</translate></h1>
+  				<p class="main-text"><translate>With Home Market</translate></p>
+  				<router-link :to="{ name: 'ads-list'}" class="cta"><translate>START NOW</translate></router-link>
+  			</div>
+  		</section>
+      <section class="rubrics-section">
+        <h5 class="section-title"><translate>Our Rubrics</translate></h5>
+        <p class="section-subtitle">Home Market is a great way of selling your products online. Create ads easely and for free, and we will help get your products in front of more people. Also you can buy everything you need just staying at home.</p>
+        <div class="slider-wrapper">
+          <tiny-slider 
+            :mouse-drag="true" 
+            :loop="false" 
+            :responsive="{
+            1: {items: 1, nav: true, navAsThumbnails: true, navContainer: true, controls: false}, 
+            480: {items: 2, nav: true, navAsThumbnails: true, navContainer: true, controls: false},
+            568: {items: 3, nav: false, navAsThumbnails: false, navContainer: false, controls: true},  
+            767: {items: 4, nav: false, navAsThumbnails: false, navContainer: false, controls: true}
+            }" 
+            items="4" 
+            gutter="20" 
+            :controlsText="[prevButton, nextButton]" 
+            v-if="getCategories.length">
+            <div v-for="category in imageURLs" class="slider-item" v-bind:style="{ backgroundImage: 'url(' + getImageUrl(category) + ')'}" @click="chooseRubric(category)">
+                <div v-if="!getCategoriesLoading" class="popover-wrapper" :key="category.name">
+                  <div><translate>{{getCategoryInfo(category, 'name')}}</translate></div>
+                  <div>{{getCategoryInfo(category, 'count')}} <translate>ads</translate></div>
+                </div>
+            </div>
+          </tiny-slider>
+        </div>
+      </section>
+      <section class="team-section">
+      	<h5 class="section-title"><translate>Our Team</translate></h5>
+        <p class="section-subtitle">We are team of open and passionate people that love to launch new initiatives. We make innovative products that people love and adopt in their everyday work. We're seeking new opportunities and another software developers for exciting and challenging work.</p>
+      	<div class="team-content">
+  	    	<div class="slider-container">
+  				    <gallery :images="images" :index="null" @close="index=null" :carousel="true"></gallery>
+  				</div>
+  				<div class="info-container">
+  					<p class="info-title"><translate>You think we're cool? Let's work together</translate></p>
+  					<button class="cta info-cta">
+  						<a href="https://www.linkedin.com/in/daria-dvoretska-340b74146/"><translate>get in touch</translate></a>
+  					</button>
+  				</div>
+  			</div>
+      </section>
+      <section class="contact-section">
+        <h5 class="section-title"><translate>Contact us</translate></h5>
+        <p class="section-subtitle">Get to Know Home Market Better</p>
+        <div class="contact-content">
+          <div class="contact-info-wrapper">
+            <div class="contact-info-item">Zaporizhzhya</div>
+            <div class="contact-info-item">Tel: +38 093 489 04 36</div>
+            <div class="contact-info-item">dvoretska4@gmail.com</div>
           </div>
-        </tiny-slider>
-      </div>
-    </section>
-    <section class="team-section">
-    	<h5 class="section-title"><translate>Our Team</translate></h5>
-      <p class="section-subtitle">We are team of open and passionate people that love to launch new initiatives. We make innovative products that people love and adopt in their everyday work. We're seeking new opportunities and another software developers for exciting and challenging work.</p>
-    	<div class="team-content">
-	    	<div class="slider-container">
-				    <gallery :images="images" :index="null" @close="index=null" :carousel="true"></gallery>
-				</div>
-				<div class="info-container">
-					<p class="info-title"><translate>You think we're cool? Let's work together</translate></p>
-					<button class="cta info-cta">
-						<a href="https://www.linkedin.com/in/daria-dvoretska-340b74146/"><translate>get in touch</translate></a>
-					</button>
-				</div>
-			</div>
-    </section>
-    <section class="contact-section">
-      <h5 class="section-title"><translate>Contact us</translate></h5>
-      <p class="section-subtitle">Get to Know Home Market Better</p>
-      <div class="contact-content">
-        <div class="contact-info-wrapper">
-          <div class="contact-info-item">Zaporizhzhya</div>
-          <div class="contact-info-item">Tel: +38 093 489 04 36</div>
-          <div class="contact-info-item">dvoretska4@gmail.com</div>
+          <div class="contact-input-wrapper">
+            <input type="text" placeholder="Email Address" v-model="email" :class="{'input-error': !isValidEmail}">
+            <button @click="validateEmail(email)">Subscribe now</button>
+            <div v-if="!isValidEmail" class="error">Please enter a valid email address</div>
+          </div>
         </div>
-        <div class="contact-input-wrapper">
-          <input type="text" placeholder="Email Address" v-model="email" :class="{'input-error': !isValidEmail}">
-          <button @click="validateEmail(email)">Subscribe now</button>
-          <div v-if="!isValidEmail" class="error">Please enter a valid email address</div>
-        </div>
-      </div>
-    </section>
-    <div class="interlayer"></div>
+      </section>
+      <div class="interlayer"></div>
+      <footer-bar></footer-bar>
+    </div>
 	</div>
 </template>
 
 <script>
 import VueTinySlider from 'vue-tiny-slider'
 import VueGallery from '@/components/extended/vueGallery'
+import footerBar from '@/components/footer/FooterBar'
 
 export default {
   components: {
     'tiny-slider': VueTinySlider,
-    'gallery': VueGallery
+    'gallery': VueGallery,
+    footerBar
   },
   data () {
     return {
@@ -200,6 +205,7 @@ export default {
 		width: 100%;
 		z-index: 50;
 		background-color: rgba(36, 42, 53, 0.6);
+    background-position: 0% !important;
 		border-bottom: 1px solid rgba(255, 255, 255, 1);
 		padding: 0 50px;
     display: flex;
@@ -292,18 +298,26 @@ export default {
 			border-color: transparent;
 		}
 	}
+  .home-landing-parallax {
+  perspective: 1px;
+  transform-style: preserve-3d;
+  height: 100vh;
+  overflow-x: hidden;
 	.main-img {
 		background-image: url('../assets/Online-Market-Place.jpg');
 		background-repeat: no-repeat;
 		background-position: auto 700px;
 		background-size: cover;
 		padding-right: 100px;
-		width: 100%;
-		height: 800px;
+		width: 100vw;
+		height: 100vh;
 		display: flex;
 		flex-direction: column;
 		padding-top: 250px;
 		align-items: flex-end;
+    position: relative;
+    z-index: -1;
+    transform: translateZ(-1px) scale(2);
     @media screen and (max-width:1024px){
       align-items: center;
       padding-right: 0;
@@ -315,6 +329,7 @@ export default {
       padding-top: 0;
       justify-content: center;
       height: 400px;
+      background-position: center;
     }
 		.title-wrapper {
 			display: flex;
@@ -393,6 +408,10 @@ export default {
   .rubrics-section {
     padding-top: 90px;
     overflow-x: hidden;
+
+    position: relative;
+    z-index: 1;
+    background-color: white;
     @media screen and (min-width:320px) and (max-width: 480px){
       padding-top: 30px;
     }
@@ -493,6 +512,10 @@ export default {
   .team-section {
     padding-top: 90px;
     overflow-x: hidden;
+
+    position: relative;
+    z-index: 1;
+    background-color: white;
     @media screen and (min-width:320px) and (max-width: 480px){
       padding-top: 30px;
     }
@@ -605,6 +628,9 @@ export default {
 	}
   .contact-section {
     padding: 90px 0;
+    position: relative;
+    z-index: 1;
+    background-color: white;
       @media screen and (min-width:320px) and (max-width: 480px){
         padding: 30px 0;
       }
@@ -632,6 +658,11 @@ export default {
           text-align: center;
           margin-top: 20px;
         }
+        @media screen and (min-width:320px) and (max-width: 480px){
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
         input {
           width: 50%; 
           background: #e2e2e2;
@@ -643,7 +674,7 @@ export default {
           border: 1px solid transparent;
           @media screen and (min-width:320px) and (max-width: 480px){
             width: 90%;
-            margin-bottom: 10px; 
+            order: 1;
           }
           &.input-error {
             border: 1px solid red;
@@ -662,12 +693,17 @@ export default {
           &:hover {
             background-color: rgba(36, 42, 53, 0.6);
           }
+          @media screen and (min-width:320px) and (max-width: 480px){
+            order: 3;
+            margin-top: 10px;
+          }
         }
         .error {
           font-size: 13px;
           color: red;
           margin-top: 5px;
           padding-left: 5px;
+          order: 2;
         }
       }
     }
@@ -678,10 +714,12 @@ export default {
     background: #e2e2e2;
     padding: 5px 0 0 0;
   }
+  /deep/ .footer-container {
+    margin-top: 0;
+  }
 }
-/deep/ .footer-container {
-  margin-top: 0;
 }
+
 @media screen and (max-width: 768px) {
   .home-landing {
     .home-header {
