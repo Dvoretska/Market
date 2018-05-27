@@ -8,7 +8,7 @@
 
         <b-field horizontal :label="getTopic()" class="align-left">
             <button @click="show" class="field-topic input">
-              <span class="topic-span">{{ subcategoryObj.name }}</span>
+              <span class="topic-span" v-if="subcategoryObj.name">{{ subcategoryObj.name }}</span>
               <img src="../assets/arrow-down-expand.svg" alt="" class="icon-expand-arrow">
             </button>
             <div class="error" v-if="getErrors">{{ getErrors.category }}</div>

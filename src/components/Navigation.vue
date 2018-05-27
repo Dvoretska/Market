@@ -7,15 +7,15 @@
 
     <div @click="clearAllFilters" class="item-all-ads">All ads</div>
 
-    <router-link :to="{ name: 'login'}" class="main-button" v-if="!isLogin" v-bind:class="{ 'active-link': page == 'login'}">
+    <router-link :to="{ name: 'login'}" class="auth-button login-button" v-if="!isLogin" v-bind:class="{ 'active-link': page == 'login'}">
       <translate>Login</translate>
     </router-link>
 
-    <router-link :to="{ name: 'register'}" class="main-button right-button" v-if="!isLogin" v-bind:class="{ 'active-link': page == 'register' || page == 'ads' || page == 'ad-details'}">
+    <router-link :to="{ name: 'register'}" class="auth-button register-button" v-if="!isLogin" v-bind:class="{ 'active-link': page == 'register' || page == 'ads' || page == 'ad-details'}">
       <translate>Sign up</translate>
     </router-link>
 
-    <div class="nav-user-info">
+    <div class="nav-user-info" v-if="isLogin">
       <router-link :to="{ name: 'profile'}" v-if="isLogin && (username || name)" class="user-info-wrapper">
         <svg style="width:24px;height:24px" viewBox="0 0 24 24" class="user-icon">
           <path fill="#000000" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
@@ -105,7 +105,7 @@ export default {
       font-size: 18px;
       margin-left: 15px;
     }
-  .main-button {
+  .auth-button {
     cursor: pointer;
 		font-size: 16px;
 		display: inline-block;
@@ -118,11 +118,11 @@ export default {
       border-radius: 10px;
     }
   }
-    .main-button.active-link {
+    .auth-button.active-link {
       border: 1px solid white;
       border-radius: 10px;
     }
-    .right-button {
+    .register-button {
       margin-left: 10px;
     }
     .nav-user-info {
@@ -209,11 +209,15 @@ export default {
       .item-all-ads {
         display: none;
       }
-      .main-button {
+      .auth-button {
+        &.login-button {
+          margin-left: auto;
+        }
         span {
-          font: 700 10px Futura, "Trebuchet MS", Arial, sans-serif;
+          font: 700 14px Futura, "Trebuchet MS", Arial, sans-serif;
         }
       }
+
       .nav-user-info {
         position: relative;
         margin-left: auto;
