@@ -37,7 +37,7 @@
   			</div>
   		</section>
       <section class="rubrics-section">
-        <h5 class="section-title"><translate>Our Rubrics</translate></h5>
+        <h5 class="section-title"><translate>Our Categories</translate></h5>
         <p class="section-subtitle">Home Market is a great way of selling your products online. Create ads easely and for free, and we will help get your products in front of more people. Also you can buy everything you need just staying at home.</p>
         <div class="slider-wrapper">
           <tiny-slider 
@@ -223,6 +223,9 @@ export default {
 			display: flex;
 			align-items: center;
 			height: 100%;
+      @media screen and (min-width:320px) and (max-width: 480px) {
+       padding: 70px 30px 15px 25px;
+      }
       .menu-item {
         cursor: pointer;
         font-size: 14px;
@@ -293,21 +296,24 @@ export default {
 		font-weight: 300;
 		font-size: 14px;
 		color: #fff;
+    margin-bottom: 15px;
 		&:hover {
 			background-color: rgba(255, 255, 255, 0.26);
 			border-color: transparent;
 		}
 	}
   .home-landing-parallax {
-  perspective: 1px;
-  transform-style: preserve-3d;
-  height: 100vh;
-  overflow-x: hidden;
+  // perspective: 1px;
+  // transform-style: preserve-3d;
+  // height: 100vh;
+
+  // overflow-y: auto;
 	.main-img {
 		background-image: url('../assets/Online-Market-Place.jpg');
 		background-repeat: no-repeat;
 		background-position: auto 700px;
 		background-size: cover;
+    background-attachment: fixed;
 		padding-right: 100px;
 		width: 100vw;
 		height: 100vh;
@@ -316,8 +322,8 @@ export default {
 		padding-top: 250px;
 		align-items: flex-end;
     position: relative;
-    z-index: -1;
-    transform: translateZ(-1px) scale(2);
+    // z-index: -1;
+    // transform: translateZ(-1px) scale(2);
     @media screen and (max-width:1024px){
       align-items: center;
       padding-right: 0;
@@ -332,6 +338,9 @@ export default {
       background-position: center;
     }
 		.title-wrapper {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 20px;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
@@ -748,15 +757,6 @@ export default {
       }
       .home-menu--close {
         opacity: 1;
-      }
-    }
-  }
-}
-@media screen and (min-width:320px) and (max-width: 480px) {
-  .home-landing {
-    .home-header {
-      .home-menu {
-        padding: 70px 30px 15px 25px;
       }
     }
   }
