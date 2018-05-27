@@ -28,7 +28,6 @@
 				</li>
 			</ul>
 		</header>
-    <div class="home-landing-parallax">
   		<section class="main-img">
   			<div class="title-wrapper">
   				<h1 class="main-title"><translate>Buy & Sell Easy</translate></h1>
@@ -95,7 +94,6 @@
       </section>
       <div class="interlayer"></div>
       <footer-bar></footer-bar>
-    </div>
 	</div>
 </template>
 
@@ -302,12 +300,6 @@ export default {
 			border-color: transparent;
 		}
 	}
-  .home-landing-parallax {
-  // perspective: 1px;
-  // transform-style: preserve-3d;
-  // height: 100vh;
-
-  // overflow-y: auto;
 	.main-img {
 		background-image: url('../assets/Online-Market-Place.jpg');
 		background-repeat: no-repeat;
@@ -322,8 +314,6 @@ export default {
 		padding-top: 250px;
 		align-items: flex-end;
     position: relative;
-    // z-index: -1;
-    // transform: translateZ(-1px) scale(2);
     @media screen and (max-width:1024px){
       align-items: center;
       padding-right: 0;
@@ -726,7 +716,6 @@ export default {
   /deep/ .footer-container {
     margin-top: 0;
   }
-}
 }
 
 @media screen and (max-width: 768px) {
