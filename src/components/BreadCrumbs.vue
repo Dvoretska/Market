@@ -46,7 +46,7 @@ export default {
  		font-size: 16px;
  	}
 	nav.breadcrumbs ul li a:after {
-	  content: '/';
+	  content: '>';
 	  margin-left: 5px;
 	  margin-right: 5px;
 	  color: #666;

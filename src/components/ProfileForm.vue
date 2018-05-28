@@ -34,7 +34,7 @@
     </div>
     <div class="content-box">
       <profile-ads-form  v-if="$route.path == '/profile'"></profile-ads-form>
-      <router-view v-if="$store.getters.getUserDetails.last_name"></router-view>
+      <router-view></router-view>
     </div>
   </div>  
 </template>

@@ -168,7 +168,7 @@ export default {
 			height: auto;
 			width: 25%;
 			padding: 15px 15px 0;
-			background-color: rgba(36, 42, 53, 0.2);
+			background-color: rgba(36, 42, 53, 0.1);
 			margin-left: 10px;
 			.contact-button {
 				width: 100%;

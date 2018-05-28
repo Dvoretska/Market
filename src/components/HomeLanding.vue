@@ -330,7 +330,7 @@ export default {
 		.title-wrapper {
       position: -webkit-sticky;
       position: sticky;
-      top: 20px;
+      top: 70px;
 			display: flex;
 			flex-direction: column;
 			align-items: center;

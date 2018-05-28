@@ -46,10 +46,17 @@
 							<img src="@/assets/pencil.svg" alt="" class="icon-ad-actions">
 							<translate>Edit</translate>
 						</a>
-						<a href="#" class="buttons ad-delete" @click.prevent="deleteAd(ad.slug)">
+						<a href="#" class="buttons ad-delete" @click.prevent="show(ad.slug)">
 							<img src="@/assets/delete.svg" alt="" class="icon-ad-actions">
 							<translate>Delete</translate>
 						</a>
+						<modal name="delete-ad" :width="400" :height="150" class="modal-window" >
+							<div class="modal-window-title">Are you sure you want to delete the ad?</div>
+							<div class="modal-buttons-wrapper">
+								<button @click="deleteAd(adSlug)" class="modal-window-button">Yes</button>
+								<button @click="hide" class="modal-window-button">No</button>
+							</div>
+						</modal>
 					</div>
 				</div>
 			</div>
@@ -66,12 +73,25 @@ export default {
     buttonBar,
     VueLoading
   },
+  data () {
+  	return {
+  		adSlug: ''
+  	}
+  },
   methods: {
+  	show (slug) {
+      this.$modal.show('delete-ad')
+      this.adSlug = slug
+    },
+    hide () {
+      this.$modal.hide('delete-ad')
+    },
   	openAdDetails (slug) {
     	this.$router.push({ name: 'adDetails', params: { slug }})
     },
     deleteAd (slug) {
     	this.$store.dispatch('DELETE_AD', slug)
+    	this.$modal.hide('delete-ad')
     },
     getCreateAnAd () {
       return this.$gettext('+ Create an ad')
@@ -95,12 +115,44 @@ export default {
 </script>
 
 <style scoped lang="scss">
+	/deep/ .v--modal-overlay {
+		background: rgba(0, 0, 0, 0.05);
+		/deep/ .v--modal {
+			box-shadow: none;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+	}
+	.modal-window-title {
+		font-size: 18px;
+		margin-bottom: 15px;
+	}
+	.modal-window-button {
+		border: none;
+		background-color: rgba(121, 87, 213, .5);
+		ont-weight: bold;
+		font-size: 16px;
+		width: 60px;
+		height: 33px;
+		border-radius: 5px;
+		cursor: pointer;
+		&:hover {
+			box-shadow: 0 0 2px 1px rgba(0, 0, 0, .7);
+		}
+		&:nth-child(2) {
+			background-color: red;
+			margin-left: 10px;
+		}
+	}
     .loading {
     /deep/ .sk-wave .sk-rect {
-             background-color: #7b4fad;
-           }
+       background-color: #7b4fad;
+     }
     }
 	.buttons {
+		cursor: pointer;
 		display: flex;
 		align-items: center;
 		background-color: rgba(121, 87, 213, .5);
@@ -122,11 +174,11 @@ export default {
 		}
 	}
 	.product-card {
-	    display: flex;
+		display: flex;
 		font-size: 16px;
-        border: 1px solid #D7D7D7;
-        padding: 10px;
-        margin: 3px;
+		border: 1px solid #D7D7D7;
+		padding: 10px;
+		margin: 3px;
 	}
 	.product-img-wrapper {
 		cursor: pointer;

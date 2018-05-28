@@ -3,7 +3,7 @@
     <div class="modal-window-contant">
       <div class="modal-title">
           <h2>Choose a category</h2>
-          <img src="../assets/cancel.svg" alt="" class="icon-close" @click="hide()">
+          <img src="../assets/cancel.svg" alt="" class="icon-close" @click="hide">
       </div>
       <ul v-if="rootCategory && !loading" class="categories-wrapper">
         <li class="category-item" v-for="category_item in categories" @click="fetchSubcategory(category_item.slug)">

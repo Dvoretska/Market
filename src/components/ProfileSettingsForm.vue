@@ -131,13 +131,12 @@ export default {
   },
   created () {
     this.$store.dispatch('GET_COUNTRIES', (data) => {
-      this.countryData = Object.keys(data)
-      this.originCountryData = data
+    this.countryData = Object.keys(data)
+    this.originCountryData = data
     })
   },
   methods: {
   	handleInputChange (data) {
-  		console.log(data)
   		this.$store.commit('updateUserDetailsField', data)
   	},
     getCountry () {
