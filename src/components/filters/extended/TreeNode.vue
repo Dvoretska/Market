@@ -221,9 +221,8 @@
     max-width: 180px;
   }
   .count-style {
-/*    box-shadow: 0 0 0 .125em rgba(121,87,213,.1);*/
     border-radius: 2px;
-    width: 23px;
+    min-width: 23px;
     height: 23px;
     text-align: center;
     color: #ccc;
