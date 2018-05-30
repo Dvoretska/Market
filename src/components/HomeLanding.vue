@@ -155,6 +155,7 @@ export default {
   },
   mounted () {
     window.addEventListener('resize', this.handleWindowResize)
+    window.addEventListener('scroll', this.handleWindowScroll)
   },
   methods: {
     validateEmail (email) {
@@ -169,7 +170,7 @@ export default {
     chooseRubric (slug) {
         this.$router.push({name: 'ads-list', query: {category: slug}})
     },
-    handleWindowResize(event) { 
+    handleWindowResize (event) { 
       if(event.currentTarget.innerWidth > 767) {
         this.showMenu = false
       }

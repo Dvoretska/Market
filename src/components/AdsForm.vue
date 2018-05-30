@@ -293,7 +293,7 @@ export default {
     .field-topic {
       position: relative;
       width: 200px;
-      padding-right: 20px;
+      padding-right: 30px;
       .topic-span {
         font-size: 14px;
         text-overflow: ellipsis;

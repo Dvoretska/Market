@@ -85,7 +85,7 @@ export default {
   		return this.$moment(created).fromNow()
   	},
     clickCallback (pageNum) {
-      this.$store.dispatch('GET_FILTERED_AD_LIST', {page: pageNum})
+      this.$store.dispatch('GET_FILTERED_AD_LIST', {...this.$route.query, page: pageNum})
     },
     openAdDetails (slug) {
     	this.$router.push({ name: 'adDetails', params: { slug }})
@@ -146,13 +146,14 @@ export default {
 		}
     .content-wrapper {
 			width: calc(100% - 300px);
+			margin-right: 15px;
 			.loading {
 		    position: fixed;
-				top: 40%;
-				left: 50%;
-					/deep/ .sk-wave .sk-rect {
-					 	background-color: #7b4fad;
-					}
+			top: 40%;
+			left: 50%;
+				/deep/ .sk-wave .sk-rect {
+				 	background-color: #7b4fad;
+				}
 		    }
 			.ad-cards-container {
 				width: 100%;
@@ -160,7 +161,7 @@ export default {
 				grid-template-columns: repeat(auto-fill,minmax(240px, 1fr));
 				grid-template-rows: auto [last-line];
 			    .ad-card {
-				    margin:10px 0 0 10px;
+				    margin:10px 0 0 12px;
 				    height: 400px;
 				    font-size: 16px;
 				    border: 1px solid #D7D7D7;
@@ -171,6 +172,7 @@ export default {
 				    .ad-img-wrapper {
 					    margin: 15px;
 					    height: 200px;
+					    width: auto;
 					    position: relative;
 					    display: flex;
 					    justify-content: center;
@@ -190,44 +192,44 @@ export default {
 				    	flex-direction: column;
 				    	justify-content: space-between;
 				    	.ad-price {
-								padding-bottom: 10px;
-								font-size: 18px;
-								font-weight: 600;
-								line-height: 16px;
-							}
-							.ad-subject {
-								max-height: 40px;
-								font-size: 18px;
-								overflow: hidden;
-								line-height: 20px;
-								word-wrap: break-word;
-								color: #8c40b8;
-								display: block;
-							}
-							.ad-category, .ad-date {
-								text-overflow: ellipsis;
+							padding-bottom: 10px;
+							font-size: 18px;
+							font-weight: 600;
+							line-height: 16px;
+						}
+						.ad-subject {
+							max-height: 40px;
+							font-size: 17px;
+							overflow: hidden;
+							line-height: 20px;
+							word-wrap: break-word;
+							color: #8c40b8;
+							display: block;
+						}
+						.ad-category, .ad-date {
+							text-overflow: ellipsis;
 						    overflow: hidden;
 						    white-space: nowrap;
-								max-height: 20px;
-								margin-top: 10px;
-								margin-bottom: 10px;
-								font-size: 14px;
-								line-height: 18px;
-								color: #b4b4b4;
-								min-height: 15px;
-							}
-							.ad-location {
-								font-size: 14px;
-								line-height: 16px;
-								font-weight: 700;
-								color: #909090;
-								min-height: 15px;
-							}
-							.ad-date {
-								font-size:12px;
-								line-height: 1;
-								margin-bottom: 0;
-							}	
+							max-height: 20px;
+							margin-top: 10px;
+							margin-bottom: 10px;
+							font-size: 14px;
+							line-height: 18px;
+							color: #b4b4b4;
+							min-height: 15px;
+						}
+						.ad-location {
+							font-size: 14px;
+							line-height: 16px;
+							font-weight: 700;
+							color: #909090;
+							min-height: 15px;
+						}
+						.ad-date {
+							font-size:12px;
+							line-height: 1;
+							margin-bottom: 0;
+						}	
 				  	}
 				}	    
 			}
