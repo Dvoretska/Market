@@ -44,10 +44,11 @@
 					<div class="field" slot="content">
 				  		<label>
 							<translate>Last name</translate>
-							<input type="text" class="input" v-model="lastName" @input="handleInputChange({lastName})" @keyup.enter="changeContactInfo">
+							<input type="text" class="input" v-model="lastName" @input="handleInputChange({lastName})"
+                     @keyup.enter="changeContactInfo()">
 				  		</label>
 					</div>
-					<button class="save-button" slot="content" @click="changeContactInfo">
+					<button class="save-button" slot="content" @click="changeContactInfo()">
 						<translate>Save</translate>
 					</button>
 			    </div>
@@ -60,7 +61,7 @@
 						<phone-input :phone="phone" class="vue-phone-input"></phone-input>
 			  		</label>
 				</div>
-				<button class="save-button" slot="content" @click="saveUserPhone(phone)">
+				<button class="save-button" slot="content" @click="changeUserPhone()">
 					<translate>Save</translate>
 				</button>
 		    </BulmaAccordionItem>
@@ -105,18 +106,22 @@
 		        </button>
 		    </BulmaAccordionItem>
 		</BulmaAccordion>
+    <vue-toast ref='toast'></vue-toast>
 	</div>
 </template>
 
 <script>
 import buttonBar from '@/components/ButtonBar'
 import { BulmaAccordion, BulmaAccordionItem } from 'vue-bulma-accordion'
+import 'vue-toast/dist/vue-toast.min.css'
+import VueToast from 'vue-toast'
 
 export default {
   components: {
     buttonBar,
     BulmaAccordion,
-    BulmaAccordionItem
+    BulmaAccordionItem,
+    VueToast
   },
   data () {
     return {
@@ -126,7 +131,7 @@ export default {
       lastName: this.$store.getters.getUserDetails.last_name,
       country: this.$store.getters.getUserDetails.country,
       city: this.$store.getters.getUserDetails.city,
-      phone: {number: this.$store.getters.getUserDetails.phone, code: ''}
+      phone: {number: this.$store.getters.getUserDetails.phone || '', code: ''}
     }
   },
   created () {
@@ -136,8 +141,11 @@ export default {
     })
   },
   methods: {
+    saveUserPhone () {
+      console.log(this.phone.number)
+    },
   	handleInputChange (data) {
-  		this.$store.commit('updateUserDetailsField', data)
+//  		this.$store.commit('updateUserDetailsField', data)
   	},
     getCountry () {
       return this.$gettext('Country')
@@ -159,7 +167,19 @@ export default {
       }
     },
     changeContactInfo () {
-      this.$store.dispatch('CHANGE_CONTACT_INFO', {first_name: this.firstName, last_name: this.lastName, country: this.country, city: this.city})
+      this.$store.dispatch('CHANGE_CONTACT_INFO', {
+        first_name: this.firstName,
+        last_name: this.lastName,
+        country: this.country,
+        city: this.city,
+        callback: this.$refs.toast.showToast
+      })
+    },
+    changeUserPhone () {
+      this.$store.dispatch('CHANGE_USER_PHONE', {
+        phone: this.phone.number,
+        callback: this.$refs.toast.showToast
+      })
     }
   },
   computed: {
@@ -174,7 +194,7 @@ export default {
 	          .toLowerCase()
 	          .indexOf(this.country.toLowerCase()) >= 0
 	      })
-	  } 
+	  }
 	  return [];
     },
     filteredCityArray () {
@@ -193,6 +213,33 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  /deep/ .checked-mark {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    color: limegreen;
+    border: 1px solid green;
+    margin-left: 10px;
+  }
+  /deep/ .vue-toast_message > span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 100px;
+    background: rgba(0, 0, 0, .7);
+    transform: translate(-50%, -50%);
+  }
+  /deep/ .vue-toast-manager_container.__left {
+    left: 50%;
+  }
+  /deep/ .vue-toast-manager_container.__bottom {
+    bottom: 50%;
+
+  }
 	.profile-settings-container {
 		margin: 5px;
 	}

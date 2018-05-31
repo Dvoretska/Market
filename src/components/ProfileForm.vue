@@ -16,17 +16,17 @@
       </div>
         <ul class="option-box">
           <li>
-            <router-link to="/profile" active-class="active" class="options" exact> 
+            <router-link to="/profile" active-class="active" class="options" exact>
               <span><translate>Ads</translate></span>
             </router-link>
           </li>
           <li>
-            <router-link to="/profile/message" active-class="active" class="options" exact> 
+            <router-link to="/profile/message" active-class="active" class="options" exact>
               <span><translate>Messages</translate></span>
             </router-link>
           </li>
          <li>
-            <router-link to="/profile/settings" active-class="active" class="options" exact> 
+            <router-link to="/profile/settings" active-class="active" class="options" exact>
               <span><translate>Settings</translate></span>
             </router-link>
           </li>
@@ -34,9 +34,9 @@
     </div>
     <div class="content-box">
       <profile-ads-form  v-if="$route.path == '/profile'"></profile-ads-form>
-      <router-view></router-view>
+      <router-view v-if="this.$store.getters.getUserDetails.email"></router-view>
     </div>
-  </div>  
+  </div>
 </template>
 
 <script>
@@ -132,7 +132,7 @@ export default {
     margin: 20px 20px 20px 0;
     font: 700 20px Futura, "Trebuchet MS", Arial, sans-serif;
     @media screen and (min-width:320px) and (max-width: 480px){
-      margin: 20px 20px 10px 0; 
+      margin: 20px 20px 10px 0;
     }
   }
   div.profile-image {

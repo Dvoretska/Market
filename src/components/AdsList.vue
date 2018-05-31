@@ -229,9 +229,9 @@ export default {
 							font-size:12px;
 							line-height: 1;
 							margin-bottom: 0;
-						}	
+						}
 				  	}
-				}	    
+				}
 			}
 			.no-results-box {
 				display: flex;
@@ -301,7 +301,7 @@ export default {
 					width: 100%;
 			    .ad-card {
 				    margin:10px 0 0 15px;
-					}	    
+					}
 				}
 			}
 		}
@@ -321,7 +321,7 @@ export default {
 			.content-wrapper {
 				width: 100%;
 				.ad-cards-container {
-					width: 100%;    
+					width: 100%;
 				}
 			}
 		}

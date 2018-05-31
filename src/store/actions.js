@@ -197,6 +197,7 @@ export default {
     })
   },
   CHANGE_CONTACT_INFO: function (context, data) {
+    // context.commit('updateUserState', {loading: true})
     const TOKEN = localStorage.getItem('token')
     axios.patch(`${ACCOUNTS_URL}profile/`, {
       first_name: data.first_name,
@@ -209,6 +210,23 @@ export default {
       }
     }).then((response) => {
       context.commit('updateUserState', response.data)
+      data.callback('<span>Settings saved successfully!</span><span class="checked-mark">&#10004;</span>')
+    }).catch((err) => {
+      console.log(err)
+    })
+  },
+  CHANGE_USER_PHONE: function (context, data) {
+    const TOKEN = localStorage.getItem('token')
+    axios.put(`${ACCOUNTS_URL}profile/`, {
+      phone: data.phone
+    }, {
+      headers: {
+        authorization: `jwt ${TOKEN}`
+      }
+    }).then((response) => {
+      console.log(response.data)
+      context.commit('updateUserState', response.data)
+      data.callback('<span>Settings saved successfully!</span><span class="checked-mark">&#10004;</span>')
     }).catch((err) => {
       console.log(err)
     })
