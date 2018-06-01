@@ -25,5 +25,8 @@ export default {
   },
   getAdDetails: state => {
     return state.adDetails
+  },
+  getOrdering: state => {
+    return state.orderingState
   }
 }

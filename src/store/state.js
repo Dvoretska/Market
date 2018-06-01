@@ -17,5 +17,6 @@ export default {
     search: {},
     node: ''
   },
-  adDetails: {}
+  adDetails: {},
+  orderingState: {isOpen: null}
 }

@@ -12,7 +12,7 @@
 		</aside>
 		<div class="content-wrapper">
         <bread-crumbs></bread-crumbs>
-        <span class="dropdown-el" @click.stop="toggleClass" v-bind:class="{'expanded': open}">
+        <span class="dropdown-el" @click.stop="toggleClass" v-bind:class="{'expanded': isOpen}">
           <input type="radio" name="sortType" value="Relevance" id="sort-date"
           :checked="'sort-date' == currentSortId" @click.stop="setCurrentSortId('sort-date')">
               <label for="sort-date"><span class="checked-mark">&#10004;</span> By date</label>
@@ -80,7 +80,6 @@ export default {
   },
   data () {
     return {
-      open: false,
       currentSortId: 'sort-date'
     }
   },
@@ -97,7 +96,7 @@ export default {
       this.currentSortId = id
     },
     toggleClass () {
-      this.open = !this.open
+      this.$store.commit('setOrderingState', {isOpen: !this.isOpen})
     },
   	getDate (created) {
   		let now = this.$moment()
@@ -115,6 +114,9 @@ export default {
     }
   },
   computed: {
+    isOpen () {
+      return this.$store.getters.getOrdering.isOpen
+    },
     getDefaultImage () {
       return require('@/assets/default.png')
     },

@@ -12,7 +12,10 @@
               <img src="../assets/arrow-down-expand.svg" alt="" class="icon-expand-arrow">
             </button>
             <div class="error" v-if="getErrors">{{ getErrors.category }}</div>
-            <modal-choose-category :rootCategory="rootCategory" :fetchSubcategory="fetchSubcategory" :fetchSubSubCategory="fetchSubSubCategory" @subcategory="subcategory"></modal-choose-category>
+            <modal-choose-category :rootCategory="rootCategory"
+                                   :fetchSubcategory="fetchSubcategory"
+                                   :fetchSubSubCategory="fetchSubSubCategory"
+                                   @subcategory="subcategory"></modal-choose-category>
         </b-field>
         <b-field horizontal :label="getPrice()" class="align-left field-price">
             <div class="price-wrapper">
@@ -28,7 +31,7 @@
         </b-field>
 
         <b-field horizontal :label="getPhoto()" class="align-left">
-        </b-field> 
+        </b-field>
 
         <label id="file-drag-drop">
             <div ref="fileform" class="fileform"
@@ -163,7 +166,7 @@ export default {
     },
     subjectSignsLeft () {
       return this.subjectMaxLength - this.subject.length
-    },    
+    },
     makeMainImg (key) {
       this.selectedImgKey = key
     },

@@ -1,6 +1,6 @@
 <template>
-	<div>
-	  <navigation :page="'ads'" ></navigation>
+	<div @click="closeOrdering()">
+	  <navigation :page="'ads'"></navigation>
 	  <ads-list></ads-list>
 	  <footer-bar></footer-bar>
   	</div>
@@ -16,6 +16,11 @@ export default {
     adsList,
     navigation,
     footerBar
+  },
+  methods: {
+    closeOrdering () {
+      this.$store.commit('setOrderingState', {isOpen: false})
+    }
   }
 }
 </script>

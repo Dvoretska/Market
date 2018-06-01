@@ -72,5 +72,8 @@ export default {
       ...state.userDetailsState,
       data
     }
+  },
+  setOrderingState (state, data) {
+    state.orderingState = data
   }
 }

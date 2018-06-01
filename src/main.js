@@ -19,9 +19,7 @@ import serviceLanguage from './services/language.js'
 import moment from "moment"
 import VueMomentJS from "vue-momentjs"
 import vueScrollTo from 'vue-scroll-to';
-import vSelect from 'vue-select'
 
-Vue.component('v-select', vSelect)
 Vue.use(vueScrollTo);
 Vue.use(VueMomentJS, moment);
 Vue.use(VueTree)
