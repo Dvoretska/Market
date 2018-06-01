@@ -11,7 +11,18 @@
 	      <vue-slider v-if="!ads.loading"></vue-slider>
 		</aside>
 		<div class="content-wrapper">
-	       <bread-crumbs></bread-crumbs>
+        <bread-crumbs></bread-crumbs>
+        <span class="dropdown-el" @click.stop="toggleClass" v-bind:class="{'expanded': open}">
+          <input type="radio" name="sortType" value="Relevance" id="sort-date"
+          :checked="'sort-date' == currentSortId" @click.stop="setCurrentSortId('sort-date')">
+              <label for="sort-date"><span class="checked-mark">&#10004;</span> By date</label>
+          <input type="radio" name="sortType" value="PriceIncreasing" id="sort-low"
+          :checked="'sort-low' == currentSortId" @click.stop="setCurrentSortId('sort-low')">
+              <label for="sort-low"><span class="checked-mark">&#10004;</span> By price Low to High</label>
+          <input type="radio" name="sortType" value="PriceDecreasing" id="sort-high"
+          :checked="'sort-high' == currentSortId" @click.stop="setCurrentSortId('sort-high')">
+              <label for="sort-high"><span class="checked-mark">&#10004;</span> By price High to Low</label>
+        </span>
 	      <div v-if="ads.loading" class="loading">
 	        <vue-loading spinner="wave"></vue-loading>
 	      </div>
@@ -67,6 +78,12 @@ export default {
     VueLoading,
     breadCrumbs
   },
+  data () {
+    return {
+      open: false,
+      currentSortId: 'sort-date'
+    }
+  },
   created () {
     this.$store.dispatch('GET_FILTERED_AD_LIST', this.$route.query)
     if (!this.$store.getters.getCategories.length) {
@@ -76,6 +93,12 @@ export default {
     }
   },
   methods: {
+    setCurrentSortId (id) {
+      this.currentSortId = id
+    },
+    toggleClass () {
+      this.open = !this.open
+    },
   	getDate (created) {
   		let now = this.$moment()
   		let date = this.$moment(created)
@@ -142,19 +165,100 @@ export default {
     box-shadow: inset 0 20px 50px -20px rgba(0,0,0,.06);
     .filters-box {
 			width: 300px;
-			padding: 7px 20px 0 10px;
+			padding: 10px 20px 0 10px;
 		}
     .content-wrapper {
 			width: calc(100% - 300px);
 			margin-right: 15px;
+      position: relative;
+      .dropdown-el {
+        position: absolute;
+        z-index: 30;
+        min-width: 200px;
+        display: inline-block;
+        min-height: 2em;
+        max-height:2em;
+        overflow:hidden;
+        cursor: pointer;
+        text-align: left;
+        white-space: nowrap;
+        color: #444;
+        outline: none;
+        border-radius: 5px;
+        background-color: rgba(121,87,213,.5);
+        transition: .3s all ease-in-out;
+        font-size: 14px;
+        left: 10px;
+        top: 15px;
+        input {
+          display:none;
+        }
+        label {
+          display:block;
+          height: 2em;
+          line-height: 2em;
+          padding-left: 18px;
+          padding-right: 3em;
+          cursor: pointer;
+          position: relative;
+          transition: .3s color ease-in-out;
+          &:nth-child(2) {
+            margin-top: 2em;
+          }
+         .checked-mark {
+            display: none;
+            position: absolute;
+            left: 5px;
+          }
+        }
+        input:checked + label {
+          display:block;
+          border-top: none;
+          position: absolute;
+          top: 0;
+
+          &:nth-child(2) {
+            margin-top: 0;
+            position: relative;
+          }
+        }
+        &::after {
+          content:"";
+          position: absolute;
+          right: 0.8em;
+          top: 0.9em;
+          border: .3em solid white;
+          border-color: white transparent transparent transparent;
+          transition: .4s all ease-in-out;
+        }
+        &.expanded {
+          background: #fff;
+          border-radius: .25em;
+          padding: 0;
+          box-shadow: 0 1px 8px rgba(0,0,0,.25);
+          max-height:15em;
+          label {
+            &:hover {
+              color:#7957d5;
+            }
+            &:hover .checked-mark {
+              display: inline;
+            }
+          }
+          &::after {
+            transform: rotate(-180deg);
+            top:.55em;
+          }
+        }
+      }
 			.loading {
 		    position: fixed;
-			top: 40%;
-			left: 50%;
+        top: 40%;
+        left: 50%;
 				/deep/ .sk-wave .sk-rect {
 				 	background-color: #7b4fad;
 				}
-		    }
+      }
 			.ad-cards-container {
 				width: 100%;
 				display: grid;

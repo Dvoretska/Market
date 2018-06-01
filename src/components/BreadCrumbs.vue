@@ -40,10 +40,12 @@ export default {
 		cursor: default;
 	}
  	.container-breadcrumbs {
+    margin-top: 43px;
  		height: auto;
- 		padding: 10px;
+ 		padding: 10px 10px 0 27px;
  		color: #3f4c52;
- 		font-size: 16px;
+    opacity: .8;
+ 		font-size: 14px;
  	}
 	nav.breadcrumbs ul li a:after {
 	  content: '>';

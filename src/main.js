@@ -19,15 +19,9 @@ import serviceLanguage from './services/language.js'
 import moment from "moment"
 import VueMomentJS from "vue-momentjs"
 import vueScrollTo from 'vue-scroll-to';
-import 'vue2-toast/lib/toast.css';
-import Toast from 'vue2-toast';
+import vSelect from 'vue-select'
 
-Vue.use(Toast, {
-    defaultType: 'center',
-    duration: 3000,
-    wordWrap: true,
-    width: '150px'
-});
+Vue.component('v-select', vSelect)
 Vue.use(vueScrollTo);
 Vue.use(VueMomentJS, moment);
 Vue.use(VueTree)
