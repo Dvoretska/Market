@@ -40,6 +40,7 @@
     "vue-scroll": "^2.1.7",
     "vue-scroll-to": "^2.2.1",
     "vue-scrollto": "^2.11.0",
+    "vue-select": "^2.4.0",
     "vue-simple-loading": "^1.1.5",
     "vue-slider-component": "^2.6.2",
     "vue-template-compiler": "^2.5.2",
