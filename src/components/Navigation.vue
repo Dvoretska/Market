@@ -1,11 +1,19 @@
 <template>
   <nav class="nav-bar">
-
-    <router-link :to="{ name: 'home'}">
-      <img src="../assets/Home.png" class="nav-logo-img">
+  <div class="logo-wrapper">
+    <router-link :to="{ name: 'home'}" class="nav-logo-link">
+      <img src="../assets/imageedit_39_7718139793.png" class="nav-logo-img">
     </router-link>
+    <p>ELEPHANT</p>
+  </div>
 
     <div @click="clearAllFilters" class="item-all-ads">All ads</div>
+
+    <div class="container-search">
+      <img src="../assets/magnifier.svg" alt="" class="search-icon">
+      <input class="search-input" placeholder="Search..." />
+    </div>
+
 
     <router-link :to="{ name: 'login'}" class="auth-button login-button" v-if="!isLogin" v-bind:class="{ 'active-link': page == 'login'}">
       <translate>Login</translate>
@@ -78,6 +86,12 @@ export default {
 }
 </script>
 <style scoped lang="scss">
+  @mixin threedeetext($color) {
+  color: $color;
+  text-shadow:
+   0 2px 0 darken($color, 14%),
+    0 4px 0 darken($color, 16%)
+}
   .nav-bar {
 		position: fixed;
 		top: 0;
@@ -94,30 +108,76 @@ export default {
     @media screen and (min-width:320px) and (max-width: 480px){
       padding: 0 25px;
     }
-    .nav-logo-img {
-      height: 50px;
-      background-color: transparent;
+    .logo-wrapper {
+      position: relative;
+      .nav-logo-link {
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        z-index: 30;
+        .nav-logo-img {
+          height: 35px;
+          background-color: transparent;
+        }
+      }
+      p {
+        margin-top: 33px;
+        @include threedeetext(#eeeeee);
+        font-size: 11px;
+        color: #8c40b8;
+        font-weight: bold;
+      }
     }
     .item-all-ads {
-      margin-right: auto;
       cursor: pointer;
-      color: #FFFFFF;
+      color: black;
       font-size: 18px;
-      margin-left: 15px;
+      margin-left: 20px;
+      margin-right: 20px;
     }
-  .auth-button {
-    cursor: pointer;
-		font-size: 16px;
-		display: inline-block;
-		color: #FFFFFF;
-		transition: color 0.4s ease 0s;
-    padding: 3px 10px;
-    border: 1px solid transparent;
-    &:hover {
-      border: 1px solid white;
-      border-radius: 10px;
+    .container-search {
+      height: 30px;
+      display: flex;
+      position: relative;
+      margin-right: auto;
+      .search-input {
+        width: 300px;
+        height: 100%;
+        background: rgba(123, 79, 173, 0.4);
+        border: none;
+        font-size: 14px;
+        padding-left: 40px;
+        border-radius: 5px;
+        color: #fff;
+        &::placeholder {
+          color: white;
+          font-size: 14px;
+          opacity: .6;
+        }
+      }
+      .search-icon {
+        cursor: pointer;
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 17px;
+        height: 20px;
+      }
     }
-  }
+    .auth-button {
+      cursor: pointer;
+      font-size: 16px;
+      display: inline-block;
+      color: #FFFFFF;
+      transition: color 0.4s ease 0s;
+      padding: 3px 10px;
+      border: 1px solid transparent;
+      &:hover {
+        border: 1px solid white;
+        border-radius: 10px;
+      }
+    }
     .auth-button.active-link {
       border: 1px solid white;
       border-radius: 10px;

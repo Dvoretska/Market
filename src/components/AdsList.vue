@@ -165,7 +165,7 @@ export default {
     box-shadow: inset 0 20px 50px -20px rgba(0,0,0,.06);
     .filters-box {
 			width: 300px;
-			padding: 10px 20px 0 10px;
+			padding: 12px 20px 0 10px;
 		}
     .content-wrapper {
 			width: calc(100% - 300px);
@@ -189,12 +189,13 @@ export default {
         transition: .3s all ease-in-out;
         font-size: 14px;
         left: 10px;
-        top: 15px;
+        top: 17px;
         input {
           display:none;
         }
         label {
           display:block;
+          color: #343434;
           height: 2em;
           line-height: 2em;
           padding-left: 18px;
