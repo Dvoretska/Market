@@ -49,7 +49,7 @@
             767: {items: 4, nav: false, navAsThumbnails: false, navContainer: false, controls: true}
             }" 
             items="4" 
-            gutter="20" 
+            gutter="0" 
             :controlsText="[prevButton, nextButton]" 
             v-if="getCategories.length">
             <div v-for="category in imageURLs" class="slider-item" v-bind:style="{ backgroundImage: 'url(' + getImageUrl(category) + ')'}" @click="chooseRubric(category)">
@@ -61,6 +61,45 @@
           </tiny-slider>
         </div>
       </section>
+      <article>
+        <figure>
+          <div>
+            <img src='../assets/notbookX.jpg' alt />
+            <h1>Ноутбук Xiaomi Mi Notebook</h1>
+            <p>Xiaomi Mi Notebook Pro 15.6 — универсальный рабочий инструмент, ноутбук, соединивший в себе высокое качество, элегантный внешний вид и выдающиеся характеристики. Алюминиевый корпус, малая толщина, строгие углы и ничего лишнего, даже логотипов. 15,6-дюймовый экран выполнен по технологии IPS и имеет разрешение 1920х1080 точек, чего достаточно для качественной, насыщенной картинки и широких углов обзора. За производительность отвечает 8 поколение процессоров Intel Core. </p>
+          </div>
+        </figure>
+        <section>
+          <div>
+            <img src='../assets/2868545.png' alt />
+            <h1>Бензопила STIHL MS 180</h1>
+            <p>Одна из самых популярных моделей среди бензопил STIHL MS 180 заметно выделяется простотой в эксплуатации, компактными размерами и небольшим весом. STIHL MS 180 достаточно мощная, чтобы вы смогли на своем участке сделать заготовку дров, выполнить работы с деревом для строительства или привести в порядок деревья в саду. Преимуществами этой модели являются система легкого старта ErgoStart, устройство быстрого натяжения цепи и электронное зажигание. </p>
+          </div>
+        </section>
+        
+        <figure>
+          <img src='https://unsplash.it/450/800?image=817' alt />
+        </figure>
+        <section>
+          <div>
+            <h2>I'm Kseso,<br/>
+            &ldquo;a #obCSServer&rdquo;</h2>
+            <p>Ramajero Argonauta, Enredique Amanuense de #CSS.</p>
+          </div>
+        </section>
+        
+        <figure>
+          <img src='https://unsplash.it/450/800?image=948' alt />
+        </figure>
+        <section>
+          <div>
+            <h2><a href='https://escss.blogspot.com'>&xi;sCSS Blog</a></h2>
+            <p>#impoCSSible inside EsCSS. A Spanish #CSS blog where the borders & limits of #CSS disappear.</p>
+          </div>
+        </section>
+        
+        
+      </article>
       <section class="team-section">
       	<h5 class="section-title"><translate>Our Team</translate></h5>
         <p class="section-subtitle">We are team of open and passionate people that love to launch new initiatives. We make innovative products that people love and adopt in their everyday work. We're seeking new opportunities and another software developers for exciting and challenging work.</p>
@@ -196,6 +235,99 @@ export default {
 
 <style scoped lang="scss">
 .home-landing {
+  article {
+    display: flex;
+    flex-wrap: wrap;
+  figure {
+    padding: 30px;
+    background: #fff;
+    width: calc( 50% + 1px);
+    height: 100vh;
+    margin: 0 auto 10vh 0;
+    position: sticky;
+    top: 0;
+    overflow: hidden;
+    box-shadow: 4px -4px 8px rgba(0,0,0,.4);
+  }
+  figure img, section img {
+    min-width: 100%;
+    height: 50vh;
+    max-height: 50vh;
+    object-fit: contain;
+    object-position: center;
+  }
+  h1,
+  h2 {
+    font-size: 22px;
+    text-align: center;
+    font-weight: 700;
+    line-height: 1;
+    word-spacing: .5rem;
+    margin-bottom: 15px;
+  }
+  p {
+    text-align: center;
+    width: 100%;
+    font-family: "Cormorant", serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 18px;
+  }
+  section {
+    padding: 30px;
+    background: #fff;
+    width: calc(50% + 1px);
+    height: 100vh;
+    margin: 0 0 10vh auto;
+    position: sticky;
+    top: 0;
+    // overflow: hidden;
+    
+    box-shadow: -4px -4px 8px rgba(0,0,0,.4);
+      }
+  figure:nth-of-type(1),
+  section:nth-of-type(1) {
+    margin: 0 0 10vh 0;
+    width: 50%;
+      }
+  figure:nth-of-type(2n) {
+    margin: 0 0 10vh auto;
+    box-shadow: -4px -4px 8px rgba(0,0,0,.4);
+      }
+  section:nth-of-type(2n) {
+    margin: 0 auto 10vh 0;
+    box-shadow: 4px -4px 8px rgba(0,0,0,.4);
+    }
+  figure:last-of-type,
+  section:last-of-type {
+    margin-bottom: 0;
+  }
+  section::before {
+    background: inherit;
+    z-index: 1;
+    content: '';
+    position: absolute;
+    top: 50%;
+    left:0;
+    width: 7vmin;
+    height: 7vmin;
+    transform: translate(calc(-50% + 1px), -50%) rotate(-45deg);
+    clip-path: polygon(-15% -15%, 110% 0%, 0% 110%);
+    box-shadow: -4px -2px 8px rgba(0,0,0,.4);
+    border-radius: 1.5vmin 0 0 0;
+  }
+  section:nth-of-type(2n)::before {
+    left:auto;
+    right: 0;
+    transform: translate(calc(50% - 1px), -50%) rotate(-45deg) scale(-1);
+  }
+  section > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+  }
+}
 	.home-header {
 		position: fixed;
 		top: 0;
@@ -347,6 +479,9 @@ export default {
         font-weight: 600;
         letter-spacing: 2px;
         margin-bottom: 10px;
+        @media screen and (min-width:1200px){
+          font-size: 5vw;
+        }
         @media screen and (min-width:320px) and (max-width: 480px){
           font-size: 40px;
         }
@@ -358,6 +493,9 @@ export default {
 				font-weight: 300;
 				margin-bottom: 40px;
         font-style: italic;
+        @media screen and (min-width:1200px){
+          font-size: 4vw;
+        }
         @media screen and (min-width:320px) and (max-width: 480px){
           font-size: 28px;
         }
@@ -417,7 +555,8 @@ export default {
     }
      .slider-wrapper {
 	     position:relative;
-	     height:280px;
+	     height:300px;
+       width: 100%;
        @media screen and (max-width: 480px){
           margin-bottom: 40px;
         }
@@ -484,14 +623,14 @@ export default {
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
-        height: 280px;
+        height: 300px;
         position: relative;
         cursor: pointer;
         &:focus .popover-wrapper, &:hover .popover-wrapper {
  					 opacity: 1;
       	}
         .popover-wrapper {
-          height: 280px;
+          height: 300px;
           width: 100%;
           position: absolute;
           tot: 0;
