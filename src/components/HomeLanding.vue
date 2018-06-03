@@ -12,6 +12,9 @@
 				<li class="menu-item">
           <a href="#" class="menu-item-link" v-scroll-to="'.rubrics-section, 0'"><translate>SHOP</translate></a>
         </li>
+        <li class="menu-item">
+          <a href="#" class="menu-item-link" v-scroll-to="'.top-products-section, 0'"><translate>TOP</translate></a>
+        </li>
 				<li class="menu-item">
           <a href="#" class="menu-item-link" v-scroll-to="'.team-section, 0'"><translate>TEAM</translate></a>
         </li>
@@ -61,45 +64,61 @@
           </tiny-slider>
         </div>
       </section>
-      <article>
-        <figure>
-          <div>
+      <section class="top-products-section">
+        <h5 class="section-title"><translate>Top Products</translate></h5>
+        <p class="section-subtitle">Our most popular products based on sales.</p>
+        <article>
+          <figure>
             <img src='../assets/notbookX.jpg' alt />
-            <h1>Ноутбук Xiaomi Mi Notebook</h1>
-            <p>Xiaomi Mi Notebook Pro 15.6 — универсальный рабочий инструмент, ноутбук, соединивший в себе высокое качество, элегантный внешний вид и выдающиеся характеристики. Алюминиевый корпус, малая толщина, строгие углы и ничего лишнего, даже логотипов. 15,6-дюймовый экран выполнен по технологии IPS и имеет разрешение 1920х1080 точек, чего достаточно для качественной, насыщенной картинки и широких углов обзора. За производительность отвечает 8 поколение процессоров Intel Core. </p>
-          </div>
-        </figure>
-        <section>
-          <div>
-            <img src='../assets/2868545.png' alt />
-            <h1>Бензопила STIHL MS 180</h1>
-            <p>Одна из самых популярных моделей среди бензопил STIHL MS 180 заметно выделяется простотой в эксплуатации, компактными размерами и небольшим весом. STIHL MS 180 достаточно мощная, чтобы вы смогли на своем участке сделать заготовку дров, выполнить работы с деревом для строительства или привести в порядок деревья в саду. Преимуществами этой модели являются система легкого старта ErgoStart, устройство быстрого натяжения цепи и электронное зажигание. </p>
-          </div>
-        </section>
-        
-        <figure>
-          <img src='https://unsplash.it/450/800?image=817' alt />
-        </figure>
-        <section>
-          <div>
-            <h2>I'm Kseso,<br/>
-            &ldquo;a #obCSServer&rdquo;</h2>
-            <p>Ramajero Argonauta, Enredique Amanuense de #CSS.</p>
-          </div>
-        </section>
-        
-        <figure>
-          <img src='https://unsplash.it/450/800?image=948' alt />
-        </figure>
-        <section>
-          <div>
-            <h2><a href='https://escss.blogspot.com'>&xi;sCSS Blog</a></h2>
-            <p>#impoCSSible inside EsCSS. A Spanish #CSS blog where the borders & limits of #CSS disappear.</p>
-          </div>
-        </section>
-        
-        
-      </article>
+            <div class="description">
+              <h1>Ноутбук Xiaomi Mi Notebook</h1>
+              <p>Xiaomi Mi Notebook Pro 15.6 — универсальный рабочий инструмент, ноутбук, соединивший в себе высокое качество, элегантный внешний вид и выдающиеся характеристики. Алюминиевый корпус, малая толщина, строгие углы и ничего лишнего, даже логотипов. 15,6-дюймовый экран выполнен по технологии IPS и имеет разрешение 1920х1080 точек, чего достаточно для качественной, насыщенной картинки и широких углов обзора.</p>
+            </div>
+            <div class="description">
+              <h1>Бензопила STIHL MS 180</h1>
+              <p>Одна из самых популярных моделей среди бензопил STIHL MS 180 заметно выделяется простотой в эксплуатации, компактными размерами и небольшим весом. STIHL MS 180 достаточно мощная, чтобы вы смогли на своем участке сделать заготовку дров, выполнить работы с деревом для строительства или привести в порядок деревья в саду. Преимуществами этой модели являются система легкого старта ErgoStart, устройство быстрого натяжения цепи и электронное зажигание.</p>
+            </div>
+            <img src='../assets/2868545.png' alt/>
+          </figure>
+          <section>
+            <img src='../assets/1665147415.jpg' alt />
+            <div class="description">
+              <h1>Прямой раскладной диван</h1>
+              <p>Прямой раскладной диван; механизм трансформации: поворотный; места для сидения: 3; ширина спального места: 160 см; длина спального места: 200 см; материал обивки: ткань на выбор; наполнитель спального места: пружины "Bonnel" + пенополиуретан; цвет: в ассортименте</p>
+            </div>
+            <div class="description">
+              <h1>Палатка туристическая Terra Incognita</h1>
+              <p>Terra Incognita Grand 5 - эта модель семейного типа, уютная, что идеально заменит Вам домашние условия на длительный период. Модель имеет достаточно высокий купол, что позволяет комфортабельно передвигаться во внутренней части палатки. Terra Incognita Grand 5 имеет прочный износоустойчивый тент, стойкий к осадкам и ультрафиолету.</p>
+            </div>
+            <img src='../assets/1381985.jpg' alt />
+          </section>
+          
+          <figure>
+            <img src='../assets/303450275.jpg' alt />
+            <div class="description">
+              <h1>Комплект мебели для пикника</h1>
+              <p>Кемпинг Стол раскладной XN-12064 + 4 стула является набором кемпинговой мебели, состоящим из большого раскладного стола и четырех стульев. Данный набор будет незаменим во время дружеских посиделок на открытом воздухе возле костра или семейных застолий в пригородном доме, а также кемпинговых условиях на берегу моря.</p>
+            </div>
+            <div class="description">
+              <h1>Смартфон Xiaomi Redmi Note 5</h1>
+              <p>Xiaomi Redmi Note 5 Pro – смартфон среднего уровня, в котором производительно попытался создать максимально отточенное и сбалансированное решение для требовательных пользователей. Модель получила 6-дюймовый IPS-экран с разрешением 2160х1080 точек и порадует не только отличной четкостью и качеством цветов, но также и минимальными рамками.</p>
+            </div>
+            <img src='../assets/1644698425.jpg' alt/>
+          </figure>
+          <section>
+            <img src='../assets/1683999245.jpg' alt />
+            <div class="description">
+              <h1>Роликовые коньки раздвижные</h1>
+              <p>Profi A 4025 - это великолепные роликовые коньки для детей. Раздвижная система делает модель совершенной, позволяет роликам расти вместе с ребенком, размерная сетка от 32-35, 36-39, ростовка практична, делит роликовые коньки на использование детьми дошкольного и школьного возраста. Profi A 4025 имеют алюминиевую раму, прочную, мощную и долговечную, она имеет еще одно важное свойство - легкость, благодаря чему роликовые коньки легкие и маневренные.</p>
+            </div>
+            <div class="description">
+              <h1>Underprice Плед микрофибра сливовый </h1>
+              <p>Во время плохой погоды зимой приятно понежиться на диване с хорошей книгой, под мягким пледом. Предлагаем обратить внимание на симпатичное изделие от бренда UP! (Underprice). Оно изготовлено из полиэстера – материала, который является невероятно теплым и прочным.</p>
+            </div>
+            <img src='../assets/1607799935.jpg' alt />
+          </section>
+        </article>
+      </section>
       <section class="team-section">
       	<h5 class="section-title"><translate>Our Team</translate></h5>
         <p class="section-subtitle">We are team of open and passionate people that love to launch new initiatives. We make innovative products that people love and adopt in their everyday work. We're seeking new opportunities and another software developers for exciting and challenging work.</p>
@@ -235,99 +254,6 @@ export default {
 
 <style scoped lang="scss">
 .home-landing {
-  article {
-    display: flex;
-    flex-wrap: wrap;
-  figure {
-    padding: 30px;
-    background: #fff;
-    width: calc( 50% + 1px);
-    height: 100vh;
-    margin: 0 auto 10vh 0;
-    position: sticky;
-    top: 0;
-    overflow: hidden;
-    box-shadow: 4px -4px 8px rgba(0,0,0,.4);
-  }
-  figure img, section img {
-    min-width: 100%;
-    height: 50vh;
-    max-height: 50vh;
-    object-fit: contain;
-    object-position: center;
-  }
-  h1,
-  h2 {
-    font-size: 22px;
-    text-align: center;
-    font-weight: 700;
-    line-height: 1;
-    word-spacing: .5rem;
-    margin-bottom: 15px;
-  }
-  p {
-    text-align: center;
-    width: 100%;
-    font-family: "Cormorant", serif;
-    font-weight: 400;
-    font-style: italic;
-    font-size: 18px;
-  }
-  section {
-    padding: 30px;
-    background: #fff;
-    width: calc(50% + 1px);
-    height: 100vh;
-    margin: 0 0 10vh auto;
-    position: sticky;
-    top: 0;
-    // overflow: hidden;
-    
-    box-shadow: -4px -4px 8px rgba(0,0,0,.4);
-      }
-  figure:nth-of-type(1),
-  section:nth-of-type(1) {
-    margin: 0 0 10vh 0;
-    width: 50%;
-      }
-  figure:nth-of-type(2n) {
-    margin: 0 0 10vh auto;
-    box-shadow: -4px -4px 8px rgba(0,0,0,.4);
-      }
-  section:nth-of-type(2n) {
-    margin: 0 auto 10vh 0;
-    box-shadow: 4px -4px 8px rgba(0,0,0,.4);
-    }
-  figure:last-of-type,
-  section:last-of-type {
-    margin-bottom: 0;
-  }
-  section::before {
-    background: inherit;
-    z-index: 1;
-    content: '';
-    position: absolute;
-    top: 50%;
-    left:0;
-    width: 7vmin;
-    height: 7vmin;
-    transform: translate(calc(-50% + 1px), -50%) rotate(-45deg);
-    clip-path: polygon(-15% -15%, 110% 0%, 0% 110%);
-    box-shadow: -4px -2px 8px rgba(0,0,0,.4);
-    border-radius: 1.5vmin 0 0 0;
-  }
-  section:nth-of-type(2n)::before {
-    left:auto;
-    right: 0;
-    transform: translate(calc(50% - 1px), -50%) rotate(-45deg) scale(-1);
-  }
-  section > div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
-  }
-}
 	.home-header {
 		position: fixed;
 		top: 0;
@@ -648,10 +574,135 @@ export default {
       }
     }
   }
+  .top-products-section {
+    padding-top: 90px;
+    article {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    @media screen and (max-width: 700px) {
+      display: block;
+    }
+    .description {
+      width: 50%;
+      max-height: 50vh;
+      overflow: hidden;
+    }
+      figure {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        padding: 30px;
+        background: #fff;
+        width: calc( 50% + 1px);
+        height: 100vh;
+        margin: 0 auto 10vh 0;
+        position: sticky;
+        top: 0;
+        overflow: hidden;
+        box-shadow: 4px -4px 8px rgba(0,0,0,.4);
+        @media screen and (max-width: 700px) {
+          width: 100%;
+        }
+        @media screen and (min-width:320px) and (max-width: 480px){
+          height: 50vh;
+        }
+        
+      }
+      figure img, section img {
+        max-width: 50%;
+        width: 50%;
+        height: 50%;
+        max-height: 50%;
+        object-fit: contain;
+        object-position: center;
+      }
+      h1 {
+        font-size: 22px;
+        text-align: center;
+        font-weight: 700;
+        line-height: 1;
+        word-spacing: .5rem;
+        margin-bottom: 15px;
+      }
+      p {
+        text-align: center;
+        width: 100%;
+        font-family: "Cormorant", serif;
+        font-weight: 400;
+        font-style: italic;
+        font-size: 14px;
+        @media screen and (min-width:320px) and (max-width: 480px){
+          display: none;
+        }
+      }
+      section {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        padding: 30px;
+        background: #fff;
+        width: calc(50% + 1px);
+        height: 100vh;
+        margin: 0 0 10vh auto;
+        position: sticky;
+        top: 0;
+        box-shadow: -4px -4px 8px rgba(0,0,0,.4);
+        @media screen and (max-width: 700px) {
+          width: 100%;
+        }
+        @media screen and (min-width:320px) and (max-width: 480px){
+          height: 50vh;
+        }
+      }
+      figure:nth-of-type(1),
+      section:nth-of-type(1) {
+        margin: 0 0 10vh 0;
+        width: 50%;
+        @media screen and (max-width: 700px) {
+          width: 100%;
+        }
+          }
+      figure:nth-of-type(2n) {
+        margin: 0 0 10vh auto;
+        box-shadow: -4px -4px 8px rgba(0,0,0,.4);
+          }
+      section:nth-of-type(2n) {
+        margin: 0 auto 10vh 0;
+        box-shadow: 4px -4px 8px rgba(0,0,0,.4);
+        }
+      figure:last-of-type,
+      section:last-of-type {
+        margin-bottom: 0;
+        border-bottom: 3px solid #eee;
+      }
+      section::before {
+        background: transparent;
+        background-image: url('../assets/imageedit_6_3503546167.png');
+        background-size:contain;
+        z-index: 1;
+        content: '';
+        position: absolute;
+        top: 50%;
+        left:0;
+        width: 70px;
+        height: 70px;
+        transform: translate(calc(-50% + 1px), -50%);
+        @media screen and (max-width: 700px) {
+          background-image: none;
+        }
+      }
+      section:nth-of-type(2n)::before {
+        left:auto;
+        right: 0;
+        transform: translate(calc(50% - 1px), -50%);
+      }
+
+    }
+  }
   .team-section {
     padding-top: 90px;
     overflow-x: hidden;
-
     position: relative;
     z-index: 1;
     background-color: white;
