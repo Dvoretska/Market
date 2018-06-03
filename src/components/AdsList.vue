@@ -13,15 +13,15 @@
 		<div class="content-wrapper">
         <bread-crumbs></bread-crumbs>
         <span class="dropdown-el" @click.stop="toggleClass" v-bind:class="{'expanded': isOpen}">
-          <input type="radio" name="sortType" value="Relevance" id="sort-date"
-          :checked="'sort-date' == currentSortId" @click.stop="setCurrentSortId('sort-date')">
-              <label for="sort-date"><span class="checked-mark">&#10004;</span> By date</label>
-          <input type="radio" name="sortType" value="PriceIncreasing" id="sort-low"
-          :checked="'sort-low' == currentSortId" @click.stop="setCurrentSortId('sort-low')">
-              <label for="sort-low"><span class="checked-mark">&#10004;</span> By price Low to High</label>
-          <input type="radio" name="sortType" value="PriceDecreasing" id="sort-high"
-          :checked="'sort-high' == currentSortId" @click.stop="setCurrentSortId('sort-high')">
-              <label for="sort-high"><span class="checked-mark">&#10004;</span> By price High to Low</label>
+          <input type="radio" name="sortType" value="Relevance" id="-created"
+          :checked="'-created' == currentSortId" @click.stop="setCurrentOrdering('-created')">
+              <label for="-created"><span class="checked-mark">&#10004;</span> By date</label>
+          <input type="radio" name="sortType" value="PriceIncreasing" id="price"
+          :checked="'price' == currentSortId" @click.stop="setCurrentOrdering('price')">
+              <label for="price"><span class="checked-mark">&#10004;</span> By price Low to High</label>
+          <input type="radio" name="sortType" value="PriceDecreasing" id="-price"
+          :checked="'-price' == currentSortId" @click.stop="setCurrentOrdering('-price')">
+              <label for="-price"><span class="checked-mark">&#10004;</span> By price High to Low</label>
         </span>
 	      <div v-if="ads.loading" class="loading">
 	        <vue-loading spinner="wave"></vue-loading>
@@ -78,12 +78,8 @@ export default {
     VueLoading,
     breadCrumbs
   },
-  data () {
-    return {
-      currentSortId: 'sort-date'
-    }
-  },
   created () {
+  	this.currentSortId = this.$route.query.ordering || '-created'
     this.$store.dispatch('GET_FILTERED_AD_LIST', this.$route.query)
     if (!this.$store.getters.getCategories.length) {
       this.$store.dispatch('GET_CATEGORIES', {
@@ -92,8 +88,11 @@ export default {
     }
   },
   methods: {
-    setCurrentSortId (id) {
-      this.currentSortId = id
+    setCurrentOrdering (id) {
+    	this.currentSortId = id
+    	if(this.$route.query.ordering != id) {
+	    	this.$store.dispatch('GET_FILTERED_AD_LIST', {...this.$route.query, ordering: id})
+	    }
     },
     toggleClass () {
       this.$store.commit('setOrderingState', {isOpen: !this.isOpen})

@@ -10,8 +10,8 @@
     <div @click="clearAllFilters" class="item-all-ads">All ads</div>
 
     <div class="container-search">
-      <img src="../assets/magnifier.svg" alt="" class="search-icon">
-      <input class="search-input" placeholder="Search..." />
+      <img src="../assets/magnifier.svg" alt="" class="search-icon" v-on:click="searchItem(searchValue)">
+      <input class="search-input" placeholder="Search..." v-on:keyup.enter="searchItem(searchValue)" v-model="searchValue"/>
     </div>
 
 
@@ -60,10 +60,23 @@
 
 <script>
 export default {
+  data () {
+    return {
+      searchValue: ''
+    }
+  },
   props: {
     page: String
   },
+  created () {
+    this.searchValue = this.$route.query.search || ''
+  },
   methods: {
+    searchItem (searchValue) {
+      if(searchValue) {
+        this.$store.dispatch('GET_FILTERED_AD_LIST', {...this.$route.query, search: searchValue})
+      }
+    },
     clearAllFilters () {
       this.$store.dispatch('GET_FILTERED_AD_LIST')
       this.$store.dispatch('GET_CATEGORIES')
