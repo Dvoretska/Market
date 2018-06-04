@@ -14,6 +14,16 @@
       <input class="search-input" placeholder="Search..." v-on:keyup.enter="searchItem(searchValue)" v-model="searchValue"/>
     </div>
 
+    <div class="container-search-mobile">
+      <img src="../assets/magnifier.svg" alt="" class="search-icon-mobile" @click="showSearchMobile()">
+      <modal name="search-mobile" :width="'100%'" class="search-mobile" :height="50">
+        <div class="search-mobile-wrapper">
+          <img src="../assets/magnifier.svg" alt="" class="search-icon" v-on:click="searchItem(searchValue); hideSearchMobile();">
+          <input class="search-input search-input-mobile" placeholder="Search..." v-on:keyup.enter="searchItem(searchValue); hideSearchMobile();" v-model="searchValue"/>
+        </div>
+      </modal>
+    </div>
+
 
     <router-link :to="{ name: 'login'}" class="auth-button login-button" v-if="!isLogin" v-bind:class="{ 'active-link': page == 'login'}">
       <translate>Login</translate>
@@ -77,6 +87,15 @@ export default {
         this.$store.dispatch('GET_FILTERED_AD_LIST', {...this.$route.query, search: searchValue})
       }
     },
+    searchItemMobile () {
+
+    },
+    showSearchMobile () {
+      this.$modal.toggle('search-mobile')
+    },
+    hideSearchMobile () {
+      this.$modal.hide('search-mobile')
+    },
     clearAllFilters () {
       this.$store.dispatch('GET_FILTERED_AD_LIST')
       this.$store.dispatch('GET_CATEGORIES')
@@ -99,12 +118,6 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-  @mixin threedeetext($color) {
-  color: $color;
-  text-shadow:
-   0 2px 0 darken($color, 14%),
-    0 4px 0 darken($color, 16%)
-}
   .nav-bar {
 		position: fixed;
 		top: 0;
@@ -135,7 +148,10 @@ export default {
       }
       p {
         margin-top: 33px;
-        @include threedeetext(#eeeeee);
+        color: #eeeeee;
+        text-shadow:
+        0 2px 0 darken(#eeeeee, 14%),
+        0 4px 0 darken(#eeeeee, 16%);
         font-size: 11px;
         color: #8c40b8;
         font-weight: bold;
@@ -147,13 +163,23 @@ export default {
       font-size: 18px;
       margin-left: 25px;
       margin-right: 25px;
+      @media screen and (max-width: 768px){
+        display: none;
+      }
     }
     .container-search {
       height: 30px;
       display: flex;
       position: relative;
       margin-right: auto;
-      .search-input {
+      @media screen and (min-width:320px) and (max-width: 700px){
+        display: none;
+      }
+      @media screen and (max-width: 768px){
+        margin-left: 20px;
+      }
+    }
+    .search-input {
         width: 300px;
         height: 100%;
         background: rgba(123, 79, 173, 0.4);
@@ -167,6 +193,9 @@ export default {
           font-size: 14px;
           opacity: .6;
         }
+        @media screen and (max-width:991px){
+          width: 80%;
+        }
       }
       .search-icon {
         cursor: pointer;
@@ -176,6 +205,38 @@ export default {
         transform: translateY(-50%);
         width: 17px;
         height: 20px;
+      }
+    .container-search-mobile {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      margin-right: auto;
+      /deep/ .v--modal-overlay {
+        top: 56px;
+        /deep/ .v--modal-box.v--modal {
+          top: 0 !important;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+      .search-icon-mobile {
+        cursor: pointer;
+        width: 25px;
+        height: 25px;
+        margin-left: 15px;
+        @media screen and (min-width:701px){
+          display: none;
+        }
+      }
+      .search-mobile-wrapper {
+        width: 90%;
+        height: 35px;
+        position: relative;
+        .search-input-mobile {
+          width: 100%;
+          height: 100%;
+        }
       }
     }
     .auth-button {
@@ -275,6 +336,12 @@ export default {
         color: #8c40b8;
         background-color: white;
       }
+      @media screen and (max-width: 768px){
+        font-size: 12px;
+      }
+      @media screen and (min-width:320px) and (max-width: 480px){
+        font-size: 10px;
+      }
     }
   }
   @media screen and (min-width:320px) and (max-width: 480px){
@@ -290,7 +357,10 @@ export default {
           font: 700 14px Futura, "Trebuchet MS", Arial, sans-serif;
         }
       }
-
+    }
+  }
+ @media screen and (max-width: 991px){
+  .nav-bar {
       .nav-user-info {
         position: relative;
         margin-left: auto;
@@ -307,6 +377,6 @@ export default {
           }
         }
       }
-    }
-  }
+   }
+ }
 </style>

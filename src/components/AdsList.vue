@@ -80,6 +80,9 @@ export default {
   },
   created () {
   	this.currentSortId = this.$route.query.ordering || '-created'
+	  if(!(['created', 'price', '-price'].includes(this.$route.query.ordering))) {
+  		this.currentSortId = '-created'
+  	}
     this.$store.dispatch('GET_FILTERED_AD_LIST', this.$route.query)
     if (!this.$store.getters.getCategories.length) {
       this.$store.dispatch('GET_CATEGORIES', {

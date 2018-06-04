@@ -662,7 +662,10 @@ export default {
         @media screen and (max-width: 700px) {
           width: 100%;
         }
-          }
+        @media screen and (min-width:320px) and (max-width: 480px){
+          margin: 0;
+        } 
+      }
       figure:nth-of-type(2n) {
         margin: 0 0 10vh auto;
         box-shadow: -4px -4px 8px rgba(0,0,0,.4);
