@@ -111,14 +111,12 @@
 </template>
 
 <script>
-import buttonBar from '@/components/ButtonBar'
 import { BulmaAccordion, BulmaAccordionItem } from 'vue-bulma-accordion'
 import 'vue-toast/dist/vue-toast.min.css'
 import VueToast from 'vue-toast'
 
 export default {
   components: {
-    buttonBar,
     BulmaAccordion,
     BulmaAccordionItem,
     VueToast

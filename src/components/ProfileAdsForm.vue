@@ -66,12 +66,10 @@
 </template>
 
 <script>
-import buttonBar from '@/components/ButtonBar'
 import VueLoading from 'vue-simple-loading'
 
 export default {
   components: {
-    buttonBar,
     VueLoading
   },
   data () {

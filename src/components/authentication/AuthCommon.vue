@@ -1,10 +1,8 @@
 <script>
-import buttonBar from '@/components/ButtonBar'
 import inputStyle from '@/components/InputStyle'
 
 export default {
   components: {
-    buttonBar,
     inputStyle
   },
   created () {

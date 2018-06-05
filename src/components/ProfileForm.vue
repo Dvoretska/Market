@@ -40,14 +40,12 @@
 </template>
 
 <script>
-import buttonBar from '@/components/ButtonBar'
 import profileAdsForm from '@/components/ProfileAdsForm'
 import profileMessageForm from '@/components/ProfileMessageForm'
 import profileSettingsForm from '@/components/ProfileSettingsForm'
 
 export default {
   components: {
-    buttonBar,
     profileAdsForm,
     profileMessageForm,
     profileSettingsForm

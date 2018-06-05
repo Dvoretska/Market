@@ -20,12 +20,8 @@
 </template>
 
 <script>
-import buttonBar from '@/components/ButtonBar'
 
 export default {
-  components: {
-    buttonBar
-  }
 }
 </script>
 

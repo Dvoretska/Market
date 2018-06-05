@@ -84,13 +84,11 @@
 </template>
 
 <script>
-import buttonBar from '@/components/ButtonBar'
 import modalChooseCategory from '@/components/ModalChooseCategory'
 import { VueEditor } from 'vue2-editor'
 
 export default {
   components: {
-    buttonBar,
     modalChooseCategory,
     VueEditor
   },
