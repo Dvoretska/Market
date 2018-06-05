@@ -112,12 +112,12 @@ export default {
 		display: flex;
 		align-items: flex-start;
 		.left-column {
-			padding: 15px 25px 0;
+			padding: 20px 30px 0;
 			width: 75%;
 			border: 1px solid #ccc;
 			outline: 1px solid #fff;
 			min-height: 60px;
-			background-color: #F7F7F7;
+			background-color: rgba(238, 238, 238, .3);
 			min-height: 150px;
 			.loading {
 				position: fixed;
@@ -125,7 +125,7 @@ export default {
 				top: 20%;
 			}
 			.content-wrapper{
-				margin-top: 20px;
+				margin-top: 30px;
 				.ad-details-title {
 					font-size: 22px;
 					font-weight: 700;
@@ -134,6 +134,7 @@ export default {
 					line-height: 28px;
 					margin-bottom: 4px;
 					margin-top: 15px;
+					color: rgba(123, 79, 173, 1);
 				}
 				.ad-details-price {
 					font-size: 27px;
@@ -168,7 +169,7 @@ export default {
 			height: auto;
 			width: 25%;
 			padding: 15px 15px 0;
-			background-color: rgba(36, 42, 53, 0.1);
+			background-color: rgba(238, 238, 238, .7);
 			margin-left: 10px;
 			.contact-button {
 				width: 100%;

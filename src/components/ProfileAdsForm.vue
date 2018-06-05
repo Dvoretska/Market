@@ -22,7 +22,7 @@
 				<i class="material-icons">&#xE14F;</i>
 				<div class="profile-ads-notice" v-translate>There are no active ads</div>
 		    	<router-link :to="{ name: 'create-ad'}">
-		        	<button-bar :label="getCreateAnAd()"></button-bar>
+		        	<button class="button-submit">Create an ad</button>
 		      	</router-link>
 	      	</div>
 			<div class="ads-content-full" v-else>
@@ -59,6 +59,7 @@
 						</modal>
 					</div>
 				</div>
+				<button @click="loadMore()">Load more</button>
 			</div>
 		</div>
 	</div>
@@ -75,10 +76,15 @@ export default {
   },
   data () {
   	return {
-  		adSlug: ''
+  		adSlug: '',
+  		page: 1
   	}
   },
   methods: {
+  	loadMore () {
+  	  this.page ++
+      this.$store.dispatch('GET_MY_ADS', {...this.$route.query, page: this.page})
+    },
   	show (slug) {
       this.$modal.show('delete-ad')
       this.adSlug = slug
@@ -98,7 +104,7 @@ export default {
     }
   },
   mounted () {
-    this.$store.dispatch('GET_MY_ADS')
+    this.$store.dispatch('GET_MY_ADS', {page: 1})
   },
   computed: {
   	ads () {
@@ -117,13 +123,13 @@ export default {
 <style scoped lang="scss">
 	/deep/ .v--modal-overlay {
 		background: rgba(0, 0, 0, 0.05);
-		/deep/ .v--modal {
-			box-shadow: none;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-		}
+	}
+	/deep/ .v--modal {
+		box-shadow: none;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 	}
 	.modal-window-title {
 		font-size: 18px;
@@ -273,4 +279,26 @@ export default {
 	.has-height {
 		height: 350px;
 	}
+	.button-submit {
+        width: 145px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(123, 79, 173, 0.7);
+        border: solid rgba(255, 255, 255, 1) 1px;
+        cursor: pointer;
+        transition: border-color 0.4s ease 0s, background-color 0.4s ease 0s;
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: 14px;
+        color: #fff;
+        border-radius: 5px;
+        margin: 0 auto 20px;
+        &:hover {
+          background-color: #F4F4F4;
+          border-color: #8c40b8;
+          color: #8c40b8;
+        }
+    }
 </style>

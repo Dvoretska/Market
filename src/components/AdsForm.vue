@@ -69,14 +69,14 @@
                     <span>Phone: </span><phone-input :phone="phone" class="vue-phone-input"></phone-input>
                 </div>
                 <div class="contact-info-field">
-                    <span>Location: </span><b-input name="location" expanded  v-model="location"></b-input>
+                    <span>Location: </span><b-input name="location" expanded v-model="location"></b-input>
                 </div>
             </div>
         </b-field>
 
         <b-field horizontal class="align-center">
             <p class="button-submit-container">
-                <button :label="getCreateAd()" class="button-submit" @click="createAd">Create an ad</button>
+                <button :label="getCreateAd()" :disabled="loading" class="button-submit" @click="createAd" v-bind:class="{'disabled': loading}">Create an ad</button>
             </p>
         </b-field>
 
@@ -101,6 +101,7 @@ export default {
         number: ''
       },
       message: '',
+      location: '',
       subject: '',
       category: '',
       subcategoryObj: {},
@@ -257,6 +258,9 @@ export default {
     }
   },
   computed: {
+    loading () {
+      return this.$store.getters.getLoading
+    },
     getErrors () {
       return this.$store.getters.getErrors
     },
@@ -274,15 +278,15 @@ export default {
     },
     city () {
       return this.$store.getters.getUserDetails.city
-    },
-    location () {
-      return this.country + ', ' + this.city
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
+  /deep/ .ql-container {
+    height: auto !important;
+  }
   .section-ads {
     margin-top: 70px;
     width: 550px;
@@ -461,6 +465,9 @@ export default {
           background-color: #F4F4F4;
           border-color: #8c40b8;
           color: #8c40b8;
+        }
+        &.disabled {
+          cursor: not-allowed;
         }
     }
     /deep/ .input:hover  {

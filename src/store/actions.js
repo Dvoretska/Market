@@ -93,15 +93,16 @@ export default {
       context.commit('loading', false)
       router.push({name: 'ads-list'})
     }).catch((err) => {
-      context.commit('error', err.response.data)
       context.commit('loading', false)
+      context.commit('error', err.response.data)
     })
   },
-  GET_MY_ADS: function (context) {
+  GET_MY_ADS: function (context, data) {
     const TOKEN = localStorage.getItem('token')
     context.commit('myAdsMutate', {loading: true})
     axios.get(`${MAIN_URL}my/ads/`,
-      {
+      { 
+        params: data,
         headers: {
           authorization: `jwt ${TOKEN}`,
           'Accept-Language': serviceLanguage.language

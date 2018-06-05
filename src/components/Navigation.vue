@@ -81,14 +81,19 @@ export default {
   created () {
     this.searchValue = this.$route.query.search || ''
   },
+  mounted () {
+    window.addEventListener('resize', this.handleWindowResize)
+  },
   methods: {
     searchItem (searchValue) {
       if(searchValue) {
         this.$store.dispatch('GET_FILTERED_AD_LIST', {...this.$route.query, search: searchValue})
       }
     },
-    searchItemMobile () {
-
+    handleWindowResize (event) { 
+      if(event.currentTarget.innerWidth > 701) {
+        this.$modal.hide('search-mobile')
+      }
     },
     showSearchMobile () {
       this.$modal.toggle('search-mobile')
@@ -213,12 +218,12 @@ export default {
       margin-right: auto;
       /deep/ .v--modal-overlay {
         top: 56px;
-        /deep/ .v--modal-box.v--modal {
-          top: 0 !important;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
+      }
+      /deep/ .v--modal-box.v--modal {
+        top: 0 !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
       .search-icon-mobile {
         cursor: pointer;

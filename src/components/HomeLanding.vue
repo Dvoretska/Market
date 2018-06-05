@@ -213,7 +213,6 @@ export default {
   },
   mounted () {
     window.addEventListener('resize', this.handleWindowResize)
-    window.addEventListener('scroll', this.handleWindowScroll)
   },
   methods: {
     validateEmail (email) {
@@ -434,27 +433,29 @@ export default {
     margin: 0 auto 20px;
     text-align: center;
     font-family: 'Arapey', serif;
-    position: relative;
-    max-width: 220px;
     font-style: italic;
+    white-space: nowrap;
     @media screen and (min-width:320px) and (max-width: 480px){
       margin: 0 auto 20px;
     }
-    &:before {
+    span {
+      position: relative;
+    }
+    span:before {
         content: "";
         position: absolute;
         width: 330px;
         height: 1px;
-        left: 240px;
+        left: 120%;
         top: 50%;
         background-color: rgba(36, 42, 53, 1);
      }
-     &:after {
+     span:after {
         content: "";
         position: absolute;
         width: 330px;
         height: 1px;
-        right: 240px;
+        right: 120%;
         top: 50%;
         background-color: rgba(36, 42, 53, 1);
      }
@@ -472,7 +473,6 @@ export default {
   .rubrics-section {
     padding-top: 90px;
     overflow-x: hidden;
-
     position: relative;
     z-index: 1;
     background-color: white;
@@ -576,6 +576,9 @@ export default {
   }
   .top-products-section {
     padding-top: 90px;
+    @media screen and (min-width:320px) and (max-width: 480px){
+      padding-top: 30px;
+    }
     article {
     display: flex;
     flex-wrap: wrap;
@@ -734,24 +737,24 @@ export default {
 	  		/deep/ .blueimp-gallery {
 					background-color: rgba(36, 42, 53, 0.7);
 					box-shadow: 0 0 3px #000;
-            /deep/ .description-title {
-              font-size: 20px;
-              margin-bottom: 15px;
-               @media screen and (max-width:575px){
-                font-size: 16px;
-                margin-bottom: 10px;
-              }
-            }
-             /deep/ .description-text {
-              font-size: 14px;
-              @media screen and (max-width:575px){
-                font-size: 12px;
-              }
-              @media screen and (min-width:320px) and (max-width: 480px){
-                display: none;
-              }
-            }
 	  		}
+         /deep/ .description-title {
+          font-size: 20px;
+          margin-bottom: 15px;
+           @media screen and (max-width:575px){
+            font-size: 16px;
+            margin-bottom: 10px;
+          }
+        }
+         /deep/ .description-text {
+          font-size: 14px;
+          @media screen and (max-width:575px){
+            font-size: 12px;
+          }
+          @media screen and (min-width:320px) and (max-width: 480px){
+            display: none;
+          }
+        }
 	  		/deep/ .blueimp-gallery > .slides > .slide > .slide-content {
 	  			width: 200px;
 	  			height: 200px;
