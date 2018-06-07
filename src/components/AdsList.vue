@@ -39,7 +39,18 @@
 						</div>
 						<div>
 							<div class="ad-location">{{ ad.location }}</div>
-							<div class="ad-date">{{ getDate(ad.created) }}</div>
+							<div class="date-star-wrapper">
+								<div class="ad-date">{{ getDate(ad.created) }}</div>
+								<popper trigger="hover" :options="{placement: 'left'}">
+							    <div class="popper">
+							      Добавить в избранное
+							    </div>
+							    <svg slot="reference" viewBox="0 0 140 130" height="270" class="star-svg" @click.stop="addProductToSelected(ad.slug)" v-bind:class="{'star-selected': slugs.includes(ad.slug)}">
+							    <polygon points="70,5 90,41 136,48 103,80 111,126
+							                     70,105 29,126 36,80 5,48 48,41" />
+								  </svg>
+								</popper>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -70,13 +81,22 @@ import breadCrumbs from '@/components/BreadCrumbs'
 import CategoryFilter from '@/components/filters/CategoryFilter'
 import VueSlider from '@/components/filters/slider-chart/VueSlider'
 import VueLoading from 'vue-simple-loading'
+import Popper from 'vue-popperjs'
+import 'vue-popperjs/dist/css/vue-popper.css'
 
 export default {
   components: {
     CategoryFilter,
     VueSlider,
     VueLoading,
-    breadCrumbs
+    breadCrumbs,
+   'popper': Popper
+  },
+  data () {
+  	return {
+  		slugs: [],
+  		starSelected: null
+  	}
   },
   created () {
   	this.currentSortId = this.$route.query.ordering || '-created'
@@ -90,7 +110,19 @@ export default {
       })
     }
   },
+  mounted () {
+	  const slugs = JSON.parse(this.$localStorage.get('slug'))
+	  if (slugs) {
+	    this.slugs = slugs
+	  }
+	},
   methods: {
+  	addProductToSelected (slug) {
+  		this.slugs.push(slug);
+  		if(!this.$localStorage.get('slug') || !JSON.parse(this.$localStorage.get('slug')).includes(slug)) {
+	  		this.$localStorage.set('slug', JSON.stringify(this.slugs));
+  		}
+  	},
     setCurrentOrdering (id) {
     	this.currentSortId = id
     	if(this.$route.query.ordering != id) {
@@ -301,44 +333,72 @@ export default {
 				    	flex-direction: column;
 				    	justify-content: space-between;
 				    	.ad-price {
-							padding-bottom: 10px;
-							font-size: 18px;
-							font-weight: 600;
-							line-height: 16px;
-						}
-						.ad-subject {
-							max-height: 40px;
-							font-size: 17px;
-							overflow: hidden;
-							line-height: 20px;
-							word-wrap: break-word;
-							color: #8c40b8;
-							display: block;
-						}
-						.ad-category, .ad-date {
-							text-overflow: ellipsis;
-						    overflow: hidden;
-						    white-space: nowrap;
-							max-height: 20px;
-							margin-top: 10px;
-							margin-bottom: 10px;
-							font-size: 14px;
-							line-height: 18px;
-							color: #b4b4b4;
-							min-height: 15px;
-						}
-						.ad-location {
-							font-size: 14px;
-							line-height: 16px;
-							font-weight: 700;
-							color: #909090;
-							min-height: 15px;
-						}
-						.ad-date {
-							font-size:12px;
-							line-height: 1;
-							margin-bottom: 0;
-						}
+								padding-bottom: 10px;
+								font-size: 18px;
+								font-weight: 600;
+								line-height: 16px;
+							}
+							.ad-subject {
+								max-height: 40px;
+								font-size: 17px;
+								overflow: hidden;
+								line-height: 20px;
+								word-wrap: break-word;
+								color: #8c40b8;
+								display: block;
+							}
+							.ad-category, .ad-date {
+								text-overflow: ellipsis;
+							  overflow: hidden;
+							  white-space: nowrap;
+								max-height: 20px;
+								margin-top: 10px;
+								margin-bottom: 10px;
+								font-size: 14px;
+								line-height: 18px;
+								color: #b4b4b4;
+								min-height: 15px;
+							}
+							.ad-location {
+								font-size: 14px;
+								line-height: 16px;
+								font-weight: 700;
+								color: #909090;
+								min-height: 15px;
+							}
+							.date-star-wrapper {
+								display: flex;
+								justify-content: space-between;
+								align-items: center;
+								margin-top: 10px;
+								.ad-date {
+									font-size:12px;
+									line-height: 1;
+									margin-bottom: 0;
+									margin-top: 0;
+								}
+								.star-svg {
+									width: 17px;
+									height: 17px;
+									cursor: pointer;
+									polygon {
+										stroke: black;
+										fill: white;
+										stroke-width: 3;
+										&:hover {
+											stroke: #FCA700;
+											fill: #FCA700;
+										}
+									}
+								}
+								.star-selected {
+									polygon {
+											stroke: #FCA700;
+											fill: #FCA700;										
+									}
+								}
+								
+							}
 				  	}
 				}
 			}

@@ -18,7 +18,10 @@ import VueTree from 'liquor-tree'
 import serviceLanguage from './services/language.js'
 import moment from "moment"
 import VueMomentJS from "vue-momentjs"
-import vueScrollTo from 'vue-scroll-to';
+import vueScrollTo from 'vue-scroll-to'
+import VueLocalStorage from 'vue-localstorage'
+ 
+Vue.use(VueLocalStorage)
 
 Vue.use(vueScrollTo);
 Vue.use(VueMomentJS, moment);
