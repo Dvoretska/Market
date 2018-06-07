@@ -5,6 +5,13 @@
         <img src="../assets/burger-open-icon.svg" alt="" class="menu-burger" @click="toggleMenu" v-if="!showMenu">
         <img src="../assets/burger-close-icon.svg" alt="" @click="toggleMenu" class="menu-burger" v-else>
       </span>
+      <router-link class="logo-wrapper" :to="{ name: 'ads-list'}">
+        <div class="nav-logo-link">
+          <img src="../assets/imageedit_13_2259265709.png" class="nav-logo-img">
+        </div>
+        <p class="first-parag">KEA</p>
+        <p class="second-parag">MARKET</p>
+      </router-link>
 			<ul class="home-menu" :class="{'home-menu--open': showMenu, 'home-menu--close': !showMenu}">
 				<li class="menu-item">
           <a href="#" class="menu-item-link" v-scroll-to="'.main-img, 0'"><translate>HOME</translate></a>
@@ -34,13 +41,13 @@
   		<section class="main-img">
   			<div class="title-wrapper">
   				<h1 class="main-title"><translate>Buy & Sell Easy</translate></h1>
-  				<p class="main-text"><translate>With Home Market</translate></p>
+  				<p class="main-text"><translate>With Kea Market</translate></p>
   				<router-link :to="{ name: 'ads-list'}" class="cta"><translate>START NOW</translate></router-link>
   			</div>
   		</section>
       <section class="rubrics-section">
         <h5 class="section-title"><translate>Our Categories</translate></h5>
-        <p class="section-subtitle">Home Market is a great way of selling your products online. Create ads easely and for free, and we will help get your products in front of more people. Also you can buy everything you need just staying at home.</p>
+        <p class="section-subtitle">Kea Market is a great way of selling your products online. Create ads easely and for free, and we will help get your products in front of more people. Also you can buy everything you need just staying at home.</p>
         <div class="slider-wrapper">
           <tiny-slider 
             :mouse-drag="true" 
@@ -53,8 +60,7 @@
             }" 
             items="4" 
             gutter="0" 
-            :controlsText="[prevButton, nextButton]" 
-            v-if="getCategories.length">
+            :controlsText="[prevButton, nextButton]">
             <div v-for="category in imageURLs" class="slider-item" v-bind:style="{ backgroundImage: 'url(' + getImageUrl(category) + ')'}" @click="chooseRubric(category)">
                 <div v-if="!getCategoriesLoading" class="popover-wrapper" :key="category.name">
                   <div><translate>{{getCategoryInfo(category, 'name')}}</translate></div>
@@ -127,7 +133,7 @@
   				    <gallery :images="images" :index="null" @close="index=null" :carousel="true"></gallery>
   				</div>
   				<div class="info-container">
-  					<p class="info-title"><translate>You think we're cool? Let's work together</translate></p>
+  					<p class="info-title"><translate>You think we're cool? Let's work together!</translate></p>
   					<button class="cta info-cta">
   						<a href="https://www.linkedin.com/in/daria-dvoretska-340b74146/"><translate>get in touch</translate></a>
   					</button>
@@ -136,7 +142,7 @@
       </section>
       <section class="contact-section">
         <h5 class="section-title"><translate>Contact us</translate></h5>
-        <p class="section-subtitle">Get to Know Home Market Better</p>
+        <p class="section-subtitle">Get to Know Kea Market Better</p>
         <div class="contact-content">
           <div class="contact-info-wrapper">
             <div class="contact-info-item">Zaporizhzhya</div>
@@ -268,6 +274,41 @@ export default {
     align-items: center;
     @media screen and (min-width:320px) and (max-width: 480px){
       padding: 0 25px;
+    }
+    .logo-wrapper {
+      position: relative;
+      height: 55px;
+      width: 72px;
+      cursor: pointer;
+      margin-right: 10px;
+      .nav-logo-link {
+        position: absolute;
+        top: 8px;
+        left: 0;
+        z-index: 30;
+        height: 35px;
+        width: 35px;
+        display: inline-block;
+        .nav-logo-img {
+          height: auto;
+          width: 100%;
+          background-color: transparent;
+        }
+      }
+      .first-parag, .second-parag {
+        position: absolute;
+        font-size: 11px;
+        color: white;
+        font-weight: bold;
+      }
+      .first-parag {
+        top: 20px;
+        left: 35px;
+      }      
+      .second-parag {
+        top: 30px;
+        left: 24px;
+      }
     }
     .menu-burger {
       width: 30px;
@@ -717,9 +758,8 @@ export default {
     }
   	.team-content {
   		display: flex;
-      background: url('../assets/4639.jpg') top center no-repeat;
-      background-size: cover;
-  		background-color: rgba(36, 42, 53, 0.3);
+      background: url('../assets/imageedit_18_9290591601.png') top right no-repeat;
+  		background-color: rgba(123, 79, 173, 0.4);
   		padding: 30px 10%;
       @media screen and (max-width:1024px){
         padding: 0 15px;
@@ -783,17 +823,17 @@ export default {
 	  		display: flex;
 	  		flex-direction: column;
 	  		align-items: center;
-	  		justify-content: center;
+        justify-content: space-between;
         margin-left: 30px;
         @media screen and (max-width:841px){
           margin-left: 0;
         }
 	  		.info-title {
 	  			text-align: center;
-	  			font-size: 30px;
+	  			font-size: 26px;
 	  			color: rgba(0,0,0,1);
           text-shadow: 2px 2px 3px rgba(255,255,255,1);
-	  			margin: 0 0 30px 15px;
+	  			margin:55px 0 0 15px;
           @media screen and (max-width:841px){
             margin: 25px 0 15px;
           }
@@ -803,6 +843,7 @@ export default {
           }
 	  		}
         .info-cta {
+          margin-bottom: 80px;
           border: 1px solid white;
           background-color: rgba(36, 42, 53, 0.7);
           a {
@@ -863,11 +904,14 @@ export default {
           width: 50%; 
           background: #e2e2e2;
           color: rgba(36,42,53,1);
-          padding: 9px;
+          padding: 12px;
           font-size: 17px;
           display: inline-block;
           font-family: 'Muli', sans-serif;
           border: 1px solid transparent;
+          &::placeholder {
+            font-style: italic;
+          }
           @media screen and (min-width:320px) and (max-width: 480px){
             width: 90%;
             order: 1;
@@ -878,9 +922,9 @@ export default {
         }
         button {
           white-space: nowrap;
-          padding: 10px 24px;
+          padding: 13px 24px;
           color: white;
-          background-color: rgba(123, 79, 173, 0.4);
+          background-color: rgba(123, 79, 173, 0.8);
           font-size: 17px;
           font-family: 'Muli', sans-serif;
           border: none;

@@ -1,11 +1,12 @@
 <template>
   <nav class="nav-bar">
-  <div class="logo-wrapper">
-    <router-link :to="{ name: 'home'}" class="nav-logo-link">
-      <img src="../assets/imageedit_39_7718139793.png" class="nav-logo-img">
+    <router-link class="logo-wrapper" :to="{ name: 'home'}">
+      <div class="nav-logo-link">
+        <img src="../assets/imageedit_13_2259265709.png" class="nav-logo-img">
+      </div>
+      <p class="first-parag">KEA</p>
+      <p class="second-parag">MARKET</p>
     </router-link>
-    <p>ELEPHANT</p>
-  </div>
 
     <div @click="clearAllFilters" class="item-all-ads">All ads</div>
 
@@ -141,25 +142,36 @@ export default {
     }
     .logo-wrapper {
       position: relative;
+      height: 55px;
+      width: 72px;
+      cursor: pointer;
       .nav-logo-link {
         position: absolute;
-        top: 3px;
-        left: 3px;
+        top: 8px;
+        left: 0;
         z-index: 30;
+        height: 35px;
+        width: 35px;
+        display: inline-block;
         .nav-logo-img {
-          height: 35px;
+          height: auto;
+          width: 100%;
           background-color: transparent;
         }
       }
-      p {
-        margin-top: 33px;
-        color: #eeeeee;
-        text-shadow:
-        0 2px 0 darken(#eeeeee, 14%),
-        0 4px 0 darken(#eeeeee, 16%);
+      .first-parag, .second-parag {
+        position: absolute;
         font-size: 11px;
-        color: #8c40b8;
+        color: #743599;
         font-weight: bold;
+      }
+      .first-parag {
+        top: 20px;
+        left: 35px;
+      }      
+      .second-parag {
+        top: 30px;
+        left: 24px;
       }
     }
     .item-all-ads {
@@ -168,8 +180,12 @@ export default {
       font-size: 18px;
       margin-left: 25px;
       margin-right: 25px;
+      transition: color 0.4s ease 0s;
       @media screen and (max-width: 768px){
         display: none;
+      }
+      &:hover {
+        color: white;
       }
     }
     .container-search {
