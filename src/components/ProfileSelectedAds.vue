@@ -3,7 +3,7 @@
 		<ul class="profile-ads-nav">
 			<li class="profile-ads-item">
 				<router-link :to="{ name: ''}">
-					<span v-translate>Selected</span>
+					<span v-translate>Wish List</span>
 				</router-link>
 			</li>
 		</ul>
@@ -15,7 +15,7 @@
       	<div v-else>
 			<div class="ads-content-empty" v-if="!this.$localStorage.get('slug')">
 				<i class="material-icons">star_border</i>
-				<div class="profile-ads-notice" v-translate>There are no selected ads</div>
+				<div class="profile-ads-notice" v-translate>There are no ads in your Wish List</div>
 	      	</div>
 			<div class="ads-content-full" v-else>
 				<div class="product-card" v-for="ad in this.$localStorage.get('slug')">

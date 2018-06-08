@@ -43,10 +43,10 @@
 								<div class="ad-date">{{ getDate(ad.created) }}</div>
 								<popper trigger="hover" :options="{placement: 'left'}">
 									<div class="popper" v-if="slugs.includes(ad.slug)">
-							      Добавленно в избранное
+							      Added to Wish List
 							    </div>
 							    <div class="popper" v-else>
-							      Добавить в избранное
+							      Add to Wish List
 							    </div>
 							    <svg slot="reference" viewBox="0 0 140 130" height="270" class="star-svg" @click.stop="addProductToSelected(ad.slug)" v-bind:class="{'star-selected': slugs.includes(ad.slug)}">
 							    <polygon points="70,5 90,41 136,48 103,80 111,126

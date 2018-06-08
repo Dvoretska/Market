@@ -40,14 +40,14 @@
 		</header>
   		<section class="main-img">
   			<div class="title-wrapper">
-  				<h1 class="main-title"><translate>Buy & Sell Easy</translate></h1>
-  				<p class="main-text"><translate>With Kea Market</translate></p>
+  				<h1 class="main-title">Buy & Sell Easy</h1>
+  				<p class="main-text">With Kea Market</p>
   				<router-link :to="{ name: 'ads-list'}" class="cta"><translate>START NOW</translate></router-link>
   			</div>
   		</section>
       <section class="rubrics-section">
         <h5 class="section-title"><translate>Our Categories</translate></h5>
-        <p class="section-subtitle">Kea Market is a great way of selling your products online. Create ads easely and for free, and we will help get your products in front of more people. Also you can buy everything you need just staying at home.</p>
+        <p class="section-subtitle"><translate>Kea Market is a great way of selling your products online. Create ads easely and for free, and we will help get your products in front of more people. Also you can buy everything you need just staying at home.</translate></p>
         <div class="slider-wrapper">
           <tiny-slider 
             :mouse-drag="true" 
@@ -72,7 +72,7 @@
       </section>
       <section class="top-products-section">
         <h5 class="section-title"><translate>Top Products</translate></h5>
-        <p class="section-subtitle">Our most popular products based on sales.</p>
+        <p class="section-subtitle"><translate>Our most popular products based on sales.</translate></p>
         <article>
           <figure>
             <img src='../assets/notbookX.jpg' alt />
@@ -127,7 +127,7 @@
       </section>
       <section class="team-section">
       	<h5 class="section-title"><translate>Our Team</translate></h5>
-        <p class="section-subtitle">We are team of open and passionate people that love to launch new initiatives. We make innovative products that people love and adopt in their everyday work. We're seeking new opportunities and another software developers for exciting and challenging work.</p>
+        <p class="section-subtitle"><translate>We are team of open and passionate people that love to launch new initiatives. We make innovative products that people love and adopt in their everyday work. We're seeking new opportunities and another software developers for exciting and challenging work.</translate></p>
       	<div class="team-content">
   	    	<div class="slider-container">
   				    <gallery :images="images" :index="null" @close="index=null" :carousel="true"></gallery>
@@ -142,17 +142,17 @@
       </section>
       <section class="contact-section">
         <h5 class="section-title"><translate>Contact us</translate></h5>
-        <p class="section-subtitle">Get to Know Kea Market Better</p>
+        <p class="section-subtitle"><translate>Get to Know Kea Market Better</translate></p>
         <div class="contact-content">
           <div class="contact-info-wrapper">
-            <div class="contact-info-item">Zaporizhzhya</div>
-            <div class="contact-info-item">Tel: +38 093 489 04 36</div>
+            <div class="contact-info-item"><translate>Zaporizhzhya</translate></div>
+            <div class="contact-info-item"><translate>Tel</translate>: +38 093 489 04 36</div>
             <div class="contact-info-item">dvoretska4@gmail.com</div>
           </div>
           <div class="contact-input-wrapper">
-            <input type="text" placeholder="Email Address" v-model="email" :class="{'input-error': !isValidEmail}">
-            <button @click="validateEmail(email)">Subscribe now</button>
-            <div v-if="!isValidEmail" class="error">Please enter a valid email address</div>
+            <input type="text" :placeholder="getEmailAddress()" v-model="email" :class="{'input-error': !isValidEmail}">
+            <button @click="validateEmail(email)"><translate>Subscribe now</translate></button>
+            <div v-if="!isValidEmail" class="error"><translate>Please enter a valid email address</translate></div>
           </div>
         </div>
       </section>
@@ -221,6 +221,9 @@ export default {
     window.addEventListener('resize', this.handleWindowResize)
   },
   methods: {
+    getEmailAddress () {
+      return this.$gettext('Email address')
+    },
     validateEmail (email) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       this.isValidEmail = re.test(String(email).toLowerCase());
@@ -884,7 +887,6 @@ export default {
         width: 100%;
         font-size: 19px;
         font-family: 'Muli', sans-serif;
-        font-weight: bold;
         .contact-info-item:nth-child(2) {
           margin: 10px 0;
         }

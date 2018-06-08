@@ -25,7 +25,7 @@
       </b-dropdown>
 		</div>
 		<div class="second-row">
-      <span class="copyright">&copy;2018 Home-market. All rights reserved.</span>
+      <span class="copyright">&copy;2018 Kea Market. All rights reserved.</span>
     </div>
 	</div>
 </template>
