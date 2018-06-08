@@ -314,6 +314,7 @@ export default {
       width: 30px;
       height: 30px;
       cursor: pointer;
+      margin-right: 20px;
     }
 		.home-menu {
 			list-style: none;

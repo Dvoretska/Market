@@ -42,7 +42,10 @@
 							<div class="date-star-wrapper">
 								<div class="ad-date">{{ getDate(ad.created) }}</div>
 								<popper trigger="hover" :options="{placement: 'left'}">
-							    <div class="popper">
+									<div class="popper" v-if="slugs.includes(ad.slug)">
+							      Добавленно в избранное
+							    </div>
+							    <div class="popper" v-else>
 							      Добавить в избранное
 							    </div>
 							    <svg slot="reference" viewBox="0 0 140 130" height="270" class="star-svg" @click.stop="addProductToSelected(ad.slug)" v-bind:class="{'star-selected': slugs.includes(ad.slug)}">

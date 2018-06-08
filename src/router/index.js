@@ -8,6 +8,7 @@ import createAdPage from '@/pages/CreateAdPage'
 import store from '@/store'
 import profileMessageForm from '@/components/ProfileMessageForm'
 import profileAdsForm from '@/components/ProfileAdsForm'
+import profileSelectedAds from '@/components/ProfileSelectedAds'
 import profileSettingsForm from '@/components/ProfileSettingsForm'
 import adDetailsPage from '@/pages/AdDetailsPage'
 import homePage from '@/pages/HomePage'
@@ -40,6 +41,7 @@ const routes = [
     children: [
     {path: 'message', component: profileMessageForm},
     {path: 'my-ads', component: profileAdsForm},
+    {path: 'selected-ads', component: profileSelectedAds},
     {path: 'settings', component: profileSettingsForm}
     ]
   },

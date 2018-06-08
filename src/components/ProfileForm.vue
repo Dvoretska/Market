@@ -24,6 +24,11 @@
             <router-link to="/profile/message" active-class="active" class="options" exact>
               <span><translate>Messages</translate></span>
             </router-link>
+          </li>          
+          <li>
+            <router-link to="/profile/selected-ads" active-class="active" class="options" exact>
+              <span><translate>Selected</translate></span>
+            </router-link>
           </li>
          <li>
             <router-link to="/profile/settings" active-class="active" class="options" exact>
@@ -42,12 +47,14 @@
 <script>
 import profileAdsForm from '@/components/ProfileAdsForm'
 import profileMessageForm from '@/components/ProfileMessageForm'
+import profileSelectedAds from '@/components/ProfileSelectedAds'
 import profileSettingsForm from '@/components/ProfileSettingsForm'
 
 export default {
   components: {
     profileAdsForm,
     profileMessageForm,
+    profileSelectedAds,
     profileSettingsForm
   },
   props: {
@@ -138,9 +145,9 @@ export default {
     background-size: cover;
     border-radius: 50%;
     height: auto;
-    width: 20%;
+    width: 150px;
     margin: 20px;
-    padding-bottom: 20%;
+    padding-bottom: 150px;
     align-self: center;
   }
   .profile-info-container {

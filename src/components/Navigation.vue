@@ -44,18 +44,33 @@
         <i class="material-icons">&#xE5C5;</i>
       </router-link>
       <ul class="submenu">
-        <li>
-          <router-link to="/profile"><translate>Ads</translate></router-link>
+        <li class="menu-item-wrapper">
+          <router-link to="/profile">
+            <img src="@/assets/quill3.svg" alt="" class="menu-icon">
+            <translate>Ads</translate>
+          </router-link>
         </li>
-        <li>
-          <router-link to="/profile/message"><translate>Messages</translate></router-link>
+        <li class="menu-item-wrapper">
+          <router-link to="/profile/message">
+            <img src="@/assets/quill3.svg" alt="" class="menu-icon">
+            <translate>Messages</translate>
+          </router-link>
+        </li>        
+        <li class="menu-item-wrapper">
+          <router-link to="/profile/selected-ads">
+            <img src="@/assets/quill3.svg" alt="" class="menu-icon">
+            <translate>Selected</translate>
+          </router-link>
         </li>
-        <li>
-          <router-link to="/profile/settings"><translate>Settings</translate></router-link>
+        <li class="menu-item-wrapper">
+          <router-link to="/profile/settings">
+            <img src="@/assets/quill3.svg" alt="" class="menu-icon">
+            <translate>Settings</translate>
+          </router-link>
         </li>
-        <li class="logout-wrapper">
+        <li class="menu-item-wrapper">
           <a @click="logout()">
-            <img src="@/assets/logout.svg" alt="" class="icon-logout">
+            <img src="@/assets/quildfl.svg" alt="" class="menu-icon">
             <translate>Logout</translate>
           </a>
         </li>
@@ -307,7 +322,7 @@ export default {
       .submenu {
         background: #fff;
         position: absolute;
-        left: 0;
+        left: -10px;
         top: 55px;
         width: 150px;
         transition: .5s ease-in-out;
@@ -319,18 +334,27 @@ export default {
           color: black;
           text-align: left;
           font-size: 15px;
-          padding: 7px 15px;
+          padding: 5px 15px;
           width: 100%;
           &:hover {
             background-color: #f4f4f4;
           }
         }
-        .logout-wrapper {
+        .menu-item-wrapper {
           position: relative;
-          .icon-logout {
+          border-bottom: 2px solid transparent;
+          &:before {
+            content: "";
             position: absolute;
-            width: 20px;
-            height: 20px;
+            width: 100px;
+            height: 2px;
+            color: #eeeeee;
+            display: block;
+          }
+          .menu-icon {
+            position: absolute;
+            width: 17px;
+            height: 17px;
             top: 50%;
             transform: translateY(-50%);
             left: 13px;
