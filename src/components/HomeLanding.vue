@@ -29,7 +29,7 @@
           <a href="#" class="menu-item-link" v-scroll-to="'.contact-section, 0'"><translate>CONTACT</translate></a>
         </li>
        </ul>
-       <ul class="home-auth"> 
+       <ul class="home-auth">
 				<li class="auth-item login-item">
 					<router-link :to="{ name: 'login'}"><translate>LOGIN</translate></router-link>
 				</li>
@@ -49,17 +49,17 @@
         <h5 class="section-title"><translate>Our Categories</translate></h5>
         <p class="section-subtitle"><translate>Kea Market is a great way of selling your products online. Create ads easely and for free, and we will help get your products in front of more people. Also you can buy everything you need just staying at home.</translate></p>
         <div class="slider-wrapper">
-          <tiny-slider 
-            :mouse-drag="true" 
-            :loop="false" 
+          <tiny-slider
+            :mouse-drag="true"
+            :loop="false"
             :responsive="{
-            1: {items: 1, nav: true, navAsThumbnails: true, navContainer: true, controls: false}, 
+            1: {items: 1, nav: true, navAsThumbnails: true, navContainer: true, controls: false},
             480: {items: 2, nav: true, navAsThumbnails: true, navContainer: true, controls: false},
-            568: {items: 3, nav: false, navAsThumbnails: false, navContainer: false, controls: true},  
+            568: {items: 3, nav: false, navAsThumbnails: false, navContainer: false, controls: true},
             767: {items: 4, nav: false, navAsThumbnails: false, navContainer: false, controls: true}
-            }" 
-            items="4" 
-            gutter="0" 
+            }"
+            items="4"
+            gutter="0"
             :controlsText="[prevButton, nextButton]">
             <div v-for="category in imageURLs" class="slider-item" v-bind:style="{ backgroundImage: 'url(' + getImageUrl(category) + ')'}" @click="chooseRubric(category)">
                 <div v-if="!getCategoriesLoading" class="popover-wrapper" :key="category.name">
@@ -98,7 +98,7 @@
             </div>
             <img src='../assets/1381985.jpg' alt />
           </section>
-          
+
           <figure>
             <img src='../assets/303450275.jpg' alt />
             <div class="description">
@@ -145,9 +145,32 @@
         <p class="section-subtitle"><translate>Get to Know Kea Market Better</translate></p>
         <div class="contact-content">
           <div class="contact-info-wrapper">
-            <div class="contact-info-item"><translate>Zaporizhzhya</translate></div>
-            <div class="contact-info-item"><translate>Tel</translate>: +38 093 489 04 36</div>
-            <div class="contact-info-item">dvoretska4@gmail.com</div>
+            <p class="contact-info-item">
+              <translate class="span-title">PHONE:</translate>
+              <span class="span-text">+38 093 489 04 36</span>
+            </p>
+            <p class="contact-info-item">
+              <translate class="span-title">EMAIL:</translate>
+              <span class="span-text">dvoretska4@gmail.com</span>
+            </p>
+            <p class="contact-info-item">
+              <translate class="span-title">ADDRESS:</translate>
+              <span class="span-text">Zaporizhzhya</span>
+            </p>
+            <p class="contact-info-item">
+              <translate class="span-title">SOCIAL:</translate>
+              <span class="span-icons">
+                <a href="https://www.linkedin.com/in/daria-dvoretska-340b74146/">
+                  <img src="../assets/linkedin.svg" alt="" class="social-icon">
+                </a>
+                <a href="https://github.com/Dvoretska">
+                  <img src="../assets/github.svg" alt="" class="social-icon">
+                </a>
+                <a href="https://www.facebook.com/chelsea.smile.543">
+                  <img src="../assets//facebook.svg" alt="" class="social-icon">
+                </a>
+              </span>
+            </p>
           </div>
           <div class="contact-input-wrapper">
             <input type="text" :placeholder="getEmailAddress()" v-model="email" :class="{'input-error': !isValidEmail}">
@@ -193,7 +216,7 @@ export default {
       </svg>
       </span>`,
       imageURLs: [
-        'animals', 
+        'animals',
         'business-and-services',
         'electronics',
         'fashion',
@@ -236,7 +259,7 @@ export default {
     chooseRubric (slug) {
         this.$router.push({name: 'ads-list', query: {category: slug}})
     },
-    handleWindowResize (event) { 
+    handleWindowResize (event) {
       if(event.currentTarget.innerWidth > 767) {
         this.showMenu = false
       }
@@ -251,10 +274,10 @@ export default {
   computed: {
     getCategories () {
       return this.$store.getters.getCategories.results
-    },    
+    },
     getCategoriesLoading () {
       return this.$store.getters.getCategories.loading
-    }   
+    }
   }
 }
 
@@ -307,7 +330,7 @@ export default {
       .first-parag {
         top: 20px;
         left: 35px;
-      }      
+      }
       .second-parag {
         top: 30px;
         left: 24px;
@@ -347,7 +370,7 @@ export default {
             height: 3px;
             background-color: #fff;
             transition: width 0.5s;
-          } 
+          }
         }
       }
     }
@@ -655,7 +678,7 @@ export default {
         @media screen and (min-width:320px) and (max-width: 480px){
           height: 50vh;
         }
-        
+
       }
       figure img, section img {
         max-width: 50%;
@@ -712,7 +735,7 @@ export default {
         }
         @media screen and (min-width:320px) and (max-width: 480px){
           margin: 0;
-        } 
+        }
       }
       figure:nth-of-type(2n) {
         margin: 0 0 10vh auto;
@@ -883,73 +906,103 @@ export default {
       }
       .contact-info-wrapper {
         flex: 1;
-        text-align: center;
+        text-align: left;
+        padding-left: 20%;
         width: 100%;
         font-size: 19px;
         font-family: 'Muli', sans-serif;
-        .contact-info-item:nth-child(2) {
-          margin: 10px 0;
-        }
-      }
-      .contact-input-wrapper {
-        flex: 1;
-        width: 100%;
-        @media screen and (max-width:767px){
-          text-align: center;
-          margin-top: 20px;
-        }
-        @media screen and (min-width:320px) and (max-width: 480px){
+        .contact-info-item {
+          margin-bottom: 15px;
           display: flex;
-          flex-direction: column;
-          align-items: center;
+          justify-content: flex-start;
+          &:last-child {
+            margin-bottom: 0;
+           }
+        .span-title {
+          font-size: 16px;
+          font-weight: 700;
+          text-transform: uppercase;
+          line-height: 1.66;
+          margin-right: 20px;
         }
-        input {
-          width: 50%; 
-          background: #e2e2e2;
-          color: rgba(36,42,53,1);
-          padding: 12px;
-          font-size: 17px;
-          display: inline-block;
-          font-family: 'Muli', sans-serif;
-          border: 1px solid transparent;
-          &::placeholder {
-            font-style: italic;
-          }
-          @media screen and (min-width:320px) and (max-width: 480px){
-            width: 90%;
-            order: 1;
-          }
-          &.input-error {
-            border: 1px solid red;
-          }
+        .span-text {
+          font-size: 16px;
+          line-height: 1.66;
+          opacity: 0.8;
         }
-        button {
-          white-space: nowrap;
-          padding: 13px 24px;
-          color: white;
-          background-color: rgba(123, 79, 173, 0.8);
-          font-size: 17px;
-          font-family: 'Muli', sans-serif;
-          border: none;
-          cursor: pointer;
-          transition: background-color 0.4s ease 0s;
-          &:hover {
-            background-color: rgba(36, 42, 53, 0.6);
+        .span-icons {
+          margin-left: 17px;
+          a {
+            text-decoration: none;
+            .social-icon {
+              width: 23px;
+              height: 23px;
+              display: inline-block;
+              margin-right: 10px;
+            }
           }
-          @media screen and (min-width:320px) and (max-width: 480px){
-            order: 3;
-            margin-top: 10px;
-          }
-        }
-        .error {
-          font-size: 13px;
-          color: red;
-          margin-top: 5px;
-          padding-left: 5px;
-          order: 2;
         }
       }
     }
+    .contact-input-wrapper {
+      flex: 1;
+      width: 100%;
+      @media screen and (max-width:767px){
+        text-align: center;
+        margin-top: 20px;
+      }
+      @media screen and (min-width:320px) and (max-width: 480px){
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      input {
+        width: 50%;
+        background: #e2e2e2;
+        color: rgba(36,42,53,1);
+        padding: 12px;
+        font-size: 17px;
+        display: inline-block;
+        font-family: 'Muli', sans-serif;
+        border: 1px solid transparent;
+        &::placeholder {
+          font-style: italic;
+        }
+        @media screen and (min-width:320px) and (max-width: 480px){
+          width: 90%;
+          order: 1;
+        }
+        &.input-error {
+          border: 1px solid red;
+        }
+      }
+      button {
+        white-space: nowrap;
+        padding: 13px 24px;
+        color: white;
+        background-color: rgba(123, 79, 173, 0.8);
+        font-size: 17px;
+        font-family: 'Muli', sans-serif;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.4s ease 0s;
+        &:hover {
+          background-color: rgba(36, 42, 53, 0.6);
+        }
+        @media screen and (min-width:320px) and (max-width: 480px){
+          order: 3;
+          margin-top: 10px;
+        }
+      }
+      .error {
+        font-size: 13px;
+        color: red;
+        margin-top: 5px;
+        padding-left: 5px;
+        order: 2;
+      }
+    }
+  }
   }
   .interlayer {
     border-top: 1px solid rgba(36, 42, 53, 1);
