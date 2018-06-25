@@ -42,7 +42,7 @@
 							<div class="date-star-wrapper">
 								<div class="ad-date">{{ getDate(ad.created) }}</div>
 								<popper trigger="hover" :options="{placement: 'left'}">
-									<div class="popper" v-if="slugs.includes(ad.slug)">
+									<div class="popper" v-if="checkIfAdSelected(ad.slug)">
 							      Added to Wish List
 							    </div>
 							    <div class="popper" v-else>
@@ -50,8 +50,8 @@
 							    </div>
                   <clip-loader v-if="loadingStar && ad.slug === starSelected" :color="'purple'" :size="'17px'"></clip-loader>
 							    <svg v-else slot="reference" viewBox="0 0 140 130" height="270" class="star-svg"
-                       @click.stop="addProductToWishList(ad.slug)"
-                       v-bind:class="{'star-selected': myWishList.some(function(el) {return el.slug === ad.slug}) || slugs.includes(ad.slug)}">
+                       v-on="checkIfAdSelected(ad.slug) ? {click: () => deleteProductFromWishList(ad.slug)} : {click: () => addProductToWishList(ad.slug)}"
+                       v-bind:class="{'star-selected': checkIfAdSelected(ad.slug)}">
 							    <polygon points="70,5 90,41 136,48 103,80 111,126
 							                     70,105 29,126 36,80 5,48 48,41" />
 								  </svg>
@@ -134,6 +134,9 @@ export default {
     this.$store.dispatch('GET_MY_WISH_LIST', {page: 1})
 	},
   methods: {
+    handler () {
+      console.log('test')
+    },
   	addProductToWishList (slug) {
       this.starSelected = slug
       if(this.$localStorage.get('token')) {
@@ -145,6 +148,26 @@ export default {
         }
       }
   	},
+    deleteProductFromWishList (slug) {
+      if(this.$localStorage.get('token')) {
+        this.$store.dispatch('DELETE_FROM_WISH_LIST', slug)
+      } else {
+        let index = JSON.parse(this.$localStorage.get('slug')).indexOf(slug);
+        if(JSON.parse(this.$localStorage.get('slug'))) {
+          this.slugs.splice(index, 1)
+          this.$localStorage.set('slug', JSON.stringify(this.slugs));
+        }
+      }
+    },
+    checkIfAdSelected (slug) {
+      if(JSON.parse(this.$localStorage.get('slug'))) {
+        return this.slugs.includes(slug)
+      } else {
+        return this.myWishList.some(function(el) {
+          return el.slug === slug
+        })
+      }
+    },
     setCurrentOrdering (id) {
     	this.currentSortId = id
     	if(this.$route.query.ordering != id) {

@@ -39,6 +39,14 @@ export default {
   myWishListMutate (state, data) {
     state.myWishList = {...state.myWishList, ...data}
   },
+  appendToWishListMutate (state, data) {
+    state.myWishList.results.push(data)
+  },
+  deleteFromMyWishListMutate (state, slug) {
+    state.myWishList.results = state.myWishList.results.filter(function(ad) {
+        return ad.slug !== slug;
+    })
+  },
   activeFiltersSearchMutate(state, data) {
     state.activeFiltersState.search = data;
   },

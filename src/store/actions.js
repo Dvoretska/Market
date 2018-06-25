@@ -198,7 +198,6 @@ export default {
     })
   },
   CHANGE_CONTACT_INFO: function (context, data) {
-    // context.commit('updateUserState', {loading: true})
     const TOKEN = localStorage.getItem('token')
     axios.patch(`${ACCOUNTS_URL}profile/`, {
       first_name: data.first_name,
@@ -240,7 +239,8 @@ export default {
         authorization: `jwt ${TOKEN}`
       }
     }).then((response) => {
-       context.commit('myWishListMutate', {loadingStar: false, success: true})
+      context.commit('myWishListMutate', {loadingStar: false, success: true})
+      context.commit('appendToWishListMutate', response.data)
     }).catch((err) => {
       context.commit('myWishListMutate', {loadingStar: false, success: false})
     })
@@ -258,6 +258,21 @@ export default {
       }).then((response) => {
         response.data.loading = false
         context.commit('myWishListMutate', response.data)
+      }).catch((err) => {
+        context.commit('myWishListMutate', {loading: false})
+        console.log(err)
+      })
+  },
+  DELETE_FROM_WISH_LIST: function (context, slug) {
+    const TOKEN = localStorage.getItem('token')
+    context.commit('myWishListMutate', {loading: true})
+    axios.delete(`${MAIN_URL}my/delete/${slug}/`,
+      {
+        headers: {
+          authorization: `jwt ${TOKEN}`
+        }
+      }).then((response) => {
+        context.commit('deleteFromMyWishListMutate', slug)
       }).catch((err) => {
         context.commit('myWishListMutate', {loading: false})
         console.log(err)

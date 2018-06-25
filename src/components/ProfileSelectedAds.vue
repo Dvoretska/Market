@@ -3,7 +3,7 @@
 		<ul class="profile-ads-nav">
 			<li class="profile-ads-item">
 				<router-link :to="{ name: ''}">
-					<span v-translate>Wish List</span>
+					<span v-translate>Wish List ({{myWishList.count}})</span>
 				</router-link>
 			</li>
 		</ul>
@@ -13,12 +13,12 @@
       </div>
     </div>
     <div v-else>
-			<div class="ads-content-empty" v-if="myWishList.length == 0">
+			<div class="ads-content-empty" v-if="myWishList.results.length == 0">
 				<i class="material-icons">star_border</i>
 				<div class="profile-ads-notice" v-translate>There are no ads in your Wish List</div>
       </div>
 			<div class="ads-content-full" v-else>
-				<div class="product-card" v-for="ad in myWishList">
+				<div class="product-card" v-for="ad in myWishList.results">
 					<div class="product-img-wrapper" @click="openAdDetails(ad.slug)">
 						<img :src="ad.image" alt="" class="product-image">
 					</div>
@@ -47,7 +47,7 @@
 						</modal>
 					</div>
 				</div>
-				<button @click="loadMore()" class="load-more">Load more</button>
+				<button @click="loadMore()" class="load-more" v-if="myWishList.count > 16">Load more</button>
 			</div>
 		</div>
 	</div>
@@ -91,7 +91,7 @@ export default {
   },
   computed: {
   	myWishList () {
-      return this.$store.getters.getMyWishList.results
+      return this.$store.getters.getMyWishList
     },
     getLoading () {
       return this.$store.getters.getMyWishList.loading

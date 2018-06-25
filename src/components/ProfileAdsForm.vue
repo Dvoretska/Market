@@ -3,7 +3,7 @@
 		<ul class="profile-ads-nav">
 			<li class="profile-ads-item">
 				<router-link :to="{ name: ''}">
-					<span v-translate>Active</span>
+					<span v-translate>Active ({{ads.count}})</span>
 				</router-link>
 			</li>
 			<li class="profile-ads-item">
@@ -59,7 +59,7 @@
 						</modal>
 					</div>
 				</div>
-				<button @click="loadMore()">Load more</button>
+				<button @click="loadMore()" class="load-more" v-if="ads.count > 16">Load more</button>
 			</div>
 		</div>
 	</div>
@@ -106,7 +106,7 @@ export default {
   },
   computed: {
   	ads () {
-      return this.$store.getters.getAds;
+      return this.$store.getters.getMyAds
     },
     getMyAds () {
       return this.$store.getters.getMyAds.results
@@ -278,25 +278,47 @@ export default {
 		height: 350px;
 	}
 	.button-submit {
-        width: 145px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: rgba(123, 79, 173, 0.7);
-        border: solid rgba(255, 255, 255, 1) 1px;
-        cursor: pointer;
-        transition: border-color 0.4s ease 0s, background-color 0.4s ease 0s;
-        text-transform: uppercase;
-        font-weight: 400;
-        font-size: 14px;
-        color: #fff;
-        border-radius: 5px;
-        margin: 0 auto 20px;
-        &:hover {
-          background-color: #F4F4F4;
-          border-color: #8c40b8;
-          color: #8c40b8;
-        }
+      width: 145px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(123, 79, 173, 0.7);
+      border: solid rgba(255, 255, 255, 1) 1px;
+      cursor: pointer;
+      transition: border-color 0.4s ease 0s, background-color 0.4s ease 0s;
+      text-transform: uppercase;
+      font-weight: 400;
+      font-size: 14px;
+      color: #fff;
+      border-radius: 5px;
+      margin: 0 auto 20px;
+      &:hover {
+        background-color: #F4F4F4;
+        border-color: #8c40b8;
+        color: #8c40b8;
+      }
     }
+  .load-more {
+      width: 145px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(123, 79, 173, 0.7);
+      border: solid rgba(255, 255, 255, 1) 1px;
+      cursor: pointer;
+      transition: border-color 0.4s ease 0s, background-color 0.4s ease 0s;
+      text-transform: uppercase;
+      font-weight: 400;
+      font-size: 14px;
+      color: #fff;
+      border-radius: 5px;
+      margin: 20px auto;
+      &:hover {
+        background-color: #F4F4F4;
+        border-color: #8c40b8;
+        color: #8c40b8;
+      }
+  }
 </style>
