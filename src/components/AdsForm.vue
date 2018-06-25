@@ -76,7 +76,9 @@
 
         <b-field horizontal class="align-center">
             <p class="button-submit-container">
-                <button :label="getCreateAd()" :disabled="loading" class="button-submit" @click="createAd" v-bind:class="{'disabled': loading}">Create an ad</button>
+                <button :label="getCreateAd()" :disabled="loading" class="button-submit"
+                        @click="createAd"
+                        v-bind:class="{'disabled': loading}">Create an ad</button>
             </p>
         </b-field>
 

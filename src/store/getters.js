@@ -20,6 +20,9 @@ export default {
   getMyAds: state => {
     return state.myAds
   },
+  getMyWishList: state => {
+    return state.myWishList
+  },
   getActiveFilters: state => {
     return state.activeFiltersState.search
   },

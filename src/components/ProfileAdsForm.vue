@@ -14,10 +14,10 @@
 		</ul>
 		<div class="ads-content-empty" v-if="getLoading" >
 			<div class="loading">
-	        	<vue-loading spinner="wave"></vue-loading>
-	      	</div>
-      	</div>
-      	<div v-else>
+        <vue-loading spinner="wave"></vue-loading>
+      </div>
+    </div>
+    <div v-else>
 			<div class="ads-content-empty" v-if="getMyAds.length == 0">
 				<i class="material-icons">&#xE14F;</i>
 				<div class="profile-ads-notice" v-translate>There are no active ads</div>

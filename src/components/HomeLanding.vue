@@ -134,9 +134,9 @@
   				</div>
   				<div class="info-container">
   					<p class="info-title"><translate>You think we're cool? Let's work together!</translate></p>
-  					<button class="cta info-cta">
+  					<div class="cta info-cta">
   						<a href="https://www.linkedin.com/in/daria-dvoretska-340b74146/"><translate>get in touch</translate></a>
-  					</button>
+  					</div>
   				</div>
   			</div>
       </section>

@@ -48,7 +48,10 @@
 							    <div class="popper" v-else>
 							      Add to Wish List
 							    </div>
-							    <svg slot="reference" viewBox="0 0 140 130" height="270" class="star-svg" @click.stop="addProductToSelected(ad.slug)" v-bind:class="{'star-selected': slugs.includes(ad.slug)}">
+                  <clip-loader v-if="loadingStar && ad.slug === starSelected" :color="'purple'" :size="'17px'"></clip-loader>
+							    <svg v-else slot="reference" viewBox="0 0 140 130" height="270" class="star-svg"
+                       @click.stop="addProductToWishList(ad.slug)"
+                       v-bind:class="{'star-selected': myWishList.some(function(el) {return el.slug === ad.slug}) || slugs.includes(ad.slug)}">
 							    <polygon points="70,5 90,41 136,48 103,80 111,126
 							                     70,105 29,126 36,80 5,48 48,41" />
 								  </svg>
@@ -86,6 +89,7 @@ import VueSlider from '@/components/filters/slider-chart/VueSlider'
 import VueLoading from 'vue-simple-loading'
 import Popper from 'vue-popperjs'
 import 'vue-popperjs/dist/css/vue-popper.css'
+import ClipLoader from 'vue-spinner/src/ClipLoader.vue'
 
 export default {
   components: {
@@ -93,12 +97,14 @@ export default {
     VueSlider,
     VueLoading,
     breadCrumbs,
-   'popper': Popper
+   'popper': Popper,
+    ClipLoader
   },
   data () {
   	return {
   		slugs: [],
-  		starSelected: null
+      starSelected: null,
+      adSelected: false
   	}
   },
   created () {
@@ -114,17 +120,30 @@ export default {
     }
   },
   mounted () {
-	  const slugs = JSON.parse(this.$localStorage.get('slug'))
-	  if (slugs) {
-	    this.slugs = slugs
-	  }
+    if(this.$localStorage.get('token') && this.$localStorage.get('slug')) {
+      for(let slug of JSON.parse(this.$localStorage.get('slug'))) {
+        this.$store.dispatch('SAVE_TO_WISH_LIST', slug)
+      }
+      this.$localStorage.remove('slug')
+    } else {
+      const slugs = JSON.parse(this.$localStorage.get('slug'))
+      if (slugs) {
+        this.slugs = slugs
+      }
+    }
+    this.$store.dispatch('GET_MY_WISH_LIST', {page: 1})
 	},
   methods: {
-  	addProductToSelected (slug) {
-  		this.slugs.push(slug);
-  		if(!this.$localStorage.get('slug') || !JSON.parse(this.$localStorage.get('slug')).includes(slug)) {
-	  		this.$localStorage.set('slug', JSON.stringify(this.slugs));
-  		}
+  	addProductToWishList (slug) {
+      this.starSelected = slug
+      if(this.$localStorage.get('token')) {
+        this.$store.dispatch('SAVE_TO_WISH_LIST', slug)
+      } else {
+        this.slugs.push(slug);
+        if(!this.$localStorage.get('slug') || !JSON.parse(this.$localStorage.get('slug')).includes(slug)) {
+          this.$localStorage.set('slug', JSON.stringify(this.slugs));
+        }
+      }
   	},
     setCurrentOrdering (id) {
     	this.currentSortId = id
@@ -151,6 +170,18 @@ export default {
     }
   },
   computed: {
+    loadingStar () {
+      return this.$store.getters.getMyWishList.loadingStar
+    },
+    loadingStarSuccess () {
+      return this.$store.getters.getMyWishList.success
+    },
+    myWishList () {
+      return this.$store.getters.getMyWishList.results
+    },
+    loadingWishList () {
+      return this.$store.getters.getMyWishList.loading
+    },
     isOpen () {
       return this.$store.getters.getOrdering.isOpen
     },
@@ -397,10 +428,9 @@ export default {
 								.star-selected {
 									polygon {
 											stroke: #FCA700;
-											fill: #FCA700;										
+											fill: #FCA700;
 									}
 								}
-								
 							}
 				  	}
 				}

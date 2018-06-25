@@ -13,6 +13,9 @@ export default {
   myAds: {
     results: []
   },
+  myWishList: {
+    results: []
+  },
   activeFiltersState: {
     search: {},
     node: ''

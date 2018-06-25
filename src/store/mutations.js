@@ -36,6 +36,9 @@ export default {
   myAdsMutate (state, data) {
     state.myAds = {...state.myAds, ...data}
   },
+  myWishListMutate (state, data) {
+    state.myWishList = {...state.myWishList, ...data}
+  },
   activeFiltersSearchMutate(state, data) {
     state.activeFiltersState.search = data;
   },

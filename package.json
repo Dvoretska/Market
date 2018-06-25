@@ -43,6 +43,7 @@
     "vue-scrollto": "^2.11.0",
     "vue-simple-loading": "^1.1.5",
     "vue-slider-component": "^2.6.2",
+    "vue-spinner": "^1.0.3",
     "vue-template-compiler": "^2.5.2",
     "vue-tiny-slider": "^0.1.17",
     "vue-toast": "^3.1.0",

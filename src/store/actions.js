@@ -101,7 +101,7 @@ export default {
     const TOKEN = localStorage.getItem('token')
     context.commit('myAdsMutate', {loading: true})
     axios.get(`${MAIN_URL}my/ads/`,
-      { 
+      {
         params: data,
         headers: {
           authorization: `jwt ${TOKEN}`,
@@ -231,5 +231,36 @@ export default {
     }).catch((err) => {
       console.log(err)
     })
+  },
+  SAVE_TO_WISH_LIST: function (context, slug) {
+    const TOKEN = localStorage.getItem('token')
+    context.commit('myWishListMutate', {loadingStar: true, success: false})
+    axios.post(`${MAIN_URL}my/save/${slug}/`, {}, {
+      headers: {
+        authorization: `jwt ${TOKEN}`
+      }
+    }).then((response) => {
+       context.commit('myWishListMutate', {loadingStar: false, success: true})
+    }).catch((err) => {
+      context.commit('myWishListMutate', {loadingStar: false, success: false})
+    })
+  },
+  GET_MY_WISH_LIST: function (context, data) {
+    const TOKEN = localStorage.getItem('token')
+    context.commit('myWishListMutate', {loading: true})
+    axios.get(`${MAIN_URL}my/list/`,
+      {
+        params: data,
+        headers: {
+          authorization: `jwt ${TOKEN}`,
+          'Accept-Language': serviceLanguage.language
+        }
+      }).then((response) => {
+        response.data.loading = false
+        context.commit('myWishListMutate', response.data)
+      }).catch((err) => {
+        context.commit('myWishListMutate', {loading: false})
+        console.log(err)
+      })
   }
 }

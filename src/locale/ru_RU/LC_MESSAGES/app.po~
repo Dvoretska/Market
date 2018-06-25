@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: main 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-08 23:47+0300\n"
+"POT-Creation-Date: 2018-06-09 00:04+0300\n"
 "PO-Revision-Date: 2018-03-17 16:28+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -170,7 +170,7 @@ msgstr "Номер телефона"
 
 #: src/components/HomeLanding.vue:154
 msgid "Please enter a valid email address"
-msgstr "Пожалуйста, введите валидный email-адрес"
+msgstr "Пожалуйста, введите валидный email адрес"
 
 #: src/components/ProfileSettingsForm.vue:51
 #: src/components/ProfileSettingsForm.vue:64
@@ -289,6 +289,10 @@ msgstr "Фотографии"
 #: src/components/AdsForm.vue:255
 msgid "Create an ad"
 msgstr "Создать объявление"
+
+#: src/components/HomeLanding.vue:225
+msgid "Email address"
+msgstr "Email адрес"
 
 #: src/components/ProfileSettingsForm.vue:149
 msgid "Country"

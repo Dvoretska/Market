@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: main 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-09 00:04+0300\n"
+"POT-Creation-Date: 2018-06-24 15:19+0300\n"
 "PO-Revision-Date: 2018-03-17 16:28+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -33,9 +33,13 @@ msgstr "Активные"
 msgid "Added at"
 msgstr "Добавлено"
 
+#: src/components/HomeLanding.vue:156
+msgid "ADDRESS:"
+msgstr ""
+
 #: src/components/HomeLanding.vue:66
 msgid "ads"
-msgstr "объявление(я)"
+msgstr "объявлений(я)"
 
 #: src/components/Navigation.vue:49 src/components/ProfileForm.vue:19
 msgid "Ads"
@@ -81,10 +85,14 @@ msgid "Edit"
 msgstr "Редактировать"
 
 #: src/components/ProfileSettingsForm.vue:84
-#: src/components/authentication/RegisterForm.vue:35
 #: src/components/authentication/LoginForm.vue:34
+#: src/components/authentication/RegisterForm.vue:35
 msgid "Email"
 msgstr "Электронная почта"
+
+#: src/components/HomeLanding.vue:152
+msgid "EMAIL:"
+msgstr ""
 
 #: src/components/ProfileSettingsForm.vue:39
 msgid "First name"
@@ -158,8 +166,8 @@ msgid "Our Team"
 msgstr "Наша команда"
 
 #: src/components/ProfileSettingsForm.vue:68
-#: src/components/authentication/RegisterForm.vue:36
 #: src/components/authentication/LoginForm.vue:35
+#: src/components/authentication/RegisterForm.vue:36
 msgid "Password"
 msgstr "Пароль"
 
@@ -168,7 +176,11 @@ msgstr "Пароль"
 msgid "Phone number"
 msgstr "Номер телефона"
 
-#: src/components/HomeLanding.vue:154
+#: src/components/HomeLanding.vue:148
+msgid "PHONE:"
+msgstr ""
+
+#: src/components/HomeLanding.vue:177
 msgid "Please enter a valid email address"
 msgstr "Пожалуйста, введите валидный email адрес"
 
@@ -201,6 +213,10 @@ msgstr "Регистрация"
 msgid "SIGN UP"
 msgstr "ЗАРЕГИСТРИРОВАТЬСЯ"
 
+#: src/components/HomeLanding.vue:160
+msgid "SOCIAL:"
+msgstr ""
+
 #: src/components/AdsList.vue:62
 msgid "Sorry, no results were found."
 msgstr "Извините, ничего не найдено"
@@ -209,17 +225,13 @@ msgstr "Извините, ничего не найдено"
 msgid "START NOW"
 msgstr "НАЧАТЬ СЕЙЧАС"
 
-#: src/components/HomeLanding.vue:153
+#: src/components/HomeLanding.vue:176
 msgid "Subscribe now"
 msgstr "Подписаться"
 
 #: src/components/HomeLanding.vue:25
 msgid "TEAM"
 msgstr "КОМАНДА"
-
-#: src/components/HomeLanding.vue:148
-msgid "Tel"
-msgstr "Тел"
 
 #: src/components/ProfileAdsForm.vue:22
 msgid "There are no active ads"
@@ -262,9 +274,13 @@ msgstr "Ваш текущий email-адрес"
 msgid "Your new email"
 msgstr "Ваш новый email-адрес"
 
-#: src/components/HomeLanding.vue:147
-msgid "Zaporizhzhya"
-msgstr "Запорожье"
+#: src/components/ProfileSettingsForm.vue:149
+msgid "Country"
+msgstr "Страна"
+
+#: src/components/ProfileSettingsForm.vue:152
+msgid "City"
+msgstr "Город"
 
 #: src/components/AdsForm.vue:237
 msgid "Subject"
@@ -290,18 +306,10 @@ msgstr "Фотографии"
 msgid "Create an ad"
 msgstr "Создать объявление"
 
-#: src/components/HomeLanding.vue:225
-msgid "Email address"
-msgstr "Email адрес"
-
-#: src/components/ProfileSettingsForm.vue:149
-msgid "Country"
-msgstr "Страна"
-
-#: src/components/ProfileSettingsForm.vue:152
-msgid "City"
-msgstr "Город"
-
 #: src/components/authentication/RegisterForm.vue:37
 msgid "Confirm password"
 msgstr "Повторите пароль"
+
+#: src/components/HomeLanding.vue:248
+msgid "Email address"
+msgstr "Email адрес"

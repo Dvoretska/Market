@@ -1,5 +1,5 @@
 <template>
-	<div class="profile-ads-container" v-bind:class="{'has-height': !this.$localStorage.get('slug')}">
+	<div class="profile-ads-container" v-bind:class="{'has-height': !myWishList}">
 		<ul class="profile-ads-nav">
 			<li class="profile-ads-item">
 				<router-link :to="{ name: ''}">
@@ -9,16 +9,16 @@
 		</ul>
 		<div class="ads-content-empty" v-if="getLoading" >
 			<div class="loading">
-	        	<vue-loading spinner="wave"></vue-loading>
-	      	</div>
-      	</div>
-      	<div v-else>
-			<div class="ads-content-empty" v-if="!this.$localStorage.get('slug')">
+        <vue-loading spinner="wave"></vue-loading>
+      </div>
+    </div>
+    <div v-else>
+			<div class="ads-content-empty" v-if="myWishList.length == 0">
 				<i class="material-icons">star_border</i>
 				<div class="profile-ads-notice" v-translate>There are no ads in your Wish List</div>
-	      	</div>
+      </div>
 			<div class="ads-content-full" v-else>
-				<div class="product-card" v-for="ad in this.$localStorage.get('slug')">
+				<div class="product-card" v-for="ad in myWishList">
 					<div class="product-img-wrapper" @click="openAdDetails(ad.slug)">
 						<img :src="ad.image" alt="" class="product-image">
 					</div>
@@ -47,7 +47,7 @@
 						</modal>
 					</div>
 				</div>
-				<button @click="loadMore()">Load more</button>
+				<button @click="loadMore()" class="load-more">Load more</button>
 			</div>
 		</div>
 	</div>
@@ -70,7 +70,7 @@ export default {
   methods: {
   	loadMore () {
   	  this.page ++
-      // this.$store.dispatch('GET_MY_ADS', {...this.$route.query, page: this.page})
+      this.$store.dispatch('GET_MY_WISH_LIST', {...this.$route.query, page: this.page})
     },
   	show (slug) {
       this.$modal.show('delete-ad')
@@ -86,15 +86,15 @@ export default {
     	this.$modal.hide('delete-ad')
     }
   },
-  created () {
-  	// this.$store.dispatch('GET_FILTERED_AD_LIST', this.$route.query)
+  mounted () {
+    this.$store.dispatch('GET_MY_WISH_LIST', {page: 1})
   },
   computed: {
-  	ads () {
-      return this.$store.getters.getAds.results;
+  	myWishList () {
+      return this.$store.getters.getMyWishList.results
     },
     getLoading () {
-      return this.$store.getters.getMyAds.loading
+      return this.$store.getters.getMyWishList.loading
     }
   }
 }
@@ -259,7 +259,7 @@ export default {
 	.has-height {
 		height: 350px;
 	}
-	.button-submit {
+	.load-more {
         width: 145px;
         height: 40px;
         display: flex;
@@ -274,7 +274,7 @@ export default {
         font-size: 14px;
         color: #fff;
         border-radius: 5px;
-        margin: 0 auto 20px;
+        margin: 20px auto;
         &:hover {
           background-color: #F4F4F4;
           border-color: #8c40b8;
