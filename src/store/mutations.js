@@ -36,16 +36,28 @@ export default {
   myAdsMutate (state, data) {
     state.myAds = {...state.myAds, ...data}
   },
-  myWishListMutate (state, data) {
-    state.myWishList = {...state.myWishList, ...data}
+  myWishListSlugsMutate (state, data) {
+    state.myWishListSlugs = data
   },
-  appendToWishListMutate (state, data) {
-    state.myWishList.results.push(data)
+  appendToWishListSlugsMutate (state, data) {
+    state.myWishListSlugs.push(data)
+  },
+  starStateMutate (state, data) {
+    state.starState = data
+  },
+  deleteFromMyWishListSlugsMutate (state, data) {
+    let index = state.myWishListSlugs.indexOf(data);
+    if (index !== -1) {
+      state.myWishListSlugs.splice(index, 1);
+    }
   },
   deleteFromMyWishListMutate (state, slug) {
     state.myWishList.results = state.myWishList.results.filter(function(ad) {
         return ad.slug !== slug;
     })
+  },
+  myWishListMutate (state, data) {
+    state.myWishList = {...state.myWishList, ...data}
   },
   activeFiltersSearchMutate(state, data) {
     state.activeFiltersState.search = data;

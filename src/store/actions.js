@@ -233,16 +233,17 @@ export default {
   },
   SAVE_TO_WISH_LIST: function (context, slug) {
     const TOKEN = localStorage.getItem('token')
-    context.commit('myWishListMutate', {loadingStar: true, success: false})
+    context.commit('starStateMutate', {loading: true})
     axios.post(`${MAIN_URL}my/save/${slug}/`, {}, {
       headers: {
         authorization: `jwt ${TOKEN}`
       }
     }).then((response) => {
-      context.commit('myWishListMutate', {loadingStar: false, success: true})
-      context.commit('appendToWishListMutate', response.data)
+      context.commit('appendToWishListSlugsMutate', slug)
+      context.commit('starStateMutate', {loading: false})
     }).catch((err) => {
-      context.commit('myWishListMutate', {loadingStar: false, success: false})
+      context.commit('starStateMutate', {loading: false})
+      console.log(err)
     })
   },
   GET_MY_WISH_LIST: function (context, data) {
@@ -263,18 +264,29 @@ export default {
         console.log(err)
       })
   },
+  GET_MY_WISH_LIST_SLUGS: function (context) {
+    const TOKEN = localStorage.getItem('token')
+    axios.get(`${MAIN_URL}my/slugs/`,
+      {
+        headers: {
+          authorization: `jwt ${TOKEN}`
+        }
+      }).then((response) => {
+        context.commit('myWishListSlugsMutate', response.data)
+      }).catch((err) => {
+        console.log(err)
+      })
+  },
   DELETE_FROM_WISH_LIST: function (context, slug) {
     const TOKEN = localStorage.getItem('token')
-    context.commit('myWishListMutate', {loading: true})
     axios.delete(`${MAIN_URL}my/delete/${slug}/`,
       {
         headers: {
           authorization: `jwt ${TOKEN}`
         }
       }).then((response) => {
-        context.commit('deleteFromMyWishListMutate', slug)
+        context.commit('deleteFromMyWishListSlugsMutate', slug)
       }).catch((err) => {
-        context.commit('myWishListMutate', {loading: false})
         console.log(err)
       })
   }

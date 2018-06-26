@@ -23,6 +23,12 @@ export default {
   getMyWishList: state => {
     return state.myWishList
   },
+  getMyWishListSlugs: state => {
+    return state.myWishListSlugs
+  },
+  getStarLoading: state => {
+    return state.starState.loading
+  },
   getActiveFilters: state => {
     return state.activeFiltersState.search
   },

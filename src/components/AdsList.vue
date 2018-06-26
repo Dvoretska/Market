@@ -131,7 +131,7 @@ export default {
         this.slugs = slugs
       }
     }
-    this.$store.dispatch('GET_MY_WISH_LIST', {page: 1})
+    this.$store.dispatch('GET_MY_WISH_LIST_SLUGS')
 	},
   methods: {
   	addProductToWishList (slug) {
@@ -161,7 +161,7 @@ export default {
         return this.slugs.includes(slug)
       } else {
         return this.myWishList.some(function(el) {
-          return el.slug === slug
+          return el == slug
         })
       }
     },
@@ -191,13 +191,10 @@ export default {
   },
   computed: {
     loadingStar () {
-      return this.$store.getters.getMyWishList.loadingStar
-    },
-    loadingStarSuccess () {
-      return this.$store.getters.getMyWishList.success
+      return this.$store.getters.getStarLoading
     },
     myWishList () {
-      return this.$store.getters.getMyWishList.results
+      return this.$store.getters.getMyWishListSlugs
     },
     isOpen () {
       return this.$store.getters.getOrdering.isOpen
