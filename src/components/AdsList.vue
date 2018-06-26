@@ -134,9 +134,6 @@ export default {
     this.$store.dispatch('GET_MY_WISH_LIST', {page: 1})
 	},
   methods: {
-    handler () {
-      console.log('test')
-    },
   	addProductToWishList (slug) {
       this.starSelected = slug
       if(this.$localStorage.get('token')) {
@@ -201,9 +198,6 @@ export default {
     },
     myWishList () {
       return this.$store.getters.getMyWishList.results
-    },
-    loadingWishList () {
-      return this.$store.getters.getMyWishList.loading
     },
     isOpen () {
       return this.$store.getters.getOrdering.isOpen

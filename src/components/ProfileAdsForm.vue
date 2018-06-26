@@ -50,7 +50,8 @@
 							<img src="@/assets/delete.svg" alt="" class="icon-ad-actions">
 							<translate>Delete</translate>
 						</a>
-						<modal name="delete-ad" :width="400" :height="150" class="modal-window" >
+						<modal name="delete-ad" :width="400" :height="150" class="modal-window">
+              <img src="../assets/cancel.svg" alt="" class="icon-close" @click="hide">
 							<div class="modal-window-title">Are you sure you want to delete the ad?</div>
 							<div class="modal-buttons-wrapper">
 								<button @click="deleteAd(adSlug)" class="modal-window-button">Yes</button>
@@ -129,6 +130,16 @@ export default {
 		justify-content: center;
 		align-items: center;
 	}
+  .icon-close {
+    cursor: pointer;
+    margin: 5px 20px 10px 5px;
+    width: 15px;
+    height: 15px;
+    align-self: flex-end;
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
 	.modal-window-title {
 		font-size: 18px;
 		margin-bottom: 15px;

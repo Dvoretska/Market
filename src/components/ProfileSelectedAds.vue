@@ -38,10 +38,11 @@
 							<img src="@/assets/delete.svg" alt="" class="icon-ad-actions">
 							<translate>Delete</translate>
 						</a>
-						<modal name="delete-ad" :width="400" :height="150" class="modal-window" >
-							<div class="modal-window-title">Are you sure you want to delete selected ad?</div>
+						<modal name="delete-ad" :width="400" :height="170" class="modal-window" >
+              <img src="../assets/cancel.svg" alt="" class="icon-close" @click="hide">
+							<div class="modal-window-title">Are you sure you want to delete the ad from Wish List?</div>
 							<div class="modal-buttons-wrapper">
-								<button @click="deleteAd(adSlug)" class="modal-window-button">Yes</button>
+								<button @click="deleteAdFromWishList(adSlug)" class="modal-window-button">Yes</button>
 								<button @click="hide" class="modal-window-button">No</button>
 							</div>
 						</modal>
@@ -67,6 +68,9 @@ export default {
   		selectedAds: []
   	}
   },
+  created () {
+    this.$store.dispatch('GET_MY_WISH_LIST', {page: 1})
+  },
   methods: {
   	loadMore () {
   	  this.page ++
@@ -82,12 +86,10 @@ export default {
   	openAdDetails (slug) {
     	this.$router.push({ name: 'adDetails', params: { slug }})
     },
-    deleteAd (slug) {
-    	this.$modal.hide('delete-ad')
+    deleteAdFromWishList (slug) {
+      this.$store.dispatch('DELETE_FROM_WISH_LIST', slug)
+      this.$store.dispatch('GET_MY_WISH_LIST', {page: 1})
     }
-  },
-  mounted () {
-    this.$store.dispatch('GET_MY_WISH_LIST', {page: 1})
   },
   computed: {
   	myWishList () {
@@ -111,9 +113,20 @@ export default {
 		justify-content: center;
 		align-items: center;
 	}
+  .icon-close {
+    cursor: pointer;
+    margin: 5px 20px 10px 5px;
+    width: 15px;
+    height: 15px;
+    align-self: flex-end;
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
 	.modal-window-title {
 		font-size: 18px;
 		margin-bottom: 15px;
+    text-align: center;
 	}
 	.modal-window-button {
 		border: none;
