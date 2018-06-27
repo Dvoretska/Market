@@ -41,21 +41,14 @@
         </svg>
 				<span v-if="getOwner">{{ getOwner.phone }}</span>
 			</button>
-			<button v-if="isAuthenticated" class="contact-button"
+			<button class="contact-button"
         v-on="checkIfAdSelected(getAdDetails.slug) ? {click: () => deleteProductFromWishList(getAdDetails.slug)} : {click: () => addProductToWishList(getAdDetails.slug)}"
         v-bind:class="{'ad-selected': checkIfAdSelected(getAdDetails.slug)}">
-				<img src="../assets/star.svg" alt="" class="contact-icon">
-				<span>Add to Wish List</span>
+        <clip-loader v-if="loadingStar && getAdDetails.slug === starSelected" class="clip-loader" :color="'purple'" :size="'17px'"></clip-loader>
+				<img v-else src="../assets/star.svg" alt="" class="contact-icon">
+				<span v-if="!checkIfAdSelected(getAdDetails.slug)">Add to Wish List</span>
+				<span v-else>Added to Wish List</span>
 			</button>
-			<popper trigger="hover" :options="{placement: 'top'}" v-else>
-			    <div class="popper">
-			      You should be logged in to send message
-			    </div>
-				<button slot="reference" class="contact-button" @click="redirectToLogin">
-					<img src="../assets/star.svg" alt="" class="contact-icon">
-					<span>Add to Wish List</span>
-				</button>
-			</popper>
 			<div class="owner-card">
 				<div class="owner-avatar"></div>
 				<div v-if="getOwner" class="owner-name">{{ getOwnerName }}</div>
@@ -70,12 +63,14 @@ import Slider from '@/components/Slider'
 import VueLoading from 'vue-simple-loading'
 import Popper from 'vue-popperjs'
 import 'vue-popperjs/dist/css/vue-popper.css'
+import ClipLoader from 'vue-spinner/src/ClipLoader.vue'
 
 export default {
 	components: {
-      	Slider,
+      Slider,
 	  	VueLoading,
-	  	'popper': Popper
+	  	'popper': Popper,
+      ClipLoader
     },
     created () {
     	this.$store.dispatch('GET_AD_DETAILS', this.$route.params.slug)
@@ -92,11 +87,11 @@ export default {
           this.slugs = slugs
         }
       }
-      this.$store.dispatch('GET_MY_WISH_LIST', {page: 1})
+      this.$store.dispatch('GET_MY_WISH_LIST_SLUGS')
     },
     methods: {
-      addProductToWishList (slug) {
-        this.starSelected = slug
+  	addProductToWishList (slug) {
+      this.starSelected = slug
         if(this.$localStorage.get('token')) {
           this.$store.dispatch('SAVE_TO_WISH_LIST', slug)
         } else {
@@ -108,7 +103,7 @@ export default {
       },
       deleteProductFromWishList (slug) {
         if(this.$localStorage.get('token')) {
-          this.$store.dispatch('DELETE_FROM_WISH_LIST', slug)
+          this.$store.dispatch('DELETE_FROM_WISH_LIST_SLUGS', slug)
         } else {
           let index = JSON.parse(this.$localStorage.get('slug')).indexOf(slug);
           if(JSON.parse(this.$localStorage.get('slug'))) {
@@ -122,7 +117,7 @@ export default {
           return this.slugs.includes(slug)
         } else {
           return this.myWishList.some(function(el) {
-            return el.slug === slug
+            return el == slug
           })
         }
       },
@@ -138,13 +133,10 @@ export default {
 	  },
     computed: {
       loadingStar () {
-        return this.$store.getters.getMyWishList.loadingStar
-      },
-      loadingStarSuccess () {
-        return this.$store.getters.getMyWishList.success
+        return this.$store.getters.getStarLoading
       },
       myWishList () {
-        return this.$store.getters.getMyWishList.results
+        return this.$store.getters.getMyWishListSlugs
       },
       getAdDetails () {
         return this.$store.getters.getAdDetails
@@ -258,7 +250,9 @@ export default {
           fill: #8c40b8;
         }
         &.ad-selected {
-         color: red;
+          background-color: #F4F4F4;
+          border-color: #8c40b8;
+          color: #8c40b8;
         }
         span {
           font-size: 13px;
@@ -266,12 +260,16 @@ export default {
             font-size: 12px;
           }
         }
+        .clip-loader {
+          margin-right: 10px;
+        }
         .contact-icon {
           width: 20px;
           height: 20px;
           margin-right: 10px;
         }
 			}
+
 			.owner-card {
 				width: 100%;
 				padding: 5px 5px 15px;
