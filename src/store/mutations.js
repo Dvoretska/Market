@@ -56,8 +56,13 @@ export default {
         return ad.slug !== slug;
     })
   },
-  myWishListMutate (state, data) {
+   myWishListMutate (state, data) {
     state.myWishList = {...state.myWishList, ...data}
+  },
+  myWishListMutateLoadMore (state, data) {
+    let updateState = state.myWishList.results.concat(data.results)
+    state.myWishList = {...state.myWishList, ...data}
+    state.myWishList.results = updateState
   },
   activeFiltersSearchMutate(state, data) {
     state.activeFiltersState.search = data;

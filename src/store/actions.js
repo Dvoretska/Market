@@ -253,14 +253,27 @@ export default {
       {
         params: data,
         headers: {
-          authorization: `jwt ${TOKEN}`,
-          'Accept-Language': serviceLanguage.language
+          authorization: `jwt ${TOKEN}`
         }
       }).then((response) => {
         response.data.loading = false
         context.commit('myWishListMutate', response.data)
       }).catch((err) => {
         context.commit('myWishListMutate', {loading: false})
+        console.log(err)
+      })
+  },
+  GET_MY_WISH_LIST_LOAD_MORE: function (context, data) {
+    const TOKEN = localStorage.getItem('token')
+    axios.get(`${MAIN_URL}my/list/`,
+      {
+        params: data,
+        headers: {
+          authorization: `jwt ${TOKEN}`
+        }
+      }).then((response) => {
+        context.commit('myWishListMutateLoadMore', response.data)
+      }).catch((err) => {
         console.log(err)
       })
   },
@@ -277,7 +290,7 @@ export default {
         console.log(err)
       })
   },
-  DELETE_FROM_WISH_LIST: function (context, slug) {
+  DELETE_FROM_WISH_LIST_SLUGS: function (context, slug) {
     const TOKEN = localStorage.getItem('token')
     axios.delete(`${MAIN_URL}my/delete/${slug}/`,
       {
@@ -286,6 +299,20 @@ export default {
         }
       }).then((response) => {
         context.commit('deleteFromMyWishListSlugsMutate', slug)
+      }).catch((err) => {
+        console.log(err)
+      })
+  },
+   DELETE_FROM_WISH_LIST: function (context, slug) {
+    const TOKEN = localStorage.getItem('token')
+    axios.delete(`${MAIN_URL}my/delete/${slug}/`,
+      {
+        headers: {
+          authorization: `jwt ${TOKEN}`
+        }
+      }).then((response) => {
+      context.commit('deleteFromMyWishListMutate')
+      context.dispatch('GET_MY_WISH_LIST', {page: 1})
       }).catch((err) => {
         console.log(err)
       })

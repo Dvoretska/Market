@@ -147,7 +147,7 @@ export default {
   	},
     deleteProductFromWishList (slug) {
       if(this.$localStorage.get('token')) {
-        this.$store.dispatch('DELETE_FROM_WISH_LIST', slug)
+        this.$store.dispatch('DELETE_FROM_WISH_LIST_SLUGS', slug)
       } else {
         let index = JSON.parse(this.$localStorage.get('slug')).indexOf(slug);
         if(JSON.parse(this.$localStorage.get('slug'))) {

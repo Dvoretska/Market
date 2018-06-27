@@ -51,7 +51,9 @@
 							<translate>Delete</translate>
 						</a>
 						<modal name="delete-ad" :width="400" :height="150" class="modal-window">
-              <img src="../assets/cancel.svg" alt="" class="icon-close" @click="hide">
+              <div class="delete-ad-header">
+                <img src="../assets/cancel.svg" alt="" class="icon-close" @click="hide">
+              </div>
 							<div class="modal-window-title">Are you sure you want to delete the ad?</div>
 							<div class="modal-buttons-wrapper">
 								<button @click="deleteAd(adSlug)" class="modal-window-button">Yes</button>
@@ -127,17 +129,25 @@ export default {
 		box-shadow: none;
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
+		justify-content: flex-start;
 		align-items: center;
 	}
-  .icon-close {
-    cursor: pointer;
-    margin: 5px 20px 10px 5px;
-    width: 15px;
-    height: 15px;
-    align-self: flex-end;
-    &:hover {
-      transform: scale(1.2);
+  .delete-ad-header {
+    width: 100%;
+    height: 30px;
+    background-color: rgba(123, 79, 173, 0.4);
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    .icon-close {
+      cursor: pointer;
+      width: 15px;
+      height: 15px;
+      margin-right: 15px;
+      &:hover {
+        transform: scale(1.2);
+      }
     }
   }
 	.modal-window-title {

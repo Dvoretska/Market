@@ -39,7 +39,9 @@
 							<translate>Delete</translate>
 						</a>
 						<modal name="delete-ad" :width="400" :height="170" class="modal-window" >
-              <img src="../assets/cancel.svg" alt="" class="icon-close" @click="hide">
+              <div class="delete-ad-header">
+                <img src="../assets/cancel.svg" alt="" class="icon-close" @click="hide">
+              </div>
 							<div class="modal-window-title">Are you sure you want to delete the ad from Wish List?</div>
 							<div class="modal-buttons-wrapper">
 								<button @click="deleteAdFromWishList(adSlug)" class="modal-window-button">Yes</button>
@@ -48,7 +50,8 @@
 						</modal>
 					</div>
 				</div>
-				<button @click="loadMore()" class="load-more" v-if="myWishList.count > 16">Load more</button>
+				<button @click="loadMore()" class="load-more"
+          v-if="myWishList.count >= 16 && myWishList.results.length < myWishList.count">Load more</button>
 			</div>
 		</div>
 	</div>
@@ -74,7 +77,7 @@ export default {
   methods: {
   	loadMore () {
   	  this.page ++
-      this.$store.dispatch('GET_MY_WISH_LIST', {...this.$route.query, page: this.page})
+      this.$store.dispatch('GET_MY_WISH_LIST_LOAD_MORE', {...this.$route.query, page: this.page})
     },
   	show (slug) {
       this.$modal.show('delete-ad')
@@ -88,7 +91,6 @@ export default {
     },
     deleteAdFromWishList (slug) {
       this.$store.dispatch('DELETE_FROM_WISH_LIST', slug)
-      this.$store.dispatch('GET_MY_WISH_LIST', {page: 1})
     }
   },
   computed: {
@@ -104,25 +106,33 @@ export default {
 
 <style scoped lang="scss">
 	/deep/ .v--modal-overlay {
-		background: rgba(0, 0, 0, 0.05);
+    background: rgba(0, 0, 0, 0.05);
 	}
 	/deep/ .v--modal {
-		box-shadow: none;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-	}
-  .icon-close {
-    cursor: pointer;
-    margin: 5px 20px 10px 5px;
-    width: 15px;
-    height: 15px;
-    align-self: flex-end;
-    &:hover {
-      transform: scale(1.2);
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+	  }
+    .delete-ad-header {
+    width: 100%;
+    height: 30px;
+    background-color: rgba(123, 79, 173, 0.4);
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    .icon-close {
+      cursor: pointer;
+      width: 15px;
+      height: 15px;
+      margin-right: 15px;
+      &:hover {
+        transform: scale(1.2);
+      }
     }
-  }
+   }
 	.modal-window-title {
 		font-size: 18px;
 		margin-bottom: 15px;
