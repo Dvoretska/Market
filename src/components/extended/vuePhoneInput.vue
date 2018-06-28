@@ -48,25 +48,30 @@
   export default {
     extends: PhoneInput,
     mounted () {
+      this.inited = false;
       this.setCode(this.defaultCode)
-      this.initPhoneNumber()
     },
     watch: {
       'intlData.dialCode': function () {
-        this.initPhoneNumber()
+        if(this.inited) {
+          this.initPhoneNumber()
+        }
+        this.inited = true;
       }
     },
     props: {
       defaultCode: {type: String, default: 'ua'},
-      editable: {type: Boolean, default: false},
-      phoneErrors: String
+      editable: {type: Boolean, default: true},
+      phoneErrors: String,
+      slug: String
     },
     methods: {
       handleChangePhoneNumber (event) {
         var regex = new RegExp('^\\+' + this.intlData.dialCode + '-')
         if (!regex.test(event.target.value)) {
-          this.initPhoneNumber()
+          this.phone.number = `+${this.intlData.dialCode}-`
         }
+        this.$store.commit('adDetailsFieldUserMutate', {field: "phone", value: event.target.value})
       },
       initPhoneNumber () {
         this.phone.number = `+${this.intlData.dialCode}-`

@@ -86,6 +86,7 @@
                     <span>Phone: </span>
                     <phone-input
                       :phone="phone"
+                      :slug="slug"
                       class="vue-phone-input"
                       @input="changeField">
                     </phone-input>
@@ -126,10 +127,10 @@ export default {
   },
   data () {
     return {
-      phone: {
-        code: '',
-        number: ''
-      },
+//      phone: {
+//        code: '',
+//        number: ''
+//      },
       subcategoryObj: {},
       file: '',
       dragAndDropCapable: false,
@@ -310,6 +311,12 @@ export default {
     message () {
       if(this.slug) {
         return this.$store.getters.getAdDetails.message
+      }
+      return ''
+    },
+    phone () {
+      if(this.slug) {
+        return {number: this.$store.getters.getUserDetails.phone || '', code: ''}
       }
       return ''
     },

@@ -106,5 +106,8 @@ export default {
   },
   adDetailsFieldMutate (state, data) {
     state.adDetails[data.field] = data.value
+  },
+  adDetailsFieldUserMutate (state, data) {
+    state.adDetails.user[data.field] = data.value
   }
 }
