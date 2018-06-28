@@ -12,8 +12,8 @@
 
         <b-field horizontal :label="getTopic()" class="align-left">
             <button @click="show" class="field-topic input">
-              <input class="topic-span" v-if="subcategoryObj.name" @input="changeField"
-              :value="subcategoryObj.name">
+              <input class="topic-span"
+              :value="subcategoryObj.name || subcategoryObjState.name">
               <img src="../assets/arrow-down-expand.svg" alt="" class="icon-expand-arrow">
             </button>
             <div class="error" v-if="getErrors">{{ getErrors.category }}</div>
@@ -130,8 +130,7 @@ export default {
         code: '',
         number: ''
       },
-//      category: '',
-//      subcategoryObj: {},
+      subcategoryObj: {},
       file: '',
       dragAndDropCapable: false,
       files: [],
@@ -257,7 +256,7 @@ export default {
           formData.append('files[' + i + ']', file)
         }
       }
-      formData.append('category', this.subcategoryObj.slug)
+      formData.append('category', this.subcategoryObj.slug || this.subcategoryObjState.name)
       formData.append('subject', this.subject)
       formData.append('message', this.message)
       formData.append('location', this.location)
@@ -296,7 +295,7 @@ export default {
       }
       return ''
     },
-    subcategoryObj () {
+    subcategoryObjState () {
       if(this.slug && this.$store.getters.getAdDetails.category) {
         return this.$store.getters.getAdDetails.category
       }
@@ -364,6 +363,7 @@ export default {
         white-space: nowrap;
         display: inline-block;
         height: auto;
+        border: none;
       }
       .icon-expand-arrow {
         width: 15px;
