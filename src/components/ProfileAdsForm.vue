@@ -42,7 +42,7 @@
 							<img src="@/assets/visible.svg" alt="" class="icon-ad-actions">
 							<translate>View</translate>
 						</a>
-						<a href="" class="buttons ad-edit">
+						<a href="" class="buttons ad-edit" @click.prevent="editAdDetails(ad.slug)">
 							<img src="@/assets/pencil.svg" alt="" class="icon-ad-actions">
 							<translate>Edit</translate>
 						</a>
@@ -81,6 +81,9 @@ export default {
   		page: 1
   	}
   },
+  mounted () {
+    this.$store.dispatch('GET_MY_ADS', {page: 1})
+  },
   methods: {
   	loadMore () {
   	  this.page ++
@@ -96,6 +99,9 @@ export default {
   	openAdDetails (slug) {
     	this.$router.push({ name: 'adDetails', params: { slug }})
     },
+    editAdDetails (slug) {
+      this.$router.push({ name: 'edit', params: { slug }})
+    },
     deleteAd (slug) {
     	this.$store.dispatch('DELETE_AD', slug)
     	this.$modal.hide('delete-ad')
@@ -103,9 +109,6 @@ export default {
     getCreateAnAd () {
       return this.$gettext('+ Create an ad')
     }
-  },
-  mounted () {
-    this.$store.dispatch('GET_MY_ADS', {page: 1})
   },
   computed: {
   	ads () {

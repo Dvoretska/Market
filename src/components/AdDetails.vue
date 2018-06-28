@@ -33,13 +33,13 @@
 					<span>Contact the author</span>
 				</button>
 			</popper>
-			<button class="contact-button">
+			<button class="contact-button" v-bind:class="{'ad-selected': fullPhone}">
         <svg xmlns="http://www.w3.org/2000/svg" class="contact-icon" version="1.1" id="Capa_1" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 365.449 365.449" style="enable-background:new 0 0 365.449 365.449;" xml:space="preserve">
           <g>
             <path d="M281.507,10.85C274.279,3.614,265.71,0,255.813,0H109.637c-9.9,0-18.464,3.617-25.697,10.85   c-7.233,7.229-10.85,15.796-10.85,25.693v292.361c0,9.896,3.617,18.462,10.85,25.693c7.233,7.234,15.797,10.852,25.697,10.852   h146.176c9.896,0,18.466-3.621,25.693-10.852c7.234-7.231,10.852-15.797,10.852-25.693V36.543   C292.358,26.646,288.745,18.083,281.507,10.85z M159.885,36.543h45.685c3.046,0,4.565,1.523,4.565,4.569   c0,3.045-1.52,4.57-4.565,4.57h-45.685c-3.045,0-4.568-1.525-4.568-4.57C155.316,38.066,156.839,36.543,159.885,36.543z    M198.861,345.036c-4.476,4.469-9.852,6.707-16.135,6.707c-6.28,0-11.656-2.238-16.13-6.707c-4.474-4.477-6.711-9.856-6.711-16.132   c0-6.283,2.24-11.66,6.711-16.133c4.471-4.469,9.851-6.714,16.13-6.714c6.284,0,11.66,2.245,16.135,6.714   c4.473,4.473,6.708,9.85,6.708,16.133S203.331,340.56,198.861,345.036z M264.954,283.225c0,2.471-0.903,4.62-2.714,6.424   c-1.813,1.807-3.949,2.707-6.42,2.707H109.637c-2.474,0-4.615-0.903-6.423-2.707s-2.712-3.953-2.712-6.424V82.229   c0-2.474,0.903-4.617,2.712-6.423c1.809-1.805,3.949-2.714,6.423-2.714h146.176c2.478,0,4.616,0.905,6.427,2.714   c1.811,1.807,2.71,3.949,2.71,6.423v200.995H264.954z" fill="#FFFFFF"/>
           </g>
         </svg>
-				<span v-if="getOwner">{{ getOwner.phone }}</span>
+				<span v-if="getOwner" @click="showFullPhone">{{ getPhone }}</span>
 			</button>
 			<button class="contact-button"
         v-on="checkIfAdSelected(getAdDetails.slug) ? {click: () => deleteProductFromWishList(getAdDetails.slug)} : {click: () => addProductToWishList(getAdDetails.slug)}"
@@ -71,6 +71,11 @@ export default {
 	  	VueLoading,
 	  	'popper': Popper,
       ClipLoader
+    },
+    data () {
+      return {
+        fullPhone: false
+      }
     },
     created () {
     	this.$store.dispatch('GET_AD_DETAILS', this.$route.params.slug)
@@ -129,7 +134,10 @@ export default {
 	  	},
 	  	getDateOwnerJoined (joined) {
 	  		return this.$moment(joined).format('MMMM YYYY')
-	  	}
+	  	},
+      showFullPhone () {
+        this.fullPhone = true
+      }
 	  },
     computed: {
       loadingStar () {
@@ -148,6 +156,12 @@ export default {
       },
       getOwner () {
         return this.$store.getters.getAdDetails.user
+      },
+      getPhone () {
+        if(this.fullPhone) {
+          return this.$store.getters.getAdDetails.user.phone
+        }
+        return this.$store.getters.getAdDetails.user.phone.slice(0, 7) + '*******'
       },
       getOwnerName () {
         if(this.getOwner.first_name || this.getOwner.last_name) {
@@ -245,14 +259,20 @@ export default {
           background-color: #F4F4F4;
           border-color: #8c40b8;
           color: #8c40b8;
-        }
-        &:hover .contact-icon path, &:hover .contact-icon polygon {
-          fill: #8c40b8;
+          .contact-icon path {
+            fill: #8c40b8;
+          }
+          .contact-icon polygon {
+            fill: #8c40b8;
+          }
         }
         &.ad-selected {
           background-color: #F4F4F4;
           border-color: #8c40b8;
           color: #8c40b8;
+          .contact-icon path {
+            fill: #8c40b8;
+          }
         }
         span {
           font-size: 13px;
@@ -269,7 +289,6 @@ export default {
           margin-right: 10px;
         }
 			}
-
 			.owner-card {
 				width: 100%;
 				padding: 5px 5px 15px;

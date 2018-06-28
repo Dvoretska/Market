@@ -52,11 +52,11 @@ export default {
     }
   },
   deleteFromMyWishListMutate (state, slug) {
-    state.myWishList.results = state.myWishList.results.filter(function(ad) {
-        return ad.slug !== slug;
+    state.myWishList.results = state.myWishList.results.filter(function (ad) {
+      return ad.slug !== slug;
     })
   },
-   myWishListMutate (state, data) {
+  myWishListMutate (state, data) {
     state.myWishList = {...state.myWishList, ...data}
   },
   myWishListMutateLoadMore (state, data) {
@@ -91,8 +91,8 @@ export default {
     state.adDetails = data
   },
   deleteFromMyAdsMutate (state, slug) {
-    state.myAds.results = state.myAds.results.filter(function(myAd) {
-        return myAd.slug !== slug;
+    state.myAds.results = state.myAds.results.filter(function (myAd) {
+      return myAd.slug !== slug;
     })
   },
   updateUserDetailsField (state, data) {
@@ -103,5 +103,8 @@ export default {
   },
   setOrderingState (state, data) {
     state.orderingState = data
+  },
+  adDetailsFieldMutate (state, data) {
+    state.adDetails[data.field] = data.value
   }
 }

@@ -5,6 +5,7 @@ import loginPage from '@/pages/LoginPage'
 import registerPage from '@/pages/RegisterPage'
 import profilePage from '@/pages/ProfilePage'
 import createAdPage from '@/pages/CreateAdPage'
+import editAdPage from '@/pages/EditAdPage'
 import store from '@/store'
 import profileMessageForm from '@/components/ProfileMessageForm'
 import profileAdsForm from '@/components/ProfileAdsForm'
@@ -32,6 +33,9 @@ const routes = [
   },
   {
     path: '/create-ad', name: 'create-ad', component: createAdPage, meta: {title: 'Market | Ads'}
+  },
+  {
+    path: '/edit/:slug', name: 'edit', component: editAdPage, meta: {title: 'Market | Ads'}
   },
   {
     path: '/profile',

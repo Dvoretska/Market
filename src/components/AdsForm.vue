@@ -1,37 +1,45 @@
 <template>
     <section class="section-ads">
         <b-field horizontal :label="getSubject()" class="align-left">
-            <b-input name="subject" expanded v-model="subject" :maxlength="subjectMaxLength"></b-input>
+            <input name="subject"
+              class="input"
+              :value="subject"
+              :maxlength="subjectMaxLength"
+              @input="changeField">
             <div class="counter-validation"><b>{{ subjectSignsLeft() }}</b> signs left</div>
             <div class="error" v-if="getErrors && getErrors.subject">{{ getErrors.subject[0] }}</div>
         </b-field>
 
         <b-field horizontal :label="getTopic()" class="align-left">
             <button @click="show" class="field-topic input">
-              <span class="topic-span" v-if="subcategoryObj.name">{{ subcategoryObj.name }}</span>
+              <input class="topic-span" v-if="subcategoryObj.name" @input="changeField"
+              :value="subcategoryObj.name">
               <img src="../assets/arrow-down-expand.svg" alt="" class="icon-expand-arrow">
             </button>
             <div class="error" v-if="getErrors">{{ getErrors.category }}</div>
             <modal-choose-category :rootCategory="rootCategory"
                                    :fetchSubcategory="fetchSubcategory"
                                    :fetchSubSubCategory="fetchSubSubCategory"
-                                   @subcategory="subcategory"></modal-choose-category>
+                                   @subcategory="subcategory">
+            </modal-choose-category>
         </b-field>
         <b-field horizontal :label="getPrice()" class="align-left field-price">
             <div class="price-wrapper">
-                <input name="price" expanded v-model="price" class="input">
+                <input name="price"
+                  class="input"
+                  :value="price"
+                  @input="changeField">
                 <span class="currency">грн.</span>
             </div>
             <div class="error" v-if="getErrors && getErrors.price">{{ getErrors.price[0] }}</div>
         </b-field>
 
         <b-field horizontal :label="getDescription()" class="align-left">
-            <vue-editor v-model="message" :editorToolbar="customToolbar"></vue-editor>
+            <vue-editor :value="message" :editorToolbar="customToolbar"></vue-editor>
             <div class="error" v-if="getErrors && getErrors.message">{{ getErrors.message[0] }}</div>
         </b-field>
 
-        <b-field horizontal :label="getPhoto()" class="align-left">
-        </b-field>
+        <b-field horizontal :label="getPhoto()" class="align-left"></b-field>
 
         <label id="file-drag-drop">
             <div ref="fileform" class="fileform"
@@ -41,7 +49,7 @@
              v-bind:class="{highlight: isHighlight}">
                 <span>Click or drop your files here</span>
                 <img src="../assets/cloud-download-interface-symbol.svg" alt="" class="icon-cloud-download">
-                <span class="warning" v-if="warning">Download images with extansion jpeg, jpg or png</span>
+                <span class="warning" v-if="warning">Download images with extension jpeg, jpg or png</span>
             </div>
             <input type="file" class="inputfile" multiple accept="image/*" ref="fileinput">
           </label>
@@ -60,28 +68,47 @@
         <b-field horizontal :label="getPContactInformation()" class="align-left">
             <div  class="contact-info-container">
                 <div class="contact-info-field">
-                    <span>Name: </span><b-input name="name" expanded v-model="firstName" disabled="disabled"></b-input>
+                    <span>Name: </span>
+                    <input name="name"
+                           class="input"
+                           v-model="firstName"
+                           disabled="disabled">
                 </div>
                 <div class="contact-info-field">
-                    <span>Email: </span><b-input name="email" type="email" expanded v-model="email" disabled="disabled"></b-input>
+                    <span>Email: </span>
+                    <input name="email"
+                           type="email"
+                           v-model="email"
+                           disabled="disabled"
+                           class="input">
                 </div>
                 <div class="contact-info-field">
-                    <span>Phone: </span><phone-input :phone="phone" class="vue-phone-input"></phone-input>
+                    <span>Phone: </span>
+                    <phone-input
+                      :phone="phone"
+                      class="vue-phone-input"
+                      @input="changeField">
+                    </phone-input>
                 </div>
                 <div class="contact-info-field">
-                    <span>Location: </span><b-input name="location" expanded v-model="location"></b-input>
+                    <span>Location: </span>
+                  <input name="location"
+                         @input="changeField"
+                         :value="location"
+                         class="input">
                 </div>
             </div>
         </b-field>
 
         <b-field horizontal class="align-center">
             <p class="button-submit-container">
-                <button :label="getCreateAd()" :disabled="loading" class="button-submit"
+                <button :label="getCreateAd()"
+                        :disabled="loading"
+                        class="button-submit"
                         @click="createAd"
                         v-bind:class="{'disabled': loading}">Create an ad</button>
             </p>
         </b-field>
-
     </section>
 </template>
 
@@ -94,18 +121,17 @@ export default {
     modalChooseCategory,
     VueEditor
   },
+  props: {
+    slug: String
+  },
   data () {
     return {
       phone: {
         code: '',
         number: ''
       },
-      message: '',
-      location: '',
-      subject: '',
-      category: '',
-      subcategoryObj: {},
-      price: '',
+//      category: '',
+//      subcategoryObj: {},
       file: '',
       dragAndDropCapable: false,
       files: [],
@@ -124,6 +150,9 @@ export default {
   },
   created () {
     this.$store.dispatch('CLEAR_ERRORS')
+    if(this.slug) {
+       this.$store.dispatch('GET_AD_DETAILS', this.slug)
+    }
   },
   mounted () {
     if (!this.$store.getters.getCategories.length) {
@@ -162,11 +191,14 @@ export default {
     }
   },
   methods: {
+    changeField (input) {
+      this.$store.commit('adDetailsFieldMutate', {field: input.target.name, value: input.target.value})
+    },
     subcategory (data) {
       this.subcategoryObj = data
     },
     subjectSignsLeft () {
-      return this.subjectMaxLength - this.subject.length
+//      return this.subjectMaxLength - this.subject.length
     },
     makeMainImg (key) {
       this.selectedImgKey = key
@@ -258,6 +290,30 @@ export default {
     }
   },
   computed: {
+    subject () {
+      if(this.slug) {
+        return this.$store.getters.getAdDetails.subject
+      }
+      return ''
+    },
+    subcategoryObj () {
+      if(this.slug && this.$store.getters.getAdDetails.category) {
+        return this.$store.getters.getAdDetails.category
+      }
+      return ''
+    },
+    price () {
+      if(this.slug) {
+        return this.$store.getters.getAdDetails.price
+      }
+      return ''
+    },
+    message () {
+      if(this.slug) {
+        return this.$store.getters.getAdDetails.message
+      }
+      return ''
+    },
     loading () {
       return this.$store.getters.getLoading
     },
@@ -273,11 +329,11 @@ export default {
     email () {
       return this.$store.getters.getUserDetails.email
     },
-    country () {
-      return this.$store.getters.getUserDetails.country
-    },
-    city () {
-      return this.$store.getters.getUserDetails.city
+    location () {
+      if(this.slug) {
+        return this.$store.getters.getAdDetails.location
+      }
+      return ''
     }
   }
 }
