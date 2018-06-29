@@ -47,9 +47,7 @@
   import PhoneInput from 'vue2-phone-input'
   export default {
     extends: PhoneInput,
-
     mounted () {
-
       this.inited = false;
       this.setCode(this.defaultCode)
     },
@@ -64,8 +62,7 @@
     props: {
       defaultCode: {type: String, default: 'ua'},
       editable: {type: Boolean, default: true},
-      phoneErrors: String,
-      slug: String
+      phoneErrors: String
     },
     methods: {
       handleChangePhoneNumber (event) {

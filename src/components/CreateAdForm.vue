@@ -1,9 +1,9 @@
 <template>
     <section class="section-ads">
         <b-field horizontal :label="getSubject()" class="align-left">
-            <input name="subject" ref="inputSubject"
+            <input name="subject"
               class="input"
-              :value="subject"
+              v-model="subject"
               :maxlength="subjectMaxLength"
               >
             <div class="counter-validation"><b>{{ subjectSignsLeft() }}</b> signs left</div>
@@ -13,7 +13,7 @@
         <b-field horizontal :label="getTopic()" class="align-left">
             <button @click="show" class="field-topic input">
               <input class="topic-span"
-              :value="subcategoryObj.name || subcategoryObjState.name">
+              v-model="subcategoryObj.name">
               <img src="../assets/arrow-down-expand.svg" alt="" class="icon-expand-arrow">
             </button>
             <div class="error" v-if="getErrors">{{ getErrors.category }}</div>
@@ -27,15 +27,14 @@
             <div class="price-wrapper">
                 <input name="price"
                   class="input"
-                  :value="price"
-                  @input="changeField">
+                  v-model="price">
                 <span class="currency">грн.</span>
             </div>
             <div class="error" v-if="getErrors && getErrors.price">{{ getErrors.price[0] }}</div>
         </b-field>
 
         <b-field horizontal :label="getDescription()" class="align-left">
-            <vue-editor :value="message" :editorToolbar="customToolbar"></vue-editor>
+            <vue-editor v-model="message" :editorToolbar="customToolbar"></vue-editor>
             <div class="error" v-if="getErrors && getErrors.message">{{ getErrors.message[0] }}</div>
         </b-field>
 
@@ -86,16 +85,13 @@
                     <span>Phone: </span>
                     <phone-input
                       :phone="phone"
-                      :slug="slug"
-                      class="vue-phone-input"
-                      @input="changeField">
+                      class="vue-phone-input">
                     </phone-input>
                 </div>
                 <div class="contact-info-field">
                     <span>Location: </span>
                   <input name="location"
-                         @input="changeField"
-                         :value="location"
+                         v-model="location"
                          class="input">
                 </div>
             </div>
@@ -128,6 +124,9 @@ export default {
   },
   data () {
     return {
+      subject: '',
+      price: '',
+      message:'',
       subcategoryObj: {},
       file: '',
       dragAndDropCapable: false,
@@ -188,15 +187,11 @@ export default {
     }
   },
   methods: {
-    changeField (input) {
-      this.$store.commit('adDetailsFieldMutate', {field: input.target.name, value: input.target.value})
-    },
     subcategory (data) {
-      this.subcategoryObj = data
+      return this.subcategoryObj = data
     },
     subjectSignsLeft () {
-      console.log(this.subject)
-//      return this.subjectMaxLength - this.subject.length
+      return this.subjectMaxLength - this.subject.length
     },
     makeMainImg (key) {
       this.selectedImgKey = key
@@ -289,36 +284,6 @@ export default {
     }
   },
   computed: {
-    subject () {
-      if(this.slug) {
-        return this.$store.getters.getAdDetails.subject
-      }
-      return ''
-    },
-    subcategoryObjState () {
-      if(this.slug && this.$store.getters.getAdDetails.category) {
-        return this.$store.getters.getAdDetails.category
-      }
-      return ''
-    },
-    price () {
-      if(this.slug) {
-        return this.$store.getters.getAdDetails.price
-      }
-      return ''
-    },
-    message () {
-      if(this.slug) {
-        return this.$store.getters.getAdDetails.message
-      }
-      return ''
-    },
-    phone () {
-      if(this.slug) {
-        return {number: t(this.$store.getters.getAdDetails, 'user.phone').safeObject || '', code: ''}
-      }
-      return {number: t(this.$store.getters.getUserDetails, 'phone').safeObject || '', code: ''}
-    },
     loading () {
       return this.$store.getters.getLoading
     },
@@ -335,12 +300,12 @@ export default {
       return this.$store.getters.getUserDetails.email
     },
     location () {
-      if(this.slug) {
-        return this.$store.getters.getAdDetails.location
-      }
       if(this.$store.getters.getUserDetails.country && this.$store.getters.getUserDetails.city) {
         return `${this.$store.getters.getUserDetails.country}, ${this.$store.getters.getUserDetails.city}`
       }
+    },
+    phone () {
+      return {number: t(this.$store.getters.getUserDetails, 'phone').safeObject || '', code: ''}
     }
   }
 }
