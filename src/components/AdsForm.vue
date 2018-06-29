@@ -316,9 +316,11 @@ export default {
     },
     phone () {
       if(this.slug) {
+        return {number: this.$store.getters.getAdDetails.user.phone || '', code: ''}
+      }
+      if(this.$store.getters.getUserDetails.phone) {
         return {number: this.$store.getters.getUserDetails.phone || '', code: ''}
       }
-      return ''
     },
     loading () {
       return this.$store.getters.getLoading
@@ -339,7 +341,9 @@ export default {
       if(this.slug) {
         return this.$store.getters.getAdDetails.location
       }
-      return ''
+      if(this.$store.getters.getUserDetails.country && this.$store.getters.getUserDetails.city) {
+        return `${this.$store.getters.getUserDetails.country}, ${this.$store.getters.getUserDetails.city}`
+      }
     }
   }
 }
