@@ -1,11 +1,11 @@
 <template>
     <section class="section-ads">
         <b-field horizontal :label="getSubject()" class="align-left">
-            <input name="subject"
+            <input name="subject" ref="inputSubject"
               class="input"
               :value="subject"
               :maxlength="subjectMaxLength"
-              @input="changeField">
+              >
             <div class="counter-validation"><b>{{ subjectSignsLeft() }}</b> signs left</div>
             <div class="error" v-if="getErrors && getErrors.subject">{{ getErrors.subject[0] }}</div>
         </b-field>
@@ -116,6 +116,7 @@
 <script>
 import modalChooseCategory from '@/components/ModalChooseCategory'
 import { VueEditor } from 'vue2-editor'
+import t from 'typy';
 
 export default {
   components: {
@@ -127,10 +128,6 @@ export default {
   },
   data () {
     return {
-//      phone: {
-//        code: '',
-//        number: ''
-//      },
       subcategoryObj: {},
       file: '',
       dragAndDropCapable: false,
@@ -198,6 +195,7 @@ export default {
       this.subcategoryObj = data
     },
     subjectSignsLeft () {
+      console.log(this.subject)
 //      return this.subjectMaxLength - this.subject.length
     },
     makeMainImg (key) {
@@ -257,11 +255,12 @@ export default {
           formData.append('files[' + i + ']', file)
         }
       }
-      formData.append('category', this.subcategoryObj.slug || this.subcategoryObjState.name)
+      formData.append('category', this.subcategoryObj.slug || this.subcategoryObjState.slug)
       formData.append('subject', this.subject)
       formData.append('message', this.message)
       formData.append('location', this.location)
       formData.append('price', this.price)
+      formData.append('phone', this.phone.number)
       this.$store.dispatch('CREATE_AD', formData)
     },
     onFile (e) {
@@ -316,11 +315,9 @@ export default {
     },
     phone () {
       if(this.slug) {
-        return {number: this.$store.getters.getAdDetails.user.phone || '', code: ''}
+        return {number: t(this.$store.getters.getAdDetails, 'user.phone').safeObject || '', code: ''}
       }
-      if(this.$store.getters.getUserDetails.phone) {
-        return {number: this.$store.getters.getUserDetails.phone || '', code: ''}
-      }
+      return {number: t(this.$store.getters.getUserDetails, 'phone').safeObject || '', code: ''}
     },
     loading () {
       return this.$store.getters.getLoading

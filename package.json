@@ -27,6 +27,7 @@
     "moment": "^2.22.1",
     "net": "^1.0.2",
     "stringify-object": "^3.2.1",
+    "typy": "^2.0.1",
     "vue": "^2.5.2",
     "vue-bulma-accordion": "^0.3.5",
     "vue-gallery": "^1.3.2",

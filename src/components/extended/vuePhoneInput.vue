@@ -47,7 +47,9 @@
   import PhoneInput from 'vue2-phone-input'
   export default {
     extends: PhoneInput,
+
     mounted () {
+
       this.inited = false;
       this.setCode(this.defaultCode)
     },
@@ -68,13 +70,13 @@
     methods: {
       handleChangePhoneNumber (event) {
         var regex = new RegExp('^\\+' + this.intlData.dialCode + '-')
-        if (!regex.test(event.target.value)) {
-          this.phone.number = `+${this.intlData.dialCode}-`
-        }
+//        if (!regex.test(event.target.value)) {
+//          this.phone.number = `+${this.intlData.dialCode}-`
+//        }
         this.$store.commit('adDetailsFieldUserMutate', {field: "phone", value: event.target.value})
       },
       initPhoneNumber () {
-        this.phone.number = `+${this.intlData.dialCode}-`
+//        this.phone.number = `+${this.intlData.dialCode}-`
       }
     }
   }

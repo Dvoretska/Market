@@ -22,6 +22,8 @@ export default {
     search: {},
     node: ''
   },
-  adDetails: {},
+  adDetails: {
+    user: {}
+  },
   orderingState: {isOpen: null}
 }
