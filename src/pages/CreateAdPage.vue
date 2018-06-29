@@ -1,19 +1,19 @@
 <template>
     <div>
        <navigation :page="'create-ad'"></navigation>
-       <ads-form></ads-form>
+       <create-ad-form></create-ad-form>
        <footer-bar></footer-bar>
     </div>
 </template>
 
 <script>
-import adsForm from '@/components/AdsForm'
+import createAdForm from '@/components/CreateAdForm'
 import navigation from '@/components/Navigation'
 import footerBar from '@/components/footer/FooterBar'
 
 export default {
   components: {
-    adsForm,
+    createAdForm,
     navigation,
     footerBar
   }
