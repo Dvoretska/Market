@@ -159,9 +159,9 @@ export default {
       },
       getPhone () {
         if(this.fullPhone) {
-          return this.$store.getters.getAdDetails.user.phone
+          return this.$store.getters.getAdDetails.phone
         }
-        return this.$store.getters.getAdDetails.user.phone.slice(0, 7) + '*******'
+        return this.$store.getters.getAdDetails.phone.slice(0, 7) + '*******'
       },
       getOwnerName () {
         if(this.getOwner.first_name || this.getOwner.last_name) {

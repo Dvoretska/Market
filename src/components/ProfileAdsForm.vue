@@ -105,6 +105,7 @@ export default {
     deleteAd (slug) {
     	this.$store.dispatch('DELETE_AD', slug)
     	this.$modal.hide('delete-ad')
+
     },
     getCreateAnAd () {
       return this.$gettext('+ Create an ad')

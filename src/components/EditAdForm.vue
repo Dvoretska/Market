@@ -1,19 +1,20 @@
 <template>
     <section class="section-ads">
         <b-field horizontal :label="getSubject()" class="align-left">
-            <input name="subject" ref="inputSubject"
+            <input name="subject"
               class="input"
               :value="subject"
               :maxlength="subjectMaxLength"
-              >
-            <div class="counter-validation"><b>{{ subjectSignsLeft() }}</b> signs left</div>
+              @input="changeField">
+            <div class="counter-validation"><b>{{ subjectSignsLeft }}</b> signs left</div>
             <div class="error" v-if="getErrors && getErrors.subject">{{ getErrors.subject[0] }}</div>
         </b-field>
 
         <b-field horizontal :label="getTopic()" class="align-left">
             <button @click="show" class="field-topic input">
               <input class="topic-span"
-              :value="subcategoryObj.name || subcategoryObjState.name">
+              v-if="subcategoryObjState"
+              :value="subcategoryObjState.name">
               <img src="../assets/arrow-down-expand.svg" alt="" class="icon-expand-arrow">
             </button>
             <div class="error" v-if="getErrors">{{ getErrors.category }}</div>
@@ -86,7 +87,6 @@
                     <span>Phone: </span>
                     <phone-input
                       :phone="phone"
-                      :slug="slug"
                       class="vue-phone-input"
                       @input="changeField">
                     </phone-input>
@@ -116,7 +116,7 @@
 <script>
 import modalChooseCategory from '@/components/ModalChooseCategory'
 import { VueEditor } from 'vue2-editor'
-import t from 'typy';
+import t from 'typy'
 
 export default {
   components: {
@@ -147,9 +147,7 @@ export default {
   },
   created () {
     this.$store.dispatch('CLEAR_ERRORS')
-    if(this.slug) {
-       this.$store.dispatch('GET_AD_DETAILS', this.slug)
-    }
+    this.$store.dispatch('GET_AD_DETAILS', this.slug)
   },
   mounted () {
     if (!this.$store.getters.getCategories.length) {
@@ -194,10 +192,7 @@ export default {
     subcategory (data) {
       this.subcategoryObj = data
     },
-    subjectSignsLeft () {
-      console.log(this.subject)
-//      return this.subjectMaxLength - this.subject.length
-    },
+
     makeMainImg (key) {
       this.selectedImgKey = key
     },
@@ -289,35 +284,26 @@ export default {
     }
   },
   computed: {
-    subject () {
-      if(this.slug) {
-        return this.$store.getters.getAdDetails.subject
+    subjectSignsLeft () {
+      if(this.subject) {
+        return this.subjectMaxLength - this.subject.length
       }
-      return ''
+      return this.subjectMaxLength
+    },
+    subject () {
+      return this.$store.getters.getAdDetails.subject
     },
     subcategoryObjState () {
-      if(this.slug && this.$store.getters.getAdDetails.category) {
-        return this.$store.getters.getAdDetails.category
-      }
-      return ''
+      return this.$store.getters.getAdDetails.category
     },
     price () {
-      if(this.slug) {
-        return this.$store.getters.getAdDetails.price
-      }
-      return ''
+      return this.$store.getters.getAdDetails.price
     },
     message () {
-      if(this.slug) {
-        return this.$store.getters.getAdDetails.message
-      }
-      return ''
+      return this.$store.getters.getAdDetails.message
     },
     phone () {
-      if(this.slug) {
-        return {number: t(this.$store.getters.getAdDetails, 'user.phone').safeObject || '', code: ''}
-      }
-      return {number: t(this.$store.getters.getUserDetails, 'phone').safeObject || '', code: ''}
+      return {number: t(this.$store.getters.getAdDetails, 'user.phone').safeObject || '', code: ''}
     },
     loading () {
       return this.$store.getters.getLoading
@@ -335,12 +321,7 @@ export default {
       return this.$store.getters.getUserDetails.email
     },
     location () {
-      if(this.slug) {
-        return this.$store.getters.getAdDetails.location
-      }
-      if(this.$store.getters.getUserDetails.country && this.$store.getters.getUserDetails.city) {
-        return `${this.$store.getters.getUserDetails.country}, ${this.$store.getters.getUserDetails.city}`
-      }
+      return this.$store.getters.getAdDetails.location
     }
   }
 }

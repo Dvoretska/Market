@@ -193,6 +193,7 @@ export default {
       headers: {authorization: `jwt ${TOKEN}`}
     }).then((response) => {
       context.commit('deleteFromMyAdsMutate', data)
+      context.dispatch('GET_MY_ADS')
     }).catch((err) => {
       console.log(err)
     })
