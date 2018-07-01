@@ -13,6 +13,7 @@ import profileSelectedAds from '@/components/ProfileSelectedAds'
 import profileSettingsForm from '@/components/ProfileSettingsForm'
 import adDetailsPage from '@/pages/AdDetailsPage'
 import homePage from '@/pages/HomePage'
+import PageNotFound from '@/components/404'
 
 Vue.use(Router)
 
@@ -51,7 +52,8 @@ const routes = [
   },
   {
     path: '/ads/:slug', name: 'adDetails', component: adDetailsPage, meta: {title: 'Market | Ads'}
-  }
+  },
+  { path: "*", component: PageNotFound }
 ]
 
 const router = new Router({

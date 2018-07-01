@@ -185,14 +185,41 @@ export default {
       }.bind(this))
     }
   },
+  watch: {
+    images (newValue) {
+      if(newValue) {
+        for(let i = 0; i < newValue.length; i++) {
+          this.loadXHR(newValue[i]).then((blob) => {
+          this.files.push(blob)
+            this.getImagePreviews()
+          });
+        }
+      }
+    }
+  },
   methods: {
+    loadXHR(url) {
+      return new Promise(function(resolve, reject) {
+          try {
+              var xhr = new XMLHttpRequest();
+              xhr.open("GET", url);
+              xhr.responseType = "blob";
+              xhr.onerror = function() {reject("Network error.")};
+              xhr.onload = function() {
+                  if (xhr.status === 200) {resolve(xhr.response)}
+                  else {reject("Loading error:" + xhr.statusText)}
+              };
+              xhr.send();
+          }
+          catch(err) {reject(err.message)}
+      });
+    },
     changeField (input) {
       this.$store.commit('adDetailsFieldMutate', {field: input.target.name, value: input.target.value})
     },
     subcategory (data) {
       this.subcategoryObj = data
     },
-
     makeMainImg (key) {
       this.selectedImgKey = key
     },
@@ -218,13 +245,11 @@ export default {
     },
     getImagePreviews () {
       for (let i = 0; i < this.files.length; i++){
-        if (/\.(jpe?g|png|gif)$/i.test(this.files[i].name)) {
-          let reader = new FileReader()
-          reader.addEventListener("load", function (e) {
-            this.$refs['preview' + parseInt(i)][0].src = reader.result
-          }.bind(this), false)
-          reader.readAsDataURL(this.files[i])
-        }
+        let reader = new FileReader()
+        reader.addEventListener("load", function (e) {
+          this.$refs['preview' + parseInt(i)][0].src = reader.result
+        }.bind(this), false)
+        reader.readAsDataURL(this.files[i])
       }
     },
     removeFile (key) {
@@ -284,6 +309,9 @@ export default {
     }
   },
   computed: {
+    images () {
+      return this.$store.getters.getAdDetails.images
+    },
     subjectSignsLeft () {
       if(this.subject) {
         return this.subjectMaxLength - this.subject.length
