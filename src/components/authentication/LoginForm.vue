@@ -4,8 +4,25 @@
         <h2 class="auth-title" v-translate>Login</h2>
         <div class="auth-form-container">
           <p class="is-danger" v-if="nonFieldErrors">{{ nonFieldErrors }}</p>
-          <input-style :iconPath="iconMeilPath" :placeholder="translations().email" type="translations()['email']" @inputVal="setEmail" :errors="emailErrors" class="input-component"></input-style>
-          <input-style :iconPath="iconLockPath" :placeholder="translations().password" type="password" @inputVal="setPass" :errors="passwordErrors" :keyup="login" class="input-component"></input-style>
+          <input-style
+            :iconPath="iconMeilPath"
+            :placeholder="translations().email"
+            type="translations()['email']"
+            @inputVal="setEmail"
+            :errors="emailErrors"
+            class="input-component"
+            :autocomplete="'email'">
+          </input-style>
+          <input-style
+            :iconPath="iconLockPath"
+            :placeholder="translations().password"
+            type="password"
+            @inputVal="setPass"
+            :errors="passwordErrors"
+            :keyup="login"
+            class="input-component"
+            :autocomplete="'new-password'">
+          </input-style>
           <div class="flexbox-container">
             <button @click="login" class="auth-button"><translate>Login</translate>
               <i class="fa fa-spinner fa-spin fa-lg fa-fw" v-if="loading"></i>

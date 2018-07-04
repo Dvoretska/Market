@@ -106,8 +106,8 @@
                 <button :label="getCreateAd()"
                         :disabled="loading"
                         class="button-submit"
-                        @click="createAd"
-                        v-bind:class="{'disabled': loading}">Create an ad</button>
+                        @click="editAd"
+                        v-bind:class="{'disabled': loading}">Edit an ad</button>
             </p>
         </b-field>
     </section>
@@ -128,7 +128,6 @@ export default {
   },
   data () {
     return {
-      subcategoryObj: {},
       file: '',
       dragAndDropCapable: false,
       files: [],
@@ -218,7 +217,7 @@ export default {
       this.$store.commit('adDetailsFieldMutate', {field: input.target.name, value: input.target.value})
     },
     subcategory (data) {
-      this.subcategoryObj = data
+      this.$store.commit('adDetailsFieldMutate', {field: 'category', value: data})
     },
     makeMainImg (key) {
       this.selectedImgKey = key
@@ -265,7 +264,7 @@ export default {
     onDrop () {
       this.isHighlight = false
     },
-    createAd () {
+    editAd () {
       var formData = new FormData()
       if (this.files.length) {
         let a = this.files.splice(this.selectedImgKey, 1)
@@ -275,13 +274,13 @@ export default {
           formData.append('files[' + i + ']', file)
         }
       }
-      formData.append('category', this.subcategoryObj.slug || this.subcategoryObjState.slug)
+      formData.append('category', this.subcategoryObjState.slug)
       formData.append('subject', this.subject)
       formData.append('message', this.message)
       formData.append('location', this.location)
       formData.append('price', this.price)
       formData.append('phone', this.phone.number)
-      this.$store.dispatch('CREATE_AD', formData)
+      this.$store.dispatch('UPDATE_AD', {slug: this.slug, form: formData})
     },
     onFile (e) {
       this.file = this.$refs.file.files[0]
@@ -334,7 +333,7 @@ export default {
       return {number: t(this.$store.getters.getAdDetails, 'user.phone').safeObject || '', code: ''}
     },
     loading () {
-      return this.$store.getters.getLoading
+      return this.$store.getters.getAdDetails.loading
     },
     getErrors () {
       return this.$store.getters.getErrors

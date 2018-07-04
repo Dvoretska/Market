@@ -158,10 +158,17 @@ export default {
         return this.$store.getters.getAdDetails.user
       },
       getPhone () {
-        if(this.fullPhone) {
-          return this.$store.getters.getAdDetails.phone
+        if(this.$store.getters.getAdDetails.phone) {
+          if (this.fullPhone) {
+            return this.$store.getters.getAdDetails.phone
+          }
+          return this.$store.getters.getAdDetails.phone.slice(0, 7) + '*******'
+        } else {
+          if (this.fullPhone) {
+            return this.$store.getters.getUserDetails.phone
+          }
+          return this.$store.getters.getUserDetails.phone.slice(0, 7) + '*******'
         }
-        return this.$store.getters.getAdDetails.phone.slice(0, 7) + '*******'
       },
       getOwnerName () {
         if(this.getOwner.first_name || this.getOwner.last_name) {

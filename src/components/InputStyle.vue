@@ -1,7 +1,7 @@
 <template>
   <div class="input-wrapper">
     <div class="control has-icons-left input-container" v-bind:class="{'input-container-danger': errors}">
-      <input class="input" :type="type" :placeholder="placeholder" @input="getInputVal" v-model="inputVal" v-bind:class="{'input-focused': inputVal}" @keyup.enter="keyup()">
+      <input class="input" :type="type" :autocomplete="autocomplete" :placeholder="placeholder" @input="getInputVal" v-model="inputVal" v-bind:class="{'input-focused': inputVal}" @keyup.enter="keyup()">
       <img :src='iconPath' class="input-container-icon">
     </div>
     <div class="input-container-errors" v-if="errors">{{ errors }}</div>
@@ -20,7 +20,8 @@ export default {
     type: String,
     errors: String,
     keyup: Function,
-    iconPath: String
+    iconPath: String,
+    autocomplete: String
   },
   methods: {
     getInputVal () {

@@ -81,22 +81,6 @@ export default {
         })
     }
   },
-  CREATE_AD: function (context, data) {
-    const TOKEN = localStorage.getItem('token')
-    context.commit('loading', true)
-    axios.post(`${MAIN_URL}ads/ad/`, data, {
-      headers: {
-        authorization: `jwt ${TOKEN}`,
-        'Content-Type': 'multipart/form-data'
-      }
-    }).then((response) => {
-      context.commit('loading', false)
-      router.push({name: 'ads-list'})
-    }).catch((err) => {
-      context.commit('loading', false)
-      context.commit('error', err.response.data)
-    })
-  },
   GET_MY_ADS: function (context, data) {
     const TOKEN = localStorage.getItem('token')
     context.commit('myAdsMutate', {loading: true})
@@ -182,6 +166,38 @@ export default {
     axios.get(`${MAIN_URL}ads/${data}/`).then((response) => {
         response.data.loading = false
         context.commit('adDetailsMutate', response.data)
+      }).catch((err) => {
+        console.log(err)
+      })
+  },
+  CREATE_AD: function (context, data) {
+    const TOKEN = localStorage.getItem('token')
+    context.commit('loading', true)
+    axios.post(`${MAIN_URL}ads/ad/`, data, {
+      headers: {
+        authorization: `jwt ${TOKEN}`,
+        'Content-Type': 'multipart/form-data'
+      }
+    }).then((response) => {
+      context.commit('loading', false)
+      router.push({name: 'ads-list'})
+    }).catch((err) => {
+      context.commit('loading', false)
+      context.commit('error', err.response.data)
+    })
+  },
+  UPDATE_AD: function (context, data) {
+    const TOKEN = localStorage.getItem('token')
+    context.commit('adDetailsMutate', {loading: true})
+    axios.put(`${MAIN_URL}ads/${data.slug}/`, data.form, {
+      headers: {
+        authorization: `jwt ${TOKEN}`,
+        'Content-Type': 'multipart/form-data'
+      }
+    }).then((response) => {
+        context.commit('adDetailsMutate', response.data)
+        response.data.loading = false
+        router.push({name: 'ads-list'})
       }).catch((err) => {
         console.log(err)
       })
