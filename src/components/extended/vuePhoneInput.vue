@@ -70,7 +70,7 @@
 //        if (!regex.test(event.target.value)) {
 //          this.phone.number = `+${this.intlData.dialCode}-`
 //        }
-        this.$store.commit('adDetailsFieldUserMutate', {field: "phone", value: event.target.value})
+        this.$store.commit('adDetailsFieldMutate', {field: "phone", value: event.target.value})
       },
       initPhoneNumber () {
 //        this.phone.number = `+${this.intlData.dialCode}-`
