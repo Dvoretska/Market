@@ -173,8 +173,8 @@
             </p>
           </div>
           <div class="contact-input-wrapper">
-            <input type="text" :placeholder="getEmailAddress()" v-model="email" :class="{'input-error': !isValidEmail}">
-            <button @click="validateEmail(email)"><translate>Subscribe now</translate></button>
+            <input type="text" class="input-contact" :placeholder="getEmailAddress()" v-model="email" :class="{'input-error': !isValidEmail}">
+            <button @click="validateEmail(email)" class="button-contact"><translate>Subscribe now</translate></button>
             <div v-if="!isValidEmail" class="error"><translate>Please enter a valid email address</translate></div>
           </div>
         </div>
@@ -947,22 +947,23 @@ export default {
     .contact-input-wrapper {
       flex: 1;
       width: 100%;
+      display: flex;
       @media screen and (max-width:767px){
-        text-align: center;
+        align-items: center;
+        justify-content: center;
         margin-top: 20px;
       }
       @media screen and (min-width:320px) and (max-width: 480px){
-        display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
       }
-      input {
+      .input-contact {
         width: 50%;
         background: #e2e2e2;
         color: rgba(36,42,53,1);
         padding: 12px;
         font-size: 17px;
-        display: inline-block;
         font-family: 'Muli', sans-serif;
         border: 1px solid transparent;
         &::placeholder {
@@ -976,9 +977,9 @@ export default {
           border: 1px solid red;
         }
       }
-      button {
+      .button-contact {
         white-space: nowrap;
-        padding: 13px 24px;
+        padding: 13px 24px 12px;
         color: white;
         background-color: rgba(123, 79, 173, 0.8);
         font-size: 17px;
