@@ -28,8 +28,14 @@
 				<li class="menu-item">
           <a href="#" class="menu-item-link" v-scroll-to="'.contact-section, 0'"><translate>CONTACT</translate></a>
         </li>
+        <li class="menu-item auth-block" v-if="showAuthInMenu">
+					<router-link :to="{ name: 'login'}" class="menu-item-link"><translate>LOGIN</translate></router-link>
+				</li>
+        <li class="menu-item auth-block" v-if="showAuthInMenu">
+					<router-link :to="{ name: 'register'}" class="menu-item-link"><translate>SIGN UP</translate></router-link>
+				</li>
        </ul>
-       <ul class="home-auth">
+       <ul class="home-auth" v-if="!showAuthInMenu">
 				<li class="auth-item login-item">
 					<router-link :to="{ name: 'login'}"><translate>LOGIN</translate></router-link>
 				</li>
@@ -198,6 +204,7 @@ export default {
   data () {
     return {
       showMenu: false,
+      showAuthInMenu: false,
       prevButton: `<span class="my-slide-prev">
       <svg viewBox="0 0 477.175 477.175">
       <g>
@@ -263,6 +270,11 @@ export default {
       if(event.currentTarget.innerWidth > 767) {
         this.showMenu = false
       }
+      if(event.currentTarget.innerWidth < 480) {
+        this.showAuthInMenu = true
+      } else {
+        this.showAuthInMenu = false
+      }
     },
     toggleMenu () {
       this.showMenu = !this.showMenu
@@ -299,7 +311,7 @@ export default {
     display: flex;
     align-items: center;
     @media screen and (min-width:320px) and (max-width: 480px){
-      padding: 0 25px;
+      padding: 0 50px;
     }
     .logo-wrapper {
       position: relative;
@@ -911,10 +923,16 @@ export default {
         width: 100%;
         font-size: 19px;
         font-family: 'Muli', sans-serif;
+        @media screen and (min-width:320px) and (max-width: 480px){
+          padding-left: 0;
+        }
         .contact-info-item {
           margin-bottom: 15px;
           display: flex;
           justify-content: flex-start;
+          @media screen and (min-width:320px) and (max-width: 480px){
+            justify-content: center;
+          }
           &:last-child {
             margin-bottom: 0;
            }
@@ -1036,6 +1054,9 @@ export default {
         .menu-item {
           margin-top: 20px;
           margin-left: 0;
+        }
+        .menu-item.auth-block a{
+          color: #49D1CB;
         }
       }
       .home-menu--open {

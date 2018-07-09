@@ -74,6 +74,7 @@ export default {
     },
     data () {
       return {
+        slugs: [],
         fullPhone: false
       }
     },
