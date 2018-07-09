@@ -8,36 +8,36 @@ const ACCOUNTS_URL = `${MAIN_URL}accounts/`
 
 export default {
   LOGIN: function (context, data) {
-    context.commit('loading', true)
+    context.commit('loginStateMutate', true)
     axios.post(`${ACCOUNTS_URL}login`, {
       email: data.email,
       password: data.password
     }).then((response) => {
       context.commit('success', response.data)
-      context.commit('loading', false)
+      context.commit('loginStateMutate', false)
       context.commit('createUserState', response.data.user)
       localStorage.setItem('token', response.data.token)
       router.push({name: 'ads-list'})
     }).catch((err) => {
-      context.commit('loading', false)
+      context.commit('loginStateMutate', false)
       context.commit('error', err.response.data)
     })
   },
   SIGNUP: function (context, data) {
-    context.commit('loading', true)
+    context.commit('registerStateMutate', true)
     axios.post(`${ACCOUNTS_URL}signup`, {
       email: data.email,
       password1: data.password1,
       password2: data.password2
     }).then((response) => {
       context.commit('success', response.data)
-      context.commit('loading', false)
+      context.commit('registerStateMutate', false)
       context.commit('createUserState', response.data.user)
       localStorage.setItem('token', response.data.token)
       router.push({name: 'ads-list'})
     }, (err) => {
       context.commit('error', err.response.data)
-      context.commit('loading', false)
+      context.commit('registerStateMutate', false)
     })
   },
   CLEAR_ERRORS: function (context) {

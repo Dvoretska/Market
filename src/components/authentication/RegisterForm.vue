@@ -75,6 +75,9 @@ export default {
     }
   },
   computed: {
+    loading () {
+      return this.$store.getters.getRegisterState.loading
+    },
     password1Errors () {
       if (this.$store.getters.getErrors && this.$store.getters.getErrors.password1) {
         return this.$store.getters.getErrors.password1.join('\n')

@@ -63,6 +63,9 @@ export default {
     }
   },
   computed: {
+    loading () {
+      return this.$store.getters.getLoginState.loading
+    },
     passwordErrors () {
       if (this.$store.getters.getErrors && this.$store.getters.getErrors.password) {
         return this.$store.getters.getErrors.password.join('\n')

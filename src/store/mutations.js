@@ -11,6 +11,12 @@ export default {
   loading (state, data) {
     state.responseState.loading = data
   },
+  loginStateMutate (state, data) {
+    state.loginState.loading = data
+  },
+  registerStateMutate (state, data) {
+    state.registerState.loading = data
+  },
   createUserState (state, user) {
     state.userDetailsState = user
   },

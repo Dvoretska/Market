@@ -8,6 +8,12 @@ export default {
   getLoading: state => {
     return state.responseState.loading
   },
+  getLoginState: state => {
+    return state.loginState
+  },
+  getRegisterState: state => {
+    return state.registerState
+  },
   getUserDetails: state => {
     return state.userDetailsState
   },

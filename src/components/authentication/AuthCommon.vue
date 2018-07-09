@@ -15,9 +15,6 @@ export default {
     iconMeilPath () {
       return require('@/assets/meil.svg')
     },
-    loading () {
-      return this.$store.getters.getLoading
-    },
     nonFieldErrors () {
       if (this.$store.getters.getErrors && this.$store.getters.getErrors.non_field_errors) {
         return this.$store.getters.getErrors.non_field_errors.join('\n')
