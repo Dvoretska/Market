@@ -313,9 +313,6 @@ export default {
 		padding: 0 50px;
     display: flex;
     align-items: center;
-    @media screen and (min-width:320px) and (max-width: 480px){
-      padding: 0 50px;
-    }
     .logo-wrapper {
       position: relative;
       height: 55px;
@@ -362,9 +359,6 @@ export default {
 			display: flex;
 			align-items: center;
 			height: 100%;
-      @media screen and (min-width:320px) and (max-width: 480px) {
-       padding: 70px 30px 15px 25px;
-      }
       .menu-item {
         cursor: pointer;
         font-size: 14px;
@@ -455,19 +449,6 @@ export default {
 		padding-top: 250px;
 		align-items: flex-end;
     position: relative;
-    @media screen and (max-width:1024px){
-      align-items: center;
-      padding-right: 0;
-    }
-    @media screen and (max-width:768px){
-      height: 600px;
-    }
-    @media screen and (min-width:320px) and (max-width: 480px){
-      padding-top: 0;
-      justify-content: center;
-      height: 400px;
-      background-position: center;
-    }
 		.title-wrapper {
       position: -webkit-sticky;
       position: sticky;
@@ -475,9 +456,6 @@ export default {
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-      @media screen and (min-width:320px) and (max-width: 480px){
-        padding-top: 25px;
-      }
 			.main-title {
         text-align: center;
 				font-size: 48px;
@@ -487,12 +465,6 @@ export default {
         font-weight: 600;
         letter-spacing: 2px;
         margin-bottom: 10px;
-        @media screen and (min-width:1200px){
-          font-size: 5vw;
-        }
-        @media screen and (min-width:320px) and (max-width: 480px){
-          font-size: 40px;
-        }
 			}
 			.main-text {
 				font-size: 38px;
@@ -501,12 +473,6 @@ export default {
 				font-weight: 300;
 				margin-bottom: 40px;
         font-style: italic;
-        @media screen and (min-width:1200px){
-          font-size: 4vw;
-        }
-        @media screen and (min-width:320px) and (max-width: 480px){
-          font-size: 28px;
-        }
 			}
 		}
 	}
@@ -518,21 +484,18 @@ export default {
     font-family: 'Arapey', serif;
     font-style: italic;
     white-space: nowrap;
-    @media screen and (min-width:320px) and (max-width: 480px){
-      margin: 0 auto 20px;
-    }
     span {
       position: relative;
     }
     span:before {
-        content: "";
-        position: absolute;
-        width: 330px;
-        height: 1px;
-        left: 120%;
-        top: 50%;
-        background-color: rgba(36, 42, 53, 1);
-     }
+      content: "";
+      position: absolute;
+      width: 330px;
+      height: 1px;
+      left: 120%;
+      top: 50%;
+      background-color: rgba(36, 42, 53, 1);
+    }
      span:after {
         content: "";
         position: absolute;
@@ -549,9 +512,6 @@ export default {
     text-align: center;
     max-width: 600px;
     margin: 0 auto 40px;
-    @media screen and (min-width:320px) and (max-width: 480px){
-      padding: 0 10px;
-    }
   }
   .rubrics-section {
     padding-top: 90px;
@@ -559,16 +519,10 @@ export default {
     position: relative;
     z-index: 1;
     background-color: white;
-    @media screen and (min-width:320px) and (max-width: 480px){
-      padding-top: 30px;
-    }
      .slider-wrapper {
 	     position:relative;
 	     height:300px;
        width: 100%;
-       @media screen and (max-width: 480px){
-          margin-bottom: 40px;
-        }
 	     /deep/ button[data-controls] {
         border: 0;
         background-color: transparent;
@@ -659,16 +613,10 @@ export default {
   }
   .top-products-section {
     padding-top: 90px;
-    @media screen and (min-width:320px) and (max-width: 480px){
-      padding-top: 30px;
-    }
     article {
     display: flex;
     flex-wrap: wrap;
     margin-top: 50px;
-    @media screen and (max-width: 700px) {
-      display: block;
-    }
     .description {
       width: 50%;
       max-height: 50vh;
@@ -687,13 +635,6 @@ export default {
         top: 0;
         overflow: hidden;
         box-shadow: 4px -4px 8px rgba(0,0,0,.4);
-        @media screen and (max-width: 700px) {
-          width: 100%;
-        }
-        @media screen and (min-width:320px) and (max-width: 480px){
-          height: 50vh;
-        }
-
       }
       figure img, section img {
         max-width: 50%;
@@ -718,9 +659,6 @@ export default {
         font-weight: 400;
         font-style: italic;
         font-size: 14px;
-        @media screen and (min-width:320px) and (max-width: 480px){
-          display: none;
-        }
       }
       section {
         display: flex;
@@ -734,23 +672,11 @@ export default {
         position: sticky;
         top: 0;
         box-shadow: -4px -4px 8px rgba(0,0,0,.4);
-        @media screen and (max-width: 700px) {
-          width: 100%;
-        }
-        @media screen and (min-width:320px) and (max-width: 480px){
-          height: 50vh;
-        }
       }
       figure:nth-of-type(1),
       section:nth-of-type(1) {
         margin: 0 0 10vh 0;
         width: 50%;
-        @media screen and (max-width: 700px) {
-          width: 100%;
-        }
-        @media screen and (min-width:320px) and (max-width: 480px){
-          margin: 0;
-        }
       }
       figure:nth-of-type(2n) {
         margin: 0 0 10vh auto;
@@ -777,16 +703,12 @@ export default {
         width: 70px;
         height: 70px;
         transform: translate(calc(-50% + 1px), -50%);
-        @media screen and (max-width: 700px) {
-          background-image: none;
-        }
       }
       section:nth-of-type(2n)::before {
         left:auto;
         right: 0;
         transform: translate(calc(50% - 1px), -50%);
       }
-
     }
   }
   .team-section {
@@ -795,20 +717,11 @@ export default {
     position: relative;
     z-index: 1;
     background-color: white;
-    @media screen and (min-width:320px) and (max-width: 480px){
-      padding-top: 30px;
-    }
   	.team-content {
   		display: flex;
       background: url('../assets/imageedit_18_9290591601.png') top right no-repeat;
   		background-color: rgba(123, 79, 173, 0.4);
   		padding: 30px 10%;
-      @media screen and (max-width:1024px){
-        padding: 0 15px;
-      }
-      @media screen and (max-width:841px){
-        flex-direction: column;
-      }
 			.slider-container {
 	  		margin: 0 auto;
         width: 100%;
@@ -823,19 +736,9 @@ export default {
          /deep/ .description-title {
           font-size: 20px;
           margin-bottom: 15px;
-           @media screen and (max-width:575px){
-            font-size: 16px;
-            margin-bottom: 10px;
-          }
         }
          /deep/ .description-text {
           font-size: 14px;
-          @media screen and (max-width:575px){
-            font-size: 12px;
-          }
-          @media screen and (min-width:320px) and (max-width: 480px){
-            display: none;
-          }
         }
 	  		/deep/ .blueimp-gallery > .slides > .slide > .slide-content {
 	  			width: 200px;
@@ -843,22 +746,7 @@ export default {
 	  			border-radius: 50%;
 	  			left: -300px;
           position: absolute;
-          @media screen and (max-width:575px){
-            width: 150px;
-            height: 150px;
-            left: -250px;
-          }
-          @media screen and (min-width:320px) and (max-width: 480px){
-            width: 100px;
-            height: 100px;
-            left: -150px;
-          }
 	  		}
-        /deep/ .blueimp-gallery>.next, /deep/ .blueimp-gallery>.prev {
-          @media screen and (max-width:575px){
-            display: none;
-          }
-        }
 	  	}
 	  	.info-container {
 	  		flex: 1;
@@ -867,22 +755,12 @@ export default {
 	  		align-items: center;
         justify-content: space-between;
         margin-left: 30px;
-        @media screen and (max-width:841px){
-          margin-left: 0;
-        }
 	  		.info-title {
 	  			text-align: center;
 	  			font-size: 26px;
 	  			color: rgba(0,0,0,1);
           text-shadow: 2px 2px 3px rgba(255,255,255,1);
 	  			margin:55px 0 0 15px;
-          @media screen and (max-width:841px){
-            margin: 25px 0 15px;
-          }
-          @media screen and (min-width:320px) and (max-width: 480px){
-            font-size: 22px;
-            margin-top: 15px;
-          }
 	  		}
         .info-cta {
           margin-bottom: 80px;
@@ -890,9 +768,6 @@ export default {
           background-color: rgba(36, 42, 53, 0.7);
           a {
             color: #fff;
-          }
-          @media screen and (max-width:841px){
-            margin-bottom: 20px;
           }
           &:hover {
             border: 1px solid rgba(123, 79, 173, 1);
@@ -910,15 +785,9 @@ export default {
     position: relative;
     z-index: 1;
     background-color: white;
-      @media screen and (min-width:320px) and (max-width: 480px){
-        padding: 30px 0;
-      }
     .contact-content {
       display: flex;
       align-items: center;
-      @media screen and (max-width:767px){
-        flex-direction: column;
-      }
       .contact-info-wrapper {
         flex: 1;
         text-align: left;
@@ -926,16 +795,10 @@ export default {
         width: 100%;
         font-size: 19px;
         font-family: 'Muli', sans-serif;
-        @media screen and (min-width:320px) and (max-width: 480px){
-          padding-left: 0;
-        }
         .contact-info-item {
           margin-bottom: 15px;
           display: flex;
           justify-content: flex-start;
-          @media screen and (min-width:320px) and (max-width: 480px){
-            justify-content: center;
-          }
           &:last-child {
             margin-bottom: 0;
            }
@@ -969,16 +832,6 @@ export default {
       flex: 1;
       width: 100%;
       display: flex;
-      @media screen and (max-width:767px){
-        align-items: center;
-        justify-content: center;
-        margin-top: 20px;
-      }
-      @media screen and (min-width:320px) and (max-width: 480px){
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-      }
       .input-contact {
         width: 50%;
         background: #e2e2e2;
@@ -989,10 +842,6 @@ export default {
         border: 1px solid transparent;
         &::placeholder {
           font-style: italic;
-        }
-        @media screen and (min-width:320px) and (max-width: 480px){
-          width: 90%;
-          order: 1;
         }
         &.input-error {
           border: 1px solid red;
@@ -1010,10 +859,6 @@ export default {
         transition: background-color 0.4s ease 0s;
         &:hover {
           background-color: rgba(36, 42, 53, 0.6);
-        }
-        @media screen and (min-width:320px) and (max-width: 480px){
-          order: 3;
-          margin-top: 10px;
         }
       }
       .error {
@@ -1037,6 +882,54 @@ export default {
   }
 }
 
+@media screen and (min-width:1200px){
+  .home-landing {
+    .main-img {
+      .title-wrapper {
+        .main-title {
+          font-size: 5vw;
+        }
+        .main-text {
+          font-size: 4vw;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width:1024px){
+  .home-landing {
+    .main-img {
+      align-items: center;
+      padding-right: 0;
+    }
+    .team-section {
+      .team-content {
+        padding: 0 15px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width:841px) {
+  .home-landing {
+    .team-section {
+      .team-content {
+        flex-direction: column;
+        .info-container {
+          margin-left: 0;
+          .info-title {
+            margin: 25px 0 15px;
+          }
+          .info-cta {
+            margin-bottom: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 768px) {
   .home-landing {
     .home-header {
@@ -1055,8 +948,8 @@ export default {
         transition: transform 0.5s;
         opacity: 0;
         .menu-item {
-          margin-top: 20px;
-          margin-left: 0;
+            margin-top: 20px;
+            margin-left: 0;
         }
         .menu-item.auth-block a{
           color: #49D1CB;
@@ -1068,6 +961,164 @@ export default {
       }
       .home-menu--close {
         opacity: 1;
+      }
+    }
+    .main-img {
+      height: 600px;
+    }
+    .contact-section {
+      .contact-content {
+        flex-direction: column;
+        .contact-input-wrapper {
+          align-items: center;
+          justify-content: center;
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .home-landing {
+    .top-products-section {
+      article {
+        display: block;
+        figure {
+          width: 100%;
+        }
+        section {
+          width: 100%;
+        }
+        figure:nth-of-type(1),
+        section:nth-of-type(1) {
+          width: 100%;
+        }
+        section::before {
+          background-image: none;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width:575px){
+  .home-landing {
+    .team-section {
+      .team-content {
+        .slider-container {
+          /deep/ .description-title {
+            font-size: 16px;
+            margin-bottom: 10px;
+          }
+           /deep/ .description-text {
+            font-size: 12px;
+          }
+          /deep/ .blueimp-gallery > .slides > .slide > .slide-content {
+            width: 150px;
+            height: 150px;
+            left: -250px;
+          }
+          /deep/ .blueimp-gallery>.next, /deep/ .blueimp-gallery>.prev {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and (min-width:320px) and (max-width: 480px){
+  .home-landing {
+    .home-header {
+      padding: 0 30px;
+      .home-menu {
+         padding: 70px 30px 15px 25px;
+      }
+    }
+    .main-img {
+      padding-top: 0;
+      justify-content: center;
+      height: 400px;
+      background-position: center;
+      .title-wrapper {
+        padding-top: 25px;
+        .main-title {
+          font-size: 40px;
+        }
+        .main-text {
+          font-size: 28px;
+        }
+      }
+    }
+    .section-title {
+      margin: 0 auto 20px;
+    }
+    .section-subtitle {
+      padding: 0 10px;
+    }
+    .rubrics-section {
+      padding-top: 30px;
+       .slider-wrapper {
+          margin-bottom: 40px;
+       }
+    }
+    .top-products-section {
+      padding-top: 30px;
+      article {
+        figure {
+          height: 50vh;
+        }
+        p {
+          display: none;
+        }
+        section {
+          height: 50vh;
+        }
+        figure:nth-of-type(1),
+        section:nth-of-type(1) {
+          margin: 0;
+        }
+      }
+    }
+    .team-section {
+      padding-top: 30px;
+      .team-content {
+        .slider-container {
+           /deep/ .description-text {
+            display: none;
+          }
+          /deep/ .blueimp-gallery > .slides > .slide > .slide-content {
+            width: 100px;
+            height: 100px;
+            left: -150px;
+          }
+        }
+      }
+    }
+    .contact-section {
+      padding: 30px 0;
+      .contact-content {
+        .contact-info-wrapper {
+          padding-left: 0;
+          .contact-info-item {
+            justify-content: center;
+          }
+        }
+        .contact-input-wrapper {
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          .input-contact {
+            width: 90%;
+            order: 1;
+          }
+          .button-contact {
+            order: 3;
+            margin-top: 10px;
+          }
+        }
       }
     }
   }
