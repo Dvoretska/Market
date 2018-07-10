@@ -9,12 +9,12 @@
         <div class="nav-logo-link">
           <img src="../assets/imageedit_13_2259265709.png" class="nav-logo-img">
         </div>
-        <p class="first-parag">KEA</p>
-        <p class="second-parag">MARKET</p>
+        <p class="first-logo-word">KEA</p>
+        <p class="second-logo-word">MARKET</p>
       </router-link>
 			<ul class="home-menu" :class="{'home-menu--open': showMenu, 'home-menu--close': !showMenu}">
 				<li class="menu-item">
-          <a href="#" class="menu-item-link" v-scroll-to="'.main-img, 0'"><translate>HOME</translate></a>
+          <a href="#" class="menu-item-link" v-scroll-to="'.heading-section, 0'"><translate>HOME</translate></a>
         </li>
 				<li class="menu-item">
           <a href="#" class="menu-item-link" v-scroll-to="'.rubrics-section, 0'"><translate>SHOP</translate></a>
@@ -44,10 +44,10 @@
 				</li>
 			</ul>
 		</header>
-  		<section class="main-img">
-  			<div class="title-wrapper">
-  				<h1 class="main-title">Buy & Sell Easy</h1>
-  				<p class="main-text">With Kea Market</p>
+  		<section class="heading-section">
+  			<div class="heading-title-wrapper">
+  				<h1 class="heading-title">Buy & Sell Easy</h1>
+  				<p class="heading-text">With Kea Market</p>
   				<router-link :to="{ name: 'ads-list'}" class="cta"><translate>START NOW</translate></router-link>
   			</div>
   		</section>
@@ -333,17 +333,17 @@ export default {
           background-color: transparent;
         }
       }
-      .first-parag, .second-parag {
+      .first-logo-word, .second-logo-word {
         position: absolute;
         font-size: 11px;
         color: white;
         font-weight: bold;
       }
-      .first-parag {
+      .first-logo-word {
         top: 20px;
         left: 35px;
       }
-      .second-parag {
+      .second-logo-word {
         top: 30px;
         left: 24px;
       }
@@ -435,7 +435,7 @@ export default {
 			border-color: transparent;
 		}
 	}
-	.main-img {
+	.heading-section {
 		background-image: url('../assets/Online-Market-Place.jpg');
 		background-repeat: no-repeat;
 		background-position: auto 700px;
@@ -449,14 +449,14 @@ export default {
 		padding-top: 250px;
 		align-items: flex-end;
     position: relative;
-		.title-wrapper {
+		.heading-title-wrapper {
       position: -webkit-sticky;
       position: sticky;
       top: 70px;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-			.main-title {
+			.heading-title {
         text-align: center;
 				font-size: 48px;
 				line-height: 1.3em;
@@ -466,7 +466,7 @@ export default {
         letter-spacing: 2px;
         margin-bottom: 10px;
 			}
-			.main-text {
+			.heading-text {
 				font-size: 38px;
 				line-height: 1.3em;
 				color: #fff;
@@ -476,7 +476,7 @@ export default {
 			}
 		}
 	}
-.section-title {
+  .section-title {
     font-size: 34px;
     color: #8c40b8;
     margin: 0 auto 20px;
@@ -884,12 +884,12 @@ export default {
 
 @media screen and (min-width:1200px){
   .home-landing {
-    .main-img {
-      .title-wrapper {
-        .main-title {
+    .heading-section {
+      .heading-title-wrapper {
+        .heading-title {
           font-size: 5vw;
         }
-        .main-text {
+        .heading-text {
           font-size: 4vw;
         }
       }
@@ -899,7 +899,7 @@ export default {
 
 @media screen and (max-width:1024px){
   .home-landing {
-    .main-img {
+    .heading-section {
       align-items: center;
       padding-right: 0;
     }
@@ -963,7 +963,7 @@ export default {
         opacity: 1;
       }
     }
-    .main-img {
+    .heading-section {
       height: 600px;
     }
     .contact-section {
@@ -1037,17 +1037,17 @@ export default {
          padding: 70px 30px 15px 25px;
       }
     }
-    .main-img {
+    .heading-section {
       padding-top: 0;
       justify-content: center;
       height: 400px;
       background-position: center;
-      .title-wrapper {
+      .heading-title-wrapper {
         padding-top: 25px;
-        .main-title {
+        .heading-title {
           font-size: 40px;
         }
-        .main-text {
+        .heading-text {
           font-size: 28px;
         }
       }
