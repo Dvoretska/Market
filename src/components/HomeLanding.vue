@@ -507,7 +507,7 @@ export default {
      }
   }
   .section-subtitle {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans', Arial, sans-serif;
     font-size: 14px;
     text-align: center;
     max-width: 600px;

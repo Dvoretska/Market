@@ -31,7 +31,7 @@ export default {
 
 <style scoped lang="scss">
   .auth-page-wrapper {
-    font-family: 'Lato', Arial, sans-serif;
+    font-family: 'Open Sans', Arial, sans-serif;
     background: #fcfcfc;
     box-shadow: inset 0 20px 50px -20px rgba(0,0,0,.06);
     display: flex;
@@ -113,7 +113,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0.7;
+    opacity: 0.8;
     margin-top: 10px;
     .icon-back-home {
       width: 15px;
@@ -122,31 +122,31 @@ export default {
     }
   }
   @media (max-width: 1024px) {
-  .auth-box {
-    width: 90%;
-  }
-  .auth-button {
-    margin-bottom: 15px;
-    width: 20%;
-  }
+    .auth-box {
+      width: 90%;
+    }
+    .auth-button {
+      margin-bottom: 15px;
+      width: 20%;
+    }
   }
   @media (max-width: 769px) {
-  .auth-box {
-    width: 90%;
-    margin-top: 10vh;
-  }
-  .flexbox-container {
-    flex-direction: column;
-  }
-  .auth-button {
-    margin-bottom: 15px;
-    width: 50%;
-  }
-  .auth-title::before {
-    width: 70%;
-  }
-  .auth-page-wrapper {
-    align-items: flex-start;
-  }
+    .auth-box {
+      width: 90%;
+      margin-top: 10vh;
+    }
+    .flexbox-container {
+      flex-direction: column;
+    }
+    .auth-button {
+      margin-bottom: 15px;
+      width: 50%;
+    }
+    .auth-title::before {
+      width: 70%;
+    }
+    .auth-page-wrapper {
+      align-items: flex-start;
+    }
   }
 </style>
