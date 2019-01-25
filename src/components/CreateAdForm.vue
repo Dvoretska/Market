@@ -55,7 +55,7 @@
 
           <div class="wrapper-file-listing">
             <div v-for="(file, key) in files" class="file-listing" @click="makeMainImg(key)">
-                  <img class="preview" v-bind:ref="'preview'+ parseInt(key)" :class="{'highlight-main-img': key == selectedImgKey}"/>
+                  <img class="preview" :ref="'preview'+ parseInt(key)" :class="{'highlight-main-img': key == selectedImgKey}"/>
                   <div class="remove-container">
                     <a class="remove" v-on:click.stop.prevent="removeFile(key)" href="#">
                       <img src="../assets/icon-close.png" alt="" class="icon-close">

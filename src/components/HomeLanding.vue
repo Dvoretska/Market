@@ -77,8 +77,7 @@
         </div>
       </section>
       <section class="top-products-section">
-        <h5 class="section-title"><translate>Top Products</translate></h5>
-        <p class="section-subtitle"><translate>Our most popular products based on sales.</translate></p>
+        <h5 class="section-title"><translate>VIP Ads</translate></h5>
         <article>
           <figure>
             <img src='../assets/notbookX.jpg' alt />

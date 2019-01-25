@@ -120,23 +120,25 @@ export default {
     }
   },
   mounted () {
-    if(this.$localStorage.get('token') && this.$localStorage.get('slug')) {
+    if(this.$store.getters.isAuthenticated && this.$localStorage.get('slug')) {
       for(let slug of JSON.parse(this.$localStorage.get('slug'))) {
         this.$store.dispatch('SAVE_TO_WISH_LIST', slug)
       }
       this.$localStorage.remove('slug')
     } else {
-      const slugs = JSON.parse(this.$localStorage.get('slug'))
+      const slugs = JSON.parse(this.$localStorage.get('slug'));
       if (slugs) {
         this.slugs = slugs
       }
     }
-    this.$store.dispatch('GET_MY_WISH_LIST_SLUGS')
+    if(this.$store.getters.isAuthenticated) {
+			this.$store.dispatch('GET_MY_WISH_LIST_SLUGS')
+		}
 	},
   methods: {
   	addProductToWishList (slug) {
-      this.starSelected = slug
-      if(this.$localStorage.get('token')) {
+      this.starSelected = slug;
+      if(this.$store.getters.isAuthenticated) {
         this.$store.dispatch('SAVE_TO_WISH_LIST', slug)
       } else {
         this.slugs.push(slug);
@@ -146,12 +148,12 @@ export default {
       }
   	},
     deleteProductFromWishList (slug) {
-      if(this.$localStorage.get('token')) {
+      if(this.$store.getters.isAuthenticated) {
         this.$store.dispatch('DELETE_FROM_WISH_LIST_SLUGS', slug)
       } else {
         let index = JSON.parse(this.$localStorage.get('slug')).indexOf(slug);
         if(JSON.parse(this.$localStorage.get('slug'))) {
-          this.slugs.splice(index, 1)
+          this.slugs.splice(index, 1);
           this.$localStorage.set('slug', JSON.stringify(this.slugs));
         }
       }

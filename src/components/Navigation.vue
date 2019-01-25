@@ -25,7 +25,6 @@
       </modal>
     </div>
 
-
     <router-link :to="{ name: 'login'}" class="auth-button login-button" v-if="!isLogin" v-bind:class="{ 'active-link': page == 'login'}">
       <translate>Login</translate>
     </router-link>
@@ -127,7 +126,7 @@ export default {
   },
   computed: {
     isLogin () {
-      return localStorage.getItem('token')
+      return this.$store.getters.isAuthenticated
     },
     username () {
       return this.$store.getters.getUserDetails.username

@@ -1,4 +1,5 @@
 export default {
+  isAuthenticated: state => !!state.authState.token,
   getSuccess: state => {
     return state.responseState.success
   },
@@ -7,6 +8,9 @@ export default {
   },
   getLoading: state => {
     return state.responseState.loading
+  },
+  getAvatarLoading: state => {
+    return state.avatarLoading
   },
   getLoginState: state => {
     return state.loginState

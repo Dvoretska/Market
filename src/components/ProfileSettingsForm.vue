@@ -236,7 +236,6 @@ export default {
   }
   /deep/ .vue-toast-manager_container.__bottom {
     bottom: 50%;
-
   }
 	.profile-settings-container {
 		margin: 5px;

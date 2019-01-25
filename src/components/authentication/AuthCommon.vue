@@ -12,7 +12,7 @@ export default {
     iconLockPath () {
       return require('@/assets/lock.svg')
     },
-    iconMeilPath () {
+    iconMailPath () {
       return require('@/assets/meil.svg')
     },
     nonFieldErrors () {

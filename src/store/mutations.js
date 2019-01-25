@@ -1,4 +1,7 @@
 export default {
+  auth (state) {
+    state.authState.token = localStorage.getItem('token')
+  },
   success (state, data) {
     state.responseState.success = data
   },
@@ -27,8 +30,12 @@ export default {
       last_name: data.last_name,
       country: data.country,
       city: data.city,
-      phone: data.phone
+      phone: data.phone,
+      avatar: data.avatar
     }
+  },
+  avatarLoadingMutate (state, data) {
+    state.avatarLoading = data
   },
   clearUserState (state) {
     state.userDetailsState = {}

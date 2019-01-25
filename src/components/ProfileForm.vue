@@ -2,14 +2,25 @@
   <div class="container">
     <div class="wrapper">
       <div class="profile-info-container">
-        <div class="profile-image"></div>
+        <my-upload field="avatar"
+            @crop-success="cropSuccess"
+            v-model="show"
+            :width="100"
+            :height="100"
+            noSquare=true
+            langType='en'></my-upload>
+        <div class="avatar-wrapper">
+          <a class="change-avatar" @click="toggleShow">change</a>
+          <i class="fa fa-spinner fa-spin fa-lg fa-fw" v-if="avatarLoading"></i>
+          <div class="default-avatar" v-if="!avatar"></div>
+          <img class="avatar" :src="avatar" v-if="!avatarLoading && avatar">
+        </div>
         <div class="user-info">
           <div class="profile-username">
             <span v-if="firstName || lastName">{{ firstName }} {{ lastName }}</span>
             <span v-else>{{ username }}</span>
           </div>
           <div v-if="country || city">
-            <span>From:</span>
             <span>{{ country }}<span v-if="country && city">, </span>{{ city }}</span>
           </div>
         </div>
@@ -41,6 +52,7 @@
       <profile-ads-form  v-if="$route.path == '/profile'"></profile-ads-form>
       <router-view v-if="this.$store.getters.getUserDetails.email"></router-view>
     </div>
+    <vue-toast ref='toast'></vue-toast>
   </div>
 </template>
 
@@ -49,25 +61,56 @@ import profileAdsForm from '@/components/ProfileAdsForm'
 import profileMessageForm from '@/components/ProfileMessageForm'
 import profileSelectedAds from '@/components/ProfileSelectedAds'
 import profileSettingsForm from '@/components/ProfileSettingsForm'
+import myUpload from 'vue-image-crop-upload';
+import 'vue-toast/dist/vue-toast.min.css'
+import VueToast from 'vue-toast'
 
 export default {
   components: {
     profileAdsForm,
     profileMessageForm,
     profileSelectedAds,
-    profileSettingsForm
+    profileSettingsForm,
+    'my-upload': myUpload,
+    VueToast
   },
   props: {
     page: String
   },
+  data () {
+    return {
+      show: false,
+      langType: 'en',
+      headers: {
+        smail: '*_~'
+      },
+      imgDataUrl: ''
+    }
+  },
   methods: {
     profileChange () {
       this.$modal.show('profileChange')
+    },
+    toggleShow() {
+      this.show = !this.show;
+    },
+    cropSuccess(imgDataUrl){
+      this.imgDataUrl = imgDataUrl;
+      this.$store.dispatch('CHANGE_USER_AVATAR', {
+        avatar: this.imgDataUrl,
+        callback: this.$refs.toast.showToast
+      })
     }
   },
   computed: {
     currentPath () {
       return '/profile/'
+    },
+    avatarLoading () {
+      return this.$store.getters.getAvatarLoading
+    },
+    avatar () {
+      return this.$store.getters.getUserDetails.avatar
     },
     firstName () {
       return this.$store.getters.getUserDetails.first_name
@@ -89,12 +132,96 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  .default-avatar {
+    background-image: url('../assets/default-profile-picture.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+    width: 60%;
+    height: auto;
+    padding-top: 60%;
+    margin: 5px auto 10px;
+    background-color: white;
+}
+  .avatar {
+    border-radius: 50%;
+  }
+  i {
+    top: 25px;
+    left: 50px;
+    position: absolute;
+  }
+  .avatar-wrapper {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    &:before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, .4);
+      border-radius: 50%;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      display: none;
+    }
+  }
+  .avatar-wrapper:hover:before {
+    display: block;
+  }
+  .avatar-wrapper:hover .change-avatar {
+    display: inline-block;
+  }
+  .change-avatar {
+    display: none;
+    position: absolute;
+    left: 50px;
+    top: 50px;
+    transform: translate(-50%, -50%);
+    color: white;
+    z-index: 2;
+  }
+  /deep/ .checked-mark {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    color: limegreen;
+    border: 1px solid green;
+    margin-left: 10px;
+  }
+  /deep/ .vue-toast_message > span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 100px;
+    background: rgba(0, 0, 0, .7);
+    transform: translate(-50%, -50%);
+  }
+  /deep/ .vue-toast-manager_container.__left {
+    left: 50%;
+  }
+  /deep/ .vue-toast-manager_container.__bottom {
+    bottom: 50%;
+  }
+  .profile-info-container {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 40px;
+    position: relative;
+  }
   .content-box {
     border: solid 1px #D7D7D7;
     margin-bottom: 10px;
   }
   .container {
-    margin: 55px auto 0;
+    margin: 85px auto 0;
     width: 745px;
     min-height: calc(100vh - 55px - 125px);
     @media screen and (max-width:768px){
@@ -134,28 +261,12 @@ export default {
   }
   .profile-username {
     color: #7957d5;
-    margin: 20px 20px 20px 0;
+    padding-bottom: 10px;
     font: 700 20px Futura, "Trebuchet MS", Arial, sans-serif;
-    @media screen and (min-width:320px) and (max-width: 480px){
-      margin: 20px 20px 10px 0;
-    }
-  }
-  div.profile-image {
-    background: url('../assets/w128h1281385326502profle.png') center center no-repeat;
-    background-size: cover;
-    border-radius: 50%;
-    height: auto;
-    width: 150px;
-    margin: 20px;
-    padding-bottom: 150px;
-    align-self: center;
-  }
-  .profile-info-container {
-    display: flex;
-    align-items: baseline;
   }
   .user-info {
     display: flex;
     flex-direction: column;
+    margin-left: 20px;
   }
 </style>

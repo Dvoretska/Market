@@ -86,15 +86,15 @@ export default {
   },
   methods: {
   	loadMore () {
-  	  this.page ++
+  	  this.page ++;
       this.$store.dispatch('GET_MY_ADS', {...this.$route.query, page: this.page})
     },
   	show (slug) {
-      this.$modal.show('delete-ad')
+      this.$modal.show('delete-ad');
       this.adSlug = slug
     },
     hide () {
-      this.$modal.hide('delete-ad')
+      this.$modal.hide('delete-ad');
     },
   	openAdDetails (slug) {
     	this.$router.push({ name: 'adDetails', params: { slug }})
@@ -103,7 +103,7 @@ export default {
       this.$router.push({ name: 'edit', params: { slug }})
     },
     deleteAd (slug) {
-    	this.$store.dispatch('DELETE_AD', slug)
+    	this.$store.dispatch('DELETE_AD', slug);
     	this.$modal.hide('delete-ad')
 
     },
@@ -184,17 +184,17 @@ export default {
 		cursor: pointer;
 		display: flex;
 		align-items: center;
-		background-color: rgba(121, 87, 213, .5);
-		padding: 4px 14px;
+		color: rgba(121, 87, 213, .8);
+		border: 1px solid rgba(121, 87, 213, .5);
+		padding: 2px 7px;
 		margin: 0.3em;
 		font-weight: bold;
-		font-size: 12px;
+		font-size: 10px;
 		line-height: 14px;
 		text-decoration: none;
-		color: #fff;
-		border-radius: .2em;
+		border-radius: 5px;
 		&:hover {
-			box-shadow: 0 0 2px 1px rgba(0, 0, 0, .7);
+			box-shadow: 0 0 1px 1px rgba(0, 0, 0, .3);
 		}
 		.icon-ad-actions {
 			margin-right: 10px;
@@ -206,13 +206,13 @@ export default {
 		display: flex;
 		font-size: 16px;
 		border: 1px solid #D7D7D7;
-		padding: 10px;
+		padding: 5px;
 		margin: 3px;
 	}
 	.product-img-wrapper {
 		cursor: pointer;
-		height: 100px;
-		width: 100px;
+		height: 80px;
+		width: 80px;
 		position: relative;
 		display: flex;
 		justify-content: center;

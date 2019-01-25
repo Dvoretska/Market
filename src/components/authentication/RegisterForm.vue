@@ -5,7 +5,7 @@
   	 	<div class="auth-form-container">
   	 		<p class="is-danger" v-if="nonFieldErrors">{{ nonFieldErrors }}</p>
   			<input-style
-          :iconPath="iconMeilPath"
+          :iconPath="iconMailPath"
           :placeholder="translations().email"
           :type="'email'"
           @inputVal="setEmail"
