@@ -34,7 +34,7 @@
         </b-field>
 
         <b-field horizontal :label="getDescription()" class="align-left">
-            <vue-editor v-model="message" :editorToolbar="customToolbar"></vue-editor>
+            <textarea name="" id="" cols="30" rows="10" v-model="message" class="message-field"></textarea>
             <div class="error" v-if="getErrors && getErrors.message">{{ getErrors.message[0] }}</div>
         </b-field>
 
@@ -90,7 +90,7 @@
                 </div>
                 <div class="contact-info-field">
                     <span>Location: </span>
-                  <input name="location"
+                    <input name="location"
                          v-model="location"
                          class="input">
                 </div>
@@ -111,13 +111,11 @@
 
 <script>
 import modalChooseCategory from '@/components/ModalChooseCategory'
-import { VueEditor } from 'vue2-editor'
 import t from 'typy';
 
 export default {
   components: {
-    modalChooseCategory,
-    VueEditor
+    modalChooseCategory
   },
   props: {
     slug: String
@@ -135,13 +133,7 @@ export default {
       warning: false,
       rootCategory: false,
       selectedImgKey: 0,
-      subjectMaxLength: 70,
-      customToolbar: [
-        ['bold', 'italic', 'underline'],
-        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-        [{ 'font': [] }],
-        [{ 'align': [] }]
-      ]
+      subjectMaxLength: 70
     }
   },
   created () {
@@ -312,15 +304,22 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  /deep/ .ql-container {
-    height: auto !important;
-  }
   .section-ads {
     margin-top: 70px;
     width: 550px;
     outline: none;
     margin-left: auto;
     margin-right: auto;
+    .message-field {
+      padding-bottom: calc(0.375em - 1px);
+      padding-left: calc(0.625em - 1px);
+      padding-right: calc(0.625em - 1px);
+      padding-top: calc(0.375em - 1px);
+      box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
+      border-radius: 3px;
+      border: 1px solid transparent;
+      border-color: #dbdbdb;
+    }
     .error {
       color: red;
       font-size: 12px;
@@ -505,6 +504,11 @@ export default {
     /deep/ .input:focus, .input:active,
     .textarea:focus,
     .textarea:active {
+      border-color: #7957d5;
+      box-shadow: 0 0 0 0.125em rgba(121, 87, 213, 0.25);
+    }
+    textarea:focus,
+    textarea:active {
       border-color: #7957d5;
       box-shadow: 0 0 0 0.125em rgba(121, 87, 213, 0.25);
     }
