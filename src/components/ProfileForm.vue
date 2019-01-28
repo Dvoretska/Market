@@ -138,11 +138,8 @@ export default {
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 50%;
-    width: 60%;
-    height: auto;
-    padding-top: 60%;
-    margin: 5px auto 10px;
-    background-color: white;
+    width: 100px;
+    height: 100px;
 }
   .avatar {
     border-radius: 50%;
