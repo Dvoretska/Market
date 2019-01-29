@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="create-ad-container">
        <navigation :page="'create-ad'"></navigation>
        <create-ad-form></create-ad-form>
        <footer-bar></footer-bar>
@@ -19,3 +19,9 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+  .create-ad-container {
+    overflow-x: auto;
+  }
+</style>

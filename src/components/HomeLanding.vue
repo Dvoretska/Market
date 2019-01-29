@@ -28,10 +28,10 @@
 				<li class="menu-item">
           <a href="#" class="menu-item-link" v-scroll-to="'.contact-section, 0'"><translate>CONTACT</translate></a>
         </li>
-        <li class="menu-item auth-block" v-if="showAuthInMenu">
+        <li class="menu-item auth-block" v-if="showAuthInMenu && !isAuthenticated">
 					<router-link :to="{ name: 'login'}" class="menu-item-link"><translate>LOGIN</translate></router-link>
 				</li>
-        <li class="menu-item auth-block" v-if="showAuthInMenu">
+        <li class="menu-item auth-block" v-if="showAuthInMenu  && !isAuthenticated">
 					<router-link :to="{ name: 'register'}" class="menu-item-link"><translate>SIGN UP</translate></router-link>
 				</li>
        </ul>
@@ -46,8 +46,8 @@
 		</header>
   		<section class="heading-section">
   			<div class="heading-title-wrapper">
-  				<h1 class="heading-title">Buy & Sell Easy</h1>
-  				<p class="heading-text">With Kea Market</p>
+  				<h1 class="heading-title"><translate>Buy & Sell Easy</translate></h1>
+  				<p class="heading-text"><translate>With Kea Market</translate></p>
   				<router-link :to="{ name: 'ads-list'}" class="cta"><translate>START NOW</translate></router-link>
   			</div>
   		</section>
@@ -132,7 +132,8 @@
       </section>
       <section class="team-section">
       	<h5 class="section-title"><translate>Our Team</translate></h5>
-        <p class="section-subtitle"><translate>We are team of open and passionate people that love to launch new initiatives. We make innovative products that people love and adopt in their everyday work. We're seeking new opportunities and another software developers for exciting and challenging work.</translate></p>
+        <p class="section-subtitle"><translate>We are team of open and passionate people that love to launch new initiatives.
+          We make products that people love and adopt in their everyday work. We're seeking new opportunities and another software developers for exciting and challenging work.</translate></p>
       	<div class="team-content">
   	    	<div class="slider-container">
   				    <gallery :images="images" :index="null" @close="index=null" :carousel="true"></gallery>
@@ -302,6 +303,9 @@ export default {
 
 <style scoped lang="scss">
 .home-landing {
+  span {
+    font-weight: normal;
+  }
 	.home-header {
 		position: fixed;
 		top: 0;
@@ -467,6 +471,7 @@ export default {
         font-weight: 600;
         letter-spacing: 2px;
         margin-bottom: 10px;
+        padding: 0 10px;
 			}
 			.heading-text {
 				font-size: 38px;

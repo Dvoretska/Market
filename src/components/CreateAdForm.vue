@@ -67,14 +67,14 @@
         <b-field horizontal :label="getPContactInformation()" class="align-left">
             <div  class="contact-info-container">
                 <div class="contact-info-field">
-                    <span>Name: </span>
+                    <span><translate>Name: </translate></span>
                     <input name="name"
                            class="input"
                            v-model="firstName"
                            disabled="disabled">
                 </div>
                 <div class="contact-info-field">
-                    <span>Email: </span>
+                    <span><translate>Email: </translate></span>
                     <input name="email"
                            type="email"
                            v-model="email"
@@ -82,14 +82,14 @@
                            class="input">
                 </div>
                 <div class="contact-info-field">
-                    <span>Phone: </span>
+                    <span><translate>Phone: </translate></span>
                     <phone-input
                       :phone="phone"
                       class="vue-phone-input">
                     </phone-input>
                 </div>
                 <div class="contact-info-field">
-                    <span>Location: </span>
+                    <span><translate>Location: </translate></span>
                     <input name="location"
                          v-model="location"
                          class="input">
@@ -323,14 +323,10 @@ export default {
     margin-left: auto;
     margin-right: auto;
     .message-field {
-      padding-bottom: calc(0.375em - 1px);
-      padding-left: calc(0.625em - 1px);
-      padding-right: calc(0.625em - 1px);
-      padding-top: calc(0.375em - 1px);
+      padding: calc(0.625em - 1px);
       box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
       border-radius: 3px;
-      border: 1px solid transparent;
-      border-color: #dbdbdb;
+      border: 1px solid #dbdbdb;
     }
     .error {
       color: red;
@@ -483,10 +479,10 @@ export default {
         display: inline-block;
     }
     /deep/ .intl-phone-input {
-        width: 420px;
+        width: 400px;
     }
     .contact-info-container /deep/ input {
-        width: 420px;
+        width: 400px;
         height: 30px;
         border: 1px solid rgba(128,128,128,.5);
     }
@@ -531,6 +527,27 @@ export default {
     }
     /deep/ .help.counter {
       display: none;
+    }
+  }
+  @media screen and (max-width:575px){
+    .section-ads {
+      padding: 0 20px;
+      .contact-info-field {
+        display: flex;
+        flex-direction: column;
+      }
+      .field-topic {
+        width: 100%;
+      }
+      .field-topic {
+        width: 100%;
+      }
+      .contact-info-container /deep/ input {
+        width: 100%;
+      }
+      /deep/ .intl-phone-input {
+        width: 100%;
+      }
     }
   }
 </style>

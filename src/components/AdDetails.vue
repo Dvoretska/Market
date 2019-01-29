@@ -200,7 +200,6 @@ export default {
 			width: 75%;
 			border: 1px solid #ccc;
 			outline: 1px solid #fff;
-			min-height: 60px;
 			background-color: rgba(238, 238, 238, .3);
 			min-height: 150px;
 			.loading {
@@ -312,9 +311,10 @@ export default {
 				justify-content: center;
 				align-items: center;
 				img {
-          width: 100px;
-					height: 100px;
 					border-radius: 50%;
+          width: 100px;
+          height: 100px;
+          margin-bottom: 10px;
 				}
 				.owner-avatar {
 					background-image: url('../assets/default-profile-picture.png');
@@ -324,6 +324,7 @@ export default {
 					border-radius: 50%;
 					width: 100px;
 					height: 100px;
+          margin-bottom: 10px;
 				}
 				.owner-name {
 					color: #7b4fad;

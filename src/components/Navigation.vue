@@ -35,12 +35,12 @@
 
     <div class="nav-user-info" v-if="isLogin">
       <router-link :to="{ name: 'profile'}" v-if="isLogin && (username || name)" class="user-info-wrapper">
-        <svg style="width:24px;height:24px" viewBox="0 0 24 24" class="user-icon">
+        <svg  viewBox="0 0 24 24" class="user-icon">
           <path fill="#000000" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
         </svg>
         <span class="username" v-if="name">{{ name }}</span>
         <span class="username" v-else>{{ username }}</span>
-        <i class="material-icons">&#xE5C5;</i>
+        <i class="material-icons" v-if="!isMobile">&#xE5C5;</i>
       </router-link>
       <ul class="submenu">
         <li class="menu-item-wrapper">
@@ -54,7 +54,7 @@
             <img src="@/assets/quill3.svg" alt="" class="menu-icon">
             <translate>Messages</translate>
           </router-link>
-        </li>        
+        </li>
         <li class="menu-item-wrapper">
           <router-link to="/profile/selected-ads">
             <img src="@/assets/quill3.svg" alt="" class="menu-icon">
@@ -76,7 +76,11 @@
       </ul>
     </div>
 
-    <router-link :to="{ name: 'create-ad'}" class="button-create-ad" v-if="isLogin" v-bind:class="{ 'active-link': page == 'create-ad' }">
+    <router-link :to="{ name: 'create-ad'}" v-if="isLogin && isMobile">
+      <img src="@/assets/plus.svg" alt="" class="plus-icon">
+    </router-link>
+
+    <router-link :to="{ name: 'create-ad'}" class="button-create-ad" v-if="isLogin && !isMobile" v-bind:class="{ 'active-link': page == 'create-ad' }">
       <translate>+ Create an ad</translate>
     </router-link>
 
@@ -87,7 +91,8 @@
 export default {
   data () {
     return {
-      searchValue: ''
+      searchValue: '',
+      isMobile: false
     }
   },
   props: {
@@ -97,7 +102,7 @@ export default {
     this.searchValue = this.$route.query.search || ''
   },
   mounted () {
-    window.addEventListener('resize', this.handleWindowResize)
+    window.addEventListener('resize', this.handleWindowResize);
   },
   methods: {
     searchItem (searchValue) {
@@ -105,7 +110,12 @@ export default {
         this.$store.dispatch('GET_FILTERED_AD_LIST', {...this.$route.query, search: searchValue})
       }
     },
-    handleWindowResize (event) { 
+    handleWindowResize (event) {
+      if(event.currentTarget.innerWidth < 480) {
+        this.isMobile = true
+      } else {
+        this.isMobile = false
+      }
       if(event.currentTarget.innerWidth > 701) {
         this.$modal.hide('search-mobile')
       }
@@ -151,9 +161,6 @@ export default {
     box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);
     display: flex;
     align-items: center;
-    @media screen and (min-width:320px) and (max-width: 480px){
-      padding: 0 25px;
-    }
     .logo-wrapper {
       position: relative;
       height: 55px;
@@ -182,7 +189,7 @@ export default {
       .first-parag {
         top: 20px;
         left: 35px;
-      }      
+      }
       .second-parag {
         top: 30px;
         left: 24px;
@@ -302,6 +309,8 @@ export default {
       }
       .user-icon {
         vertical-align: middle;
+        width: 24px;
+        height: 24px;
       }
       .username {
         display: inline-block;
@@ -365,6 +374,11 @@ export default {
         }
       }
     }
+    .plus-icon {
+      width: 30px;
+      height: 30px;
+      vertical-align: middle;
+    }
     .button-create-ad {
       margin-left: 15px;
       text-transform: uppercase;
@@ -388,21 +402,7 @@ export default {
       }
     }
   }
-  @media screen and (min-width:320px) and (max-width: 480px){
-    .nav-bar {
-      .item-all-ads {
-        display: none;
-      }
-      .auth-button {
-        &.login-button {
-          margin-left: auto;
-        }
-        span {
-          font: 700 14px Futura, "Trebuchet MS", Arial, sans-serif;
-        }
-      }
-    }
-  }
+
  @media screen and (max-width: 991px){
   .nav-bar {
       .nav-user-info {
@@ -423,4 +423,38 @@ export default {
       }
    }
  }
+
+ @media screen and (min-width:320px) and (max-width: 480px){
+    .nav-bar {
+      justify-content: space-between;
+      padding: 0 25px;
+      .item-all-ads {
+        display: none;
+      }
+      .container-search-mobile {
+        margin: 0;
+        .search-icon-mobile {
+          margin: 0;
+        }
+      }
+    .nav-user-info {
+      margin: 0;
+      .user-icon {
+        width: 30px;
+        height: 30px;
+      }
+    }
+    .register-button {
+      margin-left: 0;
+    }
+    .auth-button {
+      &.login-button {
+        margin-left: 0;
+      }
+      span {
+        font: 700 14px Futura, "Trebuchet MS", Arial, sans-serif;
+      }
+    }
+  }
+}
 </style>
