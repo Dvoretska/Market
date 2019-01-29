@@ -274,4 +274,21 @@ export default {
     flex-direction: column;
     margin-left: 20px;
   }
+  @media screen and (max-width:680px){
+    /deep/ .vue-image-crop-upload .vicp-wrap {
+      width: 85% !important;
+    }
+  }
+  @media screen and (max-width:575px){
+   ul.option-box > li .options {
+     padding: 10px;
+   }
+  }
+  @media screen and (min-width:320px) and (max-width: 480px){
+    ul.option-box > li .options {
+       padding: 10px 5px;
+       font-size: 11px;
+      line-height: 23px;
+    }
+  }
 </style>

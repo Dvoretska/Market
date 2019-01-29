@@ -124,4 +124,9 @@ export default {
       margin-left: 5px;
     }
   }
+  @media screen and (max-width:575px){
+    /deep/ .v--modal-box {
+      width: 100% !important;
+    }
+  }
 </style>

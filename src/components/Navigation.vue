@@ -103,6 +103,9 @@ export default {
   },
   mounted () {
     window.addEventListener('resize', this.handleWindowResize);
+    if(window.innerWidth < 480) {
+      this.isMobile = true
+    }
   },
   methods: {
     searchItem (searchValue) {
