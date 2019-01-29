@@ -35,7 +35,7 @@
 					<router-link :to="{ name: 'register'}" class="menu-item-link"><translate>SIGN UP</translate></router-link>
 				</li>
        </ul>
-       <ul class="home-auth" v-if="!showAuthInMenu">
+       <ul class="home-auth" v-if="!showAuthInMenu && !isAuthenticated">
 				<li class="auth-item login-item">
 					<router-link :to="{ name: 'login'}"><translate>LOGIN</translate></router-link>
 				</li>
@@ -286,6 +286,9 @@ export default {
     }
   },
   computed: {
+    isAuthenticated () {
+      return this.$store.getters.isAuthenticated
+    },
     getCategories () {
       return this.$store.getters.getCategories.results
     },

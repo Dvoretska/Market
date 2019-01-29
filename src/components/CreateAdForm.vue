@@ -100,10 +100,13 @@
         <b-field horizontal class="align-center">
             <p class="button-submit-container">
                 <button :label="getCreateAd()"
-                        :disabled="loading"
+                        :disabled="loading || isDisabled()"
                         class="button-submit"
                         @click="createAd"
-                        v-bind:class="{'disabled': loading}">Create an ad</button>
+                        v-bind:class="{'disabled': loading || isDisabled()}">
+                  <i class="fa fa-spinner fa-spin fa-lg fa-fw" v-if="loading"></i>
+                  <span>Create an ad</span>
+                </button>
             </p>
         </b-field>
     </section>
@@ -111,7 +114,6 @@
 
 <script>
 import modalChooseCategory from '@/components/ModalChooseCategory'
-import t from 'typy';
 
 export default {
   components: {
@@ -133,7 +135,11 @@ export default {
       warning: false,
       rootCategory: false,
       selectedImgKey: 0,
-      subjectMaxLength: 70
+      subjectMaxLength: 70,
+      phone: {
+        number: '',
+        code: ''
+      }
     }
   },
   created () {
@@ -179,6 +185,9 @@ export default {
     }
   },
   methods: {
+    isDisabled () {
+      return !this.setLocation || !this.subject || !this.message || !this.price || !this.phone.number || !this.category
+    },
     subcategory (data) {
       return this.subcategoryObj = data
     },
@@ -242,13 +251,13 @@ export default {
           formData.append('files[' + i + ']', file)
         }
       }
-      formData.append('category', this.subcategoryObj.slug || this.subcategoryObjState.slug)
-      formData.append('subject', this.subject)
-      formData.append('message', this.message)
-      formData.append('location', this.location)
-      formData.append('price', this.price)
-      formData.append('phone', this.phone.number)
-      this.$store.dispatch('CREATE_AD', formData)
+      formData.append('category', this.subcategoryObj.slug);
+      formData.append('subject', this.subject);
+      formData.append('message', this.message);
+      formData.append('location', this.setLocation);
+      formData.append('price', this.price);
+      formData.append('phone', this.phone.number);
+      this.$store.dispatch('CREATE_AD', formData);
     },
     onFile (e) {
       this.file = this.$refs.file.files[0]
@@ -277,7 +286,7 @@ export default {
   },
   computed: {
     loading () {
-      return this.$store.getters.getLoading
+      return this.$store.getters.getCreateAdLoading
     },
     getErrors () {
       return this.$store.getters.getErrors
@@ -291,13 +300,16 @@ export default {
     email () {
       return this.$store.getters.getUserDetails.email
     },
-    location () {
-      if(this.$store.getters.getUserDetails.country && this.$store.getters.getUserDetails.city) {
-        return `${this.$store.getters.getUserDetails.country}, ${this.$store.getters.getUserDetails.city}`
+    location: {
+      get: function() {
+         if(this.$store.getters.getUserDetails.country && this.$store.getters.getUserDetails.city) {
+          this.setLocation = `${this.$store.getters.getUserDetails.country}, ${this.$store.getters.getUserDetails.city}`;
+          return this.setLocation;
+        }
+      },
+      set: function(data) {
+        this.setLocation = data;
       }
-    },
-    phone () {
-      return {number: t(this.$store.getters.getUserDetails, 'phone').safeObject || '', code: ''}
     }
   }
 }
@@ -355,6 +367,7 @@ export default {
     #file-drag-drop {
       cursor: pointer;
       position: relative;
+      width: 100%;
       .fileform {
         display: flex;
         flex-wrap: wrap;
@@ -365,6 +378,9 @@ export default {
         border-radius: 4px;
         border: 2px dashed #ccc;
         margin-bottom: 10px;
+        span {
+          font-weight: normal;
+        }
         .icon-cloud-download {
           width: 40px;
           height: 40px;
@@ -399,10 +415,11 @@ export default {
         margin: 5px;
         border-bottom: 1px solid #ddd;
         position: relative;
-        & img {
+        img {
           height: 100px;
           width: 100px;
           cursor: pointer;
+          object-fit: cover;
         }
         .remove-container {
           position: absolute;

@@ -1,7 +1,7 @@
 <template>
 	<div class="main-container">
 		<div class="left-column">
-			<div v-if="getAdDetails.loading" class="loading">
+			<div v-if="getAdDetailsLoading" class="loading">
 		        <vue-loading spinner="wave"></vue-loading>
 		    </div>
 			<div v-else class="ad-details-card">
@@ -49,7 +49,7 @@
 				<span v-if="!checkIfAdSelected(getAdDetails.slug)">Add to Wish List</span>
 				<span v-else>Added to Wish List</span>
 			</button>
-			<div class="owner-card">
+			<div class="owner-card" v-if="getOwner">
 				<div class="owner-avatar" v-if="!getOwner.avatar"></div>
 				<img :src="getOwner.avatar" alt="" v-if="getOwner.avatar">
 				<div v-if="getOwner" class="owner-name">{{ getOwnerName }}</div>
@@ -151,6 +151,9 @@ export default {
       getAdDetails () {
         return this.$store.getters.getAdDetails
       },
+			getAdDetailsLoading () {
+				return this.$store.getters.getAdDetailsLoading
+			},
       isAuthenticated () {
         if(Object.keys(this.$store.getters.getUserDetails).length !== 0) {
           return true
@@ -309,6 +312,8 @@ export default {
 				justify-content: center;
 				align-items: center;
 				img {
+          width: 100px;
+					height: 100px;
 					border-radius: 50%;
 				}
 				.owner-avatar {

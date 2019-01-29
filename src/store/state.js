@@ -19,6 +19,7 @@ export default {
   ads: {
     results: []
   },
+  createAdLoading: false,
   myAds: {
     results: []
   },
@@ -31,8 +32,7 @@ export default {
     search: {},
     node: ''
   },
-  adDetails: {
-    user: {}
-  },
+  adDetails: {},
+  adDetailsLoading: false,
   orderingState: {isOpen: null}
 }

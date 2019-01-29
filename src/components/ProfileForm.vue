@@ -5,13 +5,15 @@
         <my-upload field="avatar"
             @crop-success="cropSuccess"
             v-model="show"
-            :width="100"
-            :height="100"
-            noSquare=true
+            :width="200"
+            :height="200"
+            :noSquare=true
             langType='en'></my-upload>
         <div class="avatar-wrapper">
           <a class="change-avatar" @click="toggleShow">change</a>
-          <i class="fa fa-spinner fa-spin fa-lg fa-fw" v-if="avatarLoading"></i>
+          <div  v-if="avatarLoading" class="load-wrapper">
+            <i class="fa fa-spinner fa-spin fa-lg fa-fw"></i>
+          </div>
           <div class="default-avatar" v-if="!avatar"></div>
           <img class="avatar" :src="avatar" v-if="!avatarLoading && avatar">
         </div>
@@ -35,7 +37,7 @@
             <router-link to="/profile/message" active-class="active" class="options" exact>
               <span><translate>Messages</translate></span>
             </router-link>
-          </li>          
+          </li>
           <li>
             <router-link to="/profile/selected-ads" active-class="active" class="options" exact>
               <span><translate>Selected</translate></span>
@@ -144,10 +146,16 @@ export default {
   .avatar {
     border-radius: 50%;
   }
-  i {
-    top: 25px;
-    left: 50px;
-    position: absolute;
+  .load-wrapper {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    border: 1px solid #ccc;
+    i {
+      top: 40px;
+      left: 40px;
+      position: absolute;
+    }
   }
   .avatar-wrapper {
     position: relative;

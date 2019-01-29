@@ -174,25 +174,26 @@ export default {
       })
   },
   GET_AD_DETAILS: function (context, data) {
-    context.commit('adDetailsMutate', {loading: true});
+    context.commit('adDetailsLoadingMutate', true);
     axios.get(`${MAIN_URL}ads/${data}/`).then((response) => {
-        response.data.loading = false;
-        context.commit('adDetailsMutate', response.data)
-      }).catch((err) => {
-        console.log(err)
-      })
+      context.commit('adDetailsLoadingMutate', false);
+      context.commit('adDetailsMutate', response.data)
+    }).catch((err) => {
+      context.commit('adDetailsLoadingMutate', false);
+      console.log(err)
+    })
   },
   CREATE_AD: function (context, data) {
-    context.commit('loading', true);
+    context.commit('createAdLoadingMutate', true);
     axios.post(`${MAIN_URL}ads/ad/`, data, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
     }).then((response) => {
-      context.commit('loading', false);
+      context.commit('createAdLoadingMutate', false);
       router.push({name: 'ads-list'})
     }).catch((err) => {
-      context.commit('loading', false);
+      context.commit('createAdLoadingMutate', false);
       context.commit('error', err.response.data)
     })
   },

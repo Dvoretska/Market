@@ -45,6 +45,12 @@ export default {
   getAdDetails: state => {
     return state.adDetails
   },
+  getAdDetailsLoading: state => {
+    return state.adDetailsLoading
+  },
+  getCreateAdLoading: state => {
+    return state.createAdLoading
+  },
   getOrdering: state => {
     return state.orderingState
   }

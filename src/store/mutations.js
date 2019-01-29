@@ -103,6 +103,12 @@ export default {
   adDetailsMutate (state, data) {
     state.adDetails = data
   },
+  adDetailsLoadingMutate (state, data) {
+    state.adDetailsLoading = data
+  },
+  createAdLoadingMutate (state, data) {
+    state.createAdLoading = data
+  },
   deleteFromMyAdsMutate (state, slug) {
     state.myAds.results = state.myAds.results.filter(function (myAd) {
       return myAd.slug !== slug;
