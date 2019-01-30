@@ -48,6 +48,9 @@ export default {
   getAdDetailsLoading: state => {
     return state.adDetailsLoading
   },
+  getEditAdLoading: state => {
+    return state.editAdLoading
+  },
   getCreateAdLoading: state => {
     return state.createAdLoading
   },

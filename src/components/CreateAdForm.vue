@@ -105,7 +105,7 @@
                         @click="createAd"
                         v-bind:class="{'disabled': loading || isDisabled()}">
                   <i class="fa fa-spinner fa-spin fa-lg fa-fw" v-if="loading"></i>
-                  <span>Create an ad</span>
+                  <translate>Create an ad</translate>
                 </button>
             </p>
         </b-field>

@@ -197,17 +197,18 @@ export default {
       context.commit('error', err.response.data)
     })
   },
-  UPDATE_AD: function (context, data) {
-    context.commit('adDetailsMutate', {loading: true});
+  EDIT_AD: function (context, data) {
+    context.commit('editAdLoadingMutate', true);
     axios.put(`${MAIN_URL}ads/${data.slug}/`, data.form, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
     }).then((response) => {
+        context.commit('editAdLoadingMutate', false);
         context.commit('adDetailsMutate', response.data);
-        response.data.loading = false;
         router.push({name: 'ads-list'})
       }).catch((err) => {
+        context.commit('editAdLoadingMutate', false);
         console.log(err)
       })
   },

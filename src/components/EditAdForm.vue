@@ -36,7 +36,7 @@
         </b-field>
 
         <b-field horizontal :label="getDescription()" class="align-left">
-            <textarea name="" id="" cols="30" rows="10" v-model="message" class="message-field"></textarea>
+            <textarea name="message" id="" cols="30" rows="10" @input="changeField"  :value="message" class="message-field"></textarea>
             <div class="error" v-if="getErrors && getErrors.message">{{ getErrors.message[0] }}</div>
         </b-field>
 
@@ -104,10 +104,13 @@
         <b-field horizontal class="align-center">
             <p class="button-submit-container">
                 <button :label="getCreateAd()"
-                        :disabled="loading"
+                        :disabled="loading || isDisabled()"
                         class="button-submit"
                         @click="editAd"
-                        v-bind:class="{'disabled': loading}"><translate>Edit an ad</translate></button>
+                        v-bind:class="{'disabled': loading || isDisabled()}">
+                  <i class="fa fa-spinner fa-spin fa-lg fa-fw" v-if="loading"></i>
+                  <translate>Edit an ad</translate>
+                </button>
             </p>
         </b-field>
     </section>
@@ -115,11 +118,13 @@
 
 <script>
 import modalChooseCategory from '@/components/ModalChooseCategory'
-import t from 'typy'
+import t from 'typy';
+import VueLoading from 'vue-simple-loading';
 
 export default {
   components: {
-    modalChooseCategory
+    modalChooseCategory,
+    VueLoading
   },
   props: {
     slug: String
@@ -205,6 +210,9 @@ export default {
           catch(err) {reject(err.message)}
       });
     },
+    isDisabled () {
+      return !this.location || !this.subject || !this.message || !this.price || !this.phone.number || ! this.subcategoryObjState.slug
+    },
     changeField (input) {
       this.$store.commit('adDetailsFieldMutate', {field: input.target.name, value: input.target.value})
     },
@@ -272,7 +280,7 @@ export default {
       formData.append('location', this.location)
       formData.append('price', this.price)
       formData.append('phone', this.phone.number)
-      this.$store.dispatch('UPDATE_AD', {slug: this.slug, form: formData})
+      this.$store.dispatch('EDIT_AD', {slug: this.slug, form: formData})
     },
     onFile (e) {
       this.file = this.$refs.file.files[0]
@@ -322,10 +330,10 @@ export default {
       return this.$store.getters.getAdDetails.message
     },
     phone () {
-      return {number: t(this.$store.getters.getAdDetails, 'user.phone').safeObject || '', code: ''}
+      return {number: t(this.$store.getters.getAdDetails, 'phone').safeObject || '', code: ''}
     },
     loading () {
-      return this.$store.getters.getAdDetails.loading
+      return this.$store.getters.getEditAdLoading
     },
     getErrors () {
       return this.$store.getters.getErrors
@@ -347,15 +355,18 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  /deep/ .ql-container {
-    height: auto !important;
-  }
   .section-ads {
     margin-top: 70px;
     width: 550px;
     outline: none;
     margin-left: auto;
     margin-right: auto;
+  .message-field {
+      padding: calc(0.625em - 1px);
+      box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
+      border-radius: 3px;
+      border: 1px solid #dbdbdb;
+    }
     .error {
       color: red;
       font-size: 12px;
