@@ -443,8 +443,8 @@ export default {
     .nav-user-info {
       margin: 0;
       .user-icon {
-        width: 30px;
-        height: 30px;
+        width: 35px;
+        height: 35px;
       }
     }
     .register-button {

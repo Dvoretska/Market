@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: main 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-29 15:48+0200\n"
+"POT-Creation-Date: 2019-01-29 16:02+0200\n"
 "PO-Revision-Date: 2018-03-17 16:28+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -33,7 +33,7 @@ msgstr ""
 msgid "Added at"
 msgstr "Добавлено"
 
-#: src/components/HomeLanding.vue:161
+#: src/components/HomeLanding.vue:162
 msgid "ADDRESS:"
 msgstr ""
 
@@ -54,6 +54,10 @@ msgstr "Уже зарегистрирован? Войти."
 msgid "Back to home page"
 msgstr "Вернуться на домашнюю страницу"
 
+#: src/components/HomeLanding.vue:48
+msgid "Buy & Sell Easy"
+msgstr "Продавай и покупай легко"
+
 #: src/components/ProfileSettingsForm.vue:77
 msgid "Confirm new password"
 msgstr "Повторите новый пароль"
@@ -67,7 +71,7 @@ msgstr "КОНТАКТЫ"
 msgid "Contact information"
 msgstr "Контактная информация"
 
-#: src/components/HomeLanding.vue:148
+#: src/components/HomeLanding.vue:149
 msgid "Contact us"
 msgstr "Связаться с нами"
 
@@ -91,7 +95,12 @@ msgstr "Редактировать"
 msgid "Email"
 msgstr "Электронная почта"
 
-#: src/components/HomeLanding.vue:157
+#: src/components/CreateAdForm.vue:76
+#, fuzzy
+msgid "Email:"
+msgstr "Электронная почта"
+
+#: src/components/HomeLanding.vue:158
 msgid "EMAIL:"
 msgstr ""
 
@@ -99,11 +108,11 @@ msgstr ""
 msgid "First name"
 msgstr "Имя"
 
-#: src/components/HomeLanding.vue:142
+#: src/components/HomeLanding.vue:143
 msgid "get in touch"
 msgstr "Связаться"
 
-#: src/components/HomeLanding.vue:149
+#: src/components/HomeLanding.vue:150
 msgid "Get to Know Kea Market Better"
 msgstr "Узнай Kea Market лучше"
 
@@ -118,6 +127,10 @@ msgstr "Kea Market - замечательный способ продать то
 #: src/components/ProfileSettingsForm.vue:45
 msgid "Last name"
 msgstr "Фамилия"
+
+#: src/components/CreateAdForm.vue:91
+msgid "Location:"
+msgstr "Местоположение:"
 
 #: src/components/Navigation.vue:28
 #: src/components/authentication/LoginForm.vue:3
@@ -136,6 +149,10 @@ msgstr "Выход"
 #: src/components/Navigation.vue:54 src/components/ProfileForm.vue:37
 msgid "Messages"
 msgstr "Сообщения"
+
+#: src/components/CreateAdForm.vue:69
+msgid "Name:"
+msgstr "Контактное лицо:"
 
 #: src/components/ProfileSettingsForm.vue:71
 msgid "New password"
@@ -173,11 +190,15 @@ msgstr "Пароль"
 msgid "Phone number"
 msgstr "Номер телефона"
 
-#: src/components/HomeLanding.vue:153
+#: src/components/CreateAdForm.vue:84
+msgid "Phone:"
+msgstr "Телефон:"
+
+#: src/components/HomeLanding.vue:154
 msgid "PHONE:"
 msgstr ""
 
-#: src/components/HomeLanding.vue:182
+#: src/components/HomeLanding.vue:183
 msgid "Please enter a valid email address"
 msgstr "Пожалуйста, введите валидный email адрес"
 
@@ -210,7 +231,7 @@ msgstr "Регистрация"
 msgid "SIGN UP"
 msgstr "ЗАРЕГИСТРИРОВАТЬСЯ"
 
-#: src/components/HomeLanding.vue:165
+#: src/components/HomeLanding.vue:166
 msgid "SOCIAL:"
 msgstr ""
 
@@ -222,7 +243,7 @@ msgstr "Извините, ничего не найдено"
 msgid "START NOW"
 msgstr "НАЧАТЬ СЕЙЧАС"
 
-#: src/components/HomeLanding.vue:181
+#: src/components/HomeLanding.vue:182
 msgid "Subscribe now"
 msgstr "Подписаться"
 
@@ -252,14 +273,21 @@ msgid "VIP Ads"
 msgstr "VIP объявления"
 
 #: src/components/HomeLanding.vue:134
-msgid "We are team of open and passionate people that love to launch new initiatives. We make innovative products that people love and adopt in their everyday work. We're seeking new opportunities and another software developers for exciting and challenging work."
+#, fuzzy
+msgid ""
+"We are team of open and passionate people that love to launch new initiatives.\n"
+"          We make products that people love and adopt in their everyday work. We're seeking new opportunities and another software developers for exciting and challenging work."
 msgstr "Мы - команда открытых и воодушевленных людей, движимые разработкой новых идей. Мы создаем продукты, которые люди ценят и применяют в повседневной жизни. Сейчас мы в поиске новых возможностей и талантливых членов команды для интересных и амбициозных проектов."
 
 #: src/components/ProfileSelectedAds.vue:5
 msgid "Wish List ({{myWishList.count}})"
 msgstr ""
 
-#: src/components/HomeLanding.vue:140
+#: src/components/HomeLanding.vue:49
+msgid "With Kea Market"
+msgstr "С Kea Market"
+
+#: src/components/HomeLanding.vue:141
 msgid "You think we're cool? Let's work together!"
 msgstr "Думаешь, мы классные? Присоединяйся к нам!"
 
@@ -307,6 +335,6 @@ msgstr "Фотографии"
 msgid "Create an ad"
 msgstr "Создать объявление"
 
-#: src/components/HomeLanding.vue:257
+#: src/components/HomeLanding.vue:258
 msgid "Email address"
 msgstr "Email адрес"

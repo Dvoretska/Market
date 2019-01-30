@@ -46,9 +46,9 @@
              @dragenter="onDragEnter"
              @dragleave="onDragLeave"
              v-bind:class="{highlight: isHighlight}">
-                <span>Click or drop your files here</span>
+                <translate>Click or drop your files here</translate>
                 <img src="../assets/cloud-download-interface-symbol.svg" alt="" class="icon-cloud-download">
-                <span class="warning" v-if="warning">Download images with extension jpeg, jpg or png</span>
+                <translate class="warning" v-if="warning">Download images with extension jpeg, jpg or png</translate>
             </div>
             <input type="file" class="inputfile" multiple accept="image/*" ref="fileinput">
           </label>
@@ -67,14 +67,14 @@
         <b-field horizontal :label="getPContactInformation()" class="align-left">
             <div  class="contact-info-container">
                 <div class="contact-info-field">
-                    <span><translate>Name: </translate></span>
+                    <translate>Name: </translate>
                     <input name="name"
                            class="input"
                            v-model="firstName"
                            disabled="disabled">
                 </div>
                 <div class="contact-info-field">
-                    <span><translate>Email: </translate></span>
+                    <translate>Email: </translate>
                     <input name="email"
                            type="email"
                            v-model="email"
@@ -82,14 +82,14 @@
                            class="input">
                 </div>
                 <div class="contact-info-field">
-                    <span><translate>Phone: </translate></span>
+                    <translate>Phone: </translate>
                     <phone-input
                       :phone="phone"
                       class="vue-phone-input">
                     </phone-input>
                 </div>
                 <div class="contact-info-field">
-                    <span><translate>Location: </translate></span>
+                    <translate>Location: </translate>
                     <input name="location"
                          v-model="location"
                          class="input">
@@ -406,6 +406,7 @@ export default {
       display: flex;
       justify-content: flex-start;
       flex-wrap: wrap;
+      margin-bottom: 7px;
       .file-listing{
         width: 100px;
         margin: 5px;
@@ -549,6 +550,16 @@ export default {
       }
       /deep/ .intl-phone-input {
         width: 100%;
+      }
+      #file-drag-drop {
+        cursor: pointer;
+        position: relative;
+        width: 100%;
+        .fileform {
+          span {
+            font-size: 13px;
+          }
+        }
       }
     }
   }

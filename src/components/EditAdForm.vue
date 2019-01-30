@@ -36,7 +36,7 @@
         </b-field>
 
         <b-field horizontal :label="getDescription()" class="align-left">
-            <vue-editor :value="message" :editorToolbar="customToolbar"></vue-editor>
+            <textarea name="" id="" cols="30" rows="10" v-model="message" class="message-field"></textarea>
             <div class="error" v-if="getErrors && getErrors.message">{{ getErrors.message[0] }}</div>
         </b-field>
 
@@ -48,9 +48,9 @@
              @dragenter="onDragEnter"
              @dragleave="onDragLeave"
              v-bind:class="{highlight: isHighlight}">
-                <span>Click or drop your files here</span>
+                <translate>Click or drop your files here</translate>
                 <img src="../assets/cloud-download-interface-symbol.svg" alt="" class="icon-cloud-download">
-                <span class="warning" v-if="warning">Download images with extension jpeg, jpg or png</span>
+                <translate class="warning" v-if="warning">Download images with extension jpeg, jpg or png</translate>
             </div>
             <input type="file" class="inputfile" multiple accept="image/*" ref="fileinput">
           </label>
@@ -69,14 +69,14 @@
         <b-field horizontal :label="getPContactInformation()" class="align-left">
             <div  class="contact-info-container">
                 <div class="contact-info-field">
-                    <span>Name: </span>
+                    <translate>Name: </translate>
                     <input name="name"
                            class="input"
                            v-model="firstName"
                            disabled="disabled">
                 </div>
                 <div class="contact-info-field">
-                    <span>Email: </span>
+                    <translate>Email: </translate>
                     <input name="email"
                            type="email"
                            v-model="email"
@@ -84,7 +84,7 @@
                            class="input">
                 </div>
                 <div class="contact-info-field">
-                    <span>Phone: </span>
+                    <translate>Phone: </translate>
                     <phone-input
                       :phone="phone"
                       class="vue-phone-input"
@@ -92,8 +92,8 @@
                     </phone-input>
                 </div>
                 <div class="contact-info-field">
-                    <span>Location: </span>
-                  <input name="location"
+                   <translate>Location: </translate>
+                   <input name="location"
                          @input="changeField"
                          :value="location"
                          class="input">
@@ -107,7 +107,7 @@
                         :disabled="loading"
                         class="button-submit"
                         @click="editAd"
-                        v-bind:class="{'disabled': loading}">Edit an ad</button>
+                        v-bind:class="{'disabled': loading}"><translate>Edit an ad</translate></button>
             </p>
         </b-field>
     </section>
@@ -115,13 +115,11 @@
 
 <script>
 import modalChooseCategory from '@/components/ModalChooseCategory'
-import { VueEditor } from 'vue2-editor'
 import t from 'typy'
 
 export default {
   components: {
-    modalChooseCategory,
-    VueEditor
+    modalChooseCategory
   },
   props: {
     slug: String
@@ -135,13 +133,7 @@ export default {
       warning: false,
       rootCategory: false,
       selectedImgKey: 0,
-      subjectMaxLength: 70,
-      customToolbar: [
-        ['bold', 'italic', 'underline'],
-        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-        [{ 'font': [] }],
-        [{ 'align': [] }]
-      ]
+      subjectMaxLength: 70
     }
   },
   created () {
@@ -399,6 +391,7 @@ export default {
     #file-drag-drop {
       cursor: pointer;
       position: relative;
+      width: 100%;
       .fileform {
         display: flex;
         flex-wrap: wrap;
@@ -438,6 +431,7 @@ export default {
       display: flex;
       justify-content: flex-start;
       flex-wrap: wrap;
+      margin-bottom: 7px;
       .file-listing{
         width: 100px;
         margin: 5px;
@@ -509,11 +503,11 @@ export default {
     .contact-info-field /deep/ .control {
         display: inline-block;
     }
-    /deep/ .intl-phone-input {
-        width: 420px;
+     /deep/ .intl-phone-input {
+        width: 400px;
     }
     .contact-info-container /deep/ input {
-        width: 420px;
+        width: 400px;
         height: 30px;
         border: 1px solid rgba(128,128,128,.5);
     }
@@ -551,8 +545,46 @@ export default {
       border-color: #7957d5;
       box-shadow: 0 0 0 0.125em rgba(121, 87, 213, 0.25);
     }
+    textarea:focus,
+    textarea:active {
+      border-color: #7957d5;
+      box-shadow: 0 0 0 0.125em rgba(121, 87, 213, 0.25);
+    }
     /deep/ .help.counter {
       display: none;
+    }
+  }
+   @media screen and (max-width:575px){
+    .section-ads {
+      padding: 0 20px;
+      width: 100%;
+      .contact-info-field {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .field-topic {
+        width: 100%;
+      }
+      .field-topic {
+        width: 100%;
+      }
+      .contact-info-container /deep/ input {
+        width: 100%;
+      }
+      /deep/ .intl-phone-input {
+        width: 100%;
+      }
+      #file-drag-drop {
+        cursor: pointer;
+        position: relative;
+        width: 100%;
+        .fileform {
+          span {
+            font-size: 13px;
+          }
+        }
+      }
     }
   }
 </style>

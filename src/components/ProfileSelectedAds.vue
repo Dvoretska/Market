@@ -27,27 +27,27 @@
 							<div class="product-price">{{ ad.price }}</div>
 							<span>грн.</span>
 						</div>
-						<strong class="product-subject">{{ ad.subject }}</strong>
-					</div>
-					<div class="ad-actions">
-						<a href="" class="buttons ad-view" @click.prevent="openAdDetails(ad.slug)">
-							<img src="@/assets/visible.svg" alt="" class="icon-ad-actions">
-							<translate>View</translate>
-						</a>
-						<a href="#" class="buttons ad-delete" @click.prevent="show(ad.slug)">
-							<img src="@/assets/delete.svg" alt="" class="icon-ad-actions">
-							<translate>Delete</translate>
-						</a>
-						<modal name="delete-ad" :width="400" :height="170" class="modal-window" >
-              <div class="delete-ad-header">
-                <img src="../assets/cancel.svg" alt="" class="icon-close" @click="hide">
-              </div>
-							<div class="modal-window-title">Are you sure you want to delete the ad from Wish List?</div>
-							<div class="modal-buttons-wrapper">
-								<button @click="deleteAdFromWishList(adSlug)" class="modal-window-button">Yes</button>
-								<button @click="hide" class="modal-window-button">No</button>
-							</div>
-						</modal>
+						<p class="product-subject">{{ ad.subject }}</p>
+							<div class="ad-actions">
+							<a href="" class="buttons ad-view" @click.prevent="openAdDetails(ad.slug)">
+								<img src="@/assets/visible.svg" alt="" class="icon-ad-actions">
+								<translate  class="button-text">View</translate>
+							</a>
+							<a href="#" class="buttons ad-delete" @click.prevent="show(ad.slug)">
+								<img src="@/assets/delete.svg" alt="" class="icon-ad-actions">
+								<translate class="button-text">Delete</translate>
+							</a>
+							<modal name="delete-ad" :width="400" :height="170" class="modal-window" >
+								<div class="delete-ad-header">
+									<img src="../assets/cancel.svg" alt="" class="icon-close" @click="hide">
+								</div>
+								<div class="modal-window-title">Are you sure you want to delete the ad from Wish List?</div>
+								<div class="modal-buttons-wrapper">
+									<button @click="deleteAdFromWishList(adSlug)" class="modal-window-button">Yes</button>
+									<button @click="hide" class="modal-window-button">No</button>
+								</div>
+							</modal>
+						</div>
 					</div>
 				</div>
 				<button @click="loadMore()" class="load-more"
@@ -164,17 +164,17 @@ export default {
 		cursor: pointer;
 		display: flex;
 		align-items: center;
-		background-color: rgba(121, 87, 213, .5);
-		padding: 4px 14px;
+		color: rgba(121, 87, 213, .8);
+		border: 1px solid rgba(121, 87, 213, .5);
+		padding: 2px 7px;
 		margin: 0.3em;
 		font-weight: bold;
-		font-size: 12px;
+		font-size: 10px;
 		line-height: 14px;
 		text-decoration: none;
-		color: #fff;
-		border-radius: .2em;
+		border-radius: 5px;
 		&:hover {
-			box-shadow: 0 0 2px 1px rgba(0, 0, 0, .7);
+			box-shadow: 0 0 1px 1px rgba(0, 0, 0, .3);
 		}
 		.icon-ad-actions {
 			margin-right: 10px;
@@ -186,17 +186,18 @@ export default {
 		display: flex;
 		font-size: 16px;
 		border: 1px solid #D7D7D7;
-		padding: 10px;
+		padding: 5px;
 		margin: 3px;
 	}
 	.product-img-wrapper {
 		cursor: pointer;
-		height: 100px;
-		width: 100px;
+		height: 80px;
+		width: 80px;
 		position: relative;
 		display: flex;
 		justify-content: center;
 		background: #f7f7f7;
+		flex-shrink: 0;
     }
     .product-image {
     	max-width: 100%;
@@ -204,13 +205,14 @@ export default {
     	object-fit: contain;
     }
     .product-description-box {
-		margin-left: 10px;
-		max-width: 435px;
-    }
+			margin-left: 10px;
+			max-width: 435px;
+			flex: 1;
+		}
     .price-wrapper {
     	display: flex;
     	align-items: center;
-    	padding-bottom: 10px;
+    	padding-bottom: 3px;
     	.product-price {
 			font-size: 16px;
 			font-weight: 600;
@@ -226,15 +228,11 @@ export default {
     }
 	.product-subject {
 		display: block;
-		height: 40px;
-		font-size: 18px;
-		overflow: hidden;
+		font-size: 14px;
 		line-height: 20px;
 		word-wrap: break-word;
 		max-width: 500px;
-		@media screen and (min-width:320px) and (max-width: 480px){
-	      font-size: 14px;
-	    }
+		margin-bottom: 3px;
 	}
 	.profile-ads-notice {
 		font-size: 22px;
@@ -274,8 +272,8 @@ export default {
 	}
 	.ad-actions {
 		display: flex;
-		flex-direction: column;
-		justify-content: center;
+		align-items: center;
+		justify-content: flex-start;
 		margin-left: auto;
 		margin-right: 10px;
 	}
@@ -283,25 +281,44 @@ export default {
 		height: 350px;
 	}
 	.load-more {
-        width: 145px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: rgba(123, 79, 173, 0.7);
-        border: solid rgba(255, 255, 255, 1) 1px;
-        cursor: pointer;
-        transition: border-color 0.4s ease 0s, background-color 0.4s ease 0s;
-        text-transform: uppercase;
-        font-weight: 400;
-        font-size: 14px;
-        color: #fff;
-        border-radius: 5px;
-        margin: 20px auto;
-        &:hover {
-          background-color: #F4F4F4;
-          border-color: #8c40b8;
-          color: #8c40b8;
-        }
-    }
+		width: 145px;
+		height: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: rgba(123, 79, 173, 0.7);
+		border: solid rgba(255, 255, 255, 1) 1px;
+		cursor: pointer;
+		transition: border-color 0.4s ease 0s, background-color 0.4s ease 0s;
+		text-transform: uppercase;
+		font-weight: 400;
+		font-size: 14px;
+		color: #fff;
+		border-radius: 5px;
+		margin: 20px auto;
+		&:hover {
+			background-color: #F4F4F4;
+			border-color: #8c40b8;
+			color: #8c40b8;
+		}
+	}
+	@media screen and (min-width:320px) and (max-width: 480px){
+		.buttons {
+			.button-text {
+				display: none;
+			}
+			.icon-ad-actions {
+				margin-right: 0;
+			}
+		}
+		.profile-ads-item span {
+			font-size: 14px;
+		}
+		/deep/ .v--modal {
+			width: 100% !important;
+		}
+		.modal-window-title {
+			font-size: 16px;
+		}
+	}
 </style>

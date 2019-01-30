@@ -185,7 +185,8 @@ export default {
   		return this.$moment(created).fromNow()
   	},
     clickCallback (pageNum) {
-      this.$store.dispatch('GET_FILTERED_AD_LIST', {...this.$route.query, page: pageNum})
+      this.$store.dispatch('GET_FILTERED_AD_LIST', {...this.$route.query, page: pageNum});
+			window.scrollTo(0,0);
     },
     openAdDetails (slug) {
     	this.$router.push({ name: 'adDetails', params: { slug }})

@@ -37,29 +37,29 @@
 						</div>
 						<p class="product-subject">{{ ad.subject }}</p>
 						<div class="ad-actions">
-						<a href="" class="buttons ad-view" @click.prevent="openAdDetails(ad.slug)">
-							<img src="@/assets/visible.svg" alt="" class="icon-ad-actions">
-							<translate class="button-text">View</translate>
-						</a>
-						<a href="" class="buttons ad-edit" @click.prevent="editAdDetails(ad.slug)">
-							<img src="@/assets/pencil.svg" alt="" class="icon-ad-actions">
-							<translate class="button-text">Edit</translate>
-						</a>
-						<a href="#" class="buttons ad-delete" @click.prevent="show(ad.slug)">
-							<img src="@/assets/delete.svg" alt="" class="icon-ad-actions">
-							<translate class="button-text">Delete</translate>
-						</a>
-						<modal name="delete-ad" :width="400" :height="150" class="modal-window">
-              <div class="delete-ad-header">
-                <img src="../assets/cancel.svg" alt="" class="icon-close" @click="hide">
-              </div>
-							<div class="modal-window-title">Are you sure you want to delete the ad?</div>
-							<div class="modal-buttons-wrapper">
-								<button @click="deleteAd(adSlug)" class="modal-window-button">Yes</button>
-								<button @click="hide" class="modal-window-button">No</button>
-							</div>
-						</modal>
-					</div>
+							<a href="" class="buttons ad-view" @click.prevent="openAdDetails(ad.slug)">
+								<img src="@/assets/visible.svg" alt="" class="icon-ad-actions">
+								<translate class="button-text">View</translate>
+							</a>
+							<a href="" class="buttons ad-edit" @click.prevent="editAdDetails(ad.slug)">
+								<img src="@/assets/pencil.svg" alt="" class="icon-ad-actions">
+								<translate class="button-text">Edit</translate>
+							</a>
+							<a href="#" class="buttons ad-delete" @click.prevent="show(ad.slug)">
+								<img src="@/assets/delete.svg" alt="" class="icon-ad-actions">
+								<translate class="button-text">Delete</translate>
+							</a>
+							<modal name="delete-ad" :width="400" :height="150" class="modal-window">
+								<div class="delete-ad-header">
+									<img src="../assets/cancel.svg" alt="" class="icon-close" @click="hide">
+								</div>
+								<div class="modal-window-title">Are you sure you want to delete the ad?</div>
+								<div class="modal-buttons-wrapper">
+									<button @click="deleteAd(adSlug)" class="modal-window-button">Yes</button>
+									<button @click="hide" class="modal-window-button">No</button>
+								</div>
+							</modal>
+						</div>
 					</div>
 				</div>
 				<button @click="loadMore()" class="load-more" v-if="ads.count > 16">Load more</button>
@@ -353,8 +353,14 @@ export default {
 				margin-right: 0;
 			}
 		}
-	.profile-ads-item span {
+		.profile-ads-item span {
 			font-size: 14px;
+		}
+		/deep/ .v--modal {
+			width: 100% !important;
+		}
+		.modal-window-title {
+			font-size: 16px;
 		}
 	}
 </style>
