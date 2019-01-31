@@ -46,6 +46,9 @@ export default {
   adsMutate (state, data) {
     state.ads = {...state.ads, ...data}
   },
+  adsVipMutate (state, data) {
+    state.adsVip = [...data]
+  },
   myAdsMutate (state, data) {
     state.myAds = {...state.myAds, ...data}
   },

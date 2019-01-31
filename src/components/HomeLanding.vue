@@ -76,59 +76,15 @@
           </tiny-slider>
         </div>
       </section>
-      <section class="top-products-section">
+      <section class="vip-ads-section">
         <h5 class="section-title"><translate>VIP Ads</translate></h5>
-        <article>
-          <figure>
-            <img src='../assets/notbookX.jpg' alt />
-            <div class="description">
-              <h1>Ноутбук Xiaomi Mi Notebook</h1>
-              <p>Xiaomi Mi Notebook Pro 15.6 — универсальный рабочий инструмент, ноутбук, соединивший в себе высокое качество, элегантный внешний вид и выдающиеся характеристики. Алюминиевый корпус, малая толщина, строгие углы и ничего лишнего, даже логотипов. 15,6-дюймовый экран выполнен по технологии IPS и имеет разрешение 1920х1080 точек, чего достаточно для качественной, насыщенной картинки и широких углов обзора.</p>
-            </div>
-            <div class="description">
-              <h1>Бензопила STIHL MS 180</h1>
-              <p>Одна из самых популярных моделей среди бензопил STIHL MS 180 заметно выделяется простотой в эксплуатации, компактными размерами и небольшим весом. STIHL MS 180 достаточно мощная, чтобы вы смогли на своем участке сделать заготовку дров, выполнить работы с деревом для строительства или привести в порядок деревья в саду. Преимуществами этой модели являются система легкого старта ErgoStart, устройство быстрого натяжения цепи и электронное зажигание.</p>
-            </div>
-            <img src='../assets/2868545.png' alt/>
-          </figure>
-          <section>
-            <img src='../assets/1665147415.jpg' alt />
-            <div class="description">
-              <h1>Прямой раскладной диван</h1>
-              <p>Прямой раскладной диван; механизм трансформации: поворотный; места для сидения: 3; ширина спального места: 160 см; длина спального места: 200 см; материал обивки: ткань на выбор; наполнитель спального места: пружины "Bonnel" + пенополиуретан; цвет: в ассортименте</p>
-            </div>
-            <div class="description">
-              <h1>Палатка туристическая Terra Incognita</h1>
-              <p>Terra Incognita Grand 5 - эта модель семейного типа, уютная, что идеально заменит Вам домашние условия на длительный период. Модель имеет достаточно высокий купол, что позволяет комфортабельно передвигаться во внутренней части палатки. Terra Incognita Grand 5 имеет прочный износоустойчивый тент, стойкий к осадкам и ультрафиолету.</p>
-            </div>
-            <img src='../assets/1381985.jpg' alt />
-          </section>
-
-          <figure>
-            <img src='../assets/303450275.jpg' alt />
-            <div class="description">
-              <h1>Комплект мебели для пикника</h1>
-              <p>Кемпинг Стол раскладной XN-12064 + 4 стула является набором кемпинговой мебели, состоящим из большого раскладного стола и четырех стульев. Данный набор будет незаменим во время дружеских посиделок на открытом воздухе возле костра или семейных застолий в пригородном доме, а также кемпинговых условиях на берегу моря.</p>
-            </div>
-            <div class="description">
-              <h1>Смартфон Xiaomi Redmi Note 5</h1>
-              <p>Xiaomi Redmi Note 5 Pro – смартфон среднего уровня, в котором производительно попытался создать максимально отточенное и сбалансированное решение для требовательных пользователей. Модель получила 6-дюймовый IPS-экран с разрешением 2160х1080 точек и порадует не только отличной четкостью и качеством цветов, но также и минимальными рамками.</p>
-            </div>
-            <img src='../assets/1644698425.jpg' alt/>
-          </figure>
-          <section>
-            <img src='../assets/1683999245.jpg' alt />
-            <div class="description">
-              <h1>Роликовые коньки раздвижные</h1>
-              <p>Profi A 4025 - это великолепные роликовые коньки для детей. Раздвижная система делает модель совершенной, позволяет роликам расти вместе с ребенком, размерная сетка от 32-35, 36-39, ростовка практична, делит роликовые коньки на использование детьми дошкольного и школьного возраста. Profi A 4025 имеют алюминиевую раму, прочную, мощную и долговечную, она имеет еще одно важное свойство - легкость, благодаря чему роликовые коньки легкие и маневренные.</p>
-            </div>
-            <div class="description">
-              <h1>Underprice Плед микрофибра сливовый </h1>
-              <p>Во время плохой погоды зимой приятно понежиться на диване с хорошей книгой, под мягким пледом. Предлагаем обратить внимание на симпатичное изделие от бренда UP! (Underprice). Оно изготовлено из полиэстера – материала, который является невероятно теплым и прочным.</p>
-            </div>
-            <img src='../assets/1607799935.jpg' alt />
-          </section>
-        </article>
+        <div class="vip-ads-container">
+          <ad-vip v-for="adVip in getAdsVip" :adVip="adVip" :key="adVip.slug"></ad-vip>
+        </div>
+        <router-link class="see-all-link" :to="{ name: 'ads-list'}">
+          <translate class="see-all-text">See all</translate>
+          <img class="see-all-img" src="@/assets/right-chevron.svg" alt="">
+        </router-link>
       </section>
       <section class="team-section">
       	<h5 class="section-title"><translate>Our Team</translate></h5>
@@ -194,12 +150,14 @@
 import VueTinySlider from 'vue-tiny-slider'
 import VueGallery from '@/components/extended/vueGallery'
 import footerBar from '@/components/footer/FooterBar'
+import AdVip from '@/components/AdVip'
 
 export default {
   components: {
     'tiny-slider': VueTinySlider,
     'gallery': VueGallery,
-    footerBar
+    footerBar,
+    AdVip
   },
   data () {
     return {
@@ -245,7 +203,8 @@ export default {
       }
     },
   created () {
-    this.$store.dispatch('GET_CATEGORIES')
+    this.$store.dispatch('GET_CATEGORIES');
+    this.$store.dispatch('GET_ADS_VIP');
   },
   mounted () {
     window.addEventListener('resize', this.handleWindowResize)
@@ -289,6 +248,9 @@ export default {
   computed: {
     isAuthenticated () {
       return this.$store.getters.isAuthenticated
+    },
+    getAdsVip () {
+      return this.$store.getters.getAdsVip
     },
     getCategories () {
       return this.$store.getters.getCategories.results
@@ -486,7 +448,7 @@ export default {
   .section-title {
     font-size: 34px;
     color: #8c40b8;
-    margin: 0 auto 20px;
+    margin: 0 auto 30px;
     text-align: center;
     font-family: 'Arapey', serif;
     font-style: italic;
@@ -521,7 +483,7 @@ export default {
     margin: 0 auto 40px;
   }
   .rubrics-section {
-    padding-top: 90px;
+    padding-top: 70px;
     overflow-x: hidden;
     position: relative;
     z-index: 1;
@@ -618,108 +580,38 @@ export default {
       }
     }
   }
-  .top-products-section {
-    padding-top: 90px;
-    article {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 50px;
-    .description {
-      width: 50%;
-      max-height: 50vh;
-      overflow: hidden;
+  .vip-ads-section {
+    padding: 70px 5% 0;
+    .vip-ads-container {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fill,minmax(160px, 1fr));
+      grid-template-rows: auto [last-line];
     }
-      figure {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        padding: 30px;
-        background: #fff;
-        width: calc( 50% + 1px);
-        height: 100vh;
-        margin: 0 auto 10vh 0;
-        position: sticky;
-        top: 0;
-        overflow: hidden;
-        box-shadow: 4px -4px 8px rgba(0,0,0,.4);
-      }
-      figure img, section img {
-        max-width: 50%;
-        width: 50%;
-        height: 50%;
-        max-height: 50%;
-        object-fit: contain;
-        object-position: center;
-      }
-      h1 {
-        font-size: 22px;
-        text-align: center;
-        font-weight: 700;
-        line-height: 1;
-        word-spacing: .5rem;
-        margin-bottom: 15px;
-      }
-      p {
-        text-align: center;
-        width: 100%;
-        font-family: "Cormorant", serif;
-        font-weight: 400;
-        font-style: italic;
-        font-size: 14px;
-      }
-      section {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        padding: 30px;
-        background: #fff;
-        width: calc(50% + 1px);
-        height: 100vh;
-        margin: 0 0 10vh auto;
-        position: sticky;
-        top: 0;
-        box-shadow: -4px -4px 8px rgba(0,0,0,.4);
-      }
-      figure:nth-of-type(1),
-      section:nth-of-type(1) {
-        margin: 0 0 10vh 0;
-        width: 50%;
-      }
-      figure:nth-of-type(2n) {
-        margin: 0 0 10vh auto;
-        box-shadow: -4px -4px 8px rgba(0,0,0,.4);
-          }
-      section:nth-of-type(2n) {
-        margin: 0 auto 10vh 0;
-        box-shadow: 4px -4px 8px rgba(0,0,0,.4);
+    .see-all-link {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      cursor: pointer;
+      margin-top: 10px;
+      .see-all-text {
+        font-size: 18px;
+        padding-right: 5px;
+        transition: color .5s ease;
+        &:hover {
+          color: #933EC5;
+          text-decoration: underline;
         }
-      figure:last-of-type,
-      section:last-of-type {
-        margin-bottom: 0;
-        border-bottom: 3px solid #eee;
       }
-      section::before {
-        background: transparent;
-        background-image: url('../assets/imageedit_6_3503546167.png');
-        background-size:contain;
-        z-index: 1;
-        content: '';
-        position: absolute;
-        top: 50%;
-        left:0;
-        width: 70px;
-        height: 70px;
-        transform: translate(calc(-50% + 1px), -50%);
-      }
-      section:nth-of-type(2n)::before {
-        left:auto;
-        right: 0;
-        transform: translate(calc(50% - 1px), -50%);
+      .see-all-img {
+        width: 12px;
+        height: 12px;
       }
     }
   }
   .team-section {
-    padding-top: 90px;
+    padding-top: 70px;
     overflow-x: hidden;
     position: relative;
     z-index: 1;
@@ -788,7 +680,7 @@ export default {
 	  }
 	}
   .contact-section {
-    padding: 90px 0;
+    padding: 70px 0;
     position: relative;
     z-index: 1;
     background-color: white;
@@ -986,28 +878,6 @@ export default {
   }
 }
 
-@media screen and (max-width: 700px) {
-  .home-landing {
-    .top-products-section {
-      article {
-        display: block;
-        figure {
-          width: 100%;
-        }
-        section {
-          width: 100%;
-        }
-        figure:nth-of-type(1),
-        section:nth-of-type(1) {
-          width: 100%;
-        }
-        section::before {
-          background-image: none;
-        }
-      }
-    }
-  }
-}
 
 @media screen and (max-width:575px){
   .home-landing {
@@ -1071,23 +941,8 @@ export default {
           margin-bottom: 40px;
        }
     }
-    .top-products-section {
+    .vip-ads-section {
       padding-top: 30px;
-      article {
-        figure {
-          height: 50vh;
-        }
-        p {
-          display: none;
-        }
-        section {
-          height: 50vh;
-        }
-        figure:nth-of-type(1),
-        section:nth-of-type(1) {
-          margin: 0;
-        }
-      }
     }
     .team-section {
       padding-top: 30px;

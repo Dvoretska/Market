@@ -27,6 +27,9 @@ export default {
   getAds: state => {
     return state.ads
   },
+  getAdsVip: state => {
+    return state.adsVip
+  },
   getMyAds: state => {
     return state.myAds
   },
