@@ -174,12 +174,15 @@ export default {
       })
   },
   GET_ADS_VIP: function (context, data) {
+    context.commit('adsVipLoadingMutate', true);
     axios.get(`${MAIN_URL}ads/vip/`,
       {
         headers: {'Accept-Language': serviceLanguage.language}
       }).then((response) => {
-        context.commit('adsVipMutate', response.data)
+        context.commit('adsVipLoadingMutate', false);
+        context.commit('adsVipMutate', response.data);
       }).catch((err) => {
+        context.commit('adsVipLoadingMutate', false);
         console.log(err)
       })
   },

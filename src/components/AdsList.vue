@@ -28,6 +28,7 @@
 	      </div>
 			<div v-else class="ad-cards-container">
 				<div class="ad-card" v-for="ad in ads.results">
+					<div v-if="ad.is_vip" class="corner-ribbon top-left sticky red shadow">VIP</div>
 					<div class="ad-img-wrapper" @click="openAdDetails(ad.slug)">
 						<img :src="ad.image || getDefaultImage" alt="" class="ad-img">
 					</div>
@@ -245,6 +246,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+	.loading {
+		text-align: center;
+	}
   .main-container {
     display: flex;
     margin-top: 55px;
@@ -357,15 +361,32 @@ export default {
 				    height: 400px;
 				    font-size: 16px;
 				    border: 1px solid #D7D7D7;
+						position: relative;
+						overflow: hidden;
 				    &:hover {
 				    	border: solid 1px #CCC;
 			    		box-shadow: 1px 1px 3px #999;
 				    }
+						.corner-ribbon{
+							width: 200px;
+							background: #e43;
+							position: absolute;
+							z-index: 2;
+							top: 10px;
+							left: -80px;
+							text-align: center;
+							line-height: 16px;
+							letter-spacing: 1px;
+							color: #ffffff;
+							transform: rotate(-45deg);
+							-webkit-transform: rotate(-45deg);
+						}
 				    .ad-img-wrapper {
 					    margin: 15px;
 					    height: 200px;
 					    width: auto;
 					    position: relative;
+							z-index: 1;
 					    display: flex;
 					    justify-content: center;
 					    align-items: center;

@@ -348,7 +348,7 @@ export default {
 			.right-column {
 				.contact-button {
 					span {
-						font-size: 12px;
+						font-size: 10px;
 					}
 				}
 			}
@@ -359,14 +359,11 @@ export default {
 			margin: 80px 30px;
 			.right-column {
 				.contact-button {
-					span {
-						font-size: 10px;
+					.contact-icon {
+						width: 20px;
+						height: 20px;
+						margin-right: 10px;
 					}
-			        .contact-icon {
-			        	width: 20px;
-			        	height: 20px;
-			        	margin-right: 10px;
-			        }
 				}
 				.owner-card {
 					.owner-avatar {
@@ -379,19 +376,11 @@ export default {
 	}
 	@media screen and (max-width:767px){
 		.main-container {
-			margin: 80px 30px;
-			.right-column {
-				padding: 10px;
-			}
-		}
-	}
-	@media screen and (max-width:575px){
-		.main-container {
 			margin: 80px 10px;
 			flex-direction: column;
 			.right-column {
-				width: 220px;
-				margin-left: 0;
+				width: 270px;
+				margin: 0 auto;
 				.contact-button {
 					font-size: 12px;
 					span {

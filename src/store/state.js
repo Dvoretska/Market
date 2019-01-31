@@ -20,6 +20,7 @@ export default {
     results: []
   },
   adsVip: [],
+  adsVipLoading: false,
   createAdLoading: false,
   editAdLoading: false,
   myAds: {

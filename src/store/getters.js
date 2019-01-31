@@ -30,6 +30,9 @@ export default {
   getAdsVip: state => {
     return state.adsVip
   },
+  getAdsVipLoading: state => {
+    return state.adsVipLoading
+  },
   getMyAds: state => {
     return state.myAds
   },

@@ -2,7 +2,7 @@
     <div>
        <navigation :page="'ad-details'"></navigation>
        <ad-details></ad-details>
-       <footer-bar></footer-bar>
+       <footer-bar v-if="!getAdDetailsLoading"></footer-bar>
     </div>
 </template>
 
@@ -16,6 +16,11 @@ export default {
     adDetails,
     navigation,
     footerBar
+  },
+  computed: {
+    getAdDetailsLoading () {
+      return this.$store.getters.getAdDetailsLoading
+    },
   }
 }
 </script>

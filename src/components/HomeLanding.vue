@@ -79,7 +79,8 @@
       <section class="vip-ads-section">
         <h5 class="section-title"><translate>VIP Ads</translate></h5>
         <div class="vip-ads-container">
-          <ad-vip v-for="adVip in getAdsVip" :adVip="adVip" :key="adVip.slug"></ad-vip>
+          <ad-vip-mask v-for="(adVip, index) in 25" :key="index" v-if="getAdsVipLoading"></ad-vip-mask>
+          <ad-vip v-for="adVip in getAdsVip" :adVip="adVip" :key="adVip.slug" v-if="getAdsVip"></ad-vip>
         </div>
         <router-link class="see-all-link" :to="{ name: 'ads-list'}">
           <translate class="see-all-text">See all</translate>
@@ -151,13 +152,15 @@ import VueTinySlider from 'vue-tiny-slider'
 import VueGallery from '@/components/extended/vueGallery'
 import footerBar from '@/components/footer/FooterBar'
 import AdVip from '@/components/AdVip'
+import AdVipMask from '@/components/AdVipMask'
 
 export default {
   components: {
     'tiny-slider': VueTinySlider,
     'gallery': VueGallery,
     footerBar,
-    AdVip
+    AdVip,
+    AdVipMask
   },
   data () {
     return {
@@ -251,6 +254,9 @@ export default {
     },
     getAdsVip () {
       return this.$store.getters.getAdsVip
+    },
+    getAdsVipLoading () {
+      return this.$store.getters.getAdsVipLoading
     },
     getCategories () {
       return this.$store.getters.getCategories.results
