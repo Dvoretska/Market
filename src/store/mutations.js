@@ -28,7 +28,6 @@ export default {
       ...state.userDetailsState,
       first_name: data.first_name,
       last_name: data.last_name,
-      country: data.country,
       city: data.city,
       phone: data.phone,
       avatar: data.avatar

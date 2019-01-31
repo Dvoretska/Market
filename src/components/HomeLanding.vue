@@ -601,13 +601,13 @@ export default {
       align-items: center;
       cursor: pointer;
       margin-top: 10px;
+      padding-right: 20px;
       .see-all-text {
         font-size: 18px;
         padding-right: 5px;
         transition: color .5s ease;
         &:hover {
           color: #933EC5;
-          text-decoration: underline;
         }
       }
       .see-all-img {

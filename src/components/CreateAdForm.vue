@@ -302,8 +302,8 @@ export default {
     },
     location: {
       get: function() {
-         if(this.$store.getters.getUserDetails.country && this.$store.getters.getUserDetails.city) {
-          this.setLocation = `${this.$store.getters.getUserDetails.country}, ${this.$store.getters.getUserDetails.city}`;
+         if(this.$store.getters.getUserDetails.city) {
+          this.setLocation = this.$store.getters.getUserDetails.city;
           return this.setLocation;
         }
       },

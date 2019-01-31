@@ -65,16 +65,9 @@ export default {
     router.push({name: 'login'});
     window.location.reload()
   },
-  GET_COUNTRIES: function (context, callback) {
-    axios.get(`${MAIN_URL}location/countries/`).then((response) => {
-      callback(response.data)
-    }).catch((err) => {
-      console.log(err)
-    })
-  },
-  GET_CITIES: function (context, {code, callback}) {
-    axios.get(`${MAIN_URL}location/${code}/cities/`).then((response) => {
-      callback(response.data)
+  GET_CITIES: function (context, data) {
+    axios.get(`${MAIN_URL}location/cities/${data.search}/`).then((response) => {
+      data.callback(response.data)
     }).catch((err) => {
       console.log(err)
     })
@@ -237,7 +230,6 @@ export default {
     axios.patch(`${ACCOUNTS_URL}profile/`, {
       first_name: data.first_name,
       last_name: data.last_name,
-      country: data.country,
       city: data.city
     }).then((response) => {
       context.commit('updateUserState', response.data);

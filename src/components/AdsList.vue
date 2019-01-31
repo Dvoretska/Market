@@ -380,6 +380,7 @@ export default {
 							color: #ffffff;
 							transform: rotate(-45deg);
 							-webkit-transform: rotate(-45deg);
+              font-size: 14px;
 						}
 				    .ad-img-wrapper {
 					    margin: 15px;

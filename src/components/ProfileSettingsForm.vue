@@ -14,22 +14,11 @@
 		   	<BulmaAccordionItem>
 		        <h4 slot="title"><translate>Contact information</translate></h4>
 		        <div class="fill-info-fields" slot="content">
-			        <b-field :label="getCountry()">
-			          <b-autocomplete
-			              v-model="country"
-			              v-on:blur="getCities($event)"
-			              @change="handleInputChange({country})"
-			              :data="filteredCountryArray"
-			              placeholder="Start typing country name..."
-			              icon="search">
-			              <template slot="empty"><translate>No results found</translate></template>
-			          </b-autocomplete>
-			        </b-field>
 			        <b-field :label="getCity()">
 			          <b-autocomplete
 			              v-model="city"
 			              :data="filteredCityArray"
-			              @change="handleInputChange({city})"
+			              @input="fetchCities"
 			              placeholder="Start typing city name..."
 			              icon="search">
 			              <template slot="empty"><translate>No results found</translate></template>
@@ -114,6 +103,7 @@
 import { BulmaAccordion, BulmaAccordionItem } from 'vue-bulma-accordion'
 import 'vue-toast/dist/vue-toast.min.css'
 import VueToast from 'vue-toast'
+import _ from 'lodash'
 
 export default {
   components: {
@@ -132,43 +122,20 @@ export default {
       phone: {number: this.$store.getters.getUserDetails.phone || '', code: ''}
     }
   },
-  created () {
-    this.$store.dispatch('GET_COUNTRIES', (data) => {
-    this.countryData = Object.keys(data)
-    this.originCountryData = data
-    })
-  },
   methods: {
-    saveUserPhone () {
-      console.log(this.phone.number)
-    },
+		fetchCities: _.debounce(function (e) {
+			this.$store.dispatch('GET_CITIES', { search: this.city, callback: (data) => { this.cityData = data } })
+		}, 700),
   	handleInputChange (data) {
 //  		this.$store.commit('updateUserDetailsField', data)
   	},
-    getCountry () {
-      return this.$gettext('Country')
-    },
     getCity () {
       return this.$gettext('City')
-    },
-    getCities (e) {
-      if (e.target.value !== this.$store.getters.getUserDetails.country) {
-        this.city = ''
-        this.cityData = []
-      }
-      setTimeout(this.fetchCities, 500)
-    },
-    fetchCities () {
-      const code = this.originCountryData[this.country]
-      if (code) {
-        this.$store.dispatch('GET_CITIES', { 'code': code, 'callback': (data) => { this.cityData = data } })
-      }
     },
     changeContactInfo () {
       this.$store.dispatch('CHANGE_CONTACT_INFO', {
         first_name: this.firstName,
         last_name: this.lastName,
-        country: this.country,
         city: this.city,
         callback: this.$refs.toast.showToast
       })
@@ -183,17 +150,6 @@ export default {
   computed: {
     getLoading () {
       return this.$store.getters.getLoading
-    },
-    filteredCountryArray () {
-      if(this.country) {
-	      return this.countryData.filter((option) => {
-	        return option
-	          .toString()
-	          .toLowerCase()
-	          .indexOf(this.country.toLowerCase()) >= 0
-	      })
-	  }
-	  return [];
     },
     filteredCityArray () {
     	if(this.city) {
@@ -270,20 +226,27 @@ export default {
 			width: 311px;
 		}
 	}
+	/deep/ .has-icons-left {
+		padding-left: 10px;
+	 }
+	 /deep/ .control.has-icons-left .icon.is-left {
+		left: 10px;
+	}
 	/deep/ .card-header {
 		background-color: rgba(121, 87, 213, .5);
 	}
 	/deep/ .dropdown-menu {
-		width: 311px;
+		width: auto;
 		min-width: 311px;
 		padding-top: 0;
 		padding-bottom: 0;
+		margin-left: 10px;
 	}
 	/deep/ .dropdown-content {
-		width: 311px;
+		width: auto;
 	}
 	/deep/ .dropdown-item {
-	  width: 311px;
+	  width: auto;
 	  height: 100%;
 	}
 	/deep/ .card-content {

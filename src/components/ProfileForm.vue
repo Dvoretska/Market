@@ -22,8 +22,8 @@
             <span v-if="firstName || lastName">{{ firstName }} {{ lastName }}</span>
             <span v-else>{{ username }}</span>
           </div>
-          <div v-if="country || city">
-            <span>{{ country }}<span v-if="country && city">, </span>{{ city }}</span>
+          <div v-if="city">
+            <span>{{ city }}</span>
           </div>
         </div>
       </div>
@@ -288,7 +288,7 @@ export default {
     ul.option-box > li .options {
        padding: 10px 5px;
        font-size: 11px;
-      line-height: 23px;
+       line-height: 24px;
     }
   }
 </style>
