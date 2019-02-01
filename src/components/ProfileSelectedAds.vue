@@ -3,7 +3,8 @@
 		<ul class="profile-ads-nav">
 			<li class="profile-ads-item">
 				<router-link :to="{ name: ''}">
-					<span v-translate>Wish List ({{myWishList.count}})</span>
+					<translate class="item-text">Wish List </translate>
+					<span class="item-count">({{myWishList.count}})</span>
 				</router-link>
 			</li>
 		</ul>
@@ -41,17 +42,19 @@
 								<div class="delete-ad-header">
 									<img src="../assets/cancel.svg" alt="" class="icon-close" @click="hide">
 								</div>
-								<div class="modal-window-title">Are you sure you want to delete the ad from Wish List?</div>
+								<div class="modal-window-title">
+									<translate>Are you sure you want to delete the ad from Wish List?</translate>
+								</div>
 								<div class="modal-buttons-wrapper">
-									<button @click="deleteAdFromWishList(adSlug)" class="modal-window-button">Yes</button>
-									<button @click="hide" class="modal-window-button">No</button>
+									<button @click="deleteAdFromWishList(adSlug)" class="modal-window-button"><translate>Yes</translate></button>
+									<button @click="hide" class="modal-window-button"><translate>No</translate></button>
 								</div>
 							</modal>
 						</div>
 					</div>
 				</div>
 				<button @click="loadMore()" class="load-more"
-          v-if="myWishList.count >= 16 && myWishList.results.length < myWishList.count">Load more</button>
+          v-if="myWishList.count >= 16 && myWishList.results.length < myWishList.count"><translate>Load more</translate></button>
 			</div>
 		</div>
 	</div>
@@ -238,6 +241,9 @@ export default {
 		font-size: 22px;
 		opacity: 0.5;
 		padding-bottom: 20px;
+		@media screen and (min-width:320px) and (max-width: 480px){
+			font-size: 18px;
+		}
 	}
 	.material-icons {
 		font-size: 130px;
@@ -252,18 +258,24 @@ export default {
 	}
 	.profile-ads-nav {
 		background: #f0f0f0;
-	    border-bottom: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;
 		display: flex;
 		justify-content: flex-start;
 		list-style: none;
 		padding: 0;
 		margin: 0;
 	}
-	.profile-ads-item span {
+	.profile-ads-item {
 		font-size: 16px;
-		display: inline-block;
-		padding: 10px 25px;
-		height: 100%;
+		.item-text {
+			display: inline-block;
+			padding: 10px 0 10px 25px;
+			height: 100%;
+		}
+		.item-count {
+			display: inline-block;
+			height: 100%;
+		}
 	}
 	.profile-ads-item + .profile-ads-item:before {
 		content: "";

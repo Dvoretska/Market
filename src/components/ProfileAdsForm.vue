@@ -3,12 +3,13 @@
 		<ul class="profile-ads-nav">
 			<li class="profile-ads-item">
 				<router-link :to="{ name: ''}">
-					<span v-translate>Active ({{ads.count}})</span>
+					<translate class="item-text">Active</translate>
+					<span class="item-count">({{ads.count}})</span>
 				</router-link>
 			</li>
 			<li class="profile-ads-item">
 				<router-link :to="{ name: ''}">
-					<span v-translate>Not active</span>
+					<translate class="item-text">Not active</translate>
 				</router-link>
 			</li>
 		</ul>
@@ -22,13 +23,13 @@
 				<i class="material-icons">&#xE14F;</i>
 				<div class="profile-ads-notice" v-translate>There are no active ads</div>
 		    	<router-link :to="{ name: 'create-ad'}">
-		        	<button class="button-submit">Create an ad</button>
+		        	<button class="button-submit"><translate>Create an ad</translate></button>
 		      	</router-link>
 	      	</div>
 			<div class="ads-content-full" v-else>
 				<div class="product-card" v-for="ad in getMyAds">
 					<div class="product-img-wrapper" @click="openAdDetails(ad.slug)">
-						<img :src="ad.image" alt="" class="product-image">
+						<img :src="ad.image || getDefaultImage"" alt="" class="product-image">
 					</div>
 					<div class="product-description-box">
 						<div class="price-wrapper">
@@ -53,16 +54,16 @@
 								<div class="delete-ad-header">
 									<img src="../assets/cancel.svg" alt="" class="icon-close" @click="hide">
 								</div>
-								<div class="modal-window-title">Are you sure you want to delete the ad?</div>
+								<div class="modal-window-title"><translate>Are you sure you want to delete the ad?</translate></div>
 								<div class="modal-buttons-wrapper">
-									<button @click="deleteAd(adSlug)" class="modal-window-button">Yes</button>
-									<button @click="hide" class="modal-window-button">No</button>
+									<button @click="deleteAd(adSlug)" class="modal-window-button"><translate>Yes</translate></button>
+									<button @click="hide" class="modal-window-button"><translate>No</translate></button>
 								</div>
 							</modal>
 						</div>
 					</div>
 				</div>
-				<button @click="loadMore()" class="load-more" v-if="ads.count > 16">Load more</button>
+				<button @click="loadMore()" class="load-more" v-if="ads.count > 16"><translate>Load more</translate></button>
 			</div>
 		</div>
 	</div>
@@ -112,6 +113,9 @@ export default {
     }
   },
   computed: {
+	  getDefaultImage () {
+      return require('@/assets/default.png')
+    },
   	ads () {
       return this.$store.getters.getMyAds
     },
@@ -258,6 +262,9 @@ export default {
 		font-size: 22px;
 		opacity: 0.5;
 		padding-bottom: 20px;
+		@media screen and (min-width:320px) and (max-width: 480px){
+			font-size: 18px;
+		}
 	}
 	.material-icons {
 		font-size: 130px;
@@ -279,11 +286,18 @@ export default {
 		padding: 0;
 		margin: 0;
 	}
-	.profile-ads-item span {
+	.profile-ads-item {
 		font-size: 16px;
-		display: inline-block;
-		padding: 10px 25px;
-		height: 100%;
+		.item-text {
+			display: inline-block;
+			padding: 10px 0 10px 25px;
+			height: 100%;
+		}
+		.item-count {
+			display: inline-block;
+			height: 100%;
+			padding-right: 25px;
+		}
 	}
 	.profile-ads-item + .profile-ads-item:before {
 		content: "";

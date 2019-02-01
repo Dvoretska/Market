@@ -3,19 +3,19 @@
 		<ul class="profile-message-nav">
 			<li class="profile-message-item">
 				<router-link :to="{ name: ''}">
-					<span>Sent</span>
+					<translate>Sent</translate>
 				</router-link>
 			</li>
 			<li class="profile-message-item">
 				<router-link :to="{ name: ''}">
-					<span>Recieved</span>
+					<translate>Recieved</translate>
 				</router-link>
 			</li>
 		</ul>
 		<div class="profile-message-content">
 			<i class="material-icons">&#xE0BE;</i>
-			<div class="profile-message-notice">There are no messages</div>
-      	</div>
+			<div class="profile-message-notice"><translate>There are no messages</translate></div>
+		</div>
 	</div>
 </template>
 
@@ -25,7 +25,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 	.profile-message-container {
 		height: 350px;
 	}
@@ -33,6 +33,9 @@ export default {
 		font-size: 22px;
 		opacity: 0.5;
 		padding-bottom: 20px;
+		@media screen and (min-width:320px) and (max-width: 480px){
+			font-size: 18px;
+		}
 	}
 	.material-icons {
 		font-size: 130px;
@@ -59,6 +62,9 @@ export default {
 		display: inline-block;
 		padding: 10px 25px;
 		height: 100%;
+		@media screen and (min-width:320px) and (max-width: 480px){
+			font-size: 14px;
+		}
 	}
 	.profile-message-item + .profile-message-item:before {
 		content: "";

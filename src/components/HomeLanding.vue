@@ -606,6 +606,7 @@ export default {
         font-size: 18px;
         padding-right: 5px;
         transition: color .5s ease;
+        color: black;
         &:hover {
           color: #933EC5;
         }

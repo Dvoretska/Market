@@ -226,12 +226,6 @@ export default {
 			width: 311px;
 		}
 	}
-	/deep/ .has-icons-left {
-		padding-left: 10px;
-	 }
-	 /deep/ .control.has-icons-left .icon.is-left {
-		left: 10px;
-	}
 	/deep/ .card-header {
 		background-color: rgba(121, 87, 213, .5);
 	}
@@ -240,7 +234,6 @@ export default {
 		min-width: 311px;
 		padding-top: 0;
 		padding-bottom: 0;
-		margin-left: 10px;
 	}
 	/deep/ .dropdown-content {
 		width: auto;

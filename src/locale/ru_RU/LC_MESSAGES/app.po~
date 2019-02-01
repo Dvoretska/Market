@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: main 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-29 16:02+0200\n"
+"POT-Creation-Date: 2019-02-01 09:37+0200\n"
 "PO-Revision-Date: 2018-03-17 16:28+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -21,19 +21,19 @@ msgstr ""
 msgid "{{getCategoryInfo(category, 'name')}}"
 msgstr ""
 
-#: src/components/Navigation.vue:79
+#: src/components/Navigation.vue:83 src/components/ProfileAdsForm.vue:111
 msgid "+ Create an ad"
 msgstr "+ Создать объявление"
 
 #: src/components/ProfileAdsForm.vue:5
 msgid "Active ({{ads.count}})"
-msgstr ""
+msgstr "Активные"
 
 #: src/components/AdDetails.vue:12
 msgid "Added at"
 msgstr "Добавлено"
 
-#: src/components/HomeLanding.vue:162
+#: src/components/HomeLanding.vue:119
 msgid "ADDRESS:"
 msgstr ""
 
@@ -49,6 +49,14 @@ msgstr "Объявления"
 msgid "Already registered? Login"
 msgstr "Уже зарегистрирован? Войти."
 
+#: src/components/ProfileSelectedAds.vue:44
+msgid "Are you sure you want to delete the ad from Wish List?"
+msgstr "Вы уверены, что хотите удалить это объявление из Избранных?"
+
+#: src/components/ProfileAdsForm.vue:55
+msgid "Are you sure you want to delete the ad?"
+msgstr "Вы уверены, что хотите удалить это объявление?"
+
 #: src/components/authentication/LoginForm.vue:34
 #: src/components/authentication/RegisterForm.vue:42
 msgid "Back to home page"
@@ -58,7 +66,11 @@ msgstr "Вернуться на домашнюю страницу"
 msgid "Buy & Sell Easy"
 msgstr "Продавай и покупай легко"
 
-#: src/components/ProfileSettingsForm.vue:77
+#: src/components/CreateAdForm.vue:48 src/components/EditAdForm.vue:50
+msgid "Click or drop your files here"
+msgstr "Выберите файлы или перетащите сюда"
+
+#: src/components/ProfileSettingsForm.vue:66
 msgid "Confirm new password"
 msgstr "Повторите новый пароль"
 
@@ -71,48 +83,61 @@ msgstr "КОНТАКТЫ"
 msgid "Contact information"
 msgstr "Контактная информация"
 
-#: src/components/HomeLanding.vue:149
+#: src/components/HomeLanding.vue:106
 msgid "Contact us"
 msgstr "Связаться с нами"
 
-#: src/components/ProfileAdsForm.vue:50
-#: src/components/ProfileSelectedAds.vue:38
+#: src/components/CreateAdForm.vue:107 src/components/ProfileAdsForm.vue:24
+#: src/components/CreateAdForm.vue:284 src/components/EditAdForm.vue:307
+msgid "Create an ad"
+msgstr "Создать объявление"
+
+#: src/components/ProfileAdsForm.vue:49
+#: src/components/ProfileSelectedAds.vue:37
 msgid "Delete"
 msgstr "Удалить"
 
-#: src/components/ProfileSettingsForm.vue:102
-#: src/components/ProfileSettingsForm.vue:104
+#: src/components/ProfileSettingsForm.vue:91
+#: src/components/ProfileSettingsForm.vue:93
 msgid "Delete your account"
 msgstr "Удалить учетную запись"
 
-#: src/components/ProfileAdsForm.vue:46
+#: src/components/CreateAdForm.vue:50 src/components/EditAdForm.vue:52
+msgid "Download images with extension jpeg, jpg or png"
+msgstr "Загрузите файлы с разрешением jpeg, jpg or png"
+
+#: src/components/ProfileAdsForm.vue:45
 msgid "Edit"
 msgstr "Редактировать"
 
-#: src/components/ProfileSettingsForm.vue:84
+#: src/components/EditAdForm.vue:111
+msgid "Edit an ad"
+msgstr "Редактировать объявление"
+
+#: src/components/ProfileSettingsForm.vue:73
 #: src/components/authentication/LoginForm.vue:51
 #: src/components/authentication/RegisterForm.vue:59
 msgid "Email"
 msgstr "Электронная почта"
 
-#: src/components/CreateAdForm.vue:76
+#: src/components/CreateAdForm.vue:76 src/components/EditAdForm.vue:78
 #, fuzzy
 msgid "Email:"
 msgstr "Электронная почта"
 
-#: src/components/HomeLanding.vue:158
+#: src/components/HomeLanding.vue:115
 msgid "EMAIL:"
 msgstr ""
 
-#: src/components/ProfileSettingsForm.vue:39
+#: src/components/ProfileSettingsForm.vue:28
 msgid "First name"
 msgstr "Имя"
 
-#: src/components/HomeLanding.vue:143
+#: src/components/HomeLanding.vue:100
 msgid "get in touch"
 msgstr "Связаться"
 
-#: src/components/HomeLanding.vue:150
+#: src/components/HomeLanding.vue:107
 msgid "Get to Know Kea Market Better"
 msgstr "Узнай Kea Market лучше"
 
@@ -124,11 +149,16 @@ msgstr "ГЛАВНАЯ"
 msgid "Kea Market is a great way of selling your products online. Create ads easely and for free, and we will help get your products in front of more people. Also you can buy everything you need just staying at home."
 msgstr "Kea Market - замечательный способ продать товары онлайн. Создавайте объявления просто и бесплатно, и мы поможем Вам сделать их доступными широкой аудитории. Также Вы можете приобрести все необходимое, просто оставаясь дома."
 
-#: src/components/ProfileSettingsForm.vue:45
+#: src/components/ProfileSettingsForm.vue:34
 msgid "Last name"
 msgstr "Фамилия"
 
-#: src/components/CreateAdForm.vue:91
+#: src/components/ProfileAdsForm.vue:64
+#: src/components/ProfileSelectedAds.vue:55
+msgid "Load more"
+msgstr "Показать больше"
+
+#: src/components/CreateAdForm.vue:91 src/components/EditAdForm.vue:94
 msgid "Location:"
 msgstr "Местоположение:"
 
@@ -150,16 +180,20 @@ msgstr "Выход"
 msgid "Messages"
 msgstr "Сообщения"
 
-#: src/components/CreateAdForm.vue:69
+#: src/components/CreateAdForm.vue:69 src/components/EditAdForm.vue:71
 msgid "Name:"
 msgstr "Контактное лицо:"
 
-#: src/components/ProfileSettingsForm.vue:71
+#: src/components/ProfileSettingsForm.vue:60
 msgid "New password"
 msgstr "Новый пароль"
 
-#: src/components/ProfileSettingsForm.vue:24
-#: src/components/ProfileSettingsForm.vue:34
+#: src/components/ProfileAdsForm.vue:58
+#: src/components/ProfileSelectedAds.vue:48
+msgid "No"
+msgstr "Нет"
+
+#: src/components/ProfileSettingsForm.vue:23
 msgid "No results found"
 msgstr "Ничего не найдено"
 
@@ -175,43 +209,55 @@ msgstr "Неактивные"
 msgid "Our Categories"
 msgstr "Наши категории"
 
-#: src/components/HomeLanding.vue:133
+#: src/components/HomeLanding.vue:90
 msgid "Our Team"
 msgstr "Наша команда"
 
-#: src/components/ProfileSettingsForm.vue:68
+#: src/components/ProfileSettingsForm.vue:57
 #: src/components/authentication/LoginForm.vue:52
 #: src/components/authentication/RegisterForm.vue:60
 msgid "Password"
 msgstr "Пароль"
 
-#: src/components/ProfileSettingsForm.vue:56
-#: src/components/ProfileSettingsForm.vue:59
+#: src/components/ProfileSettingsForm.vue:45
+#: src/components/ProfileSettingsForm.vue:48
 msgid "Phone number"
 msgstr "Номер телефона"
 
-#: src/components/CreateAdForm.vue:84
+#: src/components/CreateAdForm.vue:84 src/components/EditAdForm.vue:86
 msgid "Phone:"
 msgstr "Телефон:"
 
-#: src/components/HomeLanding.vue:154
+#: src/components/HomeLanding.vue:111
 msgid "PHONE:"
 msgstr ""
 
-#: src/components/HomeLanding.vue:183
+#: src/components/HomeLanding.vue:140
 msgid "Please enter a valid email address"
 msgstr "Пожалуйста, введите валидный email адрес"
 
-#: src/components/ProfileSettingsForm.vue:51
-#: src/components/ProfileSettingsForm.vue:64
-#: src/components/ProfileSettingsForm.vue:81
-#: src/components/ProfileSettingsForm.vue:98
+#: src/components/ProfileMessageForm.vue:10
+msgid "Recieved"
+msgstr "Полученные"
+
+#: src/components/ProfileSettingsForm.vue:40
+#: src/components/ProfileSettingsForm.vue:53
+#: src/components/ProfileSettingsForm.vue:70
+#: src/components/ProfileSettingsForm.vue:87
 msgid "Save"
 msgstr "Сохранить"
+
+#: src/components/HomeLanding.vue:85
+msgid "See all"
+msgstr "Посмотреть все"
 
 #: src/components/Navigation.vue:60 src/components/ProfileForm.vue:42
 msgid "Selected"
 msgstr "Избранное"
+
+#: src/components/ProfileMessageForm.vue:5
+msgid "Sent"
+msgstr "Отправленные"
 
 #: src/components/Navigation.vue:66 src/components/ProfileForm.vue:47
 msgid "Settings"
@@ -231,11 +277,11 @@ msgstr "Регистрация"
 msgid "SIGN UP"
 msgstr "ЗАРЕГИСТРИРОВАТЬСЯ"
 
-#: src/components/HomeLanding.vue:166
+#: src/components/HomeLanding.vue:123
 msgid "SOCIAL:"
 msgstr ""
 
-#: src/components/AdsList.vue:65
+#: src/components/AdsList.vue:66
 msgid "Sorry, no results were found."
 msgstr "Извините, ничего не найдено"
 
@@ -243,7 +289,7 @@ msgstr "Извините, ничего не найдено"
 msgid "START NOW"
 msgstr "НАЧАТЬ СЕЙЧАС"
 
-#: src/components/HomeLanding.vue:182
+#: src/components/HomeLanding.vue:139
 msgid "Subscribe now"
 msgstr "Подписаться"
 
@@ -259,12 +305,16 @@ msgstr "У Вас нет активных объявлений"
 msgid "There are no ads in your Wish List"
 msgstr "В избранном нет объявлений"
 
+#: src/components/ProfileMessageForm.vue:16
+msgid "There are no messages"
+msgstr "У Вас нет активных объявлений"
+
 #: src/components/HomeLanding.vue:22
 msgid "TOP"
 msgstr "ТОП"
 
-#: src/components/ProfileAdsForm.vue:42
-#: src/components/ProfileSelectedAds.vue:34
+#: src/components/ProfileAdsForm.vue:41
+#: src/components/ProfileSelectedAds.vue:33
 msgid "View"
 msgstr "Просмотреть"
 
@@ -272,8 +322,7 @@ msgstr "Просмотреть"
 msgid "VIP Ads"
 msgstr "VIP объявления"
 
-#: src/components/HomeLanding.vue:134
-#, fuzzy
+#: src/components/HomeLanding.vue:91
 msgid ""
 "We are team of open and passionate people that love to launch new initiatives.\n"
 "          We make products that people love and adopt in their everyday work. We're seeking new opportunities and another software developers for exciting and challenging work."
@@ -281,29 +330,30 @@ msgstr "Мы - команда открытых и воодушевленных �
 
 #: src/components/ProfileSelectedAds.vue:5
 msgid "Wish List ({{myWishList.count}})"
-msgstr ""
+msgstr "Избранные"
 
 #: src/components/HomeLanding.vue:49
 msgid "With Kea Market"
 msgstr "С Kea Market"
 
-#: src/components/HomeLanding.vue:141
+#: src/components/ProfileAdsForm.vue:57
+#: src/components/ProfileSelectedAds.vue:47
+msgid "Yes"
+msgstr "Да"
+
+#: src/components/HomeLanding.vue:98
 msgid "You think we're cool? Let's work together!"
 msgstr "Думаешь, мы классные? Присоединяйся к нам!"
 
-#: src/components/ProfileSettingsForm.vue:87
+#: src/components/ProfileSettingsForm.vue:76
 msgid "Your current email"
 msgstr "Ваш текущий email-адрес"
 
-#: src/components/ProfileSettingsForm.vue:93
+#: src/components/ProfileSettingsForm.vue:82
 msgid "Your new email"
 msgstr "Ваш новый email-адрес"
 
-#: src/components/ProfileSettingsForm.vue:149
-msgid "Country"
-msgstr "Страна"
-
-#: src/components/ProfileSettingsForm.vue:152
+#: src/components/ProfileSettingsForm.vue:133
 msgid "City"
 msgstr "Город"
 
@@ -331,10 +381,6 @@ msgstr "Описание"
 msgid "Photo"
 msgstr "Фотографии"
 
-#: src/components/CreateAdForm.vue:284 src/components/EditAdForm.vue:307
-msgid "Create an ad"
-msgstr "Создать объявление"
-
-#: src/components/HomeLanding.vue:258
+#: src/components/HomeLanding.vue:220
 msgid "Email address"
 msgstr "Email адрес"
