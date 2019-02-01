@@ -70,32 +70,15 @@
 				</div>
 				<button class="save-button" slot="content"><translate>Save</translate></button>
 		    </BulmaAccordionItem>
-		   	<BulmaAccordionItem>
-		        <h4 slot="title"><translate>Email</translate></h4>
-		        <div class="field" slot="content">
-			  		<label>
-						<translate>Your current email</translate>
-						<input type="text" class="input">
-			  		</label>
-				</div>
-				<div class="field" slot="content">
-			  		<label>
-						<translate>Your new email</translate>
-						<input type="text" class="input">
-			  		</label>
-				</div>
-				<button class="save-button" slot="content">
-					<translate>Save</translate>
-				</button>
-		    </BulmaAccordionItem>
 		    <BulmaAccordionItem>
 		        <h4 slot="title"><translate>Delete your account</translate></h4>
-		        <button class="delete-button" slot="content">
+		        <button class="delete-button" slot="content" @click="show">
 		        	<translate>Delete your account</translate>?
 		        </button>
 		    </BulmaAccordionItem>
 		</BulmaAccordion>
     <vue-toast ref='toast'></vue-toast>
+		<v-dialog/>
 	</div>
 </template>
 
@@ -113,22 +96,45 @@ export default {
   },
   data () {
     return {
-      countryData: [],
       cityData: [],
       firstName: this.$store.getters.getUserDetails.first_name,
       lastName: this.$store.getters.getUserDetails.last_name,
-      country: this.$store.getters.getUserDetails.country,
       city: this.$store.getters.getUserDetails.city,
       phone: {number: this.$store.getters.getUserDetails.phone || '', code: ''}
     }
   },
   methods: {
+		show () {
+      this.$modal.show('dialog', {
+				text: this.translateTitle(),
+				buttons: [
+					{
+						title: this.translateYes(),
+						handler: () => {
+							this.$store.dispatch('DELETE_PROFILE');
+						}
+					},
+					{
+						title: this.translateNo(),
+						handler: () => {
+							this.$modal.hide('dialog')
+						}
+					}
+			 ]
+			})
+    },
 		fetchCities: _.debounce(function (e) {
 			this.$store.dispatch('GET_CITIES', { search: this.city, callback: (data) => { this.cityData = data } })
 		}, 700),
-  	handleInputChange (data) {
-//  		this.$store.commit('updateUserDetailsField', data)
-  	},
+	  translateTitle () {
+      return this.$gettext('Are you sure you want to delete the profile?')
+    },
+		translateYes () {
+      return this.$gettext('Yes')
+    },
+		translateNo () {
+      return this.$gettext('No')
+    },
     getCity () {
       return this.$gettext('City')
     },
@@ -257,6 +263,18 @@ export default {
 	/deep/ .plus-minus .horizontal, /deep/ .plus-minus .vertical {
 		background: #fff;
 	}
+	 /deep/ .vue-dialog-button:nth-child(2) {
+			background-color: rgba(255,0,0, .8);
+			font-size: 16px !important;;
+	 }
+	 /deep/ .vue-dialog-button:nth-child(1) {
+			background-color: #40E1C0;
+			font-size: 16px !important;
+	 }
+	 /deep/ .vue-dialog .dialog-c-text {
+			font-size: 16px;
+			text-align: center;
+		}
 	.save-button {
 		height: 30px;
 		padding: 0 20px;
@@ -275,7 +293,7 @@ export default {
 	.delete-button {
 		margin: 10px 0;
 		height: 30px;
-		padding: 0 20px;
+		padding: 0 15px;
 		border: none;
 		border-radius: 5px;
 		background-color: red;

@@ -2,6 +2,9 @@ export default {
   auth (state) {
     state.authState.token = localStorage.getItem('token')
   },
+  deleteUser (state) {
+    state.authState.token = ''
+  },
   success (state, data) {
     state.responseState.success = data
   },

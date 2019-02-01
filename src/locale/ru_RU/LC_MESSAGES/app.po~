@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: main 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-01 09:37+0200\n"
+"POT-Creation-Date: 2019-02-01 09:59+0200\n"
 "PO-Revision-Date: 2018-03-17 16:28+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -21,12 +21,12 @@ msgstr ""
 msgid "{{getCategoryInfo(category, 'name')}}"
 msgstr ""
 
-#: src/components/Navigation.vue:83 src/components/ProfileAdsForm.vue:111
+#: src/components/Navigation.vue:83 src/components/ProfileAdsForm.vue:112
 msgid "+ Create an ad"
 msgstr "+ Создать объявление"
 
 #: src/components/ProfileAdsForm.vue:5
-msgid "Active ({{ads.count}})"
+msgid "Active"
 msgstr "Активные"
 
 #: src/components/AdDetails.vue:12
@@ -49,11 +49,11 @@ msgstr "Объявления"
 msgid "Already registered? Login"
 msgstr "Уже зарегистрирован? Войти."
 
-#: src/components/ProfileSelectedAds.vue:44
+#: src/components/ProfileSelectedAds.vue:45
 msgid "Are you sure you want to delete the ad from Wish List?"
 msgstr "Вы уверены, что хотите удалить это объявление из Избранных?"
 
-#: src/components/ProfileAdsForm.vue:55
+#: src/components/ProfileAdsForm.vue:56
 msgid "Are you sure you want to delete the ad?"
 msgstr "Вы уверены, что хотите удалить это объявление?"
 
@@ -87,13 +87,13 @@ msgstr "Контактная информация"
 msgid "Contact us"
 msgstr "Связаться с нами"
 
-#: src/components/CreateAdForm.vue:107 src/components/ProfileAdsForm.vue:24
+#: src/components/CreateAdForm.vue:107 src/components/ProfileAdsForm.vue:25
 #: src/components/CreateAdForm.vue:284 src/components/EditAdForm.vue:307
 msgid "Create an ad"
 msgstr "Создать объявление"
 
-#: src/components/ProfileAdsForm.vue:49
-#: src/components/ProfileSelectedAds.vue:37
+#: src/components/ProfileAdsForm.vue:50
+#: src/components/ProfileSelectedAds.vue:38
 msgid "Delete"
 msgstr "Удалить"
 
@@ -106,7 +106,7 @@ msgstr "Удалить учетную запись"
 msgid "Download images with extension jpeg, jpg or png"
 msgstr "Загрузите файлы с разрешением jpeg, jpg or png"
 
-#: src/components/ProfileAdsForm.vue:45
+#: src/components/ProfileAdsForm.vue:46
 msgid "Edit"
 msgstr "Редактировать"
 
@@ -153,8 +153,8 @@ msgstr "Kea Market - замечательный способ продать то
 msgid "Last name"
 msgstr "Фамилия"
 
-#: src/components/ProfileAdsForm.vue:64
-#: src/components/ProfileSelectedAds.vue:55
+#: src/components/ProfileAdsForm.vue:65
+#: src/components/ProfileSelectedAds.vue:56
 msgid "Load more"
 msgstr "Показать больше"
 
@@ -188,8 +188,8 @@ msgstr "Контактное лицо:"
 msgid "New password"
 msgstr "Новый пароль"
 
-#: src/components/ProfileAdsForm.vue:58
-#: src/components/ProfileSelectedAds.vue:48
+#: src/components/ProfileAdsForm.vue:59
+#: src/components/ProfileSelectedAds.vue:49
 msgid "No"
 msgstr "Нет"
 
@@ -201,7 +201,7 @@ msgstr "Ничего не найдено"
 msgid "Not a member? Sign up"
 msgstr "Не зарегестрирован? Регистрация"
 
-#: src/components/ProfileAdsForm.vue:10
+#: src/components/ProfileAdsForm.vue:11
 msgid "Not active"
 msgstr "Неактивные"
 
@@ -297,11 +297,11 @@ msgstr "Подписаться"
 msgid "TEAM"
 msgstr "КОМАНДА"
 
-#: src/components/ProfileAdsForm.vue:22
+#: src/components/ProfileAdsForm.vue:23
 msgid "There are no active ads"
 msgstr "У Вас нет активных объявлений"
 
-#: src/components/ProfileSelectedAds.vue:17
+#: src/components/ProfileSelectedAds.vue:18
 msgid "There are no ads in your Wish List"
 msgstr "В избранном нет объявлений"
 
@@ -313,8 +313,8 @@ msgstr "У Вас нет активных объявлений"
 msgid "TOP"
 msgstr "ТОП"
 
-#: src/components/ProfileAdsForm.vue:41
-#: src/components/ProfileSelectedAds.vue:33
+#: src/components/ProfileAdsForm.vue:42
+#: src/components/ProfileSelectedAds.vue:34
 msgid "View"
 msgstr "Просмотреть"
 
@@ -329,15 +329,15 @@ msgid ""
 msgstr "Мы - команда открытых и воодушевленных людей, движимые разработкой новых идей. Мы создаем продукты, которые люди ценят и применяют в повседневной жизни. Сейчас мы в поиске новых возможностей и талантливых членов команды для интересных и амбициозных проектов."
 
 #: src/components/ProfileSelectedAds.vue:5
-msgid "Wish List ({{myWishList.count}})"
-msgstr "Избранные"
+msgid "Wish List"
+msgstr "Избранное"
 
 #: src/components/HomeLanding.vue:49
 msgid "With Kea Market"
 msgstr "С Kea Market"
 
-#: src/components/ProfileAdsForm.vue:57
-#: src/components/ProfileSelectedAds.vue:47
+#: src/components/ProfileAdsForm.vue:58
+#: src/components/ProfileSelectedAds.vue:48
 msgid "Yes"
 msgstr "Да"
 

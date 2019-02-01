@@ -65,6 +65,16 @@ export default {
     router.push({name: 'login'});
     window.location.reload()
   },
+  DELETE_PROFILE: function (context) {
+    axios.delete(`${ACCOUNTS_URL}destroy/`).then(() => {
+      localStorage.removeItem('token');
+      context.commit('deleteUser');
+      window.location.reload()
+      router.push({name: 'login'});
+    }).catch((err) => {
+      console.log(err)
+    })
+  },
   GET_CITIES: function (context, data) {
     axios.get(`${MAIN_URL}location/cities/${data.search}/`).then((response) => {
       data.callback(response.data)
@@ -86,6 +96,8 @@ export default {
           context.commit('clearUserState');
           router.push({name: 'login'})
         })
+    } else {
+      router.push({name: 'login'})
     }
   },
   GET_MY_ADS: function (context, data) {

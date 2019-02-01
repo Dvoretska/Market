@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-    <div>
+    <div class="block">
       <span class="content-number">4</span>
       <img src="../assets/not_found.png" alt="" class="content-img">
       <span class="content-number">4</span>
@@ -17,6 +17,11 @@
     justify-content: center;
     align-items: center;
     min-height: 80vh;
+    .block {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
     .content-number {
       font-size: 150px;
       font-family: 'Muli', sans-serif;

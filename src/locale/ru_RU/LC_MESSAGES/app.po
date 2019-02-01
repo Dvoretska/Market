@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: main 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-01 09:59+0200\n"
+"POT-Creation-Date: 2019-02-01 18:26+0200\n"
 "PO-Revision-Date: 2018-03-17 16:28+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -19,6 +19,10 @@ msgstr ""
 
 #: src/components/HomeLanding.vue:71
 msgid "{{getCategoryInfo(category, 'name')}}"
+msgstr ""
+
+#: src/components/ModalConfirm.vue:5
+msgid "{{text}}"
 msgstr ""
 
 #: src/components/Navigation.vue:83 src/components/ProfileAdsForm.vue:112
@@ -188,8 +192,9 @@ msgstr "Контактное лицо:"
 msgid "New password"
 msgstr "Новый пароль"
 
-#: src/components/ProfileAdsForm.vue:59
+#: src/components/ModalConfirm.vue:1 src/components/ProfileAdsForm.vue:59
 #: src/components/ProfileSelectedAds.vue:49
+#: src/components/ProfileSettingsForm.vue:159
 msgid "No"
 msgstr "Нет"
 
@@ -336,8 +341,9 @@ msgstr "Избранное"
 msgid "With Kea Market"
 msgstr "С Kea Market"
 
-#: src/components/ProfileAdsForm.vue:58
+#: src/components/ModalConfirm.vue:1 src/components/ProfileAdsForm.vue:58
 #: src/components/ProfileSelectedAds.vue:48
+#: src/components/ProfileSettingsForm.vue:156
 msgid "Yes"
 msgstr "Да"
 
@@ -353,7 +359,11 @@ msgstr "Ваш текущий email-адрес"
 msgid "Your new email"
 msgstr "Ваш новый email-адрес"
 
-#: src/components/ProfileSettingsForm.vue:133
+#: src/components/ProfileSettingsForm.vue:153
+msgid "Are you sure you want to delete the profile?"
+msgstr "Вы уверены, что хотите удалить учетную запись?"
+
+#: src/components/ProfileSettingsForm.vue:162
 msgid "City"
 msgstr "Город"
 

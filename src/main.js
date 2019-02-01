@@ -60,7 +60,7 @@ Vue.use(Buefy, {
   defaultContainerElement: '#content'
 })
 Vue.use(Vuex)
-Vue.use(VModal)
+Vue.use(VModal, { dialog: true })
 
 Vue.config.productionTip = false
 
