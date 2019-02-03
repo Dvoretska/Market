@@ -13,17 +13,18 @@
 		}">
 		   	<BulmaAccordionItem>
 		        <h4 slot="title"><translate>Contact information</translate></h4>
-		        <div class="fill-info-fields" slot="content">
-			        <b-field :label="getCity()">
-			          <b-autocomplete
-			              v-model="city"
-			              :data="filteredCityArray"
-			              @input="fetchCities"
-			              placeholder="Start typing city name..."
-			              icon="search">
-			              <template slot="empty"><translate>No results found</translate></template>
-			          </b-autocomplete>
-			        </b-field>
+		        <div class="field" slot="content">
+							<label>
+							<translate>City</translate>
+							<b-autocomplete
+									v-model="city"
+									:data="filteredCityArray"
+									@input="fetchCities"
+									:placeholder="translateCityTyping()"
+									icon="search">
+									<template slot="empty"><translate>No results found</translate></template>
+							</b-autocomplete>
+				  		</label>
 			        <div class="field" slot="content">
 				  		<label>
 							<translate>First name</translate>
@@ -147,6 +148,9 @@ export default {
 		translateNo () {
       return this.$gettext('No')
     },
+		translateCityTyping () {
+      return this.$gettext('Start typing city name...')
+    },
     getCity () {
       return this.$gettext('City')
     },
@@ -244,7 +248,6 @@ export default {
 		font-weight: 500;
 		line-height: 23px;;
 		margin-bottom: 2px;
-		margin-left: 9.6px;
 		font-size: 14px;
 	}
 	.field /deep/ label {
@@ -265,6 +268,10 @@ export default {
 			width: 311px;
 		}
 	}
+	/deep/ .control.has-icons-left .icon {
+		top: 6px !important;
+		left: 7px !important;
+  }
 	/deep/ .card-header {
 		background-color: rgba(121, 87, 213, .5);
 	}
