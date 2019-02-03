@@ -61,21 +61,21 @@
 			  		<label>
 						<translate>Old password</translate>
 						<input type="password" class="input" v-model="oldPassword">
-            <div class="error" v-if="getChangePasswordErrors && getChangePasswordErrors.old_password">{{getChangePasswordErrors.old_password[0]}}</div>
+            <span class="error" v-if="getChangePasswordErrors && getChangePasswordErrors.old_password">{{getChangePasswordErrors.old_password[0]}}</span>
 			  		</label>
           </div>
           <div class="field" slot="content">
 			  		<label>
 						<translate>New password</translate>
 						<input type="password" class="input" v-model="newPassword">
-            <div class="error" v-if="getChangePasswordErrors && getChangePasswordErrors.new_password">{{getChangePasswordErrors.new_password[0]}}</div>
+            <span class="error" v-if="getChangePasswordErrors && getChangePasswordErrors.new_password">{{getChangePasswordErrors.new_password[0]}}</span>
 			  		</label>
           </div>
           <div class="field" slot="content">
               <label>
               <translate>Confirm new password</translate>
               <input type="password" class="input" v-model="newPasswordConfirm">
-              <div class="error" v-if="getChangePasswordErrors && getChangePasswordErrors.new_password_confirm">{{getChangePasswordErrors.new_password_confirm[0]}}</div>
+              <span class="error" v-if="getChangePasswordErrors && getChangePasswordErrors.new_password_confirm">{{getChangePasswordErrors.new_password_confirm[0]}}</span>
               </label>
           </div>
 				  <button class="save-button" slot="content" @click="changeUserPassword()"><translate>Save</translate></button>
