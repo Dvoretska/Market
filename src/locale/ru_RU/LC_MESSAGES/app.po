@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: main 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-03 12:19+0200\n"
+"POT-Creation-Date: 2019-02-03 13:31+0200\n"
 "PO-Revision-Date: 2018-03-17 16:28+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -66,11 +66,16 @@ msgstr "Вернуться на домашнюю страницу"
 msgid "Buy & Sell Easy"
 msgstr "Продавай и покупай легко"
 
+#: src/components/ProfileSettingsForm.vue:17
+#: src/components/ProfileSettingsForm.vue:155
+msgid "City"
+msgstr "Город"
+
 #: src/components/CreateAdForm.vue:48 src/components/EditAdForm.vue:50
 msgid "Click or drop your files here"
 msgstr "Выберите файлы или перетащите сюда"
 
-#: src/components/ProfileSettingsForm.vue:72
+#: src/components/ProfileSettingsForm.vue:75
 msgid "Confirm new password"
 msgstr "Повторите новый пароль"
 
@@ -97,8 +102,8 @@ msgstr "Создать объявление"
 msgid "Delete"
 msgstr "Удалить"
 
-#: src/components/ProfileSettingsForm.vue:79
-#: src/components/ProfileSettingsForm.vue:81
+#: src/components/ProfileSettingsForm.vue:83
+#: src/components/ProfileSettingsForm.vue:85
 msgid "Delete your account"
 msgstr "Удалить учетную запись"
 
@@ -123,7 +128,7 @@ msgstr "Электронная почта"
 msgid "EMAIL:"
 msgstr ""
 
-#: src/components/ProfileSettingsForm.vue:28
+#: src/components/ProfileSettingsForm.vue:29
 msgid "First name"
 msgstr "Имя"
 
@@ -143,7 +148,7 @@ msgstr "ГЛАВНАЯ"
 msgid "Kea Market is a great way of selling your products online. Create ads easely and for free, and we will help get your products in front of more people. Also you can buy everything you need just staying at home."
 msgstr "Kea Market - замечательный способ продать товары онлайн. Создавайте объявления просто и бесплатно, и мы поможем Вам сделать их доступными широкой аудитории. Также Вы можете приобрести все необходимое, просто оставаясь дома."
 
-#: src/components/ProfileSettingsForm.vue:34
+#: src/components/ProfileSettingsForm.vue:35
 msgid "Last name"
 msgstr "Фамилия"
 
@@ -178,17 +183,17 @@ msgstr "Сообщения"
 msgid "Name:"
 msgstr "Контактное лицо:"
 
-#: src/components/ProfileSettingsForm.vue:66
+#: src/components/ProfileSettingsForm.vue:68
 msgid "New password"
 msgstr "Новый пароль"
 
 #: src/components/ProfileAdsForm.vue:59
 #: src/components/ProfileSelectedAds.vue:49
-#: src/components/ProfileSettingsForm.vue:145
+#: src/components/ProfileSettingsForm.vue:149
 msgid "No"
 msgstr "Нет"
 
-#: src/components/ProfileSettingsForm.vue:23
+#: src/components/ProfileSettingsForm.vue:24
 msgid "No results found"
 msgstr "Ничего не найдено"
 
@@ -200,7 +205,7 @@ msgstr "Не зарегестрирован? Регистрация"
 msgid "Not active"
 msgstr "Неактивные"
 
-#: src/components/ProfileSettingsForm.vue:60
+#: src/components/ProfileSettingsForm.vue:61
 msgid "Old password"
 msgstr "Старый пароль"
 
@@ -212,14 +217,14 @@ msgstr "Наши категории"
 msgid "Our Team"
 msgstr "Наша команда"
 
-#: src/components/ProfileSettingsForm.vue:57
+#: src/components/ProfileSettingsForm.vue:58
 #: src/components/authentication/LoginForm.vue:52
 #: src/components/authentication/RegisterForm.vue:60
 msgid "Password"
 msgstr "Пароль"
 
-#: src/components/ProfileSettingsForm.vue:45
-#: src/components/ProfileSettingsForm.vue:48
+#: src/components/ProfileSettingsForm.vue:46
+#: src/components/ProfileSettingsForm.vue:49
 msgid "Phone number"
 msgstr "Номер телефона"
 
@@ -239,9 +244,9 @@ msgstr "Пожалуйста, введите валидный email адрес"
 msgid "Recieved"
 msgstr "Полученные"
 
-#: src/components/ProfileSettingsForm.vue:40
-#: src/components/ProfileSettingsForm.vue:53
-#: src/components/ProfileSettingsForm.vue:76
+#: src/components/ProfileSettingsForm.vue:41
+#: src/components/ProfileSettingsForm.vue:54
+#: src/components/ProfileSettingsForm.vue:80
 msgid "Save"
 msgstr "Сохранить"
 
@@ -336,7 +341,7 @@ msgstr "С Kea Market"
 
 #: src/components/ProfileAdsForm.vue:58
 #: src/components/ProfileSelectedAds.vue:48
-#: src/components/ProfileSettingsForm.vue:142
+#: src/components/ProfileSettingsForm.vue:146
 msgid "Yes"
 msgstr "Да"
 
@@ -344,13 +349,13 @@ msgstr "Да"
 msgid "You think we're cool? Let's work together!"
 msgstr "Думаешь, мы классные? Присоединяйся к нам!"
 
-#: src/components/ProfileSettingsForm.vue:139
+#: src/components/ProfileSettingsForm.vue:143
 msgid "Are you sure you want to delete the profile?"
 msgstr "Вы уверены, что хотите удалить учетную запись?"
 
-#: src/components/ProfileSettingsForm.vue:148
-msgid "City"
-msgstr "Город"
+#: src/components/ProfileSettingsForm.vue:152
+msgid "Start typing city name..."
+msgstr "Ввведите название города..."
 
 #: src/components/authentication/LoginForm.vue:51
 #: src/components/authentication/RegisterForm.vue:59
