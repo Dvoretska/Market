@@ -37,5 +37,6 @@ export default {
   },
   adDetails: {},
   adDetailsLoading: false,
-  orderingState: {isOpen: null}
+  orderingState: {isOpen: null},
+  changePasswordErrors: {}
 }

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: main 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-01 18:26+0200\n"
+"POT-Creation-Date: 2019-02-03 12:19+0200\n"
 "PO-Revision-Date: 2018-03-17 16:28+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -19,10 +19,6 @@ msgstr ""
 
 #: src/components/HomeLanding.vue:71
 msgid "{{getCategoryInfo(category, 'name')}}"
-msgstr ""
-
-#: src/components/ModalConfirm.vue:5
-msgid "{{text}}"
 msgstr ""
 
 #: src/components/Navigation.vue:83 src/components/ProfileAdsForm.vue:112
@@ -74,7 +70,7 @@ msgstr "Продавай и покупай легко"
 msgid "Click or drop your files here"
 msgstr "Выберите файлы или перетащите сюда"
 
-#: src/components/ProfileSettingsForm.vue:66
+#: src/components/ProfileSettingsForm.vue:72
 msgid "Confirm new password"
 msgstr "Повторите новый пароль"
 
@@ -101,8 +97,8 @@ msgstr "Создать объявление"
 msgid "Delete"
 msgstr "Удалить"
 
-#: src/components/ProfileSettingsForm.vue:91
-#: src/components/ProfileSettingsForm.vue:93
+#: src/components/ProfileSettingsForm.vue:79
+#: src/components/ProfileSettingsForm.vue:81
 msgid "Delete your account"
 msgstr "Удалить учетную запись"
 
@@ -117,12 +113,6 @@ msgstr "Редактировать"
 #: src/components/EditAdForm.vue:111
 msgid "Edit an ad"
 msgstr "Редактировать объявление"
-
-#: src/components/ProfileSettingsForm.vue:73
-#: src/components/authentication/LoginForm.vue:51
-#: src/components/authentication/RegisterForm.vue:59
-msgid "Email"
-msgstr "Электронная почта"
 
 #: src/components/CreateAdForm.vue:76 src/components/EditAdForm.vue:78
 #, fuzzy
@@ -188,13 +178,13 @@ msgstr "Сообщения"
 msgid "Name:"
 msgstr "Контактное лицо:"
 
-#: src/components/ProfileSettingsForm.vue:60
+#: src/components/ProfileSettingsForm.vue:66
 msgid "New password"
 msgstr "Новый пароль"
 
-#: src/components/ModalConfirm.vue:1 src/components/ProfileAdsForm.vue:59
+#: src/components/ProfileAdsForm.vue:59
 #: src/components/ProfileSelectedAds.vue:49
-#: src/components/ProfileSettingsForm.vue:159
+#: src/components/ProfileSettingsForm.vue:145
 msgid "No"
 msgstr "Нет"
 
@@ -209,6 +199,10 @@ msgstr "Не зарегестрирован? Регистрация"
 #: src/components/ProfileAdsForm.vue:11
 msgid "Not active"
 msgstr "Неактивные"
+
+#: src/components/ProfileSettingsForm.vue:60
+msgid "Old password"
+msgstr "Старый пароль"
 
 #: src/components/HomeLanding.vue:54
 msgid "Our Categories"
@@ -247,8 +241,7 @@ msgstr "Полученные"
 
 #: src/components/ProfileSettingsForm.vue:40
 #: src/components/ProfileSettingsForm.vue:53
-#: src/components/ProfileSettingsForm.vue:70
-#: src/components/ProfileSettingsForm.vue:87
+#: src/components/ProfileSettingsForm.vue:76
 msgid "Save"
 msgstr "Сохранить"
 
@@ -341,9 +334,9 @@ msgstr "Избранное"
 msgid "With Kea Market"
 msgstr "С Kea Market"
 
-#: src/components/ModalConfirm.vue:1 src/components/ProfileAdsForm.vue:58
+#: src/components/ProfileAdsForm.vue:58
 #: src/components/ProfileSelectedAds.vue:48
-#: src/components/ProfileSettingsForm.vue:156
+#: src/components/ProfileSettingsForm.vue:142
 msgid "Yes"
 msgstr "Да"
 
@@ -351,21 +344,18 @@ msgstr "Да"
 msgid "You think we're cool? Let's work together!"
 msgstr "Думаешь, мы классные? Присоединяйся к нам!"
 
-#: src/components/ProfileSettingsForm.vue:76
-msgid "Your current email"
-msgstr "Ваш текущий email-адрес"
-
-#: src/components/ProfileSettingsForm.vue:82
-msgid "Your new email"
-msgstr "Ваш новый email-адрес"
-
-#: src/components/ProfileSettingsForm.vue:153
+#: src/components/ProfileSettingsForm.vue:139
 msgid "Are you sure you want to delete the profile?"
 msgstr "Вы уверены, что хотите удалить учетную запись?"
 
-#: src/components/ProfileSettingsForm.vue:162
+#: src/components/ProfileSettingsForm.vue:148
 msgid "City"
 msgstr "Город"
+
+#: src/components/authentication/LoginForm.vue:51
+#: src/components/authentication/RegisterForm.vue:59
+msgid "Email"
+msgstr "Электронная почта"
 
 #: src/components/authentication/RegisterForm.vue:61
 msgid "Confirm password"

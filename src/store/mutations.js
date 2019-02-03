@@ -136,5 +136,8 @@ export default {
   },
   adDetailsFieldMutate (state, data) {
     state.adDetails[data.field] = data.value
+  },
+  changePasswordErrorsMutate (state, data) {
+    state.changePasswordErrors = data
   }
 }

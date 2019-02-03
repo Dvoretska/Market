@@ -55,20 +55,29 @@
 				</button>
 		    </BulmaAccordionItem>
 		    <BulmaAccordionItem>
-		        <h4 slot="title"><translate>Password</translate></h4>
-		        <div class="field" slot="content">
+          <h4 slot="title"><translate>Password</translate></h4>
+          <div class="field" slot="content">
+			  		<label>
+						<translate>Old password</translate>
+						<input type="password" class="input" v-model="oldPassword">
+            <div class="error" v-if="getChangePasswordErrors && getChangePasswordErrors.old_password">{{getChangePasswordErrors.old_password[0]}}</div>
+			  		</label>
+          </div>
+          <div class="field" slot="content">
 			  		<label>
 						<translate>New password</translate>
-						<input type="text" class="input">
+						<input type="password" class="input" v-model="newPassword">
+            <div class="error" v-if="getChangePasswordErrors && getChangePasswordErrors.new_password">{{getChangePasswordErrors.new_password[0]}}</div>
 			  		</label>
-				</div>
-				<div class="field" slot="content">
-			  		<label>
-						<translate>Confirm new password</translate>
-						<input type="text" class="input">
-			  		</label>
-				</div>
-				<button class="save-button" slot="content"><translate>Save</translate></button>
+          </div>
+          <div class="field" slot="content">
+              <label>
+              <translate>Confirm new password</translate>
+              <input type="password" class="input" v-model="newPasswordConfirm">
+              <div class="error" v-if="getChangePasswordErrors && getChangePasswordErrors.new_password_confirm">{{getChangePasswordErrors.new_password_confirm[0]}}</div>
+              </label>
+          </div>
+				  <button class="save-button" slot="content" @click="changeUserPassword()"><translate>Save</translate></button>
 		    </BulmaAccordionItem>
 		    <BulmaAccordionItem>
 		        <h4 slot="title"><translate>Delete your account</translate></h4>
@@ -97,6 +106,9 @@ export default {
   data () {
     return {
       cityData: [],
+      oldPassword: '',
+      newPassword: '',
+      newPasswordConfirm: '',
       firstName: this.$store.getters.getUserDetails.first_name,
       lastName: this.$store.getters.getUserDetails.last_name,
       city: this.$store.getters.getUserDetails.city,
@@ -151,11 +163,28 @@ export default {
         phone: this.phone.number,
         callback: this.$refs.toast.showToast
       })
+    },
+    changeUserPassword () {
+      this.$store.dispatch('CHANGE_USER_PASSWORD', {
+        oldPassword: this.oldPassword,
+        newPassword: this.newPassword,
+        newPasswordConfirm: this.newPasswordConfirm,
+        callback: this.$refs.toast.showToast,
+        clearFields: this.clearFields
+      })
+    },
+    clearFields () {
+      this.oldPassword = '';
+      this.newPassword = '';
+      this.newPasswordConfirm = '';
     }
   },
   computed: {
     getLoading () {
       return this.$store.getters.getLoading
+    },
+    getChangePasswordErrors () {
+      return this.$store.getters.getChangePasswordErrors
     },
     filteredCityArray () {
     	if(this.city) {
@@ -173,6 +202,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  .error {
+    font-size: 12px;
+    color: red;
+  }
   /deep/ .checked-mark {
     display: flex;
     width: 20px;

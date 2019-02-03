@@ -21,7 +21,7 @@ axios.interceptors.request.use(
 export default {
   LOGIN: function (context, data) {
     context.commit('loginStateMutate', true);
-    axios.post(`${ACCOUNTS_URL}login`, {
+    axios.post(`${ACCOUNTS_URL}login/`, {
       email: data.email,
       password: data.password
     }).then((response) => {
@@ -39,7 +39,7 @@ export default {
   },
   SIGNUP: function (context, data) {
     context.commit('registerStateMutate', true);
-    axios.post(`${ACCOUNTS_URL}signup`, {
+    axios.post(`${ACCOUNTS_URL}signup/`, {
       email: data.email,
       password1: data.password1,
       password2: data.password2
@@ -247,6 +247,20 @@ export default {
       context.commit('updateUserState', response.data);
       data.callback('<span>Settings saved successfully!</span><span class="checked-mark">&#10004;</span>')
     }).catch((err) => {
+      console.log(err)
+    })
+  },
+  CHANGE_USER_PASSWORD: function (context, data) {
+    context.commit('changePasswordErrorsMutate', {})
+    axios.patch(`${ACCOUNTS_URL}change-password/`, {
+      old_password: data.oldPassword,
+      new_password: data.newPassword,
+      new_password_confirm: data.newPasswordConfirm
+    }).then(() => {
+      data.clearFields();
+      data.callback('<span>Password was saved successfully!</span><span class="checked-mark">&#10004;</span>')
+    }).catch((err) => {
+      context.commit('changePasswordErrorsMutate', err.response.data)
       console.log(err)
     })
   },

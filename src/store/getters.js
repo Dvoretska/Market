@@ -62,5 +62,8 @@ export default {
   },
   getOrdering: state => {
     return state.orderingState
+  },
+  getChangePasswordErrors: state => {
+    return state.changePasswordErrors
   }
 }
